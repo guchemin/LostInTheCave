@@ -13,9 +13,35 @@ Entidades::Entidades::Entidades()
 
 Entidades::Entidades::~Entidades()
 {
+
+}
+
+void Entidades::Entidades::setPosicao(sf::Vector2f pos)
+{
+    corpo.setPosition(pos);
 }
 
 sf::RectangleShape Entidades::Entidades::getCorpo()
 {
     return corpo;
+}
+
+float Entidades::Entidades::getCentroX()
+{
+    return corpo.getPosition().x + corpo.getSize().x/2;
+}
+
+float Entidades::Entidades::getCentroY()
+{
+    return corpo.getPosition().y + corpo.getSize().y/2;
+}
+
+float Entidades::Entidades::getTamanhoX()
+{
+    return corpo.getSize().x;
+}
+
+float Entidades::Entidades::getTamanhoY()
+{
+    return corpo.getSize().y;
 }

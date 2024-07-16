@@ -12,5 +12,7 @@ namespace Plataforma
         Plataforma(sf::Vector2f pos, sf::Vector2f tam);
         Plataforma();
         ~Plataforma();
+
+        void colide(Entidades* ent, sf::Vector2f intersec);
     };
 };

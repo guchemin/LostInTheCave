@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Graficos.hpp"
 #include "../Listas/ListaEntidades.hpp"
+
+using namespace Listas;
 
 namespace Gerenciadores
 {
@@ -13,6 +14,7 @@ namespace Gerenciadores
 
     public:
         Colisoes(Listas::ListaEntidades* lPersonagem, Listas::ListaEntidades* lPlataforma);
+        Colisoes();
         ~Colisoes();
 
         void verificarColisoes();

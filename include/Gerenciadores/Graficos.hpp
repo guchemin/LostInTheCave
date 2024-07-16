@@ -7,7 +7,7 @@ namespace Gerenciadores
     class Graficos
     {
     private:
-        sf::RenderWindow* window;
+        sf::RenderWindow* janela;
         
         //padrao de projeto Singleton
         static Graficos* instancia;

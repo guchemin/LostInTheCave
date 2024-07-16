@@ -4,6 +4,7 @@
 #include "../Entidades/Entidades.hpp"
 #include "../Gerenciadores/Graficos.hpp"
 
+
 namespace Listas
 {
     class ListaEntidades
@@ -21,5 +22,7 @@ namespace Listas
         void atualizar();
         void desenhar(sf::RenderWindow* janela);
         std::vector<Entidades::Entidades*> getLista();
+        std::vector<Entidades::Entidades*>::iterator getInicio();
+        std::vector<Entidades::Entidades*>::iterator getFim();
     };
 };

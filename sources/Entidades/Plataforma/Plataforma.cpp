@@ -15,3 +15,8 @@ Plataforma::Plataforma::Plataforma()
 Plataforma::Plataforma::~Plataforma()
 {
 }
+
+void Plataforma::Plataforma::colide(Entidades *ent, sf::Vector2f intersec)
+{
+    
+}

@@ -29,6 +29,7 @@ void ListaEntidades::atualizar()
 //utilizando o padrao iterator para percorrer a lista de entidades
 void ListaEntidades::desenhar(sf::RenderWindow *janela)
 {
+
     std::vector<Entidades::Entidades*>::iterator it;
     for (it = lista.begin(); it != lista.end(); ++it)
     {
@@ -39,4 +40,14 @@ void ListaEntidades::desenhar(sf::RenderWindow *janela)
 std::vector<Entidades::Entidades*> ListaEntidades::getLista()
 {
     return lista;
+}
+
+std::vector<Entidades::Entidades *>::iterator ListaEntidades::getInicio()
+{
+    return lista.begin();
+}
+
+std::vector<Entidades::Entidades *>::iterator ListaEntidades::getFim()
+{
+    return lista.end() ;
 }

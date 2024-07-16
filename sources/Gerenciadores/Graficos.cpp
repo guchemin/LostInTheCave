@@ -16,52 +16,52 @@ Graficos *Gerenciadores::Graficos::getInstancia()
 
 sf::RenderWindow *Gerenciadores::Graficos::getJanela()
 {
-    return window;
+    return janela;
 }
 
 Graficos::Graficos():
-window(new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo"))
+janela(new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo"))
 {
 }
 
 Graficos::~Graficos()
 {
-    delete (window);
+    delete (janela);
 }
 
 void Graficos::limpar()
 {
-    window->clear();
+    janela->clear();
 }
 
 void Graficos::desenhar(sf::RectangleShape desenho)
 {
-    window->draw(desenho);
+    janela->draw(desenho);
 }
 
 void Graficos::mostrar()
 {
-    window->display();
+    janela->display();
 }
 
 bool Graficos::estaAberta()
 {
-    return window->isOpen();
+    return janela->isOpen();
 }
 
 void Graficos::fecharJanela()
 {
-    window->close();
+    janela->close();
 }
 
 void Gerenciadores::Graficos::verificaSeFechou()
 {
     sf::Event evento;
-    while(window->pollEvent(evento))
+    while(janela->pollEvent(evento))
     {
         if(evento.type == sf::Event::Closed)
         {
-            window->close();
+            janela->close();
         }
     }
 }

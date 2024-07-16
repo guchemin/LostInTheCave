@@ -13,6 +13,7 @@ pGraf(Graficos::getInstancia())
 Principal::~Principal()
 {
     pGraf = NULL;
+    pColisoes = NULL;
     jogador1 = NULL;
     jogador2 = NULL;
     plataforma1 = NULL;
@@ -32,15 +33,21 @@ void Principal::inicializar()
     listaJogadores->adicionar(jogador2);
     listaPlataformas->adicionar(plataforma1);
 
+ 
+
     Entidades::Entidades* entJog1 = static_cast<Entidades::Entidades*>(jogador1);
     Entidades::Entidades* entJog2 = static_cast<Entidades::Entidades*>(jogador2);
     Entidades::Entidades* entPlat1 = static_cast<Entidades::Entidades*>(plataforma1);
+
+    pColisoes = new Gerenciadores::Colisoes(listaJogadores, listaPlataformas);
 }
 
 void Principal::atualizar() 
 {
-    jogador1->mover();
-    jogador2->mover(); 
+    jogador1->mover(dt);
+    jogador2->mover(dt); 
+
+    pColisoes->verificarColisoes();
     
     listaJogadores->desenhar(pGraf->getJanela());
     listaPlataformas->desenhar(pGraf->getJanela());
@@ -50,6 +57,8 @@ void Principal::executar()
 {
     while(pGraf->estaAberta())
     {
+        dt = relogio.restart().asSeconds();
+
         //verifica e fecha se necessário
         pGraf->verificaSeFechou();
         
