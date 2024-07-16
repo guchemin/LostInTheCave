@@ -23,6 +23,8 @@ Principal::~Principal()
 
 void Principal::inicializar()
 {
+    pGraf->getJanela()->setFramerateLimit(60);
+
     jogador1 = new Jogador::Jogador(sf::Vector2f(50.0f, 50.0f), sf::Vector2f(50.0f, 50.0f), Jogador::ID::JOGADOR1);
     jogador2 = new Jogador::Jogador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), Jogador::ID::JOGADOR2);
     plataforma1 = new Plataforma::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(800.0f, 50.0f));
@@ -40,6 +42,7 @@ void Principal::inicializar()
     Entidades::Entidades* entPlat1 = static_cast<Entidades::Entidades*>(plataforma1);
 
     pColisoes = new Gerenciadores::Colisoes(listaJogadores, listaPlataformas);
+
 }
 
 void Principal::atualizar() 

@@ -30,17 +30,17 @@ Jogador::Jogador::~Jogador()
 
 void Jogador::Jogador::mover(float dt)
 {
-    vel.y += GRAVIDADE * dt;
     if(!estaNoChao)
     {
+        vel.y += GRAVIDADE * dt;
         corpo.move(0.0f, vel.y);
     }
-
+    
     if(id == JOGADOR1)
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && estaNoChao)
         {
-            vel.y = -1.0f;
+            vel.y = -PULO_JOG1;
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
@@ -61,7 +61,7 @@ void Jogador::Jogador::mover(float dt)
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && estaNoChao)
         {
-            vel.y = -1.0f;
+            vel.y = -PULO_JOG2;
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
