@@ -4,7 +4,7 @@
 #include "../SFML/Graphics.hpp"
 
 #define GRAVIDADE 98.1f
-#define VEL_JOG1 4.0f
+#define VEL_JOG1 40.0f
 #define VEL_JOG2 5.0f
 #define VEL_INIM1 1.0f 
 #define VEL_INIM2 2.0f

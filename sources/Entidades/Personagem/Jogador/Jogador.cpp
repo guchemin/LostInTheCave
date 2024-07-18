@@ -21,7 +21,7 @@ Personagem(pos, tam, TIPO::JOGADOR)
 
 Jogador::Jogador::Jogador()
 {
-    
+
 }
 
 Jogador::Jogador::~Jogador()
@@ -42,10 +42,10 @@ void Jogador::Jogador::mover(float dt)
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            corpo.move(0.0f, vel.y);
-        }
+        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        // {
+        //     corpo.move(0.0f, vel.y);
+        // }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
@@ -64,10 +64,10 @@ void Jogador::Jogador::mover(float dt)
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            corpo.move(0.0f, vel.y);
-        }
+        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        // {
+        //     corpo.move(0.0f, vel.y);
+        // }
         
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {

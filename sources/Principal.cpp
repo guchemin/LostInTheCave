@@ -64,7 +64,7 @@ void Principal::inicializar()
 
 void Principal::atualizar() 
 {
-    pColisoes->verificarColisoes();
+
 
     jogador1->mover(dt);
     jogador2->mover(dt); 
@@ -72,6 +72,8 @@ void Principal::atualizar()
     inimigo1->mover(dt);
     inimigo2->mover(dt);
     inimigo3->mover(dt);
+
+    pColisoes->verificarColisoes();
     
     listaPersonagens->desenhar(pGraf->getJanela());
     listaPlataformas->desenhar(pGraf->getJanela());
