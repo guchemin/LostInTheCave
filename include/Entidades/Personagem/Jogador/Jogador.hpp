@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-#include "../Entidades.hpp"
+#include "../../Plataforma/Plataforma.hpp"
+#include "../Personagem.hpp"
 
 namespace Jogador
 {
@@ -12,12 +13,10 @@ namespace Jogador
         JOGADOR2
     };
 
-    class Jogador: public Entidades::Entidades
+    class Jogador: public Personagem
     {
     private:
-        sf::Vector2f vel;
         ID id;
-        bool estaNoChao = false;
 
     public:
         Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i);
@@ -25,7 +24,6 @@ namespace Jogador
         ~Jogador();
     
         void mover(float dt);
-        void colide(Entidades* ent, sf::Vector2f intersec);
     };
 
 };

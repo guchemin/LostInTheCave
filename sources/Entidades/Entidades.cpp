@@ -45,3 +45,13 @@ float Entidades::Entidades::getTamanhoY()
 {
     return corpo.getSize().y;
 }
+
+float Entidades::Entidades::getPosicaoX()
+{
+    return corpo.getPosition().x;
+}
+
+float Entidades::Entidades::getPosicaoY()
+{
+    return corpo.getPosition().y;
+}

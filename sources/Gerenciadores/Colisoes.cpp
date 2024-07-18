@@ -25,7 +25,6 @@ void Gerenciadores::Colisoes::verificarColisoes()
         return;
     }
 
-
     std::vector<Entidades::Entidades*>::iterator it1;
     std::vector<Entidades::Entidades*>::iterator it2;
 
@@ -40,8 +39,8 @@ void Gerenciadores::Colisoes::verificarColisoes()
             distcentro.x = (*it1)->getCentroX() - (*it2)->getCentroX();
             distcentro.y = (*it1)->getCentroY() - (*it2)->getCentroY();
 
-            intersecao.x = (*it1)->getTamanhoX()/2 + (*it2)->getTamanhoX()/2 - abs(distcentro.x);
-            intersecao.y = (*it1)->getTamanhoY()/2 + (*it2)->getTamanhoY()/2 - abs(distcentro.y);
+            intersecao.x = (*it1)->getTamanhoX()/2.0f + (*it2)->getTamanhoX()/2.0f - abs(distcentro.x);
+            intersecao.y = (*it1)->getTamanhoY()/2.0f + (*it2)->getTamanhoY()/2.0f - abs(distcentro.y);
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
                 (*it1)->colide((*it2), intersecao);

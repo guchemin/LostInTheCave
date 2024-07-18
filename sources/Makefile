@@ -1,2 +1,2 @@
 all:
-	g++ -o jogo main.cpp Principal.cpp Entidades/Entidades.cpp Entidades/Jogador/Jogador.cpp Entidades/Plataforma/Plataforma.cpp Gerenciadores/Graficos.cpp Gerenciadores/Colisoes.cpp Listas/ListaEntidades.cpp -lsfml-graphics -lsfml-window -lsfml-system
+	g++ -o jogo main.cpp Principal.cpp Entidades/Entidades.cpp Entidades/Personagem/Personagem.cpp Entidades/Personagem/Inimigo/Inimigo.cpp Entidades/Personagem/Jogador/Jogador.cpp Entidades/Plataforma/Plataforma.cpp Gerenciadores/Graficos.cpp Gerenciadores/Colisoes.cpp Listas/ListaEntidades.cpp -lsfml-graphics -lsfml-window -lsfml-system
