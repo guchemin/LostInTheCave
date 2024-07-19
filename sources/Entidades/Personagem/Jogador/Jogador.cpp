@@ -21,7 +21,7 @@ Personagem(pos, tam, TIPO::JOGADOR)
 
 Jogador::Jogador::Jogador()
 {
-    
+
 }
 
 Jogador::Jogador::~Jogador()
