@@ -2,46 +2,29 @@
 
 using namespace Entidades;
 
-Inimigo::Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, ID i):
-id(i),
-Personagem(pos, tam, TIPO::INIMIGO)
+Inimigo::Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam):
+Personagem(pos, tam, TIPO::INIMIGO),
+posInicial(pos)
 {
-    switch (id)
-    {
-    case INIM1:
-        {
-            corpo.setFillColor(sf::Color::Magenta);
-            vel = sf::Vector2f(VEL_INIM1, 0.0f);
-            break;
-        }
-    case INIM2:
-        {
-            corpo.setFillColor(sf::Color(120, 120, 120));
-            vel = sf::Vector2f(VEL_INIM2, 0.0f);
-            break;
-        }
-    case INIM3:
-        {
-            corpo.setFillColor(sf::Color::White);
-            vel = sf::Vector2f(VEL_INIM3, 0.0f);
-            break;
-        }
-    
-    default:
-        break;
-    }
     estaNoChao = false;
 }
 
 Inimigo::Inimigo::Inimigo()
 {
+    pJogador = NULL;
 }
 
 Inimigo::Inimigo::~Inimigo()
 {
+    pJogador = NULL;
 }
 
-void Inimigo::Inimigo::mover(float dt)
+void Inimigo::Inimigo::setpJogador(Jogador::Jogador *pJ)
 {
-    //TODO
+    pJogador = pJ;
+}
+
+sf::Vector2f Inimigo::Inimigo::getPosJogador()
+{
+    return pJogador->getPosicao();
 }

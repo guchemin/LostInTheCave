@@ -6,9 +6,7 @@
 #define GRAVIDADE 98.1f
 #define VEL_JOG1 4.0f
 #define VEL_JOG2 5.0f
-#define VEL_INIM1 1.0f 
-#define VEL_INIM2 2.0f
-#define VEL_INIM3 3.0f
+#define VEL_ESQUELETO 3.0f
 #define PULO_JOG1 25.0f
 #define PULO_JOG2 27.5f
 
@@ -34,12 +32,9 @@ namespace Entidades
 
         void setPosicao(sf::Vector2f pos);
         sf::RectangleShape getCorpo();
-        float getCentroX();
-        float getCentroY();
-        float getTamanhoX();
-        float getTamanhoY();
-        float getPosicaoX();
-        float getPosicaoY();
+        sf::Vector2f getCentro();
+        sf::Vector2f getTamanho();
+        sf::Vector2f getPosicao();
 
         virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0; 
         TIPO getTipo() const {return tipo;};

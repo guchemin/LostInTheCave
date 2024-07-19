@@ -8,13 +8,14 @@ listaPlataforma(lPlataforma)
 
 Gerenciadores::Colisoes::Colisoes()
 {
-
+    listaPersonagem = NULL;
+    listaPlataforma = NULL;
 }
 
 Gerenciadores::Colisoes::~Colisoes()
 {
-    listaPersonagem = NULL;
-    listaPlataforma = NULL;
+    listaPersonagem->limpar();
+    listaPlataforma->limpar();
 }
 
 void Gerenciadores::Colisoes::verificarColisoes()
@@ -33,14 +34,13 @@ void Gerenciadores::Colisoes::verificarColisoes()
 
     for (it1 = listaPersonagem->getInicio(); it1 != listaPersonagem->getFim(); ++it1)
     {
-
         for (it2 = listaPlataforma->getInicio(); it2!= listaPlataforma->getFim(); ++it2)
         {
-            distcentro.x = (*it1)->getCentroX() - (*it2)->getCentroX();
-            distcentro.y = (*it1)->getCentroY() - (*it2)->getCentroY();
+            distcentro.x = (*it1)->getCentro().x - (*it2)->getCentro().x;
+            distcentro.y = (*it1)->getCentro().y - (*it2)->getCentro().y;
 
-            intersecao.x = (*it1)->getTamanhoX()/2.0f + (*it2)->getTamanhoX()/2.0f - abs(distcentro.x);
-            intersecao.y = (*it1)->getTamanhoY()/2.0f + (*it2)->getTamanhoY()/2.0f - abs(distcentro.y);
+            intersecao.x = (*it1)->getTamanho().x/2.0f + (*it2)->getTamanho().x/2.0f - abs(distcentro.x);
+            intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - abs(distcentro.y);
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
                 (*it1)->colide((*it2), intersecao);

@@ -14,6 +14,6 @@ public:
     Personagem();
     ~Personagem();
 
-    virtual void colide(Entidades* ent, sf::Vector2f intersec);
+    virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
     virtual void mover(float dt) = 0;
 };

@@ -26,32 +26,17 @@ sf::RectangleShape Entidades::Entidades::getCorpo()
     return corpo;
 }
 
-float Entidades::Entidades::getCentroX()
+sf::Vector2f Entidades::Entidades::getCentro()
 {
-    return corpo.getPosition().x + corpo.getSize().x/2;
+    return sf::Vector2f(corpo.getPosition() + corpo.getSize() / 2.0f);
 }
 
-float Entidades::Entidades::getCentroY()
+sf::Vector2f Entidades::Entidades::getTamanho()
 {
-    return corpo.getPosition().y + corpo.getSize().y/2;
+    return corpo.getSize();
 }
 
-float Entidades::Entidades::getTamanhoX()
+sf::Vector2f Entidades::Entidades::getPosicao()
 {
-    return corpo.getSize().x;
-}
-
-float Entidades::Entidades::getTamanhoY()
-{
-    return corpo.getSize().y;
-}
-
-float Entidades::Entidades::getPosicaoX()
-{
-    return corpo.getPosition().x;
-}
-
-float Entidades::Entidades::getPosicaoY()
-{
-    return corpo.getPosition().y;
+    return corpo.getPosition();
 }

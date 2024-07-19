@@ -20,7 +20,7 @@ sf::RenderWindow *Gerenciadores::Graficos::getJanela()
 }
 
 Graficos::Graficos():
-janela(new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo"))
+janela(new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE"))
 {
 }
 

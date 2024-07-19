@@ -26,7 +26,27 @@ void ListaEntidades::atualizar()
 {
 }
 
-//utilizando o padrao iterator para percorrer a lista de entidades
+void Listas::ListaEntidades::limpar()
+{
+    std::vector<Entidades::Entidades*>::iterator it;
+    for(it = lista.begin(); it != lista.end(); ++it)
+    {
+        delete (*it);
+    }
+    lista.clear();
+}
+
+void Listas::ListaEntidades::mover(float dt)
+{
+    std::vector<Entidades::Entidades*>::iterator it;
+    for(it = lista.begin(); it != lista.end(); ++it)
+    {
+        Personagem* p = dynamic_cast<Personagem*>(*it);
+        p->mover(dt);
+    }
+}
+
+// utilizando o padrao iterator para percorrer a lista de entidades
 void ListaEntidades::desenhar(sf::RenderWindow *janela)
 {
 

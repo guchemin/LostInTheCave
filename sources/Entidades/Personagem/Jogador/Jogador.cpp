@@ -42,10 +42,10 @@ void Jogador::Jogador::mover(float dt)
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            corpo.move(0.0f, vel.y);
-        }
+        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        // {
+        //     corpo.move(0.0f, vel.y);
+        // }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
@@ -64,10 +64,10 @@ void Jogador::Jogador::mover(float dt)
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
         }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            corpo.move(0.0f, vel.y);
-        }
+        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        // {
+        //     corpo.move(0.0f, vel.y);
+        // }
         
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
@@ -77,5 +77,43 @@ void Jogador::Jogador::mover(float dt)
         {
             corpo.move(vel.x, 0.0f);
         }
+    }
+}
+
+void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
+{
+    switch (ent->getTipo())
+    {
+    case TIPO::PLATAFORMA:
+    {
+        if(intersec.x > intersec.y)
+        {
+            if(corpo.getPosition().y > ent->getCorpo().getPosition().y)
+            {
+                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y - this->getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = 0.0f;
+        }
+        else
+        {
+            if(corpo.getPosition().x > ent->getCorpo().getPosition().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y));    
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - this->getTamanho().x, corpo.getPosition().y));
+            }
+        }
+        break;
+    }
+    
+    default:
+        break;
     }
 }

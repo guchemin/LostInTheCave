@@ -1,27 +1,24 @@
 #pragma once
 
-#include "../Personagem.hpp"
+#include "../Jogador/Jogador.hpp"
 
 namespace Inimigo
 {
-    enum ID
-    {
-    INIM1, // morcego
-    INIM2, //golem
-    INIM3  //esqueleto 
-    };
-
     class Inimigo: public Personagem
     {
-    private:
-        ID id;
+    protected:
+        Jogador::Jogador* pJogador;
+        sf::Vector2f posInicial;
 
     public:
-        Inimigo(sf::Vector2f pos, sf::Vector2f tam, ID i);
+        Inimigo(sf::Vector2f pos, sf::Vector2f tam);
         Inimigo();
         ~Inimigo();
 
-        void mover(float dt);
+        void setpJogador(Jogador::Jogador* pJ);
+        sf::Vector2f getPosJogador();
+        virtual void mover(float dt) = 0;
+        virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
     };
 };
 
