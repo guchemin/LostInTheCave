@@ -17,7 +17,8 @@ namespace Inimigo
 
         void setpJogador(Jogador::Jogador* pJ);
         sf::Vector2f getPosJogador();
-        virtual void mover(float dt) = 0;
+        virtual void atacar() = 0;
+        virtual void atualizar(float dt) = 0;
         virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
     };
 };

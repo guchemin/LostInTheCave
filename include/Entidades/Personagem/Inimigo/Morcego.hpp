@@ -13,6 +13,7 @@ public:
     Morcego();
     ~Morcego();
 
-    void mover(float dt);
+    void atacar();
+    void atualizar(float dt);
     void colide(Entidades* ent, sf::Vector2f intersec);
 };

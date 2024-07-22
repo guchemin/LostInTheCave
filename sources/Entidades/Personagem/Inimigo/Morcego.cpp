@@ -15,7 +15,11 @@ Morcego::~Morcego()
 {
 }
 
-void Morcego::mover(float dt)
+void Morcego::atacar()
+{
+}
+
+void Morcego::atualizar(float dt) 
 {
     if(corpo.getPosition().y < posInicial.y - 100.0f || corpo.getPosition().y > posInicial.y + 100.0f)
     {

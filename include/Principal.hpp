@@ -3,6 +3,7 @@
 #include "Entidades/Personagem/Jogador/Jogador.hpp"
 #include "Entidades/Personagem/Inimigo/Morcego.hpp"
 #include "Entidades/Personagem/Inimigo/Golem.hpp"
+#include "Entidades/Personagem/Inimigo/Esqueleto/Esqueleto.hpp"
 #include "Gerenciadores/Colisoes.hpp"
 
 class Principal

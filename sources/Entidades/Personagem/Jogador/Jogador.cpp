@@ -28,7 +28,7 @@ Jogador::Jogador::~Jogador()
 {
 }
 
-void Jogador::Jogador::mover(float dt)
+void Jogador::Jogador::atualizar(float dt)
 {
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
@@ -41,6 +41,7 @@ void Jogador::Jogador::mover(float dt)
             vel.y = -PULO_JOG1;
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
+            vel.x = VEL_NO_AR_JOG1;   
         }
         // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         // {
@@ -63,6 +64,7 @@ void Jogador::Jogador::mover(float dt)
             vel.y = -PULO_JOG2;
             estaNoChao = false;
             corpo.move(0.0f, vel.y);
+            vel.x = VEL_NO_AR_JOG2;
         }
         // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         // {
@@ -96,6 +98,15 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
             {
                 setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y - this->getTamanho().y));
                 estaNoChao = true;
+                
+                if(id == JOGADOR1)
+                {
+                    vel.x = VEL_JOG1;
+                }
+                else if(id == JOGADOR2)
+                {
+                    vel.x = VEL_JOG2;
+                }
             }
             vel.y = 0.0f;
         }

@@ -45,17 +45,18 @@ void Principal::inicializarInimigos()
 {
     Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f));
     Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(30.0f, 100.0f));
-    // Inimigo::Inimigo* inimigo3 = new Inimigo::Inimigo(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f), Inimigo::ID::INIM3);
+    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(500.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
 
     Entidades::Entidades* entInim1 = dynamic_cast<Entidades::Entidades*>(morcego1);
     Entidades::Entidades* entInim2 = dynamic_cast<Entidades::Entidades*>(golem1);
-    // Entidades::Entidades* entInim3 = dynamic_cast<Entidades::Entidades*>(inimigo3);
+    Entidades::Entidades* entInim3 = dynamic_cast<Entidades::Entidades*>(esqueleto1);
     
     listaPersonagens->adicionar(morcego1);
     listaPersonagens->adicionar(golem1);
-    // listaPersonagens->adicionar(inimigo3);
+    listaPersonagens->adicionar(esqueleto1);
 
     golem1->setpJogador(dynamic_cast<Jogador::Jogador*>(listaPersonagens->getLista()[0]));
+    esqueleto1->setpJogador(dynamic_cast<Jogador::Jogador*>(listaPersonagens->getLista()[1]));
 }
 
 void Principal::inicializarPlataformas()
@@ -72,7 +73,7 @@ void Principal::inicializarPlataformas()
 
 void Principal::atualizar()
 {
-    listaPersonagens->mover(dt);
+    listaPersonagens->atualizar(dt);
 
     pColisoes->verificarColisoes();
     

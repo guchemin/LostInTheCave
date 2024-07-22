@@ -1,14 +1,10 @@
 #pragma once
-
+#include <cmath>
 #include <iostream>
 #include "../SFML/Graphics.hpp"
 
 #define GRAVIDADE 98.1f
-#define VEL_JOG1 4.0f
-#define VEL_JOG2 5.0f
 #define VEL_ESQUELETO 3.0f
-#define PULO_JOG1 25.0f
-#define PULO_JOG2 27.5f
 
 namespace Entidades
 {    

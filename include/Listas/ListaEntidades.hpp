@@ -21,7 +21,7 @@ namespace Listas
         void remover(Entidades::Entidades* entidade);
         void atualizar();
         void limpar();
-        void mover(float dt);
+        void atualizar(float dt);
         void desenhar(sf::RenderWindow* janela);
 
         std::vector<Entidades::Entidades*> getLista();
