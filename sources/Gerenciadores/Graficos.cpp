@@ -39,6 +39,11 @@ void Graficos::desenhar(sf::RectangleShape desenho)
     janela->draw(desenho);
 }
 
+void Graficos::desenhar(sf::CircleShape desenho)
+{
+    janela->draw(desenho);
+}
+
 void Graficos::mostrar()
 {
     janela->display();

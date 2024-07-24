@@ -39,7 +39,7 @@ void Listas::ListaEntidades::limpar()
 void Listas::ListaEntidades::atualizar(float dt)
 {
     std::vector<Entidades::Entidades*>::iterator it;
-    for(it = lista.begin(); it != lista.end(); ++it)
+    for(it = lista.begin();!lista.empty() && it != lista.end(); ++it)
     {
         Personagem* p = dynamic_cast<Personagem*>(*it);
         p->atualizar(dt);

@@ -15,8 +15,10 @@ Golem::~Golem()
 {
 }
 
-void Golem::perseguir()
+void Golem::perseguir(float dt)
 {
+    float dx;
+
     if(pJogador->getPosicao().x > this->getPosicao().x + this->getTamanho().x)
     {   
         vel.x = VEL_GOLEM_PERSEG;
@@ -27,7 +29,7 @@ void Golem::perseguir()
     }
     else
     {
-        if (abs(vel.x) < 0.2f)
+        if (fabs(vel.x) < 0.2f)
         {
             vel.x = 0.0f;
         }
@@ -36,8 +38,9 @@ void Golem::perseguir()
             vel.x *= 0.95f;
         }
     }
-
-    corpo.move(vel);
+    
+    dx = vel.x * dt;
+    corpo.move(dx, 0.0f);
 
     if(consegueAtacar())
     {
@@ -45,14 +48,18 @@ void Golem::perseguir()
     }
 }
 
-void Golem::moverAleatorio()
+void Golem::moverAleatorio(float dt)
 {
+    float dx;
+    
     ajustaVelocidade();
     if(corpo.getPosition().x < posInicial.x - 150.0f || corpo.getPosition().x > posInicial.x + 150.0f)
     {
         vel.x = -vel.x;
     }
-    corpo.move(vel.x, 0.0f);
+
+    dx = vel.x * dt;
+    corpo.move(dx, 0.0f);
 }
 
 void Golem::ajustaVelocidade()
@@ -68,7 +75,7 @@ void Golem::ajustaVelocidade()
 
 bool Golem::consegueAtacar()
 {
-    return (abs(pJogador->getCentro().x - this->getCentro().x) <= RAIO_ATAQUE_GOLEM && 
+    return (fabs(pJogador->getCentro().x - this->getCentro().x) <= RAIO_ATAQUE_GOLEM && 
             this->getPosicao().y - pJogador->getPosicao().y < pJogador->getTamanho().y);
 }
 
@@ -79,21 +86,23 @@ void Golem::atacar()
 
 void Golem::atualizar(float dt)
 {
+    float dy;
     sf::Vector2f posGolem = corpo.getPosition();
     sf::Vector2f posJog = pJogador->getPosicao();
 
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
-    corpo.move(0.0f, vel.y);
+    dy = vel.y * dt;
+    corpo.move(0.0f, dy);
     
-    if(abs(posGolem.x - posJog.x) < RAIO_GOLEM && abs(posGolem.y - posJog.y) < RAIO_GOLEM)
+    if(fabs(posGolem.x - posJog.x) < RAIO_GOLEM && fabs(posGolem.y - posJog.y) < RAIO_GOLEM)
     {
-        perseguir();
+        perseguir(dt);
         posInicial = posGolem;
     }
     else
     {
-        moverAleatorio();
+        moverAleatorio(dt);
     }
 }
 

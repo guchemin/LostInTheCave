@@ -39,8 +39,8 @@ void Gerenciadores::Colisoes::verificarColisoes()
             distcentro.x = (*it1)->getCentro().x - (*it2)->getCentro().x;
             distcentro.y = (*it1)->getCentro().y - (*it2)->getCentro().y;
 
-            intersecao.x = (*it1)->getTamanho().x/2.0f + (*it2)->getTamanho().x/2.0f - abs(distcentro.x);
-            intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - abs(distcentro.y);
+            intersecao.x = (*it1)->getTamanho().x/2.0f + (*it2)->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - fabs(distcentro.y);
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
                 (*it1)->colide((*it2), intersecao);

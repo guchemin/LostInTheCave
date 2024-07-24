@@ -2,7 +2,7 @@
 
 #include "Inimigo.hpp"
 
-#define VEL_MORCEGO 3.0f 
+#define VEL_MORCEGO 180.0f 
 
 class Morcego: public Inimigo::Inimigo
 {

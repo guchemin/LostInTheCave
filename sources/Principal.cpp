@@ -45,7 +45,7 @@ void Principal::inicializarInimigos()
 {
     Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f));
     Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(30.0f, 100.0f));
-    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(500.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
+    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f));
 
     Entidades::Entidades* entInim1 = dynamic_cast<Entidades::Entidades*>(morcego1);
     Entidades::Entidades* entInim2 = dynamic_cast<Entidades::Entidades*>(golem1);
@@ -62,23 +62,29 @@ void Principal::inicializarInimigos()
 void Principal::inicializarPlataformas()
 {
     Plataforma::Plataforma* plataforma1 = new Plataforma::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(800.0f, 50.0f));
-    Plataforma::Plataforma* plataforma2 = new Plataforma::Plataforma(sf::Vector2f(100.0f, 200.0f), sf::Vector2f(300.0f, 200.0f));
+    Plataforma::Plataforma* plataforma2 = new Plataforma::Plataforma(sf::Vector2f(500.0f, 400.0f), sf::Vector2f(150.0f, 50.0f));
+    Plataforma::Plataforma* plataforma3 = new Plataforma::Plataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(400.0f, 50.0f));
+    Plataforma::Plataforma* plataforma4 = new Plataforma::Plataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(500.0f, 50.0f));
    
     Entidades::Entidades* entPlat1 = dynamic_cast<Entidades::Entidades*>(plataforma1);
     Entidades::Entidades* entPlat2 = dynamic_cast<Entidades::Entidades*>(plataforma2);
+    Entidades::Entidades* entPlat3 = dynamic_cast<Entidades::Entidades*>(plataforma3);
+    Entidades::Entidades* entPlat4 = dynamic_cast<Entidades::Entidades*>(plataforma4);
 
     listaPlataformas->adicionar(plataforma1);
-    listaPlataformas->adicionar(plataforma2);
+    //listaPlataformas->adicionar(plataforma2);
+    listaPlataformas->adicionar(plataforma3);
+    listaPlataformas->adicionar(plataforma4);
 }
 
 void Principal::atualizar()
 {
-    listaPersonagens->atualizar(dt);
+    listaPlataformas->desenhar(pGraf->getJanela());
 
+    listaPersonagens->atualizar(dt);
     pColisoes->verificarColisoes();
     
     listaPersonagens->desenhar(pGraf->getJanela());
-    listaPlataformas->desenhar(pGraf->getJanela());
 }
 
 void Principal::executar()

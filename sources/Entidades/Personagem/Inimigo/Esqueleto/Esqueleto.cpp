@@ -1,67 +1,117 @@
 #include "../../../../../include/Entidades/Personagem/Inimigo/Esqueleto/Esqueleto.hpp"
 
+using namespace Gerenciadores;
+
 Esqueleto::Esqueleto(sf::Vector2f pos, sf::Vector2f tam):
+pGraf(Graficos::getInstancia()),
 Inimigo(pos, tam)
 {
-    std::cout << "esqueleto" << std::endl;
     vel = sf::Vector2f(0.0f, 0.0f);
     corpo.setFillColor(sf::Color(255, 255, 255));
     corpo.setOutlineColor(sf::Color::Red);
-
+    pProjetil = NULL;
     tempoAtaque = 0.0f;
 }
 
 Esqueleto::Esqueleto()
 {
-    listaProjetil = NULL;
+
 }
 
 Esqueleto::~Esqueleto()
 {
-    listaProjetil->limpar();
+    pProjetil = NULL;
 }
 
 bool Esqueleto::consegueAtacar()
 {
     // verifica distancia
     float dist = sqrt(pow(pJogador->getPosicao().x - this->getPosicao().x, 2) + pow(pJogador->getPosicao().y - this->getPosicao().y, 2));
-    std::cout << "distancia" << std::endl;
     // verifica cooldown
     if(tempoAtaque >= COOLDOWN_ESQUELETO)
     {
-        std::cout << "cooldown" << std::endl;
         tempoAtaque = 0.0f;
-        return (dist < RAIO_ESQUELETO);
+        if(pProjetil == NULL)
+            return (dist < RAIO_ESQUELETO);
     }
-    std::cout << "naoconsegueatacar" << std::endl;
     return false;
 }
 
 void Esqueleto::atacar()
 {
-    std::cout << "atacar" << std::endl;
-    sf::Vector2f velProj = sf::Vector2f(-1.0f, 0.0f);
-    Projetil* projetil;
-    projetil = new Projetil(this->getPosicao(), sf::Vector2f(10.0f, 10.0f), velProj, pJogador, listaProjetil);
+    sf::Vector2f velProj = calcVel();
+    sf::Vector2f posProj = sf::Vector2f(this->getCentro().x, this->getPosicao().y + this->getTamanho().y / 4.0f);
+    pProjetil = new Projetil(posProj, sf::Vector2f(10.0f, 10.0f), velProj, pJogador);
 }
 
 void Esqueleto::atualizar(float dt)
 {
+    float dy;
+    
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
-    corpo.move(0.0f, vel.y);
+    dy = vel.y * dt;
+    corpo.move(0.0f, dy);
 
     tempoAtaque += dt;
 
-    std::cout << "consegueatakar" << std::endl;
     if(consegueAtacar())
     {
         atacar();
     }
-    std::cout << "atualizar" << std::endl;
-    if(listaProjetil != NULL)
-        listaProjetil->atualizar(dt);
-    std::cout << "atualizou" << std::endl;
+    
+    if(pProjetil != NULL && pProjetil->existeProjetil)
+    {
+        pProjetil->atualizar(dt);
+        pGraf->desenhar(pProjetil->getCorpo());
+        if(!pProjetil->existeProjetil)
+        {
+            delete pProjetil;
+            pProjetil = NULL;
+        }    
+    }
+        
+}
+
+sf::Vector2f Esqueleto::calcVel()
+{
+    float Dx;
+    float Dy;
+    float theta;
+    sf::Vector2f velProj;
+
+    if(pJogador->getCentro().x > this->getCentro().x)
+    {    
+        Dx = pJogador->getPosicao().x - this->getCentro().x;
+    }
+    else
+    {    
+        Dx = this->getCentro().x - (pJogador->getPosicao().x + pJogador->getTamanho().x);
+    }
+    
+    Dy = pJogador->getCentro().y - this->getCentro().y;
+
+    theta = atan(fabs(Dy / Dx));
+
+    if(pJogador->getCentro().x > this->getCentro().x)
+    {    
+        velProj.x = VEL_PROJ * cos(theta);
+    }
+    else
+    {
+        velProj.x = -VEL_PROJ * cos(theta);
+    }
+
+    if(pJogador->getCentro().y > this->getCentro().y)
+    {
+        velProj.y = VEL_PROJ * sin(theta);
+    }
+    else
+    {
+        velProj.y = -VEL_PROJ * sin(theta);
+    }
+
+    return velProj;
 }
 
 void Esqueleto::colide(Entidades *ent, sf::Vector2f intersec)
@@ -101,3 +151,18 @@ void Esqueleto::colide(Entidades *ent, sf::Vector2f intersec)
         break;
     }
 }
+
+
+// sf::Vector2f Esqueleto::calcVel()
+// {
+//     sf::Vector2f velProj;
+//     if(pJogador->getCentro().x > this->getCentro().x)
+//         velProj.x = VEL_PROJ_X;
+//     else
+//         velProj.x = -VEL_PROJ_X;
+    
+//     float t = fabs(pJogador->getCentro().x - this->getCentro().x) / VEL_PROJ_X;
+//     velProj.y = (pJogador->getCentro().y - this->getCentro().y) / t - 0.5f * GRAVIDADE / 1000.f * t;
+
+//     return velProj;
+// }

@@ -20,6 +20,7 @@ namespace Gerenciadores
         sf::RenderWindow* getJanela();
         void limpar();
         void desenhar(sf::RectangleShape desenho);
+        void desenhar(sf::CircleShape desenho);
         void mostrar();
         bool estaAberta();
         void fecharJanela();

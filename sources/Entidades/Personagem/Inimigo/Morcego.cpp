@@ -21,6 +21,8 @@ void Morcego::atacar()
 
 void Morcego::atualizar(float dt) 
 {
+    sf::Vector2f ds;
+
     if(corpo.getPosition().y < posInicial.y - 100.0f || corpo.getPosition().y > posInicial.y + 100.0f)
     {
         vel.y = -vel.y;
@@ -29,7 +31,9 @@ void Morcego::atualizar(float dt)
     {
         vel.x = -vel.x;
     }
-    corpo.move(vel);
+    
+    ds = vel * dt;
+    corpo.move(ds);
 }
 
 void Morcego::colide(Entidades *ent, sf::Vector2f intersec)

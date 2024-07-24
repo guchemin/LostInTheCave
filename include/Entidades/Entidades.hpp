@@ -3,8 +3,7 @@
 #include <iostream>
 #include "../SFML/Graphics.hpp"
 
-#define GRAVIDADE 98.1f
-#define VEL_ESQUELETO 3.0f
+#define GRAVIDADE 5400.0f
 
 namespace Entidades
 {    

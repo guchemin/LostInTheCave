@@ -4,8 +4,8 @@
 
 #define RAIO_GOLEM 300.0f
 #define RAIO_ATAQUE_GOLEM 50.0f
-#define VEL_GOLEM 1.0f
-#define VEL_GOLEM_PERSEG 1.75f
+#define VEL_GOLEM 60.0f
+#define VEL_GOLEM_PERSEG 105.0f
 
 class Golem: public Inimigo::Inimigo
 {
@@ -16,8 +16,8 @@ public:
     Golem();
     ~Golem();
 
-    void perseguir();
-    void moverAleatorio();
+    void perseguir(float dt);
+    void moverAleatorio(float dt);
     void ajustaVelocidade();
     bool consegueAtacar();
     void atacar();

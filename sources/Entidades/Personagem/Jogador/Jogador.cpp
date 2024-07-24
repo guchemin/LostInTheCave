@@ -21,7 +21,6 @@ Personagem(pos, tam, TIPO::JOGADOR)
 
 Jogador::Jogador::Jogador()
 {
-
 }
 
 Jogador::Jogador::~Jogador()
@@ -30,9 +29,15 @@ Jogador::Jogador::~Jogador()
 
 void Jogador::Jogador::atualizar(float dt)
 {
+    float dy;
+    float dx;
+    
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
-    corpo.move(0.0f, vel.y);
+    dy = vel.y * dt;
+    corpo.move(0.0f, dy);
+    if(vel.y > GRAVIDADE * dt)
+        estaNoChao = false;
 
     if(id == JOGADOR1)
     {
@@ -40,22 +45,24 @@ void Jogador::Jogador::atualizar(float dt)
         {
             vel.y = -PULO_JOG1;
             estaNoChao = false;
-            corpo.move(0.0f, vel.y);
+            dy = vel.y * dt;
+            corpo.move(0.0f, dy);
             vel.x = VEL_NO_AR_JOG1;   
         }
-        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        // {
-        //     corpo.move(0.0f, vel.y);
-        // }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-            corpo.move(-vel.x, 0.0f);
+            vel.x = -VEL_JOG1;
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            corpo.move(vel.x, 0.0f);
+            vel.x = VEL_JOG1;
         }
+        else    
+            vel.x = 0.0f;
+        
+        dx = vel.x * dt;
+        corpo.move(dx, 0.0f);
     }
     else if(id == JOGADOR2)
     {
@@ -63,22 +70,24 @@ void Jogador::Jogador::atualizar(float dt)
         {
             vel.y = -PULO_JOG2;
             estaNoChao = false;
-            corpo.move(0.0f, vel.y);
+            dy = vel.y * dt;
+            corpo.move(0.0f, dy);
             vel.x = VEL_NO_AR_JOG2;
         }
-        // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        // {
-        //     corpo.move(0.0f, vel.y);
-        // }
         
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            corpo.move(-vel.x, 0.0f);
+            vel.x = -VEL_JOG2;
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            corpo.move(vel.x, 0.0f);
+            vel.x = VEL_JOG2;
         }
+        else
+            vel.x = 0.0f;
+
+        dx = vel.x * dt;
+        corpo.move(dx, 0.0f);
     }
 }
 
@@ -88,7 +97,7 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
     {
     case TIPO::PLATAFORMA:
     {
-        if(intersec.x > intersec.y)
+        if(intersec.x > intersec.y || vel.x == 0.0f)
         {
             if(corpo.getPosition().y > ent->getCorpo().getPosition().y)
             {
@@ -114,7 +123,7 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         {
             if(corpo.getPosition().x > ent->getCorpo().getPosition().x)
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y));    
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y)); 
             }
             else
             {
