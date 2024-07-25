@@ -14,24 +14,6 @@ Eventos* Eventos::getInstancia()
     return instancia;
 }
 
-void Gerenciadores::Eventos::verificaSeParou()
-{
-    if(pJog1 != NULL)
-    {
-        if(!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)))
-        {
-            pJog1->parar();
-        }
-    }
-    if(pJog2 != NULL)
-    {
-        if(!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)))
-        {
-            pJog2->parar();
-        }
-    }
-}
-
 Eventos::Eventos() : pGraf(Graficos::getInstancia())
 {
     pJog1 = NULL;
@@ -63,15 +45,16 @@ void Eventos::verificarTeclaPessionada(sf::Keyboard::Key tecla)
     {
         if(tecla == sf::Keyboard::Key::W && pJog1->podePular())
         {
+            pJog1->autorizarPulo(false);
             pJog1->pular(dt);
         }
         if(tecla == sf::Keyboard::Key::A)
         {
-            pJog1->andar(false, dt);
+            pJog1->andarParaEsquerda(dt);
         }
         else if(tecla == sf::Keyboard::Key::D)
         {
-            pJog1->andar(true, dt);
+            pJog1->andarParaDireita(dt);
         }
     }
 
@@ -79,15 +62,17 @@ void Eventos::verificarTeclaPessionada(sf::Keyboard::Key tecla)
     {
         if(tecla == sf::Keyboard::Key::Up && pJog2->podePular())
         {
+            pJog2->autorizarPulo(false);
             pJog2->pular(dt);
         }
+
         if(tecla == sf::Keyboard::Key::Left)
         {
-            pJog2->andar(false, dt);
+            pJog2->andarParaEsquerda(dt);
         }
         else if(tecla == sf::Keyboard::Key::Right)
         {
-            pJog2->andar(true, dt);
+            pJog2->andarParaDireita(dt);
         }
     }
 }
@@ -96,15 +81,33 @@ void Eventos::verificarTeclaSolta(sf::Keyboard::Key tecla)
 {
     if(pJog1 != NULL)
     {
-        if(tecla == sf::Keyboard::Key::A || tecla == sf::Keyboard::Key::D)
+        if(tecla == sf::Keyboard::Key::W)
         {
-            pJog1->parar();
+            pJog1->autorizarPulo(true);
         }
     }
 
     if(pJog2 != NULL)
     {
-        if(tecla == sf::Keyboard::Key::Left || tecla == sf::Keyboard::Key::Right)
+        if(tecla == sf::Keyboard::Key::Up)
+        {
+            pJog2->autorizarPulo(true);
+        }
+    }
+}
+
+void Gerenciadores::Eventos::verificaSeParou()
+{
+    if(pJog1 != NULL)
+    {
+        if(!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)))
+        {
+            pJog1->parar();
+        }
+    }
+    if(pJog2 != NULL)
+    {
+        if(!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)))
         {
             pJog2->parar();
         }
@@ -125,10 +128,10 @@ void Eventos::verificarEventos(float t)
         {
             verificarTeclaPessionada(evento.key.code);
         }
-        // else if(evento.type == sf::Event::KeyReleased)
-        // {
-        //     verificarTeclaSolta(evento.key.code);
-        // }
+        else if(evento.type == sf::Event::KeyReleased)
+        {
+            verificarTeclaSolta(evento.key.code);
+        }
         verificaSeParou();
     }
 }

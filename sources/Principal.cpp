@@ -98,8 +98,9 @@ void Principal::executar()
     {
         dt = relogio.restart().asSeconds();
 
-        pEventos->verificarEventos(dt);
         pGraf->limpar();
+
+        pEventos->verificarEventos(dt);
         atualizar();
         pGraf->mostrar();
     }

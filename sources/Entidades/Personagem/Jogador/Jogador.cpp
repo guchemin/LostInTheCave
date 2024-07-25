@@ -9,14 +9,15 @@ Personagem(pos, tam, TIPO::JOGADOR)
     if(id == JOGADOR1)
     {
         corpo.setFillColor(sf::Color::Red);
-        vel = sf::Vector2f(VEL_JOG1, 0.0f);
+        vel = sf::Vector2f(0.0f, 0.0f);
     }
     else if(id == JOGADOR2)
     {
         corpo.setFillColor(sf::Color::Blue);
-        vel = sf::Vector2f(VEL_JOG2, 0.0f);
+        vel = sf::Vector2f(0.0f, 0.0f);
     }
     estaNoChao = false;
+    pulou = false;
 }
 
 Jogador::Jogador::Jogador()
@@ -27,133 +28,77 @@ Jogador::Jogador::~Jogador()
 {
 }
 
+void Jogador::Jogador::autorizarPulo(bool autoriza)
+{
+    pulou = !autoriza;
+}
+
 bool Jogador::Jogador::podePular()
 {
-    return estaNoChao;
+    return estaNoChao && !pulou;
 }
 
 void Jogador::Jogador::atualizar(float dt)
 {
-    float dy;
-    float dx;
-    
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
-    dy = vel.y * dt;
-    corpo.move(0.0f, dy);
+
+    ds.y = vel.y * dt;
+    ds.x = vel.x * dt;
+
     if(vel.y > GRAVIDADE * dt)
         estaNoChao = false;
-
-    // if(id == JOGADOR1)
-    // {
-    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && estaNoChao)
-    //     {
-    //         vel.y = -PULO_JOG1;
-    //         estaNoChao = false;
-    //         dy = vel.y * dt;
-    //         corpo.move(0.0f, dy);
-    //         vel.x = VEL_NO_AR_JOG1;   
-    //     }
-
-    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    //     {
-    //         vel.x = -VEL_JOG1;
-    //     }
-    //     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    //     {
-    //         vel.x = VEL_JOG1;
-    //     }
-    //     else    
-    //         vel.x = 0.0f;
-        
-    //     dx = vel.x * dt;
-    //     corpo.move(dx, 0.0f);
-    // }
-    // else if(id == JOGADOR2)
-    // {
-    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && estaNoChao)
-    //     {
-    //         vel.y = -PULO_JOG2;
-    //         estaNoChao = false;
-    //         dy = vel.y * dt;
-    //         corpo.move(0.0f, dy);
-    //         vel.x = VEL_NO_AR_JOG2;
-    //     }
-        
-    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    //     {
-    //         vel.x = -VEL_JOG2;
-    //     }
-    //     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    //     {
-    //         vel.x = VEL_JOG2;
-    //     }
-    //     else
-    //         vel.x = 0.0f;
-
-    //     dx = vel.x * dt;
-    //     corpo.move(dx, 0.0f);
-    // }
-    // std::cout << vel.x * dt << std::endl;
-    // corpo.move(vel.x * dt, 0.0f);
+    
+    corpo.move(ds);
 }
 
 void Jogador::Jogador::pular(float dt)
 {
-    float dy;
-
     if(id == JOGADOR1)
     {
         vel.y = -PULO_JOG1;
-        vel.x = VEL_NO_AR_JOG1; 
+        vel.x *= 1.5f;
     } 
     else if(id == JOGADOR2)
     {
         vel.y = -PULO_JOG2;
-        vel.x = VEL_NO_AR_JOG2;
+        vel.x *= 1.5f;
     }
-    
     estaNoChao = false;
-    dy = vel.y * dt;
-    corpo.move(0.0f, dy);
+    ds.y = vel.y * dt;
+    corpo.move(0.0f, ds.y);
 }
 
-void Jogador::Jogador::andar(bool direita, float dt)
+void Jogador::Jogador::andarParaDireita(float dt)
 {
-    float dx;
-    // podeAndar = true;
-
-    // dx = fabs(vel.x) * dt;
-
-    // if(!direita)
-    //     dx *= -1;
-
-    
     if(id == JOGADOR1)
     {
-        if(direita)
-        {
-            vel.x = VEL_JOG1;
-        }
-        else
-        {
-            vel.x = -VEL_JOG1;
-        }
-    } 
+        vel.x = VEL_JOG1;
+        if(!estaNoChao)
+            vel.x *= 1.5f;
+    }
     else if(id == JOGADOR2)
     {
-        if(direita)
-        {
-            vel.x = VEL_JOG2;
-        }
-        else
-        {
-            vel.x = -VEL_JOG2;
-        }
+        vel.x = VEL_JOG2;
+        if(!estaNoChao)
+            vel.x *= 1.5f;
     }
-    // std::cout << "dx jog2: " << dx << std::endl;
-    dx = vel.x * dt;
-    corpo.move(dx, 0.0f);
+}
+
+void Jogador::Jogador::andarParaEsquerda(float dt)
+{
+    if(id == JOGADOR1)
+    {
+        vel.x = -VEL_JOG1;
+        if(!estaNoChao)
+            vel.x *= 1.5;
+    }
+    else if(id == JOGADOR2)
+    {
+        vel.x = -VEL_JOG2;
+        if(!estaNoChao)
+            vel.x *= 1.5f;
+    }
 }
 
 void Jogador::Jogador::parar()
@@ -225,3 +170,55 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         break;
     }
 }
+
+// if(id == JOGADOR1)
+    // {
+    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && estaNoChao)
+    //     {
+    //         vel.y = -PULO_JOG1;
+    //         estaNoChao = false;
+    //         dy = vel.y * dt;
+    //         corpo.move(0.0f, dy);
+    //         vel.x = VEL_NO_AR_JOG1;   
+    //     }
+
+    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    //     {
+    //         vel.x = -VEL_JOG1;
+    //     }
+    //     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    //     {
+    //         vel.x = VEL_JOG1;
+    //     }
+    //     else    
+    //         vel.x = 0.0f;
+        
+    //     dx = vel.x * dt;
+    //     corpo.move(dx, 0.0f);
+    // }
+    // else if(id == JOGADOR2)
+    // {
+    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && estaNoChao)
+    //     {
+    //         vel.y = -PULO_JOG2;
+    //         estaNoChao = false;
+    //         dy = vel.y * dt;
+    //         corpo.move(0.0f, dy);
+    //         vel.x = VEL_NO_AR_JOG2;
+    //     }
+        
+    //     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    //     {
+    //         vel.x = -VEL_JOG2;
+    //     }
+    //     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    //     {
+    //         vel.x = VEL_JOG2;
+    //     }
+    //     else
+    //         vel.x = 0.0f;
+
+    //     dx = vel.x * dt;
+    //     corpo.move(dx, 0.0f);
+    // }
+    // std::cout << vel.x * dt << std::endl;

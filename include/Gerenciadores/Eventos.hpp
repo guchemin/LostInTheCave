@@ -21,10 +21,10 @@ namespace Gerenciadores
         ~Eventos();
     
         static Eventos* getInstancia();
-        void verificaSeParou();
         void setJogador(Jogador::Jogador* pJog);
         void verificarTeclaPessionada(sf::Keyboard::Key tecla);    
         void verificarTeclaSolta(sf::Keyboard::Key tecla);
+        void verificaSeParou();
         void verificarEventos(float t);
     };
 };
