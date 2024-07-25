@@ -3,7 +3,8 @@
 using namespace Gerenciadores;
 
 Principal::Principal():
-pGraf(Graficos::getInstancia())
+pGraf(Graficos::getInstancia()),
+pEventos(Eventos::getInstancia())
 {
     pGraf->getJanela()->setFramerateLimit(60);
     inicializar();
@@ -14,6 +15,7 @@ Principal::~Principal()
 {
     pGraf = NULL;
     pColisoes = NULL;
+    pEventos = NULL;
     listaPersonagens->limpar();
     listaPlataformas->limpar();
 }
@@ -36,6 +38,9 @@ void Principal::inicializarJogadores()
 
     Entidades::Entidades* entJog1 = dynamic_cast<Entidades::Entidades*>(jogador1);
     Entidades::Entidades* entJog2 = dynamic_cast<Entidades::Entidades*>(jogador2);
+
+    pEventos->setJogador(jogador1);
+    pEventos->setJogador(jogador2);
 
     listaPersonagens->adicionar(jogador1);
     listaPersonagens->adicionar(jogador2);
@@ -93,9 +98,7 @@ void Principal::executar()
     {
         dt = relogio.restart().asSeconds();
 
-        //verifica e fecha se necessário
-        pGraf->verificaSeFechou();
-        
+        pEventos->verificarEventos(dt);
         pGraf->limpar();
         atualizar();
         pGraf->mostrar();

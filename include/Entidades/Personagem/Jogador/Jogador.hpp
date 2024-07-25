@@ -23,13 +23,20 @@ namespace Jogador
     {
     private:
         ID id;
+        bool podeAndar;
 
     public:
         Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i);
         Jogador();
         ~Jogador();
-        
+
+        bool podePular();
+        ID getId() const { return id; };
         void atualizar(float dt);
+        void pular(float dt);
+        void andar(bool direita, float dt);
+        void parar();
+        void ajustarVelocidade();
         void colide(Entidades* ent, sf::Vector2f intersec);
     };
 

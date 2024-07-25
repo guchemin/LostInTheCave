@@ -5,12 +5,14 @@
 #include "Entidades/Personagem/Inimigo/Golem.hpp"
 #include "Entidades/Personagem/Inimigo/Esqueleto/Esqueleto.hpp"
 #include "Gerenciadores/Colisoes.hpp"
+#include "Gerenciadores/Eventos.hpp"
 
 class Principal
 {
 private:
     Gerenciadores::Graficos* pGraf;
-    Gerenciadores::Colisoes* pColisoes; 
+    Gerenciadores::Colisoes* pColisoes;
+    Gerenciadores::Eventos* pEventos;
 
     Listas::ListaEntidades* listaPersonagens;
     Listas::ListaEntidades* listaPlataformas;

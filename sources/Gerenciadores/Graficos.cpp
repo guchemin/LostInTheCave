@@ -5,7 +5,7 @@ using namespace Gerenciadores;
 //padrao Singleton
 Graficos* Graficos::instancia = NULL;
 
-Graficos *Gerenciadores::Graficos::getInstancia()
+Graficos* Graficos::getInstancia()
 {
     if(instancia == NULL)
     {
@@ -14,7 +14,7 @@ Graficos *Gerenciadores::Graficos::getInstancia()
     return instancia;
 }
 
-sf::RenderWindow *Gerenciadores::Graficos::getJanela()
+sf::RenderWindow* Graficos::getJanela()
 {
     return janela;
 }
@@ -59,7 +59,7 @@ void Graficos::fecharJanela()
     janela->close();
 }
 
-void Gerenciadores::Graficos::verificaSeFechou()
+void Graficos::verificaSeFechou()
 {
     sf::Event evento;
     while(janela->pollEvent(evento))
