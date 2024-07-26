@@ -34,10 +34,10 @@ namespace Jogador
         void autorizarPulo(bool autoriza);
         bool podePular();
         ID getId() const { return id; };
+        void perderVida(float dano);
         void atualizar(float dt);
-        void pular(float dt);
-        void andarParaDireita(float dt);
-        void andarParaEsquerda(float dt);
+        void pular();
+        void andar(bool direita);
         void parar();
         void ajustarVelocidade();
         void colide(Entidades* ent, sf::Vector2f intersec);

@@ -3,6 +3,9 @@
 #include "Graficos.hpp"
 #include "../Entidades/Personagem/Jogador/Jogador.hpp"
 
+#define DIREITA 1
+#define ESQUERDA 0
+
 namespace Gerenciadores
 {
     class Eventos
@@ -11,7 +14,7 @@ namespace Gerenciadores
         Graficos* pGraf;
         Jogador::Jogador* pJog1;
         Jogador::Jogador* pJog2;
-        float dt;
+        sf::Event evento;
 
         //padrao de projeto Singleton
         static Eventos* instancia;
@@ -25,6 +28,6 @@ namespace Gerenciadores
         void verificarTeclaPessionada(sf::Keyboard::Key tecla);    
         void verificarTeclaSolta(sf::Keyboard::Key tecla);
         void verificaSeParou();
-        void verificarEventos(float t);
+        void verificarEventos();
     };
 };

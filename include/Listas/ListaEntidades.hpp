@@ -23,6 +23,7 @@ namespace Listas
         void limpar();
         void atualizar(float dt);
         void desenhar(sf::RenderWindow* janela);
+        bool estaVazia();
 
         std::vector<Entidades::Entidades*> getLista();
         std::vector<Entidades::Entidades*>::iterator getInicio();

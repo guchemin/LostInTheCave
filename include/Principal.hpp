@@ -14,7 +14,8 @@ private:
     Gerenciadores::Colisoes* pColisoes;
     Gerenciadores::Eventos* pEventos;
 
-    Listas::ListaEntidades* listaPersonagens;
+    Listas::ListaEntidades* listaJogadores;
+    Listas::ListaEntidades* listaInimigos;
     Listas::ListaEntidades* listaPlataformas;
 
     sf::Clock relogio;

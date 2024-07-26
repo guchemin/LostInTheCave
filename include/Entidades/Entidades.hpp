@@ -11,7 +11,8 @@ namespace Entidades
     {
         JOGADOR,
         INIMIGO,
-        PLATAFORMA
+        PLATAFORMA,
+        PROJETIL
     };
     
     class Entidades 

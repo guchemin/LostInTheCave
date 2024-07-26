@@ -9,11 +9,12 @@ namespace Gerenciadores
     class Colisoes
     {
     private:
-        Listas::ListaEntidades* listaPersonagem;
-        Listas::ListaEntidades* listaPlataforma;
+        Listas::ListaEntidades* listaJogadores;
+        Listas::ListaEntidades* listaInimigos;
+        Listas::ListaEntidades* listaPlataformas;
 
     public:
-        Colisoes(Listas::ListaEntidades* lPersonagem, Listas::ListaEntidades* lPlataforma);
+        Colisoes(Listas::ListaEntidades* lJogadores, Listas::ListaEntidades* lInimigos, Listas::ListaEntidades* lPlataformas);
         Colisoes();
         ~Colisoes();
 
