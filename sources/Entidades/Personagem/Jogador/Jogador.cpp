@@ -38,11 +38,13 @@ bool Jogador::Jogador::podePular()
     return estaNoChao && !pulou;
 }
 
-void Jogador::Jogador::atualizar(float dt)
+void Jogador::Jogador::perderVida(float dano)
 {
-    //acao da gravidade
-    vel.y += GRAVIDADE * dt;
+    corpo.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
+}
 
+void Jogador::Jogador::atualizar(float dt) 
+{
     ds.y = vel.y * dt;
     ds.x = vel.x * dt;
 
@@ -50,9 +52,12 @@ void Jogador::Jogador::atualizar(float dt)
         estaNoChao = false;
     
     corpo.move(ds);
+
+    // acao da gravidade para a proxima iteracao
+    vel.y += GRAVIDADE * dt;
 }
 
-void Jogador::Jogador::pular(float dt)
+void Jogador::Jogador::pular()
 {
     if(id == JOGADOR1)
     {
@@ -65,11 +70,9 @@ void Jogador::Jogador::pular(float dt)
         vel.x *= 1.5f;
     }
     estaNoChao = false;
-    ds.y = vel.y * dt;
-    corpo.move(0.0f, ds.y);
 }
 
-void Jogador::Jogador::andarParaDireita(float dt)
+void Jogador::Jogador::andar(bool direita)
 {
     if(id == JOGADOR1)
     {
@@ -83,23 +86,25 @@ void Jogador::Jogador::andarParaDireita(float dt)
         if(!estaNoChao)
             vel.x *= 1.5f;
     }
+    if(!direita)
+        vel.x *= -1.0f;
 }
 
-void Jogador::Jogador::andarParaEsquerda(float dt)
-{
-    if(id == JOGADOR1)
-    {
-        vel.x = -VEL_JOG1;
-        if(!estaNoChao)
-            vel.x *= 1.5;
-    }
-    else if(id == JOGADOR2)
-    {
-        vel.x = -VEL_JOG2;
-        if(!estaNoChao)
-            vel.x *= 1.5f;
-    }
-}
+// void Jogador::Jogador::andarParaEsquerda()
+// {
+//     if(id == JOGADOR1)
+//     {
+//         vel.x = -VEL_JOG1;
+//         if(!estaNoChao)
+//             vel.x *= 1.5;
+//     }
+//     else if(id == JOGADOR2)
+//     {
+//         vel.x = -VEL_JOG2;
+//         if(!estaNoChao)
+//             vel.x *= 1.5f;
+//     }
+// }
 
 void Jogador::Jogador::parar()
 {

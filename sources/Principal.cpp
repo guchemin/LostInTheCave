@@ -16,15 +16,17 @@ Principal::~Principal()
     pGraf = NULL;
     pColisoes = NULL;
     pEventos = NULL;
-    listaPersonagens->limpar();
+    listaInimigos->limpar();
+    listaJogadores->limpar();
     listaPlataformas->limpar();
 }
 
 void Principal::inicializar()
 {
-    listaPersonagens = new Listas::ListaEntidades();
+    listaJogadores = new Listas::ListaEntidades();
+    listaInimigos = new Listas::ListaEntidades();
     listaPlataformas = new Listas::ListaEntidades();
-    pColisoes = new Gerenciadores::Colisoes(listaPersonagens, listaPlataformas);
+    pColisoes = new Gerenciadores::Colisoes(listaJogadores, listaInimigos, listaPlataformas);
     
     inicializarJogadores();
     inicializarInimigos();
@@ -42,26 +44,23 @@ void Principal::inicializarJogadores()
     pEventos->setJogador(jogador1);
     pEventos->setJogador(jogador2);
 
-    listaPersonagens->adicionar(jogador1);
-    listaPersonagens->adicionar(jogador2);
+    listaJogadores->adicionar(entJog1);
+    listaJogadores->adicionar(entJog2);
 }
 
 void Principal::inicializarInimigos()
 {
-    Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f));
-    Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(30.0f, 100.0f));
-    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f));
+    Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f), listaJogadores);
+    Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(80.0f, 100.0f), listaJogadores);
+    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), listaJogadores);
 
-    Entidades::Entidades* entInim1 = dynamic_cast<Entidades::Entidades*>(morcego1);
-    Entidades::Entidades* entInim2 = dynamic_cast<Entidades::Entidades*>(golem1);
-    Entidades::Entidades* entInim3 = dynamic_cast<Entidades::Entidades*>(esqueleto1);
+    Entidades::Entidades* entMorcego1 = dynamic_cast<Entidades::Entidades*>(morcego1);
+    Entidades::Entidades* entGolem1 = dynamic_cast<Entidades::Entidades*>(golem1);
+    Entidades::Entidades* entEsqueleto1 = dynamic_cast<Entidades::Entidades*>(esqueleto1);
     
-    listaPersonagens->adicionar(morcego1);
-    listaPersonagens->adicionar(golem1);
-    listaPersonagens->adicionar(esqueleto1);
-
-    golem1->setpJogador(dynamic_cast<Jogador::Jogador*>(listaPersonagens->getLista()[0]));
-    esqueleto1->setpJogador(dynamic_cast<Jogador::Jogador*>(listaPersonagens->getLista()[1]));
+    listaInimigos->adicionar(entMorcego1);
+    listaInimigos->adicionar(entGolem1);
+    listaInimigos->adicionar(entEsqueleto1);
 }
 
 void Principal::inicializarPlataformas()
@@ -76,20 +75,22 @@ void Principal::inicializarPlataformas()
     Entidades::Entidades* entPlat3 = dynamic_cast<Entidades::Entidades*>(plataforma3);
     Entidades::Entidades* entPlat4 = dynamic_cast<Entidades::Entidades*>(plataforma4);
 
-    listaPlataformas->adicionar(plataforma1);
-    //listaPlataformas->adicionar(plataforma2);
-    listaPlataformas->adicionar(plataforma3);
-    listaPlataformas->adicionar(plataforma4);
+    listaPlataformas->adicionar(entPlat1);
+    //listaPlataformas->adicionar(entPlat2);
+    listaPlataformas->adicionar(entPlat3);
+    listaPlataformas->adicionar(entPlat4);
 }
 
 void Principal::atualizar()
 {
     listaPlataformas->desenhar(pGraf->getJanela());
 
-    listaPersonagens->atualizar(dt);
+    listaInimigos->atualizar(dt);
+    listaJogadores->atualizar(dt);
     pColisoes->verificarColisoes();
     
-    listaPersonagens->desenhar(pGraf->getJanela());
+    listaInimigos->desenhar(pGraf->getJanela());
+    listaJogadores->desenhar(pGraf->getJanela());   
 }
 
 void Principal::executar()
@@ -100,8 +101,9 @@ void Principal::executar()
 
         pGraf->limpar();
 
-        pEventos->verificarEventos(dt);
+        pEventos->verificarEventos();
         atualizar();
+        
         pGraf->mostrar();
     }
 }

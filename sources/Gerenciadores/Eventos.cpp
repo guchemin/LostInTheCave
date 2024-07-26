@@ -32,7 +32,6 @@ void Gerenciadores::Eventos::setJogador(Jogador::Jogador *pJog)
     }
 }
 
-
 Eventos::~Eventos()
 {
     pJog1 = NULL;
@@ -46,15 +45,15 @@ void Eventos::verificarTeclaPessionada(sf::Keyboard::Key tecla)
         if(tecla == sf::Keyboard::Key::W && pJog1->podePular())
         {
             pJog1->autorizarPulo(false);
-            pJog1->pular(dt);
+            pJog1->pular();
         }
         if(tecla == sf::Keyboard::Key::A)
         {
-            pJog1->andarParaEsquerda(dt);
+            pJog1->andar(ESQUERDA);
         }
         else if(tecla == sf::Keyboard::Key::D)
         {
-            pJog1->andarParaDireita(dt);
+            pJog1->andar(DIREITA);
         }
     }
 
@@ -63,16 +62,16 @@ void Eventos::verificarTeclaPessionada(sf::Keyboard::Key tecla)
         if(tecla == sf::Keyboard::Key::Up && pJog2->podePular())
         {
             pJog2->autorizarPulo(false);
-            pJog2->pular(dt);
+            pJog2->pular();
         }
 
         if(tecla == sf::Keyboard::Key::Left)
         {
-            pJog2->andarParaEsquerda(dt);
+            pJog2->andar(ESQUERDA);
         }
         else if(tecla == sf::Keyboard::Key::Right)
         {
-            pJog2->andarParaDireita(dt);
+            pJog2->andar(DIREITA);
         }
     }
 }
@@ -114,13 +113,11 @@ void Gerenciadores::Eventos::verificaSeParou()
     }
 }
 
-void Eventos::verificarEventos(float t)
+void Eventos::verificarEventos()
 {
-    dt = t;
-    sf::Event evento;
     while(pGraf->getJanela()->pollEvent(evento))
     {
-        if (evento.type == sf::Event::Closed)
+        if (evento.type == sf::Event::Closed || (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape))
         {
             pGraf->fecharJanela();
         }

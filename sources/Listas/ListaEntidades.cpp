@@ -39,7 +39,7 @@ void Listas::ListaEntidades::limpar()
 void Listas::ListaEntidades::atualizar(float dt)
 {
     std::vector<Entidades::Entidades*>::iterator it;
-    for(it = lista.begin();!lista.empty() && it != lista.end(); ++it)
+    for(it = lista.begin();!estaVazia() && it != lista.end(); ++it)
     {
         Personagem* p = dynamic_cast<Personagem*>(*it);
         p->atualizar(dt);
@@ -56,7 +56,12 @@ void ListaEntidades::desenhar(sf::RenderWindow *janela)
     }
 }
 
-std::vector<Entidades::Entidades*> ListaEntidades::getLista()
+bool Listas::ListaEntidades::estaVazia()
+{
+    return lista.empty();
+}
+
+std::vector<Entidades::Entidades *> ListaEntidades::getLista()
 {
     return lista;
 }

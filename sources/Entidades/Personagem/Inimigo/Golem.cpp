@@ -1,10 +1,12 @@
 #include "../../../../include/Entidades/Personagem/Inimigo/Golem.hpp"
 
-Golem::Golem(sf::Vector2f pos, sf::Vector2f tam):
-Inimigo(pos, tam)
+Golem::Golem(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
+Inimigo(pos, tam, listaJog)
 {
     vel = sf::Vector2f(VEL_GOLEM, 0.0f);
     corpo.setFillColor(sf::Color(200, 200, 200));
+    tempoAtaque = COOLDOWN_GOLEM;
+    estaPerseguindo = false;
 }
 
 Golem::Golem()
@@ -29,6 +31,11 @@ void Golem::perseguir(float dt)
     }
     else
     {
+        if(consegueAtacar())
+        {
+            atacar();
+        }
+
         if (fabs(vel.x) < 0.2f)
         {
             vel.x = 0.0f;
@@ -41,18 +48,13 @@ void Golem::perseguir(float dt)
     
     dx = vel.x * dt;
     corpo.move(dx, 0.0f);
-
-    if(consegueAtacar())
-    {
-        atacar();
-    }
 }
 
 void Golem::moverAleatorio(float dt)
 {
     float dx;
-    
     ajustaVelocidade();
+    
     if(corpo.getPosition().x < posInicial.x - 150.0f || corpo.getPosition().x > posInicial.x + 150.0f)
     {
         vel.x = -vel.x;
@@ -64,44 +66,66 @@ void Golem::moverAleatorio(float dt)
 
 void Golem::ajustaVelocidade()
 {
-    if(vel.x == VEL_GOLEM_PERSEG || vel.x == -VEL_GOLEM_PERSEG)
+    if(!estaPerseguindo)
     {
         if(vel.x > 0.0f)
+        {
             vel.x = VEL_GOLEM;
+        }
         else
+        {
             vel.x = -VEL_GOLEM;
+        }
     }
 }
 
 bool Golem::consegueAtacar()
 {
-    return (fabs(pJogador->getCentro().x - this->getCentro().x) <= RAIO_ATAQUE_GOLEM && 
-            this->getPosicao().y - pJogador->getPosicao().y < pJogador->getTamanho().y);
+    if(tempoAtaque >= COOLDOWN_GOLEM)
+    {
+        if(fabs(this->getPosicao().y - pJogador->getPosicao().y) < pJogador->getTamanho().y)
+        {
+            tempoAtaque = 0.0f;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Golem::coseguePerseguir()
+{
+    return false;   
 }
 
 void Golem::atacar()
 {  
-    //TODO tira vida do jogador
+    pJogador->perderVida(1.0f);
 }
 
 void Golem::atualizar(float dt)
 {
+    setJogador();
+    
     float dy;
-    sf::Vector2f posGolem = corpo.getPosition();
+    sf::Vector2f posGolem = this->getPosicao();
     sf::Vector2f posJog = pJogador->getPosicao();
 
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
     dy = vel.y * dt;
     corpo.move(0.0f, dy);
+
+    tempoAtaque += dt;
     
-    if(fabs(posGolem.x - posJog.x) < RAIO_GOLEM && fabs(posGolem.y - posJog.y) < RAIO_GOLEM)
+    if(fabs(posGolem.x - posJog.x) < RAIO_GOLEM_X && fabs(posGolem.y - posJog.y) < RAIO_GOLEM_Y)
     {
         perseguir(dt);
+        estaPerseguindo = true;
         posInicial = posGolem;
     }
     else
     {
+        estaPerseguindo = false;
         moverAleatorio(dt);
     }
 }
@@ -142,8 +166,8 @@ void Golem::colide(Entidades *ent, sf::Vector2f intersec)
 
     case TIPO::JOGADOR:
     {
-        Jogador::Jogador *jog = dynamic_cast<Jogador::Jogador*>(ent);
-        setpJogador(jog);
+        // Jogador::Jogador *jog = dynamic_cast<Jogador::Jogador*>(ent);
+        // setpJogador(jog);
 
         //TODO tira vida do jogador
         break;

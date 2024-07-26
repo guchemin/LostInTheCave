@@ -2,9 +2,9 @@
 
 using namespace Gerenciadores;
 
-Esqueleto::Esqueleto(sf::Vector2f pos, sf::Vector2f tam):
+Esqueleto::Esqueleto(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
 pGraf(Graficos::getInstancia()),
-Inimigo(pos, tam)
+Inimigo(pos, tam, listaJog)
 {
     vel = sf::Vector2f(0.0f, 0.0f);
     corpo.setFillColor(sf::Color(255, 255, 255));
@@ -25,11 +25,14 @@ Esqueleto::~Esqueleto()
 
 bool Esqueleto::consegueAtacar()
 {
-    // verifica distancia
-    float dist = sqrt(pow(pJogador->getPosicao().x - this->getPosicao().x, 2) + pow(pJogador->getPosicao().y - this->getPosicao().y, 2));
     // verifica cooldown
     if(tempoAtaque >= COOLDOWN_ESQUELETO)
     {
+        setJogador();
+
+        // verifica distancia
+        float dist = sqrt(pow(pJogador->getPosicao().x - this->getPosicao().x, 2) + pow(pJogador->getPosicao().y - this->getPosicao().y, 2));
+
         tempoAtaque = 0.0f;
         if(pProjetil == NULL)
             return (dist < RAIO_ESQUELETO);
@@ -41,7 +44,7 @@ void Esqueleto::atacar()
 {
     sf::Vector2f velProj = calcVel();
     sf::Vector2f posProj = sf::Vector2f(this->getCentro().x, this->getPosicao().y + this->getTamanho().y / 4.0f);
-    pProjetil = new Projetil(posProj, sf::Vector2f(10.0f, 10.0f), velProj, pJogador);
+    pProjetil = new Projetil(posProj, sf::Vector2f(10.0f, 10.0f), velProj, listaJogadores);
 }
 
 void Esqueleto::atualizar(float dt)
