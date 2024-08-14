@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../../Plataforma/Plataforma.hpp"
 #include "../Personagem.hpp"
+#include "../../../Observadores/ObsJogadores.hpp"
 
 #define VEL_JOG1 240.0f
 #define VEL_JOG2 300.0f
@@ -25,6 +26,7 @@ namespace Jogador
         ID id;
         sf::Vector2f ds;
         bool pulou;
+        Observadores::ObsJogadores Obs;
 
     public:
         Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i);
@@ -35,6 +37,7 @@ namespace Jogador
         bool podePular();
         ID getId() const { return id; };
         void perderVida(float dano);
+        void atacar();
         void atualizar(float dt);
         void pular();
         void andar(bool direita);

@@ -4,6 +4,7 @@ using namespace Entidades;
 
 Jogador::Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i):
 id(i),
+Obs(this),
 Personagem(pos, tam, TIPO::JOGADOR)
 {
     if(id == JOGADOR1)
@@ -21,7 +22,8 @@ Personagem(pos, tam, TIPO::JOGADOR)
     vida = 100.0f;
 }
 
-Jogador::Jogador::Jogador()
+Jogador::Jogador::Jogador():
+Obs(this)
 {
 }
 
@@ -44,7 +46,11 @@ void Jogador::Jogador::perderVida(float dano)
     tiraVida(dano);
 }
 
-void Jogador::Jogador::atualizar(float dt) 
+void Jogador::Jogador::atacar()
+{
+
+}
+void Jogador::Jogador::atualizar(float dt)
 {
     ds.y = vel.y * dt;
     ds.x = vel.x * dt;

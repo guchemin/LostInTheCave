@@ -31,7 +31,8 @@ void Listas::ListaEntidades::limpar()
     std::vector<Entidades::Entidades*>::iterator it;
     for(it = lista.begin(); it != lista.end(); ++it)
     {
-        delete (*it);
+        if(*it)
+            delete (*it);
     }
     lista.clear();
 }

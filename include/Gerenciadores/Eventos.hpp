@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Graficos.hpp"
+#include "Inputs.hpp"
 #include "../Entidades/Personagem/Jogador/Jogador.hpp"
-
-#define DIREITA 1
-#define ESQUERDA 0
 
 namespace Gerenciadores
 {
@@ -12,6 +10,7 @@ namespace Gerenciadores
     {
     private:
         Graficos* pGraf;
+        Inputs* pInp;
         Jogador::Jogador* pJog1;
         Jogador::Jogador* pJog2;
         sf::Event evento;
@@ -25,8 +24,6 @@ namespace Gerenciadores
     
         static Eventos* getInstancia();
         void setJogador(Jogador::Jogador* pJog);
-        void verificarTeclaPessionada(sf::Keyboard::Key tecla);    
-        void verificarTeclaSolta(sf::Keyboard::Key tecla);
         void verificaSeParou();
         void verificarEventos();
     };
