@@ -7,6 +7,7 @@ Inimigo(pos, tam, listaJog)
     corpo.setFillColor(sf::Color(200, 200, 200));
     tempoAtaque = COOLDOWN_GOLEM;
     estaPerseguindo = false;
+    vida = 150.0f;
 }
 
 Golem::Golem()
@@ -21,11 +22,11 @@ void Golem::perseguir(float dt)
 {
     float dx;
 
-    if(pJogador->getPosicao().x > this->getPosicao().x + this->getTamanho().x)
+    if(pJogador->getPosicao().x > getPosicao().x + getTamanho().x)
     {   
         vel.x = VEL_GOLEM_PERSEG;
     }
-    else if(pJogador->getPosicao().x + pJogador->getTamanho().x < this->getPosicao().x)
+    else if(pJogador->getPosicao().x + pJogador->getTamanho().x < getPosicao().x)
     {
         vel.x = -VEL_GOLEM_PERSEG;
     }
@@ -55,7 +56,7 @@ void Golem::moverAleatorio(float dt)
     float dx;
     ajustaVelocidade();
     
-    if(corpo.getPosition().x < posInicial.x - 150.0f || corpo.getPosition().x > posInicial.x + 150.0f)
+    if(getPosicao().x < posInicial.x - 150.0f || getPosicao().x > posInicial.x + 150.0f)
     {
         vel.x = -vel.x;
     }
@@ -83,7 +84,7 @@ bool Golem::consegueAtacar()
 {
     if(tempoAtaque >= COOLDOWN_GOLEM)
     {
-        if(fabs(this->getPosicao().y - pJogador->getPosicao().y) < pJogador->getTamanho().y)
+        if(fabs(getPosicao().y - pJogador->getPosicao().y) < pJogador->getTamanho().y)
         {
             tempoAtaque = 0.0f;
             return true;
@@ -92,14 +93,14 @@ bool Golem::consegueAtacar()
     return false;
 }
 
-bool Golem::coseguePerseguir()
+bool Golem::conseguePerseguir()
 {
     return false;   
 }
 
 void Golem::atacar()
 {  
-    pJogador->perderVida(1.0f);
+    pJogador->perderVida(DANO_GOLEM);
 }
 
 void Golem::atualizar(float dt)
@@ -107,7 +108,7 @@ void Golem::atualizar(float dt)
     setJogador();
     
     float dy;
-    sf::Vector2f posGolem = this->getPosicao();
+    sf::Vector2f posGolem = getPosicao();
     sf::Vector2f posJog = pJogador->getPosicao();
 
     //acao da gravidade
@@ -138,26 +139,26 @@ void Golem::colide(Entidades *ent, sf::Vector2f intersec)
     {
         if(intersec.x > intersec.y)
         {
-            if(corpo.getPosition().y > ent->getCorpo().getPosition().y)
+            if(getPosicao().y > ent->getPosicao().y)
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y + ent->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
             }
             else
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y - this->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
             }
             vel.y = 0.0f;
         }
         else
         {
-            if(corpo.getPosition().x > ent->getCorpo().getPosition().x)
+            if(getPosicao().x > ent->getPosicao().x)
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y));    
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
             }
             else
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x - this->getTamanho().x, corpo.getPosition().y));
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
             vel.x = -vel.x;
         }

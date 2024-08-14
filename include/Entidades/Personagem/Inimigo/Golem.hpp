@@ -22,7 +22,7 @@ public:
     void moverAleatorio(float dt);
     void ajustaVelocidade();
     bool consegueAtacar();
-    bool coseguePerseguir();
+    bool conseguePerseguir();
     void atacar();
     void atualizar(float dt);
     void colide(Entidades* ent, sf::Vector2f intersec);

@@ -11,6 +11,7 @@ Inimigo(pos, tam, listaJog)
     corpo.setOutlineColor(sf::Color::Red);
     pProjetil = NULL;
     tempoAtaque = 0.0f;
+    vida = 60.0f;
 }
 
 Esqueleto::Esqueleto()
@@ -31,7 +32,7 @@ bool Esqueleto::consegueAtacar()
         setJogador();
 
         // verifica distancia
-        float dist = sqrt(pow(pJogador->getPosicao().x - this->getPosicao().x, 2) + pow(pJogador->getPosicao().y - this->getPosicao().y, 2));
+        float dist = sqrt(pow(pJogador->getPosicao().x - getPosicao().x, 2) + pow(pJogador->getPosicao().y - getPosicao().y, 2));
 
         tempoAtaque = 0.0f;
         if(pProjetil == NULL)
@@ -43,7 +44,7 @@ bool Esqueleto::consegueAtacar()
 void Esqueleto::atacar()
 {
     sf::Vector2f velProj = calcVel();
-    sf::Vector2f posProj = sf::Vector2f(this->getCentro().x, this->getPosicao().y + this->getTamanho().y / 4.0f);
+    sf::Vector2f posProj = sf::Vector2f(getCentro().x, getPosicao().y + getTamanho().y / 4.0f);
     pProjetil = new Projetil(posProj, sf::Vector2f(10.0f, 10.0f), velProj, listaJogadores);
 }
 
@@ -83,20 +84,20 @@ sf::Vector2f Esqueleto::calcVel()
     float theta;
     sf::Vector2f velProj;
 
-    if(pJogador->getCentro().x > this->getCentro().x)
+    if(pJogador->getCentro().x > getCentro().x)
     {    
-        Dx = pJogador->getPosicao().x - this->getCentro().x;
+        Dx = pJogador->getPosicao().x - getCentro().x;
     }
     else
     {    
-        Dx = this->getCentro().x - (pJogador->getPosicao().x + pJogador->getTamanho().x);
+        Dx = getCentro().x - (pJogador->getPosicao().x + pJogador->getTamanho().x);
     }
     
-    Dy = pJogador->getCentro().y - this->getCentro().y;
+    Dy = pJogador->getCentro().y - getCentro().y;
 
     theta = atan(fabs(Dy / Dx));
 
-    if(pJogador->getCentro().x > this->getCentro().x)
+    if(pJogador->getCentro().x > getCentro().x)
     {    
         velProj.x = VEL_PROJ * cos(theta);
     }
@@ -105,7 +106,7 @@ sf::Vector2f Esqueleto::calcVel()
         velProj.x = -VEL_PROJ * cos(theta);
     }
 
-    if(pJogador->getCentro().y > this->getCentro().y)
+    if(pJogador->getCentro().y > getCentro().y)
     {
         velProj.y = VEL_PROJ * sin(theta);
     }
@@ -125,26 +126,26 @@ void Esqueleto::colide(Entidades *ent, sf::Vector2f intersec)
     {
         if(intersec.x > intersec.y)
         {
-            if(corpo.getPosition().y > ent->getCorpo().getPosition().y)
+            if(getPosicao().y > ent->getPosicao().y)
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y + ent->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
             }
             else
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y - this->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
             }
             vel.y = 0.0f;
         }
         else
         {
-            if(corpo.getPosition().x > ent->getCorpo().getPosition().x)
+            if(getPosicao().x > ent->getPosicao().x)
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y));    
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
             }
             else
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x - this->getTamanho().x, corpo.getPosition().y));
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
         }
         break;
@@ -159,13 +160,13 @@ void Esqueleto::colide(Entidades *ent, sf::Vector2f intersec)
 // sf::Vector2f Esqueleto::calcVel()
 // {
 //     sf::Vector2f velProj;
-//     if(pJogador->getCentro().x > this->getCentro().x)
+//     if(pJogador->getCentro().x > getCentro().x)
 //         velProj.x = VEL_PROJ_X;
 //     else
 //         velProj.x = -VEL_PROJ_X;
     
-//     float t = fabs(pJogador->getCentro().x - this->getCentro().x) / VEL_PROJ_X;
-//     velProj.y = (pJogador->getCentro().y - this->getCentro().y) / t - 0.5f * GRAVIDADE / 1000.f * t;
+//     float t = fabs(pJogador->getCentro().x - getCentro().x) / VEL_PROJ_X;
+//     velProj.y = (pJogador->getCentro().y - getCentro().y) / t - 0.5f * GRAVIDADE / 1000.f * t;
 
 //     return velProj;
 // }

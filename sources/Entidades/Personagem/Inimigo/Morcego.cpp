@@ -6,6 +6,7 @@ Inimigo(pos, tam, listaJog)
     vel = sf::Vector2f(VEL_MORCEGO, VEL_MORCEGO);
     corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
+    vida = 40.0f;
 }
 
 Morcego::Morcego()
@@ -37,7 +38,7 @@ bool Morcego::atingiuJogador()
 
 void Morcego::atacar()
 { 
-    pJogador->perderVida(1.0f);
+    pJogador->perderVida(DANO_MORCEGO);
 }
 
 void Morcego::atualizar(float dt) 
@@ -46,11 +47,11 @@ void Morcego::atualizar(float dt)
 
     tempoAtaque += dt;
 
-    if(corpo.getPosition().y < posInicial.y - 100.0f || corpo.getPosition().y > posInicial.y + 100.0f)
+    if(getPosicao().y < posInicial.y - 100.0f || getPosicao().y > posInicial.y + 100.0f)
     {
         vel.y = -vel.y;
     }
-    if(corpo.getPosition().x < posInicial.x - 300.0f || corpo.getPosition().x > posInicial.x + 300.0f)
+    if(getPosicao().x < posInicial.x - 300.0f || getPosicao().x > posInicial.x + 300.0f)
     {
         vel.x = -vel.x;
     }
@@ -66,36 +67,33 @@ void Morcego::atualizar(float dt)
 
 void Morcego::colide(Entidades *ent, sf::Vector2f intersec)
 {
-    std::cout << "colidiu" << std::endl;
     switch (ent->getTipo())
     {
     case TIPO::PLATAFORMA:
     {
         if(intersec.x > intersec.y)
         {
-            if(corpo.getPosition().y > ent->getCorpo().getPosition().y)
+            if(getPosicao().y > ent->getPosicao().y)
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y + ent->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
             }
             else
             {
-                setPosicao(sf::Vector2f(corpo.getPosition().x, ent->getPosicao().y - this->getTamanho().y));
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
             }
             vel.y = -vel.y;
         }
         else
         {
-            std::cout << "colidiu em x" << std::endl;
-            if(corpo.getPosition().x > ent->getCorpo().getPosition().x)
+            if(getPosicao().x > ent->getPosicao().x)
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, corpo.getPosition().y));    
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
             }
             else
             {
-                setPosicao(sf::Vector2f(ent->getPosicao().x - this->getTamanho().x, corpo.getPosition().y));
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
-            std::cout << "passou da colisao"<< std::endl;
             vel.x = -vel.x;
         }
         break;

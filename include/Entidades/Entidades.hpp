@@ -24,7 +24,7 @@ namespace Entidades
     public:
         Entidades(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
         Entidades();
-        ~Entidades();
+        virtual ~Entidades();
 
         void setPosicao(sf::Vector2f pos);
         sf::RectangleShape getCorpo();
@@ -36,3 +36,4 @@ namespace Entidades
         TIPO getTipo() const {return tipo;};
     };
 };
+

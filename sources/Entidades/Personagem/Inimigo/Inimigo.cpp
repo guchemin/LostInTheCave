@@ -37,7 +37,7 @@ void Inimigo::Inimigo::setJogador()
 
     for(it = listaJogadores->getInicio(); it != listaJogadores->getFim(); ++it)
     {
-        dist = sqrt(pow((*it)->getPosicao().x - this->getPosicao().x, 2) + pow((*it)->getPosicao().y - this->getPosicao().y, 2));
+        dist = sqrt(pow((*it)->getPosicao().x - getPosicao().x, 2) + pow((*it)->getPosicao().y - getPosicao().y, 2));
         if(dist < menorDist)
         {
             menorDist = dist;

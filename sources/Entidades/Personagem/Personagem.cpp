@@ -13,3 +13,13 @@ Personagem::Personagem()
 Personagem::~Personagem()
 {
 }
+
+float Personagem::getVida()
+{
+    return vida;
+}
+
+void Personagem::tiraVida(const float dano)
+{
+    vida -= dano;
+}

@@ -28,7 +28,7 @@ sf::RectangleShape Entidades::Entidades::getCorpo()
 
 sf::Vector2f Entidades::Entidades::getCentro()
 {
-    return sf::Vector2f(corpo.getPosition() + corpo.getSize() / 2.0f);
+    return sf::Vector2f(getPosicao() + getTamanho() / 2.0f);
 }
 
 sf::Vector2f Entidades::Entidades::getTamanho()

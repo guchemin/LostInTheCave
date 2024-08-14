@@ -19,7 +19,7 @@ Projetil::~Projetil()
 
 bool Projetil::saiuDaTela()
 {
-    if(this->getPosicao().x < 0.0f || this->getPosicao().x > 800.0f || this->getPosicao().y < 0.0f || this->getPosicao().y > 600.0f)
+    if(getPosicao().x < 0.0f || getPosicao().x > 800.0f || getPosicao().y < 0.0f || getPosicao().y > 600.0f)
     {
         return true;
     }
@@ -28,8 +28,7 @@ bool Projetil::saiuDaTela()
 
 void Projetil::atacar(Jogador::Jogador* pJog) 
 {
-    pJog->perderVida(1.0f);
-    //TODO tirar vida do jogador
+    pJog->perderVida(DANO_ESQUELETO);
 }
 
 bool Projetil::atingiuJogador()
