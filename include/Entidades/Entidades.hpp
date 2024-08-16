@@ -12,7 +12,8 @@ namespace Entidades
         JOGADOR,
         INIMIGO,
         PLATAFORMA,
-        PROJETIL
+        TEIA,
+        PROJETIL,
     };
     
     class Entidades 
@@ -32,7 +33,6 @@ namespace Entidades
         sf::Vector2f getTamanho();
         sf::Vector2f getPosicao();
 
-        virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0; 
         TIPO getTipo() const {return tipo;};
     };
 };

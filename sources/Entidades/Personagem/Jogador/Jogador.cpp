@@ -19,6 +19,7 @@ Personagem(pos, tam, TIPO::JOGADOR)
     }
     estaNoChao = false;
     pulou = false;
+    estaNaTeia = false;
     vida = 100.0f;
 }
 
@@ -52,6 +53,12 @@ void Jogador::Jogador::atacar()
 }
 void Jogador::Jogador::atualizar(float dt)
 {
+    if(estaNaTeia)
+    {
+        desacelerarTeia();
+        estaNaTeia = false;
+    }
+
     ds.y = vel.y * dt;
     ds.x = vel.x * dt;
 
@@ -93,6 +100,7 @@ void Jogador::Jogador::andar(bool direita)
         if(!estaNoChao)
             vel.x *= 1.5f;
     }
+
     if(!direita)
         vel.x *= -1.0f;
 }
@@ -124,6 +132,24 @@ void Jogador::Jogador::ajustarVelocidade()
         else if(id == JOGADOR2)
         {
             vel.x = VEL_JOG2;
+        }
+    }
+}
+
+void Jogador::Jogador::desacelerarTeia()
+{
+    if(id == JOGADOR1)
+    {
+        if(fabs(vel.x) > VEL_JOG1 * 0.35)
+        {
+            vel.x *= 0.35f;
+        }
+    }
+    else if(id == JOGADOR2)
+    {
+        if(fabs(vel.x) > VEL_JOG2 * 0.35f)
+        {
+            vel.x *= 0.35f;
         }
     }
 }
@@ -160,6 +186,11 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
             }
         }
         break;
+    }
+    case TIPO::TEIA:
+    {
+        estaNaTeia = true;
+        vel.y *= 0.65f;
     }
     
     default:

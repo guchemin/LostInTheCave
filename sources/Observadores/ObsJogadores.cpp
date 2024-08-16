@@ -37,7 +37,7 @@ void Observadores::ObsJogadores::notificarPressionada(sf::Keyboard::Key tecla)
         return;
     }
 
-    if(tecla == pulo)
+    if(tecla == pulo && pJog->podePular())
     {
         pJog->autorizarPulo(false);
         pJog->pular();
@@ -50,7 +50,8 @@ void Observadores::ObsJogadores::notificarPressionada(sf::Keyboard::Key tecla)
     {
         pJog->andar(ESQUERDA);
     }
-    else if(tecla == ataque)
+    
+    if(tecla == ataque)
     {
         pJog->atacar();
     }

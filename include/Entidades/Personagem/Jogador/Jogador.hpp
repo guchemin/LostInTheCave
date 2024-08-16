@@ -26,6 +26,7 @@ namespace Jogador
         ID id;
         sf::Vector2f ds;
         bool pulou;
+        bool estaNaTeia;
         Observadores::ObsJogadores Obs;
 
     public:
@@ -43,6 +44,7 @@ namespace Jogador
         void andar(bool direita);
         void parar();
         void ajustarVelocidade();
+        void desacelerarTeia();
         void colide(Entidades* ent, sf::Vector2f intersec);
     };
 

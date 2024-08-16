@@ -2,7 +2,8 @@
 
 Projetil::Projetil(sf::Vector2f pos, sf::Vector2f tam, sf::Vector2f velocidade, Listas::ListaEntidades* listaJog):
 Entidades(pos, tam, TIPO::PROJETIL),
-listaJogadores(listaJog)
+listaJogadores(listaJog),
+posInicial(pos)
 {
     vel = velocidade;
     corpo.setFillColor(sf::Color::Cyan);
@@ -19,7 +20,7 @@ Projetil::~Projetil()
 
 bool Projetil::saiuDaTela()
 {
-    if(getPosicao().x < 0.0f || getPosicao().x > 800.0f || getPosicao().y < 0.0f || getPosicao().y > 600.0f)
+    if(getPosicao().x < posInicial.x - 1000.0f || getPosicao().x > posInicial.x + 1000.0 || getPosicao().y < 0.0f || getPosicao().y > 600.0f)
     {
         return true;
     }

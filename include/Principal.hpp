@@ -6,6 +6,7 @@
 #include "Entidades/Personagem/Inimigo/Esqueleto/Esqueleto.hpp"
 #include "Gerenciadores/Colisoes.hpp"
 #include "Gerenciadores/Eventos.hpp"
+#include "Entidades/Obstaculos/Teia.hpp"
 
 class Principal
 {

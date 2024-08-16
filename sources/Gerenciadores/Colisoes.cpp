@@ -46,7 +46,10 @@ void Gerenciadores::Colisoes::verificarColisoes()
             intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - fabs(distcentro.y);
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
-                (*it2)->colide((*it1), intersecao);
+            {
+                Inimigo::Inimigo* inimigo = dynamic_cast<Inimigo::Inimigo*>(*it2);
+                inimigo->colide((*it1), intersecao);
+            }
         }
 
         for(it2 = listaJogadores->getInicio(); it2 != listaJogadores->getFim(); ++it2)
@@ -58,7 +61,10 @@ void Gerenciadores::Colisoes::verificarColisoes()
             intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - fabs(distcentro.y);
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
-                (*it2)->colide((*it1), intersecao);
+            {
+                Jogador::Jogador* jogador = dynamic_cast<Jogador::Jogador*>(*it2);
+                jogador->colide((*it1), intersecao);
+            }
         }
     }
 }

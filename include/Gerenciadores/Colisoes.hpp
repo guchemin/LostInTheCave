@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Listas/ListaEntidades.hpp"
+#include "../Entidades/Personagem/Inimigo/Inimigo.hpp"
+#include "../Entidades/Personagem/Jogador/Jogador.hpp"
 
 using namespace Listas;
 

@@ -65,32 +65,38 @@ void Principal::inicializarInimigos()
 
 void Principal::inicializarPlataformas()
 {
-    Plataforma::Plataforma* plataforma1 = new Plataforma::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(800.0f, 50.0f));
-    Plataforma::Plataforma* plataforma2 = new Plataforma::Plataforma(sf::Vector2f(500.0f, 400.0f), sf::Vector2f(150.0f, 50.0f));
-    Plataforma::Plataforma* plataforma3 = new Plataforma::Plataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(400.0f, 50.0f));
-    Plataforma::Plataforma* plataforma4 = new Plataforma::Plataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(500.0f, 50.0f));
+    Obstaculos::Plataforma* plataforma1 = new Obstaculos::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(800.0f, 50.0f));
+    Obstaculos::Plataforma* plataforma2 = new Obstaculos::Plataforma(sf::Vector2f(500.0f, 400.0f), sf::Vector2f(150.0f, 50.0f));
+    Obstaculos::Plataforma* plataforma3 = new Obstaculos::Plataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(400.0f, 50.0f));
+    Obstaculos::Plataforma* plataforma4 = new Obstaculos::Plataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(500.0f, 50.0f));
+
+    Obstaculos::Teia* teia1 = new Obstaculos::Teia(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
+    Obstaculos::Teia* teia2 = new Obstaculos::Teia(sf::Vector2f(400.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
    
     Entidades::Entidades* entPlat1 = dynamic_cast<Entidades::Entidades*>(plataforma1);
     Entidades::Entidades* entPlat2 = dynamic_cast<Entidades::Entidades*>(plataforma2);
     Entidades::Entidades* entPlat3 = dynamic_cast<Entidades::Entidades*>(plataforma3);
     Entidades::Entidades* entPlat4 = dynamic_cast<Entidades::Entidades*>(plataforma4);
+    Entidades::Entidades* entTeia1 = dynamic_cast<Entidades::Entidades*>(teia1);
+    Entidades::Entidades* entTeia2 = dynamic_cast<Entidades::Entidades*>(teia2);
 
     listaPlataformas->adicionar(entPlat1);
     //listaPlataformas->adicionar(entPlat2);
     listaPlataformas->adicionar(entPlat3);
     listaPlataformas->adicionar(entPlat4);
+    listaPlataformas->adicionar(entTeia1);
+    listaPlataformas->adicionar(entTeia2);
 }
 
 void Principal::atualizar()
 {
-    listaPlataformas->desenhar(pGraf->getJanela());
-
     listaInimigos->atualizar(dt);
     listaJogadores->atualizar(dt);
     pColisoes->verificarColisoes();
     
+    listaPlataformas->desenhar(pGraf->getJanela()); 
     listaInimigos->desenhar(pGraf->getJanela());
-    listaJogadores->desenhar(pGraf->getJanela());   
+    listaJogadores->desenhar(pGraf->getJanela());  
 }
 
 void Principal::executar()
