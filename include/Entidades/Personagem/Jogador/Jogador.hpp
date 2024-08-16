@@ -7,10 +7,9 @@
 
 #define VEL_JOG1 240.0f
 #define VEL_JOG2 300.0f
-#define VEL_NO_AR_JOG1 360.0f
-#define VEL_NO_AR_JOG2 450.0f
 #define PULO_JOG1 1500.0f
 #define PULO_JOG2 1650.0f
+#define DANO_ESPINHO 15.0f
 
 namespace Jogador
 {
@@ -27,6 +26,7 @@ namespace Jogador
         sf::Vector2f ds;
         bool pulou;
         bool estaNaTeia;
+        bool foiEspinhado;
         Observadores::ObsJogadores Obs;
 
     public:

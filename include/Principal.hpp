@@ -7,6 +7,7 @@
 #include "Gerenciadores/Colisoes.hpp"
 #include "Gerenciadores/Eventos.hpp"
 #include "Entidades/Obstaculos/Teia.hpp"
+#include "Entidades/Obstaculos/Espinho.hpp"
 
 class Principal
 {

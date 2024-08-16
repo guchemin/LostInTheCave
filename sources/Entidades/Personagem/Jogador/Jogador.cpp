@@ -20,6 +20,7 @@ Personagem(pos, tam, TIPO::JOGADOR)
     estaNoChao = false;
     pulou = false;
     estaNaTeia = false;
+    foiEspinhado = false;
     vida = 100.0f;
 }
 
@@ -88,6 +89,9 @@ void Jogador::Jogador::pular()
 
 void Jogador::Jogador::andar(bool direita)
 {
+    if(foiEspinhado)
+        return;
+
     if(id == JOGADOR1)
     {
         vel.x = VEL_JOG1;
@@ -173,6 +177,12 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
                 ajustarVelocidade();
             }
             vel.y = 0.0f;
+            
+            if(foiEspinhado)
+            {
+                vel.x = 0.0f;
+                foiEspinhado = false;
+            }
         }
         else
         {
@@ -187,10 +197,32 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         }
         break;
     }
+
     case TIPO::TEIA:
     {
         estaNaTeia = true;
         vel.y *= 0.65f;
+        break;
+    }
+
+    case TIPO::ESPINHO:
+    {
+        tiraVida(DANO_ESPINHO);
+        foiEspinhado = true;
+
+        vel.y = -1000.0f;
+
+        if(getCentro().x > ent->getCentro().x)
+        {
+            vel.x = 300.0f;
+        }
+        else
+        {
+            vel.x = -300.0f;
+        }
+        
+
+        break;
     }
     
     default:

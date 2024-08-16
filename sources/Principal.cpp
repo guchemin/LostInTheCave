@@ -72,20 +72,31 @@ void Principal::inicializarPlataformas()
 
     Obstaculos::Teia* teia1 = new Obstaculos::Teia(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
     Obstaculos::Teia* teia2 = new Obstaculos::Teia(sf::Vector2f(400.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
+
+    Obstaculos::Espinho* espinho1 = new Obstaculos::Espinho(sf::Vector2f(300.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
+    Obstaculos::Espinho* espinho2 = new Obstaculos::Espinho(sf::Vector2f(500.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
    
     Entidades::Entidades* entPlat1 = dynamic_cast<Entidades::Entidades*>(plataforma1);
     Entidades::Entidades* entPlat2 = dynamic_cast<Entidades::Entidades*>(plataforma2);
     Entidades::Entidades* entPlat3 = dynamic_cast<Entidades::Entidades*>(plataforma3);
     Entidades::Entidades* entPlat4 = dynamic_cast<Entidades::Entidades*>(plataforma4);
+
     Entidades::Entidades* entTeia1 = dynamic_cast<Entidades::Entidades*>(teia1);
     Entidades::Entidades* entTeia2 = dynamic_cast<Entidades::Entidades*>(teia2);
+
+    Entidades::Entidades* entEspinho1 = dynamic_cast<Entidades::Entidades*>(espinho1);
+    Entidades::Entidades* entEspinho2 = dynamic_cast<Entidades::Entidades*>(espinho2);
 
     listaPlataformas->adicionar(entPlat1);
     //listaPlataformas->adicionar(entPlat2);
     listaPlataformas->adicionar(entPlat3);
     listaPlataformas->adicionar(entPlat4);
+
     listaPlataformas->adicionar(entTeia1);
     listaPlataformas->adicionar(entTeia2);
+    
+    listaPlataformas->adicionar(entEspinho1);
+    listaPlataformas->adicionar(entEspinho2);
 }
 
 void Principal::atualizar()

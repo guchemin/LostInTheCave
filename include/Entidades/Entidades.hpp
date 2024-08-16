@@ -13,6 +13,7 @@ namespace Entidades
         INIMIGO,
         PLATAFORMA,
         TEIA,
+        ESPINHO,
         PROJETIL,
     };
     
