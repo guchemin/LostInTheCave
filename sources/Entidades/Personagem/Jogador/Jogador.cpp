@@ -4,7 +4,7 @@ using namespace Entidades;
 
 Jogador::Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i):
 id(i),
-Obs(this),
+obs(this),
 Personagem(pos, tam, TIPO::JOGADOR)
 {
     if(id == JOGADOR1)
@@ -25,7 +25,7 @@ Personagem(pos, tam, TIPO::JOGADOR)
 }
 
 Jogador::Jogador::Jogador():
-Obs(this)
+obs(this)
 {
 }
 
@@ -183,6 +183,37 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
                 vel.x = 0.0f;
                 foiEspinhado = false;
             }
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+        }
+        break;
+    }
+
+    case TIPO::INIMIGO:
+    {
+        if(intersec.x > intersec.y || vel.x == 0.0f)
+        {
+            if(getPosicao().y > ent->getPosicao().y)
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+                // ajustarVelocidade();
+            }
+            vel.y = 0.0f;
+            
         }
         else
         {

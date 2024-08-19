@@ -7,6 +7,7 @@
 class Morcego: public Inimigo::Inimigo
 {
 private:
+    bool endiabrado; //se for endiabrado ele voa mais rapido
 
 public:
     Morcego(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);

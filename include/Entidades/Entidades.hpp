@@ -29,12 +29,14 @@ namespace Entidades
         virtual ~Entidades();
 
         void setPosicao(sf::Vector2f pos);
+        virtual void atualizar(float dt) = 0;
+
         sf::RectangleShape getCorpo();
         sf::Vector2f getCentro();
         sf::Vector2f getTamanho();
         sf::Vector2f getPosicao();
 
-        TIPO getTipo() const {return tipo;};
+        TIPO getTipo() const { return tipo; };
     };
 };
 

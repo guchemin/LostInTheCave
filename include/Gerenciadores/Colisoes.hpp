@@ -13,10 +13,10 @@ namespace Gerenciadores
     private:
         Listas::ListaEntidades* listaJogadores;
         Listas::ListaEntidades* listaInimigos;
-        Listas::ListaEntidades* listaPlataformas;
+        Listas::ListaEntidades* listaObstaculos;
 
     public:
-        Colisoes(Listas::ListaEntidades* lJogadores, Listas::ListaEntidades* lInimigos, Listas::ListaEntidades* lPlataformas);
+        Colisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li, Listas::ListaEntidades* lp);
         Colisoes();
         ~Colisoes();
 

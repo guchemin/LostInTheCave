@@ -22,8 +22,8 @@ namespace Gerenciadores
         void desenhar(sf::RectangleShape desenho);
         void desenhar(sf::CircleShape desenho);
         void mostrar();
-        bool estaAberta();
         void fecharJanela();
         void verificaSeFechou();
+        bool estaAberta();
     };
 };

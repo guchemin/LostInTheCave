@@ -1,9 +1,9 @@
 #include "../../include/Gerenciadores/Colisoes.hpp"
 
-Gerenciadores::Colisoes::Colisoes(Listas::ListaEntidades *lJogadores, Listas::ListaEntidades* lInimigos,Listas::ListaEntidades *lPlataformas):
-listaJogadores(lJogadores),
-listaInimigos(lInimigos),
-listaPlataformas(lPlataformas)
+Gerenciadores::Colisoes::Colisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li,Listas::ListaEntidades* lo):
+listaJogadores(lj),
+listaInimigos(li),
+listaObstaculos(lo)
 {
 }
 
@@ -11,19 +11,19 @@ Gerenciadores::Colisoes::Colisoes()
 {
     listaJogadores = NULL;
     listaInimigos = NULL;
-    listaPlataformas = NULL;
+    listaObstaculos = NULL;
 }
 
 Gerenciadores::Colisoes::~Colisoes()
 {
     listaInimigos->limpar();
-    listaPlataformas->limpar();
+    listaObstaculos->limpar();
     listaJogadores->limpar();
 }
 
 void Gerenciadores::Colisoes::verificarColisoes()
 {
-    if (listaInimigos == NULL || listaPlataformas == NULL || listaJogadores == NULL)
+    if (listaInimigos == NULL || listaObstaculos == NULL || listaJogadores == NULL)
     {
         std::cerr << "Erro: listaInimigos, listaPlataformas ou listaJogadores é nula." << std::endl;
         return;
@@ -35,7 +35,7 @@ void Gerenciadores::Colisoes::verificarColisoes()
     sf::Vector2f distcentro;
     sf::Vector2f intersecao;
 
-    for (it1 = listaPlataformas->getInicio(); it1 != listaPlataformas->getFim(); ++it1)
+    for (it1 = listaObstaculos->getInicio(); it1 != listaObstaculos->getFim(); ++it1)
     {
         for (it2 = listaInimigos->getInicio(); it2!= listaInimigos->getFim(); ++it2)
         {
@@ -67,4 +67,23 @@ void Gerenciadores::Colisoes::verificarColisoes()
             }
         }
     }
+
+        for (it1 = listaInimigos->getInicio(); it1 != listaInimigos->getFim(); ++it1)
+    {
+        for (it2 = listaJogadores->getInicio(); it2!= listaJogadores->getFim(); ++it2)
+        {
+            distcentro.x = (*it1)->getCentro().x - (*it2)->getCentro().x;
+            distcentro.y = (*it1)->getCentro().y - (*it2)->getCentro().y;
+
+            intersecao.x = (*it1)->getTamanho().x/2.0f + (*it2)->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = (*it1)->getTamanho().y/2.0f + (*it2)->getTamanho().y/2.0f - fabs(distcentro.y);
+
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+            {
+                Jogador::Jogador* jogador = dynamic_cast<Jogador::Jogador*>(*it2);
+                jogador->colide((*it1), intersecao);
+            }
+        }
+    }
+
 }

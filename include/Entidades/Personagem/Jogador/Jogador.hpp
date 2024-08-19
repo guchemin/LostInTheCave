@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../../Plataforma/Plataforma.hpp"
+#include "../../Obstaculos/Plataforma.hpp"
 #include "../Personagem.hpp"
 #include "../../../Observadores/ObsJogadores.hpp"
 
@@ -27,7 +27,7 @@ namespace Jogador
         bool pulou;
         bool estaNaTeia;
         bool foiEspinhado;
-        Observadores::ObsJogadores Obs;
+        Observadores::ObsJogadores obs;
 
     public:
         Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i);

@@ -93,9 +93,9 @@ void Principal::inicializarPlataformas()
     listaPlataformas->adicionar(entPlat4);
 
     listaPlataformas->adicionar(entTeia1);
-    listaPlataformas->adicionar(entTeia2);
+    // listaPlataformas->adicionar(entTeia2);
     
-    listaPlataformas->adicionar(entEspinho1);
+    // listaPlataformas->adicionar(entEspinho1);
     listaPlataformas->adicionar(entEspinho2);
 }
 

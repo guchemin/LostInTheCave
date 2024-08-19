@@ -1,5 +1,6 @@
 #include "../../../include/Entidades/Obstaculos/Espinho.hpp"
 
+
 using namespace Entidades;
 
 Obstaculos::Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam):
@@ -13,5 +14,9 @@ Obstaculos::Espinho::Espinho()
 }
 
 Obstaculos::Espinho::~Espinho()
+{
+}
+
+void Obstaculos::Espinho::atualizar(float dt)
 {
 }

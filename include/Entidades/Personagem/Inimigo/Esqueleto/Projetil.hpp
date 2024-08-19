@@ -10,11 +10,13 @@ private:
     const sf::Vector2f posInicial;
 
 public:
+    bool existeProjetil;
+
+public:
     Projetil(sf::Vector2f pos, sf::Vector2f tam, sf::Vector2f velocidade, Listas::ListaEntidades* listaJog);
     Projetil();
     ~Projetil();
 
-    bool existeProjetil;
     bool saiuDaTela();
     void atacar(Jogador::Jogador* pJog);
     bool atingiuJogador();

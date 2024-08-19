@@ -1,5 +1,6 @@
 #include "../../../include/Entidades/Obstaculos/Teia.hpp"
 
+
 using namespace Entidades;
 
 Obstaculos::Teia::Teia(sf::Vector2f pos, sf::Vector2f tam):
@@ -13,5 +14,8 @@ Obstaculos::Teia::Teia()
 }
 
 Obstaculos::Teia::~Teia()
+{
+}
+void Obstaculos::Teia::atualizar(float dt)
 {
 }
