@@ -1,4 +1,4 @@
-#include "../../../../include/Entidades/Personagem/Inimigo/Golem.hpp"
+#include "../../../include/Entidades/Personagem/Golem.hpp"
 
 Golem::Golem(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
 Inimigo(pos, tam, listaJog)
@@ -22,28 +22,21 @@ void Golem::perseguir(float dt)
 {
     float dx;
 
-    if(pJogador->getPosicao().x > getPosicao().x + getTamanho().x)
+    if(pJogador->getPosicao().x > getPosicao().x + getTamanho().x + 1.0)
     {   
         vel.x = VEL_GOLEM_PERSEG;
     }
-    else if(pJogador->getPosicao().x + pJogador->getTamanho().x < getPosicao().x)
+    else if(pJogador->getPosicao().x + pJogador->getTamanho().x < getPosicao().x - 1.0f)
     {
         vel.x = -VEL_GOLEM_PERSEG;
     }
     else
     {
+        vel.x = 0.0f;
+
         if(consegueAtacar())
         {
             atacar();
-        }
-
-        if (fabs(vel.x) < 0.2f)
-        {
-            vel.x = 0.0f;
-        }
-        else
-        {
-            vel.x *= 0.95f;
         }
     }
     
@@ -101,6 +94,10 @@ bool Golem::conseguePerseguir()
 void Golem::atacar()
 {  
     pJogador->perderVida(DANO_GOLEM);
+}
+
+void Golem::parar()
+{
 }
 
 void Golem::atualizar(float dt)

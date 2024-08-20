@@ -18,6 +18,7 @@ public:
     float getVida();
     void tiraVida(const float dano);
     virtual void atacar() = 0;
+    virtual void parar() = 0;
     virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
     virtual void atualizar(float dt) = 0;
 };

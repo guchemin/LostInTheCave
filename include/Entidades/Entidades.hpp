@@ -1,7 +1,9 @@
 #pragma once
+
 #include <cmath>
 #include <iostream>
 #include "../SFML/Graphics.hpp"
+#include "../Ente.hpp"
 
 #define GRAVIDADE 5400.0f
 
@@ -17,7 +19,7 @@ namespace Entidades
         PROJETIL,
     };
     
-    class Entidades 
+    class Entidades : public Ente
     {
     protected:
         sf::RectangleShape corpo;
@@ -30,6 +32,7 @@ namespace Entidades
 
         void setPosicao(sf::Vector2f pos);
         virtual void atualizar(float dt) = 0;
+        void desenhar();
 
         sf::RectangleShape getCorpo();
         sf::Vector2f getCentro();

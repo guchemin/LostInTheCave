@@ -1,46 +1,46 @@
-#include "../../include/Gerenciadores/Eventos.hpp"
+#include "../../include/Gerenciadores/GerenciadorEventos.hpp"
 
 using namespace Gerenciadores;
 
 //padrao Singleton
-Eventos* Eventos::instancia = NULL;
+GerenciadorEventos* GerenciadorEventos::instancia = NULL;
 
-Eventos* Eventos::getInstancia()
+GerenciadorEventos* GerenciadorEventos::getInstancia()
 {
     if(instancia == NULL)
     {
-        instancia = new Eventos();
+        instancia = new GerenciadorEventos();
     }
     return instancia;
 }
 
-Eventos::Eventos(): 
-pGraf(Graficos::getInstancia()),
-pInp(Inputs::getInstancia())
+GerenciadorEventos::GerenciadorEventos(): 
+pGraf(GerenciadorGrafico::getInstancia()),
+pInp(GerenciadorInputs::getInstancia())
 {
     pJog1 = NULL;
     pJog2 = NULL;
 }
 
-void Gerenciadores::Eventos::setJogador(Jogador::Jogador *pJog)
+void Gerenciadores::GerenciadorEventos::setJogador(Jogador *pJog)
 {
-    if(pJog->getId() == Jogador::ID::JOGADOR1)
+    if(pJog->getId() == ID::JOGADOR1)
     {
         pJog1 = pJog;
     }
-    else if(pJog->getId() == Jogador::ID::JOGADOR2)
+    else if(pJog->getId() == ID::JOGADOR2)
     {
         pJog2 = pJog;
     }
 }
 
-Eventos::~Eventos()
+GerenciadorEventos::~GerenciadorEventos()
 {
     pJog1 = NULL;
     pJog2 = NULL;
 }
 
-void Gerenciadores::Eventos::verificaSeParou()
+void Gerenciadores::GerenciadorEventos::verificaSeParou()
 {
     if(pJog1 != NULL)
     {
@@ -58,7 +58,7 @@ void Gerenciadores::Eventos::verificaSeParou()
     }
 }
 
-void Eventos::verificarEventos()
+void GerenciadorEventos::verificarEventos()
 {
     while(pGraf->getJanela()->pollEvent(evento))
     {

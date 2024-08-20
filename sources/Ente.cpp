@@ -1,9 +1,13 @@
 #include "../include/Ente.hpp"
 
-Ente::Ente():
-pGraf(Gerenciadores::Graficos::getInstancia())
-{
+int Ente::contId = 0;
 
+Ente::Ente():
+pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
+id(contId++)
+{
+    time_t t;
+    srand((unsigned) time(&t));
 }
 
 Ente::~Ente()

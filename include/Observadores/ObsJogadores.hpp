@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Observador.hpp"
-namespace Jogador { class Jogador; };
+
+class Jogador;
 
 #define DIREITA 1
 #define ESQUERDA 0
@@ -11,7 +12,7 @@ namespace Observadores
     class ObsJogadores : public Observador 
     {
     private:
-        Jogador::Jogador* pJog;
+        Jogador* pJog;
         
         sf::Keyboard::Key direita;
         sf::Keyboard::Key esquerda;
@@ -19,7 +20,8 @@ namespace Observadores
         sf::Keyboard::Key ataque;
         
     public:
-        ObsJogadores(Jogador::Jogador* pJ);
+        ObsJogadores(Jogador* pJ);
+        ObsJogadores();
         ~ObsJogadores();
 
         void notificarPressionada(sf::Keyboard::Key tecla);

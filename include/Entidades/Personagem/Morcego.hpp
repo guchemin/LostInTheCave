@@ -17,6 +17,7 @@ public:
     bool consegueAtacar();
     bool atingiuJogador();
     void atacar();
+    void parar();
     void atualizar(float dt);
     void colide(Entidades* ent, sf::Vector2f intersec);
 };

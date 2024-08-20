@@ -3,8 +3,8 @@
 using namespace Gerenciadores;
 
 Principal::Principal():
-pGraf(Graficos::getInstancia()),
-pEventos(Eventos::getInstancia())
+pGraf(GerenciadorGrafico::getInstancia()),
+pEventos(GerenciadorEventos::getInstancia())
 {
     pGraf->getJanela()->setFramerateLimit(60);
     inicializar();
@@ -18,25 +18,25 @@ Principal::~Principal()
     pEventos = NULL;
     listaInimigos->limpar();
     listaJogadores->limpar();
-    listaPlataformas->limpar();
+    listaObstaculos->limpar();
 }
 
 void Principal::inicializar()
 {
     listaJogadores = new Listas::ListaEntidades();
     listaInimigos = new Listas::ListaEntidades();
-    listaPlataformas = new Listas::ListaEntidades();
-    pColisoes = new Gerenciadores::Colisoes(listaJogadores, listaInimigos, listaPlataformas);
+    listaObstaculos = new Listas::ListaEntidades();
+    pColisoes = new Gerenciadores::GerenciadorColisoes(listaJogadores, listaInimigos, listaObstaculos);
     
     inicializarJogadores();
     inicializarInimigos();
-    inicializarPlataformas();   
+    inicializarObstaculos();   
 }
 
 void Principal::inicializarJogadores()
 {
-    Jogador::Jogador* jogador1 = new Jogador::Jogador(sf::Vector2f(50.0f, 50.0f), sf::Vector2f(50.0f, 50.0f), Jogador::ID::JOGADOR1);
-    Jogador::Jogador* jogador2 = new Jogador::Jogador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), Jogador::ID::JOGADOR2);
+    Jogador* jogador1 = new Jogador(sf::Vector2f(50.0f, 50.0f), sf::Vector2f(50.0f, 50.0f), ID::JOGADOR1);
+    Jogador* jogador2 = new Jogador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), ID::JOGADOR2);
 
     Entidades::Entidades* entJog1 = dynamic_cast<Entidades::Entidades*>(jogador1);
     Entidades::Entidades* entJog2 = dynamic_cast<Entidades::Entidades*>(jogador2);
@@ -51,8 +51,8 @@ void Principal::inicializarJogadores()
 void Principal::inicializarInimigos()
 {
     Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f), listaJogadores);
-    Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(80.0f, 100.0f), listaJogadores);
-    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), listaJogadores);
+    Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(50.0f, 70.0f), listaJogadores);
+    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f), listaJogadores);
 
     Entidades::Entidades* entMorcego1 = dynamic_cast<Entidades::Entidades*>(morcego1);
     Entidades::Entidades* entGolem1 = dynamic_cast<Entidades::Entidades*>(golem1);
@@ -63,11 +63,11 @@ void Principal::inicializarInimigos()
     listaInimigos->adicionar(entEsqueleto1);
 }
 
-void Principal::inicializarPlataformas()
+void Principal::inicializarObstaculos()
 {
     Obstaculos::Plataforma* plataforma1 = new Obstaculos::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(800.0f, 50.0f));
     Obstaculos::Plataforma* plataforma2 = new Obstaculos::Plataforma(sf::Vector2f(500.0f, 400.0f), sf::Vector2f(150.0f, 50.0f));
-    Obstaculos::Plataforma* plataforma3 = new Obstaculos::Plataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(400.0f, 50.0f));
+    Obstaculos::Plataforma* plataforma3 = new Obstaculos::Plataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(2000.0f, 50.0f));
     Obstaculos::Plataforma* plataforma4 = new Obstaculos::Plataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(500.0f, 50.0f));
 
     Obstaculos::Teia* teia1 = new Obstaculos::Teia(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
@@ -87,16 +87,29 @@ void Principal::inicializarPlataformas()
     Entidades::Entidades* entEspinho1 = dynamic_cast<Entidades::Entidades*>(espinho1);
     Entidades::Entidades* entEspinho2 = dynamic_cast<Entidades::Entidades*>(espinho2);
 
-    listaPlataformas->adicionar(entPlat1);
-    //listaPlataformas->adicionar(entPlat2);
-    listaPlataformas->adicionar(entPlat3);
-    listaPlataformas->adicionar(entPlat4);
+    listaObstaculos->adicionar(entPlat1);
+    listaObstaculos->adicionar(entPlat2);
+    listaObstaculos->adicionar(entPlat3);
+    listaObstaculos->adicionar(entPlat4);
 
-    listaPlataformas->adicionar(entTeia1);
-    // listaPlataformas->adicionar(entTeia2);
+    listaObstaculos->adicionar(entTeia1);
+    listaObstaculos->adicionar(entTeia2);
     
-    // listaPlataformas->adicionar(entEspinho1);
-    listaPlataformas->adicionar(entEspinho2);
+    listaObstaculos->adicionar(entEspinho1);
+    listaObstaculos->adicionar(entEspinho2);
+}
+
+void Principal::centralizarCamera()
+{
+    int tam = listaJogadores->getTam();
+    float media;
+    float soma = 0.0f;
+    for(int i = 0; i < tam; i++)
+    {
+        soma += (*listaJogadores)[i]->getCentro().x;
+    }
+    media = soma/tam;
+    pGraf->centralizarCamera(sf::Vector2f(media, 300.0f));
 }
 
 void Principal::atualizar()
@@ -105,9 +118,11 @@ void Principal::atualizar()
     listaJogadores->atualizar(dt);
     pColisoes->verificarColisoes();
     
-    listaPlataformas->desenhar(pGraf->getJanela()); 
-    listaInimigos->desenhar(pGraf->getJanela());
-    listaJogadores->desenhar(pGraf->getJanela());  
+    centralizarCamera();
+    
+    listaObstaculos->desenhar(); 
+    listaInimigos->desenhar();
+    listaJogadores->desenhar();
 }
 
 void Principal::executar()
@@ -123,4 +138,5 @@ void Principal::executar()
         
         pGraf->mostrar();
     }
+    //Fases::FaseUm fase;
 }

@@ -1,8 +1,9 @@
-#include "../../../../include/Entidades/Personagem/Jogador/Jogador.hpp"
+#include "../../../include/Entidades/Personagem/Jogador.hpp"
+#include "../../../include/Entidades/Personagem/Inimigo.hpp"
 
 using namespace Entidades;
 
-Jogador::Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i):
+Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i):
 id(i),
 obs(this),
 Personagem(pos, tam, TIPO::JOGADOR)
@@ -22,37 +23,38 @@ Personagem(pos, tam, TIPO::JOGADOR)
     estaNaTeia = false;
     foiEspinhado = false;
     vida = 100.0f;
+    aceleracaoTeia = 1.0f;
 }
 
-Jogador::Jogador::Jogador():
+Jogador::Jogador():
 obs(this)
 {
 }
 
-Jogador::Jogador::~Jogador()
+Jogador::~Jogador()
 {
 }
 
-void Jogador::Jogador::autorizarPulo(bool autoriza)
+void Jogador::autorizarPulo(bool autoriza)
 {
     pulou = !autoriza;
 }
 
-bool Jogador::Jogador::podePular()
+bool Jogador::podePular()
 {
     return estaNoChao && !pulou;
 }
 
-void Jogador::Jogador::perderVida(float dano)
+void Jogador::perderVida(float dano)
 {
     tiraVida(dano);
 }
 
-void Jogador::Jogador::atacar()
+void Jogador::atacar()
 {
 
 }
-void Jogador::Jogador::atualizar(float dt)
+void Jogador::atualizar(float dt)
 {
     if(estaNaTeia)
     {
@@ -72,7 +74,7 @@ void Jogador::Jogador::atualizar(float dt)
     vel.y += GRAVIDADE * dt;
 }
 
-void Jogador::Jogador::pular()
+void Jogador::pular()
 {
     if(id == JOGADOR1)
     {
@@ -87,7 +89,7 @@ void Jogador::Jogador::pular()
     estaNoChao = false;
 }
 
-void Jogador::Jogador::andar(bool direita)
+void Jogador::andar(bool direita)
 {
     if(foiEspinhado)
         return;
@@ -109,12 +111,12 @@ void Jogador::Jogador::andar(bool direita)
         vel.x *= -1.0f;
 }
 
-void Jogador::Jogador::parar()
+void Jogador::parar()
 {
     vel.x = 0.0f;
 }
 
-void Jogador::Jogador::ajustarVelocidade()
+void Jogador::ajustarVelocidade()
 {
     if(vel.x < 0.0f)
     {
@@ -140,25 +142,25 @@ void Jogador::Jogador::ajustarVelocidade()
     }
 }
 
-void Jogador::Jogador::desacelerarTeia()
+void Jogador::desacelerarTeia()
 {
     if(id == JOGADOR1)
     {
         if(fabs(vel.x) > VEL_JOG1 * 0.35)
         {
-            vel.x *= 0.35f;
+            vel.x *= aceleracaoTeia;
         }
     }
     else if(id == JOGADOR2)
     {
         if(fabs(vel.x) > VEL_JOG2 * 0.35f)
         {
-            vel.x *= 0.35f;
+            vel.x *= aceleracaoTeia;
         }
     }
 }
 
-void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
+void Jogador::colide(Entidades *ent, sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {
@@ -198,47 +200,19 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         break;
     }
 
-    case TIPO::INIMIGO:
-    {
-        if(intersec.x > intersec.y || vel.x == 0.0f)
-        {
-            if(getPosicao().y > ent->getPosicao().y)
-            {
-                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
-            }
-            else
-            {
-                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
-                estaNoChao = true;
-                // ajustarVelocidade();
-            }
-            vel.y = 0.0f;
-            
-        }
-        else
-        {
-            if(getPosicao().x > ent->getPosicao().x)
-            {
-                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
-            }
-            else
-            {
-                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
-            }
-        }
-        break;
-    }
-
     case TIPO::TEIA:
     {
         estaNaTeia = true;
-        vel.y *= 0.65f;
+        Obstaculos::Teia* teia = static_cast<Obstaculos::Teia*>(ent);
+        aceleracaoTeia = 1.0f / teia->getDensidade();
+        vel.y *= 2 * aceleracaoTeia;
         break;
     }
 
     case TIPO::ESPINHO:
     {
-        tiraVida(DANO_ESPINHO);
+        Obstaculos::Espinho* espinho = static_cast<Obstaculos::Espinho*>(ent);
+        tiraVida(espinho->getAfiado());
         foiEspinhado = true;
 
         vel.y = -1000.0f;
@@ -251,8 +225,41 @@ void Jogador::Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         {
             vel.x = -300.0f;
         }
-        
+        break;
+    }
 
+    case TIPO::INIMIGO:
+    {
+        if((intersec.x > intersec.y || vel.x == 0.0f))
+        {
+            if(getPosicao().y > ent->getPosicao().y)
+            {
+                //setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = 0.0f;
+
+            if(foiEspinhado)
+            {
+                vel.x = 0.0f;
+                foiEspinhado = false;
+            }
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+        }
         break;
     }
     

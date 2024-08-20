@@ -1,24 +1,25 @@
 #pragma once
 
-#include "Entidades/Personagem/Jogador/Jogador.hpp"
-#include "Entidades/Personagem/Inimigo/Morcego.hpp"
-#include "Entidades/Personagem/Inimigo/Golem.hpp"
-#include "Entidades/Personagem/Inimigo/Esqueleto/Esqueleto.hpp"
-#include "Gerenciadores/Colisoes.hpp"
-#include "Gerenciadores/Eventos.hpp"
+#include "Entidades/Personagem/Jogador.hpp"
+#include "Entidades/Personagem/Morcego.hpp"
+#include "Entidades/Personagem/Golem.hpp"
+#include "Entidades/Personagem/Esqueleto.hpp"
+#include "Gerenciadores/GerenciadorColisoes.hpp"
+#include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Entidades/Obstaculos/Teia.hpp"
 #include "Entidades/Obstaculos/Espinho.hpp"
+// #include "Fases/FaseUm.hpp"
 
 class Principal
 {
 private:
-    Gerenciadores::Graficos* pGraf;
-    Gerenciadores::Colisoes* pColisoes;
-    Gerenciadores::Eventos* pEventos;
+    Gerenciadores::GerenciadorGrafico* pGraf;
+    Gerenciadores::GerenciadorColisoes* pColisoes;
+    Gerenciadores::GerenciadorEventos* pEventos;
 
     Listas::ListaEntidades* listaJogadores;
     Listas::ListaEntidades* listaInimigos;
-    Listas::ListaEntidades* listaPlataformas;
+    Listas::ListaEntidades* listaObstaculos;
 
     sf::Clock relogio;
     float dt;
@@ -30,7 +31,9 @@ public:
     void inicializar();
     void inicializarJogadores();
     void inicializarInimigos();
-    void inicializarPlataformas();
+    void inicializarObstaculos();
+
+    void centralizarCamera();
 
     void atualizar();
     void executar();

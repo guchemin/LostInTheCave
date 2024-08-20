@@ -1,13 +1,13 @@
 #include "../../include/Observadores/ObsJogadores.hpp"
-#include "../../include/Entidades/Personagem/Jogador/Jogador.hpp"
+#include "../../include/Entidades/Personagem/Jogador.hpp"
 
 using namespace Observadores;
 
-Observadores::ObsJogadores::ObsJogadores(Jogador::Jogador* pJ):
+Observadores::ObsJogadores::ObsJogadores(Jogador* pJ):
 Observador(),
 pJog(pJ)
 {
-    if(pJog->getId() == Jogador::ID::JOGADOR1)
+    if(pJog->getId() == ID::JOGADOR1)
     {
         direita = sf::Keyboard::Key::D;
         esquerda = sf::Keyboard::Key::A;
@@ -21,6 +21,11 @@ pJog(pJ)
         pulo = sf::Keyboard::Key::Up;
         ataque = sf::Keyboard::Key::K;
     }
+}
+
+Observadores::ObsJogadores::ObsJogadores():
+Observador()
+{
 }
 
 Observadores::ObsJogadores::~ObsJogadores()

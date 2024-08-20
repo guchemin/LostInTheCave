@@ -4,75 +4,67 @@ using namespace Gerenciadores;
 using namespace Listas;
 
 ListaEntidades::ListaEntidades():
-pGraf(Graficos::getInstancia())
+lista()
 {
+    limpar();
 }
 
 ListaEntidades::~ListaEntidades()
 {
+    limpar();
 }
 
 void ListaEntidades::adicionar(Entidades::Entidades *entidade)
 {
-    lista.push_back(entidade);
+    lista.adicionar(entidade);
 }
 
 void ListaEntidades::remover(Entidades::Entidades *entidade)
 {
-    lista.erase(std::remove(lista.begin(), lista.end(), entidade), lista.end());
+    lista.remover(entidade);
 }
 
-void ListaEntidades::atualizar()
+int Listas::ListaEntidades::getTam()
 {
+    return lista.getTam();
 }
 
 void Listas::ListaEntidades::limpar()
 {
-    std::vector<Entidades::Entidades*>::iterator it;
-    for(it = lista.begin(); it != lista.end(); ++it)
-    {
-        if(*it)
-            delete (*it);
-    }
-    lista.clear();
+    lista.limparLista();
 }
 
 void Listas::ListaEntidades::atualizar(float dt)
 {
-    std::vector<Entidades::Entidades*>::iterator it;
-    for(it = lista.begin();!estaVazia() && it != lista.end(); ++it)
+    int tam = lista.getTam();
+    Entidades::Entidades* ent = NULL;
+    for(int i = 0; i < tam; i++)
     {
-        Personagem* p = dynamic_cast<Personagem*>(*it);
-        p->atualizar(dt);
+        ent = lista[i];
+        if(ent)
+        {
+            ent->atualizar(dt);
+        }
+        ent = NULL;
     }
 }
 
-// utilizando o padrao iterator para percorrer a lista de entidades
-void ListaEntidades::desenhar(sf::RenderWindow *janela)
+void ListaEntidades::desenhar()
 {
-    std::vector<Entidades::Entidades*>::iterator it;
-    for (it = lista.begin(); it != lista.end(); ++it)
+    int tam = lista.getTam();
+    Entidades::Entidades* ent = NULL;
+    for(int i = 0; i < tam; i++)
     {
-        pGraf->desenhar((*it)->getCorpo());
+        ent = lista[i];
+        if(ent)
+        {
+            ent->desenhar();
+        }
+        ent = NULL;
     }
 }
 
-bool Listas::ListaEntidades::estaVazia()
+Entidades::Entidades* Listas::ListaEntidades::operator[](int pos)
 {
-    return lista.empty();
-}
-
-std::vector<Entidades::Entidades *> ListaEntidades::getLista()
-{
-    return lista;
-}
-
-std::vector<Entidades::Entidades *>::iterator ListaEntidades::getInicio()
-{
-    return lista.begin();
-}
-
-std::vector<Entidades::Entidades *>::iterator ListaEntidades::getFim()
-{
-    return lista.end() ;
+    return lista[pos];
 }

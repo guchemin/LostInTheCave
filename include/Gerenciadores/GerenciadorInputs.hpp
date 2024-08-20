@@ -9,18 +9,18 @@ using namespace Observadores;
 
 namespace Gerenciadores
 {
-    class Inputs
+    class GerenciadorInputs
     {
     private:
         list<Observador*> observadores;
 
-        static Inputs* instancia;
-        Inputs();
+        static GerenciadorInputs* instancia;
+        GerenciadorInputs();
 
     public:
-        ~Inputs();
+        ~GerenciadorInputs();
         
-        static Inputs* getInstancia();
+        static GerenciadorInputs* getInstancia();
         void adicionarObservador(Observador* pObs);
         void removerObservador(Observador* pObs);
         void teclaPressionada(sf::Keyboard::Key tecla);

@@ -1,6 +1,7 @@
 #include "../../include/Entidades/Entidades.hpp"
 
 Entidades::Entidades::Entidades(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
+Ente(),
 tipo(tp),
 corpo(sf::RectangleShape(tam))
 {
@@ -20,6 +21,12 @@ void Entidades::Entidades::setPosicao(sf::Vector2f pos)
 {
     corpo.setPosition(pos);
 }
+
+void Entidades::Entidades::desenhar()
+{
+    pGraf->desenhar(corpo);
+}
+
 
 sf::RectangleShape Entidades::Entidades::getCorpo()
 {

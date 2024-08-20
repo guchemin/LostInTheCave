@@ -4,20 +4,23 @@
 
 namespace Gerenciadores
 {
-    class Graficos
+    class GerenciadorGrafico
     {
     private:
         sf::RenderWindow* janela;
+        sf::View camera;
         
         //padrao de projeto Singleton
-        static Graficos* instancia;
-        Graficos();
+        static GerenciadorGrafico* instancia;
+        GerenciadorGrafico();
         
     public:
-        ~Graficos();
+        ~GerenciadorGrafico();
 
-        static Graficos* getInstancia();
+        static GerenciadorGrafico* getInstancia();
         sf::RenderWindow* getJanela();
+        void centralizarCamera(sf::Vector2f pos);
+        sf::Vector2f getCentro();
         void limpar();
         void desenhar(sf::RectangleShape desenho);
         void desenhar(sf::CircleShape desenho);

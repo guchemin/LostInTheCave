@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../Entidades.hpp"
+#include "Obstaculo.hpp"
 
 namespace Obstaculos
 {
-    class Plataforma: public Entidades::Entidades
+    class Plataforma: public Obstaculo
     {
     private:
         

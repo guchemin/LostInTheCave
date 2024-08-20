@@ -3,24 +3,24 @@
 using namespace Gerenciadores;
 using namespace Observadores;
 
-Inputs* Inputs::instancia = NULL;
+GerenciadorInputs* GerenciadorInputs::instancia = NULL;
 
-Inputs *Inputs::getInstancia()
+GerenciadorInputs *GerenciadorInputs::getInstancia()
 {
     if(instancia == NULL)
     {
-        instancia = new Inputs();
+        instancia = new GerenciadorInputs();
     }
     return instancia;
 }
 
-Inputs::Inputs():
+GerenciadorInputs::GerenciadorInputs():
 observadores()
 {
     observadores.clear();
 }
 
-Inputs::~Inputs()
+GerenciadorInputs::~GerenciadorInputs()
 {
     list<Observador*>::iterator it;
     for(it = observadores.begin(); it != observadores.end(); it++)
@@ -31,7 +31,7 @@ Inputs::~Inputs()
     observadores.clear();
 }
 
-void Inputs::adicionarObservador(Observador* pObs)
+void GerenciadorInputs::adicionarObservador(Observador* pObs)
 {
     if(pObs)
     {    
@@ -39,7 +39,7 @@ void Inputs::adicionarObservador(Observador* pObs)
     }
 }
 
-void Inputs::removerObservador(Observador* pObs)
+void GerenciadorInputs::removerObservador(Observador* pObs)
 {
     if(pObs)
     {
@@ -47,7 +47,7 @@ void Inputs::removerObservador(Observador* pObs)
     }
 }
 
-void Inputs::teclaPressionada(sf::Keyboard::Key tecla)
+void GerenciadorInputs::teclaPressionada(sf::Keyboard::Key tecla)
 {
     list<Observador*>::iterator it;
     for(it = observadores.begin(); it != observadores.end(); it++)
@@ -59,7 +59,7 @@ void Inputs::teclaPressionada(sf::Keyboard::Key tecla)
     }
 }
 
-void Gerenciadores::Inputs::teclaSolta(sf::Keyboard::Key tecla)
+void Gerenciadores::GerenciadorInputs::teclaSolta(sf::Keyboard::Key tecla)
 {
     list<Observador*>::iterator it;
     for(it = observadores.begin(); it != observadores.end(); it++)

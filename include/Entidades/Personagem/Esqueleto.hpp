@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Projetil.hpp"
-#include "../../../../Gerenciadores/Graficos.hpp"
+#include "../../Gerenciadores/GerenciadorGrafico.hpp"
 
 #define RAIO_ESQUELETO 400.0f
 #define VEL_PROJ 420.0f
@@ -9,7 +9,6 @@
 class Esqueleto: public Inimigo::Inimigo
 {
 private:
-    Gerenciadores::Graficos* pGraf;
     Projetil* pProjetil;
 
 public:
@@ -19,6 +18,7 @@ public:
 
     bool consegueAtacar();
     void atacar();
+    void parar();
     void atualizar(float dt);
     sf::Vector2f calcVel();
     void colide(Entidades* ent, sf::Vector2f intersec);

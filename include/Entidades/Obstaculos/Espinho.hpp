@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../Entidades.hpp"
+#include "Obstaculo.hpp"
 
 namespace Obstaculos
 {
-    class Espinho : public Entidades::Entidades
+    class Espinho : public Obstaculo
     {
     private:
         float afiado; //TODO: Implementar dano
@@ -15,5 +15,6 @@ namespace Obstaculos
         ~Espinho();
 
         void atualizar(float dt);
+        float getAfiado();
     };
 };

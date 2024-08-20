@@ -1,17 +1,15 @@
 #pragma once
 
 #include <vector>
-#include "../Gerenciadores/Graficos.hpp"
 #include "../Entidades/Personagem/Personagem.hpp"
-
+#include "Lista.hpp"
 
 namespace Listas
 {
     class ListaEntidades
     {
     private:
-        Gerenciadores::Graficos* pGraf;
-        std::vector<Entidades::Entidades*> lista;
+        Lista<Entidades::Entidades> lista;
 
     public:
         ListaEntidades();
@@ -19,14 +17,10 @@ namespace Listas
         
         void adicionar(Entidades::Entidades* entidade);
         void remover(Entidades::Entidades* entidade);
-        void atualizar();
+        int getTam();
         void limpar();
+        Entidades::Entidades* operator[](int pos);  
         void atualizar(float dt);
-        void desenhar(sf::RenderWindow* janela);
-        bool estaVazia();
-
-        std::vector<Entidades::Entidades*> getLista();
-        std::vector<Entidades::Entidades*>::iterator getInicio();
-        std::vector<Entidades::Entidades*>::iterator getFim();
+        void desenhar();
     };
 };
