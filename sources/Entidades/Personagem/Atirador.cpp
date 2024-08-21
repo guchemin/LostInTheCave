@@ -2,16 +2,17 @@
 
 using namespace Gerenciadores;
 
-Atirador::Atirador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
-Inimigo(pos, tam, listaJog)
+Atirador::Atirador(sf::Vector2f pos, sf::Vector2f tam):
+Inimigo(pos, tam)
 {
     vel = sf::Vector2f(0.0f, 0.0f);
     corpo.setFillColor(sf::Color(255, 255, 255));
     corpo.setOutlineColor(sf::Color::Red);
     pProjetil = NULL;
+    raioAtaque = RAIO_ATIRADOR;
     tempoAtaque = 0.0f;
     vida = 60.0f;
-    pProjetil = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(10.0f, 10.0f), sf::Vector2f(0.0f, 0.0f), listaJogadores);
+    dano = DANO_ATIRADOR;
 }
 
 Atirador::Atirador()
@@ -25,20 +26,23 @@ Atirador::~Atirador()
     pProjetil = NULL;
 }
 
-bool Atirador::consegueAtacar()
+void Atirador::setProjetil(Projetil *proj)
+{
+    if(proj)
+    {
+        pProjetil = proj;
+    }
+}
+
+bool Atirador::consegueAtacar() 
 {
     // verifica cooldown
     if(tempoAtaque >= COOLDOWN_ATIRADOR)
     {
-        setJogador();
-
-        // verifica distancia
-        float dist = sqrt(pow(pJogador->getPosicao().x - getPosicao().x, 2) + pow(pJogador->getPosicao().y - getPosicao().y, 2));
-
         tempoAtaque = 0.0f;
         if(pProjetil->getPosicao().x == -1000.0f && pProjetil->getPosicao().y == -1000.0f)
         {
-            return (dist < RAIO_ATIRADOR);
+            return true;
         }
     }
     return false;
@@ -52,8 +56,12 @@ void Atirador::atacar()
     pProjetil->setVelocidade(velProj);
 }
 
-void Atirador::parar()
+void Atirador::agir()
 {
+    if(consegueAtacar())
+    {
+        atacar();
+    }
 }
 
 void Atirador::atualizar(float dt)
@@ -67,11 +75,6 @@ void Atirador::atualizar(float dt)
 
     tempoAtaque += dt;
 
-    if(consegueAtacar())
-    {
-        atacar();
-    }
-
     pProjetil->atualizar(dt);
     pProjetil->desenhar();
     if(pProjetil->atingiuJogador() || pProjetil->saiuDaTela())
@@ -79,7 +82,6 @@ void Atirador::atualizar(float dt)
         pProjetil->setPosicao(sf::Vector2f(-1000.0f, -1000.0f));
         pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
     }
-        
 }
 
 sf::Vector2f Atirador::calcVel()

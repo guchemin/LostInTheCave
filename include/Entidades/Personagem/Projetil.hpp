@@ -7,7 +7,6 @@ class Projetil: public Entidades::Entidades
 private:
     sf::Vector2f vel;
     Listas::ListaEntidades* listaJogadores;
-    const sf::Vector2f posInicial;
 
 public:
     Projetil(sf::Vector2f pos, sf::Vector2f tam, sf::Vector2f velocidade, Listas::ListaEntidades* listaJog);

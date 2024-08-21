@@ -1,13 +1,15 @@
 #include "../../../include/Entidades/Personagem/Chefao.hpp"
 
-Chefao::Chefao(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
-Inimigo(pos, tam, listaJog)
+Chefao::Chefao(sf::Vector2f pos, sf::Vector2f tam):
+Inimigo(pos, tam)
 {
     vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
     corpo.setFillColor(sf::Color(200, 200, 200));
     tempoAtaque = COOLDOWN_CHEFAO;
+    raioAtaque = RAIO_ATAQUE_CHEFAO;
     estaPerseguindo = false;
     vida = 150.0f;
+    dano = DANO_CHEFAO;
 }
 
 Chefao::Chefao()
@@ -33,11 +35,6 @@ void Chefao::perseguir(float dt)
     else
     {
         vel.x = 0.0f;
-
-        if(consegueAtacar())
-        {
-            atacar();
-        }
     }
     
     dx = vel.x * dt;
@@ -77,11 +74,8 @@ bool Chefao::consegueAtacar()
 {
     if(tempoAtaque >= COOLDOWN_CHEFAO)
     {
-        if(fabs(getPosicao().y - pJogador->getPosicao().y) < pJogador->getTamanho().y)
-        {
-            tempoAtaque = 0.0f;
-            return true;
-        }
+        tempoAtaque = 0.0f;
+        return true;
     }
     return false;
 }
@@ -93,17 +87,19 @@ bool Chefao::conseguePerseguir()
 
 void Chefao::atacar()
 {  
-    pJogador->perderVida(DANO_CHEFAO);
+    pJogador->tiraVida(dano);
 }
 
-void Chefao::parar()
+void Chefao::agir()
 {
+    if(consegueAtacar())
+    {
+        atacar();
+    }
 }
 
 void Chefao::atualizar(float dt)
 {
-    setJogador();
-    
     float dy;
     sf::Vector2f posChefao = getPosicao();
     sf::Vector2f posJog = pJogador->getPosicao();

@@ -1,12 +1,14 @@
 #include "../../../include/Entidades/Personagem/Voador.hpp"
 
-Voador::Voador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
-Inimigo(pos, tam, listaJog)
+Voador::Voador(sf::Vector2f pos, sf::Vector2f tam):
+Inimigo(pos, tam)
 {
     vel = sf::Vector2f(VEL_Voador, VEL_Voador);
     corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
+    raioAtaque = 0.0f;
     vida = 40.0f;
+    dano = DANO_VOADOR;
 }
 
 Voador::Voador()
@@ -21,7 +23,6 @@ bool Voador::consegueAtacar()
 {
     if(tempoAtaque >= COOLDOWN_VOADOR)
     {
-        setJogador();
         if(atingiuJogador())
         {
             tempoAtaque = 0.0f;
@@ -38,11 +39,15 @@ bool Voador::atingiuJogador()
 
 void Voador::atacar()
 { 
-    pJogador->perderVida(DANO_VOADOR);
+    pJogador->tiraVida(dano);
 }
 
-void Voador::parar()
+void Voador::agir()
 {
+    if(consegueAtacar())
+    {   
+        atacar();
+    }
 }
 
 void Voador::atualizar(float dt)
@@ -75,7 +80,6 @@ void Voador::atualizar(float dt)
     
     ds = vel * dt;
     corpo.move(ds);
-
     if(consegueAtacar())
     {
         atacar();

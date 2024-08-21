@@ -2,8 +2,7 @@
 
 Projetil::Projetil(sf::Vector2f pos, sf::Vector2f tam, sf::Vector2f velocidade, Listas::ListaEntidades* listaJog):
 Entidades(pos, tam, TIPO::PROJETIL),
-listaJogadores(listaJog),
-posInicial(pos)
+listaJogadores(listaJog)
 {
     vel = velocidade;
     corpo.setFillColor(sf::Color::Cyan);
@@ -38,7 +37,7 @@ bool Projetil::saiuDaTela()
 
 void Projetil::atacar(Jogador* pJog) 
 {
-    pJog->perderVida(DANO_ATIRADOR);
+    pJog->tiraVida(DANO_ATIRADOR);
 }
 
 bool Projetil::atingiuJogador()

@@ -11,6 +11,7 @@
 #define VEL_JOG2 300.0f
 #define PULO_JOG1 1500.0f
 #define PULO_JOG2 1650.0f
+#define COOLDOWN_ATAQUE 0.5f
 
 enum ID
 {
@@ -27,6 +28,7 @@ private:
     bool estaNaTeia;
     float aceleracaoTeia;
     bool foiEspinhado;
+    bool atacando;
     Observadores::ObsJogadores obs;
 
 public:
@@ -36,8 +38,9 @@ public:
 
     void autorizarPulo(bool autoriza);
     bool podePular();
+    bool podeAtacar();
+    void setAtacando(bool atk);
     ID getId() const { return id; };
-    void perderVida(float dano);
     void atacar();
     void atualizar(float dt);
     void pular();

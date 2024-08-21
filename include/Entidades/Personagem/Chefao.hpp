@@ -4,7 +4,7 @@
 
 #define RAIO_CHEFAO_X 300.0f
 #define RAIO_CHEFAO_Y 150.0f
-#define RAIO_ATAQUE_CHEFAO 65.0f
+#define RAIO_ATAQUE_CHEFAO 25.0f
 #define VEL_CHEFAO 60.0f
 #define VEL_CHEFAO_PERSEG 105.0f
 
@@ -15,7 +15,7 @@ private:
     //ideia: criar um bool furioso, se ele for furioso (quando a vida < 50%) ele vai andar mais rapido
 
 public:
-    Chefao(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Chefao(sf::Vector2f pos, sf::Vector2f tam);
     Chefao();
     ~Chefao();
 
@@ -25,7 +25,7 @@ public:
     bool consegueAtacar();
     bool conseguePerseguir();
     void atacar();
-    void parar(); // nao ta no UML pq nao ta mais usando para nada, talvez dê para excluir depois
+    void agir();
     void atualizar(float dt);
     void colide(Entidades* ent, sf::Vector2f intersec);
 };

@@ -14,8 +14,8 @@ namespace Listas
     public:
         Elemento();
         ~Elemento();
-        void setProx(Elemento<TE>* prox);
-        void setElemento(TE* elemento);
+        void setProx(Elemento<TE>* pr);
+        void setElemento(TE* elem);
         Elemento<TE>* getProx();
         TE* getElemento();
 
@@ -36,15 +36,15 @@ namespace Listas
     }
 
     template<class TE>
-    void Elemento<TE>::setProx(Elemento<TE>* prox)
+    void Elemento<TE>::setProx(Elemento<TE>* pr)
     {
-        this->prox = prox;
+        prox = pr;
     }
 
     template<class TE>
-    void Elemento<TE>::setElemento(TE* elemento)
+    void Elemento<TE>::setElemento(TE* elem)
     {
-        this->elemento = elemento;
+        elemento = elem;
     }
 
     template<class TE>

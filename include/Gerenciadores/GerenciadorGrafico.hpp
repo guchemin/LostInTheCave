@@ -10,7 +10,7 @@ namespace Gerenciadores
         sf::RenderWindow* janela;
         sf::View camera;
         
-        //padrao de projeto Singleton
+        // padrao de projeto Singleton
         static GerenciadorGrafico* instancia;
         GerenciadorGrafico();
         

@@ -58,7 +58,7 @@ void Observadores::ObsJogadores::notificarPressionada(sf::Keyboard::Key tecla)
     
     if(tecla == ataque)
     {
-        pJog->atacar();
+        pJog->setAtacando(true);
     }
 }
 

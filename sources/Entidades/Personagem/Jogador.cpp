@@ -22,8 +22,11 @@ Personagem(pos, tam, TIPO::JOGADOR)
     pulou = false;
     estaNaTeia = false;
     foiEspinhado = false;
+    atacando = false;
     vida = 100.0f;
     aceleracaoTeia = 1.0f;
+    dano = 10.0f;
+    tempoAtaque = 0.0f;
 }
 
 Jogador::Jogador():
@@ -45,17 +48,34 @@ bool Jogador::podePular()
     return estaNoChao && !pulou;
 }
 
-void Jogador::perderVida(float dano)
+bool Jogador::podeAtacar()
 {
-    tiraVida(dano);
+    if(tempoAtaque >= COOLDOWN_ATAQUE)
+    {
+        tempoAtaque = 0.0f;
+        if(atacando)
+        {
+            atacando = false;
+            return true;
+        }
+    }
+    return false;
+}
+
+void Jogador::setAtacando(bool atk)
+{
+    atacando = atk;
 }
 
 void Jogador::atacar()
 {
 
 }
+
 void Jogador::atualizar(float dt)
 {
+    tempoAtaque += dt;
+
     if(estaNaTeia)
     {
         desacelerarTeia();
@@ -232,11 +252,7 @@ void Jogador::colide(Entidades *ent, sf::Vector2f intersec)
     {
         if((intersec.x > intersec.y || vel.x == 0.0f))
         {
-            if(getPosicao().y > ent->getPosicao().y)
-            {
-                //setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
-            }
-            else
+            if(getPosicao().y <= ent->getPosicao().y)
             {
                 setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;

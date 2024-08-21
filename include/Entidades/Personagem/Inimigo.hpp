@@ -16,19 +16,17 @@ class Inimigo: public Personagem
 protected:
     Jogador* pJogador;
     sf::Vector2f posInicial;
-    float tempoAtaque;
-    Listas::ListaEntidades* listaJogadores;
 
 public:
-    Inimigo(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Inimigo(sf::Vector2f pos, sf::Vector2f tam);
     Inimigo();
     virtual ~Inimigo();
 
     virtual bool consegueAtacar() = 0;
-    void setJogador();
+    void setJogador(Jogador* jog);
     sf::Vector2f getPosJogador();
-    virtual void parar() = 0; // nao ta no UML pq nao ta mais usando para nada, talvez dê para excluir depois
     virtual void atacar() = 0;
+    virtual void agir() = 0;
     virtual void atualizar(float dt) = 0;
     virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
 };

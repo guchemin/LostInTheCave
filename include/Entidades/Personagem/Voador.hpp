@@ -10,7 +10,7 @@ private:
     bool endiabrado; //se for endiabrado ele voa mais rapido
 
 public:
-    Voador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Voador(sf::Vector2f pos, sf::Vector2f tam);
     Voador();
     ~Voador();
 
@@ -18,6 +18,7 @@ public:
     bool atingiuJogador();
     void atacar();
     void parar();
+    void agir();
     void atualizar(float dt);
     void colide(Entidades* ent, sf::Vector2f intersec);
 };

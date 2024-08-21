@@ -12,13 +12,14 @@ private:
     Projetil* pProjetil;
 
 public:
-    Atirador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Atirador(sf::Vector2f pos, sf::Vector2f tam);
     Atirador();
     ~Atirador();
 
+    void setProjetil(Projetil* proj);
     bool consegueAtacar();
     void atacar();
-    void parar(); // nao ta no UML pq nao ta mais usando para nada, talvez dê para excluir depois
+    void agir();
     void atualizar(float dt);
     sf::Vector2f calcVel();
     void colide(Entidades* ent, sf::Vector2f intersec);

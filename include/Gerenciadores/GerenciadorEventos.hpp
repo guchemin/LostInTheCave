@@ -15,7 +15,7 @@ namespace Gerenciadores
         Jogador* pJog2;
         sf::Event evento;
 
-        //padrao de projeto Singleton
+        // padrao de projeto Singleton
         static GerenciadorEventos* instancia;
         GerenciadorEventos();
 

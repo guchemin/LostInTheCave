@@ -50,9 +50,16 @@ void Principal::inicializarJogadores()
 
 void Principal::inicializarInimigos()
 {
-    Voador* Voador1 = new Voador(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f), listaJogadores);
-    Chefao* Chefao1 = new Chefao(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(50.0f, 70.0f), listaJogadores);
-    Atirador* Atirador1 = new Atirador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f), listaJogadores);
+    Voador* Voador1 = new Voador(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f));
+    Voador1->setJogador(static_cast<Jogador*>((*listaJogadores)[0]));
+
+    Chefao* Chefao1 = new Chefao(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(50.0f, 70.0f));
+    Chefao1->setJogador(static_cast<Jogador*>((*listaJogadores)[0]));
+
+    Atirador* Atirador1 = new Atirador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f));
+    Projetil* projetil = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(10.0f, 10.0f), sf::Vector2f(0.0f, 0.0f), listaJogadores); 
+    Atirador1->setJogador(static_cast<Jogador*>((*listaJogadores)[0]));
+    Atirador1->setProjetil(projetil);
 
     Entidades::Entidades* entVoador1 = dynamic_cast<Entidades::Entidades*>(Voador1);
     Entidades::Entidades* entChefao1 = dynamic_cast<Entidades::Entidades*>(Chefao1);

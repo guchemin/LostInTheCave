@@ -81,6 +81,8 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
     for(int i = 0; i < tamIni; i++)
     {
         pInim = static_cast<Inimigo*>((*listaInimigos)[i]);
+        float menorDist = 999999.0f;
+        float dist;
 
         for(int j = 0; j < tamJog; j++)
         {
@@ -92,11 +94,31 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
             intersecao.x = pInim->getTamanho().x/2.0f + pJog->getTamanho().x/2.0f - fabs(distcentro.x);
             intersecao.y = pInim->getTamanho().y/2.0f + pJog->getTamanho().y/2.0f - fabs(distcentro.y);
 
+            dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
+
+            if(dist < menorDist)
+            {
+                menorDist = dist;
+                pInim->setJogador(pJog);
+            }
+
+            if(intersecao.x > -pJog->getRaioAtaque() && intersecao.y > 0.0f)
+            {
+                if(pJog->podeAtacar())
+                {
+                    pInim->tiraVida(pJog->getDano());
+                }
+            }
+
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
             {
                 pJog->colide(pInim, intersecao);
                 pInim->colide(pJog, intersecao);
             }
+        }
+        if(menorDist <= pInim->getRaioAtaque())
+        {
+            pInim->agir();
         }
     }
 }

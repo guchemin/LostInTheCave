@@ -7,7 +7,7 @@ namespace Obstaculos
     class Teia : public Obstaculo
     {
     private:
-        float densidade; //TODO: Implementar lentidao
+        float densidade;
         
     public:
         Teia(sf::Vector2f pos, sf::Vector2f tam);
