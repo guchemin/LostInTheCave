@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../Entidades/Personagem/Jogador.hpp"
-#include "../Entidades/Personagem/Morcego.hpp"
-#include "../Entidades/Personagem/Golem.hpp"
-#include "../Entidades/Personagem/Esqueleto.hpp"
+#include "../Entidades/Personagem/Voador.hpp"
+#include "../Entidades/Personagem/Chefao.hpp"
+#include "../Entidades/Personagem/Atirador.hpp"
 #include "../Gerenciadores/GerenciadorColisoes.hpp"
 #include "../Gerenciadores/GerenciadorEventos.hpp"
 #include "../Entidades/Obstaculos/Teia.hpp"

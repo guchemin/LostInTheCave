@@ -1,34 +1,34 @@
-#include "../../../include/Entidades/Personagem/Golem.hpp"
+#include "../../../include/Entidades/Personagem/Chefao.hpp"
 
-Golem::Golem(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
+Chefao::Chefao(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
 Inimigo(pos, tam, listaJog)
 {
-    vel = sf::Vector2f(VEL_GOLEM, 0.0f);
+    vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
     corpo.setFillColor(sf::Color(200, 200, 200));
-    tempoAtaque = COOLDOWN_GOLEM;
+    tempoAtaque = COOLDOWN_CHEFAO;
     estaPerseguindo = false;
     vida = 150.0f;
 }
 
-Golem::Golem()
+Chefao::Chefao()
 {
 }
 
-Golem::~Golem()
+Chefao::~Chefao()
 {
 }
 
-void Golem::perseguir(float dt)
+void Chefao::perseguir(float dt)
 {
     float dx;
 
     if(pJogador->getPosicao().x > getPosicao().x + getTamanho().x + 1.0)
     {   
-        vel.x = VEL_GOLEM_PERSEG;
+        vel.x = VEL_CHEFAO_PERSEG;
     }
     else if(pJogador->getPosicao().x + pJogador->getTamanho().x < getPosicao().x - 1.0f)
     {
-        vel.x = -VEL_GOLEM_PERSEG;
+        vel.x = -VEL_CHEFAO_PERSEG;
     }
     else
     {
@@ -44,7 +44,7 @@ void Golem::perseguir(float dt)
     corpo.move(dx, 0.0f);
 }
 
-void Golem::moverAleatorio(float dt)
+void Chefao::moverAleatorio(float dt)
 {
     float dx;
     ajustaVelocidade();
@@ -58,24 +58,24 @@ void Golem::moverAleatorio(float dt)
     corpo.move(dx, 0.0f);
 }
 
-void Golem::ajustaVelocidade()
+void Chefao::ajustaVelocidade()
 {
     if(!estaPerseguindo)
     {
         if(vel.x > 0.0f)
         {
-            vel.x = VEL_GOLEM;
+            vel.x = VEL_CHEFAO;
         }
         else
         {
-            vel.x = -VEL_GOLEM;
+            vel.x = -VEL_CHEFAO;
         }
     }
 }
 
-bool Golem::consegueAtacar()
+bool Chefao::consegueAtacar()
 {
-    if(tempoAtaque >= COOLDOWN_GOLEM)
+    if(tempoAtaque >= COOLDOWN_CHEFAO)
     {
         if(fabs(getPosicao().y - pJogador->getPosicao().y) < pJogador->getTamanho().y)
         {
@@ -86,26 +86,26 @@ bool Golem::consegueAtacar()
     return false;
 }
 
-bool Golem::conseguePerseguir()
+bool Chefao::conseguePerseguir()
 {
     return false;   
 }
 
-void Golem::atacar()
+void Chefao::atacar()
 {  
-    pJogador->perderVida(DANO_GOLEM);
+    pJogador->perderVida(DANO_CHEFAO);
 }
 
-void Golem::parar()
+void Chefao::parar()
 {
 }
 
-void Golem::atualizar(float dt)
+void Chefao::atualizar(float dt)
 {
     setJogador();
     
     float dy;
-    sf::Vector2f posGolem = getPosicao();
+    sf::Vector2f posChefao = getPosicao();
     sf::Vector2f posJog = pJogador->getPosicao();
 
     //acao da gravidade
@@ -115,11 +115,11 @@ void Golem::atualizar(float dt)
 
     tempoAtaque += dt;
     
-    if(fabs(posGolem.x - posJog.x) < RAIO_GOLEM_X && fabs(posGolem.y - posJog.y) < RAIO_GOLEM_Y)
+    if(fabs(posChefao.x - posJog.x) < RAIO_CHEFAO_X && fabs(posChefao.y - posJog.y) < RAIO_CHEFAO_Y)
     {
         perseguir(dt);
         estaPerseguindo = true;
-        posInicial = posGolem;
+        posInicial = posChefao;
     }
     else
     {
@@ -128,7 +128,7 @@ void Golem::atualizar(float dt)
     }
 }
 
-void Golem::colide(Entidades *ent, sf::Vector2f intersec)
+void Chefao::colide(Entidades *ent, sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {

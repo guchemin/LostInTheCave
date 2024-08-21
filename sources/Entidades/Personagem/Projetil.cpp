@@ -38,7 +38,7 @@ bool Projetil::saiuDaTela()
 
 void Projetil::atacar(Jogador* pJog) 
 {
-    pJog->perderVida(DANO_ESQUELETO);
+    pJog->perderVida(DANO_ATIRADOR);
 }
 
 bool Projetil::atingiuJogador()

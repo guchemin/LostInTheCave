@@ -1,8 +1,8 @@
-#include "../../../include/Entidades/Personagem/Esqueleto.hpp"
+#include "../../../include/Entidades/Personagem/Atirador.hpp"
 
 using namespace Gerenciadores;
 
-Esqueleto::Esqueleto(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
+Atirador::Atirador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
 Inimigo(pos, tam, listaJog)
 {
     vel = sf::Vector2f(0.0f, 0.0f);
@@ -14,21 +14,21 @@ Inimigo(pos, tam, listaJog)
     pProjetil = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(10.0f, 10.0f), sf::Vector2f(0.0f, 0.0f), listaJogadores);
 }
 
-Esqueleto::Esqueleto()
+Atirador::Atirador()
 {
 
 }
 
-Esqueleto::~Esqueleto()
+Atirador::~Atirador()
 {
     delete pProjetil;
     pProjetil = NULL;
 }
 
-bool Esqueleto::consegueAtacar()
+bool Atirador::consegueAtacar()
 {
     // verifica cooldown
-    if(tempoAtaque >= COOLDOWN_ESQUELETO)
+    if(tempoAtaque >= COOLDOWN_ATIRADOR)
     {
         setJogador();
 
@@ -38,13 +38,13 @@ bool Esqueleto::consegueAtacar()
         tempoAtaque = 0.0f;
         if(pProjetil->getPosicao().x == -1000.0f && pProjetil->getPosicao().y == -1000.0f)
         {
-            return (dist < RAIO_ESQUELETO);
+            return (dist < RAIO_ATIRADOR);
         }
     }
     return false;
 }
 
-void Esqueleto::atacar()
+void Atirador::atacar()
 {
     sf::Vector2f velProj = calcVel();
     sf::Vector2f posProj = sf::Vector2f(getCentro().x, getPosicao().y + getTamanho().y / 4.0f);
@@ -52,11 +52,11 @@ void Esqueleto::atacar()
     pProjetil->setVelocidade(velProj);
 }
 
-void Esqueleto::parar()
+void Atirador::parar()
 {
 }
 
-void Esqueleto::atualizar(float dt)
+void Atirador::atualizar(float dt)
 {
     float dy;
     
@@ -82,7 +82,7 @@ void Esqueleto::atualizar(float dt)
         
 }
 
-sf::Vector2f Esqueleto::calcVel()
+sf::Vector2f Atirador::calcVel()
 {
     float Dx;
     float Dy;
@@ -123,7 +123,7 @@ sf::Vector2f Esqueleto::calcVel()
     return velProj;
 }
 
-void Esqueleto::colide(Entidades *ent, sf::Vector2f intersec)
+void Atirador::colide(Entidades *ent, sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {

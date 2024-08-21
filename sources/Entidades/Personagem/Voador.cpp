@@ -1,25 +1,25 @@
-#include "../../../include/Entidades/Personagem/Morcego.hpp"
+#include "../../../include/Entidades/Personagem/Voador.hpp"
 
-Morcego::Morcego(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
+Voador::Voador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog):
 Inimigo(pos, tam, listaJog)
 {
-    vel = sf::Vector2f(VEL_MORCEGO, VEL_MORCEGO);
+    vel = sf::Vector2f(VEL_Voador, VEL_Voador);
     corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
     vida = 40.0f;
 }
 
-Morcego::Morcego()
+Voador::Voador()
 {
 }
 
-Morcego::~Morcego()
+Voador::~Voador()
 {
 }
 
-bool Morcego::consegueAtacar()
+bool Voador::consegueAtacar()
 {
-    if(tempoAtaque >= COOLDOWN_MORCEGO)
+    if(tempoAtaque >= COOLDOWN_VOADOR)
     {
         setJogador();
         if(atingiuJogador())
@@ -31,21 +31,21 @@ bool Morcego::consegueAtacar()
     return false;
 }
 
-bool Morcego::atingiuJogador()
+bool Voador::atingiuJogador()
 {
     return corpo.getGlobalBounds().intersects(pJogador->getCorpo().getGlobalBounds());
 }
 
-void Morcego::atacar()
+void Voador::atacar()
 { 
-    pJogador->perderVida(DANO_MORCEGO);
+    pJogador->perderVida(DANO_VOADOR);
 }
 
-void Morcego::parar()
+void Voador::parar()
 {
 }
 
-void Morcego::atualizar(float dt)
+void Voador::atualizar(float dt)
 {
     sf::Vector2f ds;
 
@@ -57,7 +57,7 @@ void Morcego::atualizar(float dt)
     }
     else if(getPosicao().y > posInicial.y + 70.0f)
     {
-        vel.y = -VEL_MORCEGO;
+        vel.y = -VEL_Voador;
     }
 
     if(getPosicao().x < posInicial.x - 300.0f || getPosicao().x > posInicial.x + 300.0f)
@@ -82,7 +82,7 @@ void Morcego::atualizar(float dt)
     }
 }
 
-void Morcego::colide(Entidades *ent, sf::Vector2f intersec)
+void Voador::colide(Entidades *ent, sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {
@@ -99,7 +99,7 @@ void Morcego::colide(Entidades *ent, sf::Vector2f intersec)
             {
                 setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
-                vel.y = -VEL_MORCEGO;
+                vel.y = -VEL_Voador;
             }
         }
         else

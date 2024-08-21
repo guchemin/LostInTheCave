@@ -2,17 +2,17 @@
 
 #include "Inimigo.hpp"
 
-#define VEL_MORCEGO 180.0f 
+#define VEL_Voador 180.0f 
 
-class Morcego: public Inimigo::Inimigo
+class Voador: public Inimigo::Inimigo
 {
 private:
     bool endiabrado; //se for endiabrado ele voa mais rapido
 
 public:
-    Morcego(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
-    Morcego();
-    ~Morcego();
+    Voador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Voador();
+    ~Voador();
 
     bool consegueAtacar();
     bool atingiuJogador();

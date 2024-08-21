@@ -3,22 +3,22 @@
 #include "Projetil.hpp"
 #include "../../Gerenciadores/GerenciadorGrafico.hpp"
 
-#define RAIO_ESQUELETO 400.0f
+#define RAIO_ATIRADOR 400.0f
 #define VEL_PROJ 420.0f
 
-class Esqueleto: public Inimigo::Inimigo
+class Atirador: public Inimigo::Inimigo
 {
 private:
     Projetil* pProjetil;
 
 public:
-    Esqueleto(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
-    Esqueleto();
-    ~Esqueleto();
+    Atirador(sf::Vector2f pos, sf::Vector2f tam, Listas::ListaEntidades* listaJog);
+    Atirador();
+    ~Atirador();
 
     bool consegueAtacar();
     void atacar();
-    void parar();
+    void parar(); // nao ta no UML pq nao ta mais usando para nada, talvez dê para excluir depois
     void atualizar(float dt);
     sf::Vector2f calcVel();
     void colide(Entidades* ent, sf::Vector2f intersec);

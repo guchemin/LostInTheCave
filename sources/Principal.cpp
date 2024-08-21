@@ -50,17 +50,17 @@ void Principal::inicializarJogadores()
 
 void Principal::inicializarInimigos()
 {
-    Morcego* morcego1 = new Morcego(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f), listaJogadores);
-    Golem* golem1 = new Golem(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(50.0f, 70.0f), listaJogadores);
-    Esqueleto* esqueleto1 = new Esqueleto(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f), listaJogadores);
+    Voador* Voador1 = new Voador(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(25.0f, 50.0f), listaJogadores);
+    Chefao* Chefao1 = new Chefao(sf::Vector2f(400.0f, 400.0f), sf::Vector2f(50.0f, 70.0f), listaJogadores);
+    Atirador* Atirador1 = new Atirador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f), listaJogadores);
 
-    Entidades::Entidades* entMorcego1 = dynamic_cast<Entidades::Entidades*>(morcego1);
-    Entidades::Entidades* entGolem1 = dynamic_cast<Entidades::Entidades*>(golem1);
-    Entidades::Entidades* entEsqueleto1 = dynamic_cast<Entidades::Entidades*>(esqueleto1);
+    Entidades::Entidades* entVoador1 = dynamic_cast<Entidades::Entidades*>(Voador1);
+    Entidades::Entidades* entChefao1 = dynamic_cast<Entidades::Entidades*>(Chefao1);
+    Entidades::Entidades* entAtirador1 = dynamic_cast<Entidades::Entidades*>(Atirador1);
     
-    listaInimigos->adicionar(entMorcego1);
-    listaInimigos->adicionar(entGolem1);
-    listaInimigos->adicionar(entEsqueleto1);
+    listaInimigos->adicionar(entVoador1);
+    listaInimigos->adicionar(entChefao1);
+    listaInimigos->adicionar(entAtirador1);
 }
 
 void Principal::inicializarObstaculos()
@@ -103,13 +103,33 @@ void Principal::centralizarCamera()
 {
     int tam = listaJogadores->getTam();
     float media;
+    float diferenca;
     float soma = 0.0f;
-    for(int i = 0; i < tam; i++)
+
+    if(tam == 1)
     {
-        soma += (*listaJogadores)[i]->getCentro().x;
+        pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 300.0f));
     }
-    media = soma/tam;
-    pGraf->centralizarCamera(sf::Vector2f(media, 300.0f));
+    else
+    {
+        diferenca = (*listaJogadores)[0]->getCentro().x - (*listaJogadores)[1]->getCentro().x;
+        soma = (*listaJogadores)[0]->getCentro().x + (*listaJogadores)[1]->getCentro().x;
+
+        media = soma/tam;
+
+        if(diferenca > 750.0f)
+        {
+            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 300.0f));
+        }
+        else if(diferenca < -750.0f)
+        {
+            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 300.0f));
+        }
+        else
+        {
+            pGraf->centralizarCamera(sf::Vector2f(media, 300.0f));
+        }
+    }
 }
 
 void Principal::atualizar()
