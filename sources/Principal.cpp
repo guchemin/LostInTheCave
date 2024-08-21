@@ -19,6 +19,7 @@ Principal::~Principal()
     listaInimigos->limpar();
     listaJogadores->limpar();
     listaObstaculos->limpar();
+    listaProjeteis->limpar();
 }
 
 void Principal::inicializar()
@@ -26,7 +27,8 @@ void Principal::inicializar()
     listaJogadores = new Listas::ListaEntidades();
     listaInimigos = new Listas::ListaEntidades();
     listaObstaculos = new Listas::ListaEntidades();
-    pColisoes = new Gerenciadores::GerenciadorColisoes(listaJogadores, listaInimigos, listaObstaculos);
+    listaProjeteis = new Listas::ListaEntidades();
+    pColisoes = new Gerenciadores::GerenciadorColisoes(listaJogadores, listaInimigos, listaObstaculos, listaProjeteis);
     
     inicializarJogadores();
     inicializarInimigos();
@@ -38,8 +40,8 @@ void Principal::inicializarJogadores()
     Jogador* jogador1 = new Jogador(sf::Vector2f(50.0f, 50.0f), sf::Vector2f(50.0f, 50.0f), ID::JOGADOR1);
     Jogador* jogador2 = new Jogador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 50.0f), ID::JOGADOR2);
 
-    Entidades::Entidades* entJog1 = dynamic_cast<Entidades::Entidades*>(jogador1);
-    Entidades::Entidades* entJog2 = dynamic_cast<Entidades::Entidades*>(jogador2);
+    Entidades::Entidades* entJog1 = static_cast<Entidades::Entidades*>(jogador1);
+    Entidades::Entidades* entJog2 = static_cast<Entidades::Entidades*>(jogador2);
 
     pEventos->setJogador(jogador1);
     pEventos->setJogador(jogador2);
@@ -57,17 +59,20 @@ void Principal::inicializarInimigos()
     Chefao1->setJogador(static_cast<Jogador*>((*listaJogadores)[0]));
 
     Atirador* Atirador1 = new Atirador(sf::Vector2f(150.0f, 150.0f), sf::Vector2f(50.0f, 80.0f));
-    Projetil* projetil = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(10.0f, 10.0f), sf::Vector2f(0.0f, 0.0f), listaJogadores); 
+    Projetil* projetil1 = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(10.0f, 10.0f), sf::Vector2f(0.0f, 0.0f)); 
     Atirador1->setJogador(static_cast<Jogador*>((*listaJogadores)[0]));
-    Atirador1->setProjetil(projetil);
+    Atirador1->setProjetil(projetil1);
 
-    Entidades::Entidades* entVoador1 = dynamic_cast<Entidades::Entidades*>(Voador1);
-    Entidades::Entidades* entChefao1 = dynamic_cast<Entidades::Entidades*>(Chefao1);
-    Entidades::Entidades* entAtirador1 = dynamic_cast<Entidades::Entidades*>(Atirador1);
-    
+    Entidades::Entidades* entVoador1 = static_cast<Entidades::Entidades*>(Voador1);
+    Entidades::Entidades* entChefao1 = static_cast<Entidades::Entidades*>(Chefao1);
+    Entidades::Entidades* entAtirador1 = static_cast<Entidades::Entidades*>(Atirador1);
+    Entidades::Entidades* entProjetil1 = static_cast<Entidades::Entidades*>(projetil1);
+
     listaInimigos->adicionar(entVoador1);
     listaInimigos->adicionar(entChefao1);
     listaInimigos->adicionar(entAtirador1);
+
+    listaProjeteis->adicionar(entProjetil1);
 }
 
 void Principal::inicializarObstaculos()
@@ -83,16 +88,16 @@ void Principal::inicializarObstaculos()
     Obstaculos::Espinho* espinho1 = new Obstaculos::Espinho(sf::Vector2f(300.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
     Obstaculos::Espinho* espinho2 = new Obstaculos::Espinho(sf::Vector2f(500.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
    
-    Entidades::Entidades* entPlat1 = dynamic_cast<Entidades::Entidades*>(plataforma1);
-    Entidades::Entidades* entPlat2 = dynamic_cast<Entidades::Entidades*>(plataforma2);
-    Entidades::Entidades* entPlat3 = dynamic_cast<Entidades::Entidades*>(plataforma3);
-    Entidades::Entidades* entPlat4 = dynamic_cast<Entidades::Entidades*>(plataforma4);
+    Entidades::Entidades* entPlat1 = static_cast<Entidades::Entidades*>(plataforma1);
+    Entidades::Entidades* entPlat2 = static_cast<Entidades::Entidades*>(plataforma2);
+    Entidades::Entidades* entPlat3 = static_cast<Entidades::Entidades*>(plataforma3);
+    Entidades::Entidades* entPlat4 = static_cast<Entidades::Entidades*>(plataforma4);
 
-    Entidades::Entidades* entTeia1 = dynamic_cast<Entidades::Entidades*>(teia1);
-    Entidades::Entidades* entTeia2 = dynamic_cast<Entidades::Entidades*>(teia2);
+    Entidades::Entidades* entTeia1 = static_cast<Entidades::Entidades*>(teia1);
+    Entidades::Entidades* entTeia2 = static_cast<Entidades::Entidades*>(teia2);
 
-    Entidades::Entidades* entEspinho1 = dynamic_cast<Entidades::Entidades*>(espinho1);
-    Entidades::Entidades* entEspinho2 = dynamic_cast<Entidades::Entidades*>(espinho2);
+    Entidades::Entidades* entEspinho1 = static_cast<Entidades::Entidades*>(espinho1);
+    Entidades::Entidades* entEspinho2 = static_cast<Entidades::Entidades*>(espinho2);
 
     listaObstaculos->adicionar(entPlat1);
     listaObstaculos->adicionar(entPlat2);
@@ -113,11 +118,15 @@ void Principal::centralizarCamera()
     float diferenca;
     float soma = 0.0f;
 
-    if(tam == 1)
+    if(tam == 0)
+    {
+        // implementar GAME OVER
+    }
+    else if(tam == 1)
     {
         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 300.0f));
     }
-    else
+    else if(tam == 2)
     {
         diferenca = (*listaJogadores)[0]->getCentro().x - (*listaJogadores)[1]->getCentro().x;
         soma = (*listaJogadores)[0]->getCentro().x + (*listaJogadores)[1]->getCentro().x;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Projetil.hpp"
+#include "../Projetil.hpp"
 #include "../../Gerenciadores/GerenciadorGrafico.hpp"
 
 #define RAIO_ATIRADOR 400.0f

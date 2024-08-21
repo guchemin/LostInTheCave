@@ -22,7 +22,6 @@ Atirador::Atirador()
 
 Atirador::~Atirador()
 {
-    delete pProjetil;
     pProjetil = NULL;
 }
 
@@ -77,7 +76,7 @@ void Atirador::atualizar(float dt)
 
     pProjetil->atualizar(dt);
     pProjetil->desenhar();
-    if(pProjetil->atingiuJogador() || pProjetil->saiuDaTela())
+    if(pProjetil->saiuDaTela())
     {
         pProjetil->setPosicao(sf::Vector2f(-1000.0f, -1000.0f));
         pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));

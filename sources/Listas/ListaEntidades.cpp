@@ -44,6 +44,19 @@ void Listas::ListaEntidades::atualizar(float dt)
         if(ent)
         {
             ent->atualizar(dt);
+            if(ent->getTipo() == TIPO::JOGADOR || ent->getTipo() == TIPO::INIMIGO)
+            {
+                Personagem* pPer = static_cast<Personagem*>(ent);
+                if(pPer->getVida() <= 0 || pPer->getPosicao().y > 600.0f)
+                {
+                    lista.remover(ent);
+                    if(tam > 0)
+                    {
+                        tam--;
+                        i--;
+                    }
+                }
+            }
         }
         ent = NULL;
     }

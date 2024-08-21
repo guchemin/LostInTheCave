@@ -1,9 +1,11 @@
 #include "../../include/Gerenciadores/GerenciadorColisoes.hpp"
 
-Gerenciadores::GerenciadorColisoes::GerenciadorColisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li,Listas::ListaEntidades* lo):
+Gerenciadores::GerenciadorColisoes::GerenciadorColisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li,
+                                                        Listas::ListaEntidades* lo, Listas::ListaEntidades* lp):
 listaJogadores(lj),
 listaInimigos(li),
-listaObstaculos(lo)
+listaObstaculos(lo),
+listaProjeteis(lp)
 {
 }
 
@@ -12,6 +14,7 @@ Gerenciadores::GerenciadorColisoes::GerenciadorColisoes()
     listaJogadores = NULL;
     listaInimigos = NULL;
     listaObstaculos = NULL;
+    listaProjeteis = NULL;
 }
 
 Gerenciadores::GerenciadorColisoes::~GerenciadorColisoes()
@@ -19,11 +22,12 @@ Gerenciadores::GerenciadorColisoes::~GerenciadorColisoes()
     listaInimigos->limpar();
     listaObstaculos->limpar();
     listaJogadores->limpar();
+    listaProjeteis->limpar();
 }
 
 void Gerenciadores::GerenciadorColisoes::verificarColisoes()
 {
-    if (listaInimigos == NULL || listaObstaculos == NULL || listaJogadores == NULL)
+    if (listaInimigos == NULL || listaObstaculos == NULL || listaJogadores == NULL || listaProjeteis == NULL)
     {
         std::cerr << "Erro: listaInimigos, listaPlataformas ou listaJogadores é nula." << std::endl;
         return;
@@ -35,10 +39,12 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
     Obstaculos::Obstaculo* pObs = NULL;
     Inimigo* pInim = NULL;
     Jogador* pJog = NULL; 
+    Projetil* pProj = NULL;
 
     int tamObs = listaObstaculos->getTam();
     int tamIni = listaInimigos->getTam();
     int tamJog = listaJogadores->getTam();  
+    int tamProj = listaProjeteis->getTam();
 
     for(int i = 0; i < tamObs; i++)
     {
@@ -77,6 +83,42 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         }
     }
 
+    for(int i = 0; i < tamProj; i++)
+    {
+        pProj = static_cast<Projetil*>((*listaProjeteis)[i]);
+
+        for(int j = 0; j < tamJog; j++)
+        {
+            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
+
+            distcentro.x = pProj->getCentro().x - pJog->getCentro().x;
+            distcentro.y = pProj->getCentro().y - pJog->getCentro().y;
+
+            intersecao.x = pProj->getTamanho().x/2.0f + pJog->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = pProj->getTamanho().y/2.0f + pJog->getTamanho().y/2.0f - fabs(distcentro.y);
+
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+            {
+                pProj->colide(pJog, intersecao);
+            }
+        }
+
+        for(int j = 0; j < tamObs; j++)
+        {
+            pObs = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[j]);
+
+            distcentro.x = pProj->getCentro().x - pObs->getCentro().x;
+            distcentro.y = pProj->getCentro().y - pObs->getCentro().y;
+
+            intersecao.x = pProj->getTamanho().x/2.0f + pObs->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = pProj->getTamanho().y/2.0f + pObs->getTamanho().y/2.0f - fabs(distcentro.y);
+
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+            {
+                pProj->colide(pObs, intersecao);
+            }
+        }
+    }
 
     for(int i = 0; i < tamIni; i++)
     {
@@ -108,12 +150,12 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
                 {
                     pInim->tiraVida(pJog->getDano());
                 }
-            }
 
-            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
-            {
-                pJog->colide(pInim, intersecao);
-                pInim->colide(pJog, intersecao);
+                if(intersecao.x > 0.0f)
+                {
+                    pJog->colide(pInim, intersecao);
+                    pInim->colide(pJog, intersecao);
+                }
             }
         }
         if(menorDist <= pInim->getRaioAtaque())

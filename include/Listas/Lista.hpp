@@ -87,7 +87,7 @@ namespace Listas
             if(aux == pPrimeiro)
             {
                 pPrimeiro = aux->getProx();
-            } 
+            }
             else if(aux == pUltimo)
             {
                 pUltimo = aux2;
@@ -96,9 +96,11 @@ namespace Listas
             {
                 aux2->setProx(aux->getProx());
             }
+            delete(aux);
+            aux = NULL;
+            aux2 = NULL;
             tam--;
         }
-        
     }
 
     template<class TL>

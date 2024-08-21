@@ -11,7 +11,7 @@
 #define VEL_JOG2 300.0f
 #define PULO_JOG1 1500.0f
 #define PULO_JOG2 1650.0f
-#define COOLDOWN_ATAQUE 0.5f
+#define COOLDOWN_ATAQUE 1.0f
 
 enum ID
 {

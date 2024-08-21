@@ -20,6 +20,7 @@ private:
     Listas::ListaEntidades* listaJogadores;
     Listas::ListaEntidades* listaInimigos;
     Listas::ListaEntidades* listaObstaculos;
+    Listas::ListaEntidades* listaProjeteis;
 
     sf::Clock relogio;
     float dt;
