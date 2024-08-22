@@ -3,10 +3,10 @@
 
 using namespace Entidades;
 
-Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i):
+Jogador::Jogador(sf::Vector2f pos, ID i):
 id(i),
 obs(this),
-Personagem(pos, tam, TIPO::JOGADOR)
+Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR)
 {
     if(id == JOGADOR1)
     {
@@ -234,9 +234,7 @@ void Jogador::colide(Entidades *ent, sf::Vector2f intersec)
         Obstaculos::Espinho* espinho = static_cast<Obstaculos::Espinho*>(ent);
         tiraVida(espinho->getAfiado());
         foiEspinhado = true;
-
         vel.y = -1000.0f;
-
         if(getCentro().x > ent->getCentro().x)
         {
             vel.x = 300.0f;
@@ -249,6 +247,37 @@ void Jogador::colide(Entidades *ent, sf::Vector2f intersec)
     }
 
     case TIPO::INIMIGO:
+    {
+        if((intersec.x > intersec.y || vel.x == 0.0f))
+        {
+            if(getPosicao().y <= ent->getPosicao().y)
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = 0.0f;
+
+            if(foiEspinhado)
+            {
+                vel.x = 0.0f;
+                foiEspinhado = false;
+            }
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+        }
+        break;
+    }
+
+    case TIPO::JOGADOR:
     {
         if((intersec.x > intersec.y || vel.x == 0.0f))
         {

@@ -1,9 +1,9 @@
 #include "../../../include/Entidades/Personagem/Voador.hpp"
 
-Voador::Voador(sf::Vector2f pos, sf::Vector2f tam):
-Inimigo(pos, tam)
+Voador::Voador(sf::Vector2f pos):
+Inimigo(pos, sf::Vector2f(35.0f, 60.0f))
 {
-    vel = sf::Vector2f(VEL_Voador, VEL_Voador);
+    vel = sf::Vector2f(VEL_VOADOR, VEL_VOADOR);
     corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
     raioAtaque = 0.0f;
@@ -62,7 +62,7 @@ void Voador::atualizar(float dt)
     }
     else if(getPosicao().y > posInicial.y + 70.0f)
     {
-        vel.y = -VEL_Voador;
+        vel.y = -VEL_VOADOR;
     }
 
     if(getPosicao().x < posInicial.x - 300.0f || getPosicao().x > posInicial.x + 300.0f)
@@ -80,7 +80,7 @@ void Voador::atualizar(float dt)
     
     ds = vel * dt;
     corpo.move(ds);
-    if(consegueAtacar())
+    if(pJogador != NULL && consegueAtacar())
     {
         atacar();
     }
@@ -103,7 +103,7 @@ void Voador::colide(Entidades *ent, sf::Vector2f intersec)
             {
                 setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
-                vel.y = -VEL_Voador;
+                vel.y = -VEL_VOADOR;
             }
         }
         else
@@ -122,6 +122,36 @@ void Voador::colide(Entidades *ent, sf::Vector2f intersec)
     }
 
     case TIPO::JOGADOR:
+    {    
+        if(intersec.x > intersec.y)
+        {
+            if(getPosicao().y > ent->getPosicao().y)
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = -vel.y;
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+            vel.x = -vel.x;
+        }
+        break;
+    }
+    
+    case TIPO::INIMIGO:
     {
         if(intersec.x > intersec.y)
         {

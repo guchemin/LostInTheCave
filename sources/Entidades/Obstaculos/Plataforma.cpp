@@ -3,8 +3,8 @@
 
 using namespace Entidades;
 
-Obstaculos::Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam): 
-Obstaculo(pos, tam, TIPO::PLATAFORMA)
+Obstaculos::Plataforma::Plataforma(sf::Vector2f pos): 
+Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::PLATAFORMA)
 {
     corpo.setFillColor(sf::Color::Green);
 }

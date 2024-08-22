@@ -2,8 +2,8 @@
 
 using namespace Gerenciadores;
 
-Atirador::Atirador(sf::Vector2f pos, sf::Vector2f tam):
-Inimigo(pos, tam)
+Atirador::Atirador(sf::Vector2f pos):
+Inimigo(pos, sf::Vector2f(50.0f, 90.0f))
 {
     vel = sf::Vector2f(0.0f, 0.0f);
     corpo.setFillColor(sf::Color(255, 255, 255));
@@ -50,7 +50,7 @@ bool Atirador::consegueAtacar()
 void Atirador::atacar()
 {
     sf::Vector2f velProj = calcVel();
-    sf::Vector2f posProj = sf::Vector2f(getCentro().x, getPosicao().y + getTamanho().y / 4.0f);
+    sf::Vector2f posProj = sf::Vector2f(getCentro().x, getPosicao().y + getTamanho().y / 2.0f);
     pProjetil->setPosicao(posProj);
     pProjetil->setVelocidade(velProj);
 }
@@ -85,6 +85,11 @@ void Atirador::atualizar(float dt)
 
 sf::Vector2f Atirador::calcVel()
 {
+    if(pJogador == NULL)
+    {
+        return sf::Vector2f(0.0f, 0.0f);
+    }
+    
     float Dx;
     float Dy;
     float theta;
@@ -99,7 +104,7 @@ sf::Vector2f Atirador::calcVel()
         Dx = getCentro().x - (pJogador->getPosicao().x + pJogador->getTamanho().x);
     }
     
-    Dy = pJogador->getPosicao().y - getCentro().y;
+    Dy = (pJogador->getPosicao().y + pJogador->getTamanho().y / 4.0f) - (getPosicao().y + getTamanho().y / 2.0f);
 
     theta = atan(fabs(Dy / Dx));
 
@@ -157,6 +162,35 @@ void Atirador::colide(Entidades *ent, sf::Vector2f intersec)
         break;
     }
     
+    case TIPO::INIMIGO:
+    {
+        if(intersec.x > intersec.y)
+        {
+            if(getPosicao().y > ent->getPosicao().y)
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = 0.0f;
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+        }
+        break;
+    }
+
     default:
         break;
     }

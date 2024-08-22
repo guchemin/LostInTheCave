@@ -8,7 +8,7 @@ private:
     sf::Vector2f vel;
 
 public:
-    Projetil(sf::Vector2f pos, sf::Vector2f tam, sf::Vector2f velocidade);
+    Projetil(sf::Vector2f pos, sf::Vector2f velocidade);
     Projetil();
     ~Projetil();
 

@@ -9,7 +9,7 @@ namespace Obstaculos
     private:
         
     public:
-        Plataforma(sf::Vector2f pos, sf::Vector2f tam);
+        Plataforma(sf::Vector2f pos);
         Plataforma();
         ~Plataforma();
 

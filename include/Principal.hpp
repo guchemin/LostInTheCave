@@ -4,38 +4,20 @@
 #include "Entidades/Personagem/Voador.hpp"
 #include "Entidades/Personagem/Chefao.hpp"
 #include "Entidades/Personagem/Atirador.hpp"
-#include "Gerenciadores/GerenciadorColisoes.hpp"
-#include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Entidades/Obstaculos/Teia.hpp"
 #include "Entidades/Obstaculos/Espinho.hpp"
-// #include "Fases/FaseUm.hpp"
+#include "Fases/FaseUm.hpp"
 
 class Principal
 {
 private:
     Gerenciadores::GerenciadorGrafico* pGraf;
-    Gerenciadores::GerenciadorColisoes* pColisoes;
-    Gerenciadores::GerenciadorEventos* pEventos;
 
-    Listas::ListaEntidades* listaJogadores;
-    Listas::ListaEntidades* listaInimigos;
-    Listas::ListaEntidades* listaObstaculos;
-    Listas::ListaEntidades* listaProjeteis;
-
-    sf::Clock relogio;
-    float dt;
+    Fases::FaseUm fase;
     
 public:
     Principal();
     ~Principal();
-
-    void inicializar();
-    void inicializarJogadores();
-    void inicializarInimigos();
-    void inicializarObstaculos();
-
-    void centralizarCamera();
-
-    void atualizar();
+    
     void executar();
 };

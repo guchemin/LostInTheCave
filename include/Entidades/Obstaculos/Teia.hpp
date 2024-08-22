@@ -10,7 +10,7 @@ namespace Obstaculos
         float densidade;
         
     public:
-        Teia(sf::Vector2f pos, sf::Vector2f tam);
+        Teia(sf::Vector2f pos);
         Teia();
         ~Teia();
 

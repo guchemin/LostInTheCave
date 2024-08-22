@@ -12,10 +12,7 @@ namespace Fases
         FaseUm();
         ~FaseUm();
 
-        void inicializar();
-        void inicializarJogadores();
-        void inicializarInimigos();
-        void inicializarObstaculos();
+        void criarMapa();
 
         void atualizar(float dt);
         void desenhar();

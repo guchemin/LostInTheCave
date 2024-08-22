@@ -4,7 +4,8 @@ using namespace Entidades;
 
 Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam):
 Personagem(pos, tam, TIPO::INIMIGO),
-posInicial(pos)
+posInicial(pos),
+pJogador(NULL)
 {
     estaNoChao = false;
     tempoAtaque = 0.0f;

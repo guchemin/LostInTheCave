@@ -1,7 +1,7 @@
 #include "../../../include/Entidades/Personagem/Chefao.hpp"
 
-Chefao::Chefao(sf::Vector2f pos, sf::Vector2f tam):
-Inimigo(pos, tam)
+Chefao::Chefao(sf::Vector2f pos):
+Inimigo(pos, sf::Vector2f(70.0f, 130.0f))
 {
     vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
     corpo.setFillColor(sf::Color(200, 200, 200));
@@ -102,7 +102,6 @@ void Chefao::atualizar(float dt)
 {
     float dy;
     sf::Vector2f posChefao = getPosicao();
-    sf::Vector2f posJog = pJogador->getPosicao();
 
     //acao da gravidade
     vel.y += GRAVIDADE * dt;
@@ -111,6 +110,14 @@ void Chefao::atualizar(float dt)
 
     tempoAtaque += dt;
     
+    if(pJogador == NULL)
+    {
+        estaPerseguindo = false;
+        moverAleatorio(dt);
+        return;
+    }    
+    
+    sf::Vector2f posJog = pJogador->getPosicao();
     if(fabs(posChefao.x - posJog.x) < RAIO_CHEFAO_X && fabs(posChefao.y - posJog.y) < RAIO_CHEFAO_Y)
     {
         perseguir(dt);
@@ -159,11 +166,35 @@ void Chefao::colide(Entidades *ent, sf::Vector2f intersec)
     }
 
     case TIPO::JOGADOR:
-    {
-        // Jogador::Jogador *jog = dynamic_cast<Jogador::Jogador*>(ent);
-        // setpJogador(jog);
+        break;
 
-        //TODO tira vida do jogador
+    case TIPO::INIMIGO:
+    {
+        if(intersec.x > intersec.y)
+        {
+            if(getPosicao().y > ent->getPosicao().y)
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                estaNoChao = true;
+            }
+            vel.y = 0.0f;
+        }
+        else
+        {
+            if(getPosicao().x > ent->getPosicao().x)
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+            }
+            else
+            {
+                setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+            }
+            vel.x = -vel.x;
+        }
         break;
     }
     

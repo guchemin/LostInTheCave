@@ -32,7 +32,7 @@ private:
     Observadores::ObsJogadores obs;
 
 public:
-    Jogador(sf::Vector2f pos, sf::Vector2f tam, ID i);
+    Jogador(sf::Vector2f pos, ID i);
     Jogador();
     ~Jogador();
 

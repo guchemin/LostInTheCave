@@ -13,6 +13,16 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia()
     }
     return instancia;
 }
+GerenciadorGrafico::GerenciadorGrafico() : janela(new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE"))
+{
+    camera.setSize(1200, 900);
+    centralizarCamera(sf::Vector2f(800, 600));
+}
+
+GerenciadorGrafico::~GerenciadorGrafico()
+{
+    delete (janela);
+}
 
 sf::RenderWindow* GerenciadorGrafico::getJanela()
 {
@@ -30,16 +40,12 @@ sf::Vector2f Gerenciadores::GerenciadorGrafico::getCentro()
     return camera.getCenter();
 }
 
-GerenciadorGrafico::GerenciadorGrafico() : janela(new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE"))
+sf::Vector2f Gerenciadores::GerenciadorGrafico::getTamanho()
 {
-    camera.setSize(800, 600);
-    centralizarCamera(sf::Vector2f(800, 600));
+    return camera.getSize();
 }
 
-GerenciadorGrafico::~GerenciadorGrafico()
-{
-    delete (janela);
-}
+
 
 void GerenciadorGrafico::limpar()
 {

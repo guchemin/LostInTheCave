@@ -2,6 +2,8 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <iostream>
+#include <fstream>
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
 class Ente

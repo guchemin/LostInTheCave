@@ -38,7 +38,9 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
 
     Obstaculos::Obstaculo* pObs = NULL;
     Inimigo* pInim = NULL;
-    Jogador* pJog = NULL; 
+    Inimigo* pInim2 = NULL;
+    Jogador* pJog = NULL;
+    Jogador* pJog2 = NULL; 
     Projetil* pProj = NULL;
 
     int tamObs = listaObstaculos->getTam();
@@ -162,5 +164,43 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         {
             pInim->agir();
         }
+
+        // for(int j = i + 1; j < tamIni; j++)
+        // {
+        //     pInim2 = static_cast<Inimigo*>((*listaInimigos)[j]);
+
+        //     distcentro.x = pInim->getCentro().x - pInim2->getCentro().x;
+        //     distcentro.y = pInim->getCentro().y - pInim2->getCentro().y;
+
+        //     intersecao.x = pInim->getTamanho().x/2.0f + pInim2->getTamanho().x/2.0f - fabs(distcentro.x);
+        //     intersecao.y = pInim->getTamanho().y/2.0f + pInim2->getTamanho().y/2.0f - fabs(distcentro.y);
+
+        //     if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+        //     {
+        //         // pInim->colide(pInim2, intersecao);
+        //     }
+        // }
     }
+
+    // for(int i = 0; i < tamJog; i++)
+    // {
+    //     pJog = static_cast<Jogador*>((*listaJogadores)[i]);
+
+    //     for(int j = i + 1; j < tamJog; j++)
+    //     {
+    //         pJog2 = static_cast<Jogador*>((*listaJogadores)[j]);
+
+    //         distcentro.x = pJog->getCentro().x - pJog2->getCentro().x;
+    //         distcentro.y = pJog->getCentro().y - pJog2->getCentro().y;
+
+    //         intersecao.x = pJog->getTamanho().x/2.0f + pJog2->getTamanho().x/2.0f - fabs(distcentro.x);
+    //         intersecao.y = pJog->getTamanho().y/2.0f + pJog2->getTamanho().y/2.0f - fabs(distcentro.y);
+            
+    //         if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+    //         {
+    //             pJog->colide(pJog2, intersecao);
+    //             pJog2->colide(pJog, intersecao);
+    //         }
+    //     }
+    // }
 }

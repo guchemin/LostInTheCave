@@ -2,8 +2,8 @@
 
 using namespace Entidades;
 
-Obstaculos::Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam):
-Obstaculo(pos, tam, TIPO::ESPINHO),
+Obstaculos::Espinho::Espinho(sf::Vector2f pos):
+Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::ESPINHO),
 afiado(10.0f)
 {
     srand(Ente::id * (unsigned)time(0));
