@@ -2,12 +2,12 @@
 
 #include "Inimigo.hpp"
 
-#define VEL_VOADOR 180.0f 
+#define VEL_VOADOR 250.0f 
 
 class Voador: public Inimigo::Inimigo
 {
 private:
-    bool endiabrado; //se for endiabrado ele voa mais rapido
+    const bool endiabrado; //se for endiabrado ele voa mais rapido
 
 public:
     Voador(sf::Vector2f pos);
@@ -18,6 +18,7 @@ public:
     bool atingiuJogador();
     void atacar();
     void agir();
-    void atualizar(float dt);
-    void colide(Entidades* ent, sf::Vector2f intersec);
+    void atualizar(const float dt);
+    void colide(Entidade* ent, const sf::Vector2f intersec);
+    const bool getEndiabrado() const;
 };

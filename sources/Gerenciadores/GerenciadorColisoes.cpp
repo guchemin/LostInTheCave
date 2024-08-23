@@ -80,6 +80,19 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
 
             if(intersecao.x > 0.0f && intersecao.y > 0.0f)
             {
+                if(pObs->getTipo() == TIPO::PLATAFORMA)
+                {
+                    Obstaculos::Plataforma* pPlat = static_cast<Obstaculos::Plataforma*>(pObs);
+                    if(pPlat->getFalsa())
+                    {
+                        listaObstaculos->remover(pObs);
+                        if(tamObs > 0)
+                        {
+                            tamObs--;
+                            i--;
+                        }
+                    }
+                }
                 pJog->colide(pObs, intersecao);
             }
         }

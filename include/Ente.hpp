@@ -17,6 +17,6 @@ public:
     Ente();
     virtual ~Ente();
 
-    virtual void atualizar(float dt) = 0;
+    virtual void atualizar(const float dt);
     virtual void desenhar() = 0;
 };

@@ -19,19 +19,18 @@ namespace Entidades
         PROJETIL,
     };
     
-    class Entidades : public Ente
+    class Entidade : public Ente
     {
     protected:
         sf::RectangleShape corpo;
         TIPO tipo;
     
     public:
-        Entidades(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
-        Entidades();
-        virtual ~Entidades();
+        Entidade(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
+        Entidade();
+        virtual ~Entidade();
 
         void setPosicao(sf::Vector2f pos);
-        virtual void atualizar(float dt) = 0;
         void desenhar();
 
         sf::RectangleShape getCorpo();

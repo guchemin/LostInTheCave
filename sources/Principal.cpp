@@ -4,10 +4,11 @@ using namespace Gerenciadores;
 
 Principal::Principal():
 pGraf(GerenciadorGrafico::getInstancia()),
-fase()
+pEventos(GerenciadorEventos::getInstancia()),
+pEstados(GerenciadorEstados::getInstancia())
 {
     pGraf->getJanela()->setFramerateLimit(60);
-    fase.inicializar();
+    pEstados->adicionar(Estados::EstadoID::FaseUm);
     executar();
 }
 
@@ -20,6 +21,12 @@ void Principal::executar()
 {
     while(pGraf->estaAberta())
     {
-        fase.executar();
+        pGraf->limpar();
+
+        pEventos->verificarEventos();
+
+        pEstados->executar();
+
+        pGraf->mostrar();
     }
 }

@@ -6,14 +6,15 @@
 #include "Entidades/Personagem/Atirador.hpp"
 #include "Entidades/Obstaculos/Teia.hpp"
 #include "Entidades/Obstaculos/Espinho.hpp"
+#include "Gerenciadores/GerenciadorEstados.hpp"
 #include "Fases/FaseUm.hpp"
 
 class Principal
 {
 private:
     Gerenciadores::GerenciadorGrafico* pGraf;
-
-    Fases::FaseUm fase;
+    Gerenciadores::GerenciadorEventos* pEventos;
+    Gerenciadores::GerenciadorEstados* pEstados;
     
 public:
     Principal();

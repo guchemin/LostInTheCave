@@ -34,7 +34,7 @@ Observadores::ObsJogadores::~ObsJogadores()
 }
 
 
-void Observadores::ObsJogadores::notificarPressionada(sf::Keyboard::Key tecla)
+void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
 {
     if(pJog == NULL)
     {
@@ -62,7 +62,7 @@ void Observadores::ObsJogadores::notificarPressionada(sf::Keyboard::Key tecla)
     }
 }
 
-void Observadores::ObsJogadores::notificarSolta(sf::Keyboard::Key tecla)
+void Observadores::ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
 {
     if(pJog == NULL)
     {
@@ -73,5 +73,10 @@ void Observadores::ObsJogadores::notificarSolta(sf::Keyboard::Key tecla)
     if(tecla == pulo)
     {
         pJog->autorizarPulo(true);
+    }
+
+    else if(!(sf::Keyboard::isKeyPressed(direita) || sf::Keyboard::isKeyPressed(esquerda)))
+    {
+        pJog->parar();
     }
 }

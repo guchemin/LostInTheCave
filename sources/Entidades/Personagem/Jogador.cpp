@@ -3,7 +3,7 @@
 
 using namespace Entidades;
 
-Jogador::Jogador(sf::Vector2f pos, ID i):
+Jogador::Jogador(sf::Vector2f pos, const ID i):
 id(i),
 obs(this),
 Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR)
@@ -30,7 +30,7 @@ Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR)
 }
 
 Jogador::Jogador():
-obs(this)
+id(JOGADOR1)
 {
 }
 
@@ -38,7 +38,7 @@ Jogador::~Jogador()
 {
 }
 
-void Jogador::autorizarPulo(bool autoriza)
+void Jogador::autorizarPulo(const bool autoriza)
 {
     pulou = !autoriza;
 }
@@ -62,7 +62,7 @@ bool Jogador::podeAtacar()
     return false;
 }
 
-void Jogador::setAtacando(bool atk)
+void Jogador::setAtacando(const bool atk)
 {
     atacando = atk;
 }
@@ -72,7 +72,7 @@ void Jogador::atacar()
 
 }
 
-void Jogador::atualizar(float dt)
+void Jogador::atualizar(const float dt)
 {
     tempoAtaque += dt;
 
@@ -109,7 +109,7 @@ void Jogador::pular()
     estaNoChao = false;
 }
 
-void Jogador::andar(bool direita)
+void Jogador::andar(const bool direita)
 {
     if(foiEspinhado)
         return;
@@ -180,7 +180,7 @@ void Jogador::desacelerarTeia()
     }
 }
 
-void Jogador::colide(Entidades *ent, sf::Vector2f intersec)
+void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {

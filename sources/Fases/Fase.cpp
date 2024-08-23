@@ -1,8 +1,13 @@
 #include "../../include/Fases/Fase.hpp"
 
-Fases::Fase::Fase():
+Fases::Fase::Fase(Estados::EstadoID id):
 Ente(),
+Estado(id),
 pEventos(GerenciadorEventos::getInstancia())
+{
+}
+
+Fases::Fase::Fase()
 {
 }
 
@@ -57,6 +62,12 @@ void Fases::Fase::centralizarCamera()
         }
     }
 }
+
+Listas::ListaEntidades *Fases::Fase::getListaJogadores()
+{
+    return listaJogadores;
+}
+
 
 void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter)
 {
@@ -114,16 +125,14 @@ void Fases::Fase::criarJogador(sf::Vector2f pos)
     if(listaJogadores->getTam() == 0)
     {
         Jogador* jogador = new Jogador(pos, ID::JOGADOR1);
-        Entidades::Entidades* entJog = static_cast<Entidades::Entidades*>(jogador);
+        Entidades::Entidade* entJog = static_cast<Entidades::Entidade*>(jogador);
         listaJogadores->adicionar(entJog);
-        pEventos->setJogador(jogador);
     }
     else if(listaJogadores->getTam())
     {
         Jogador* jogador = new Jogador(pos, ID::JOGADOR2);
-        Entidades::Entidades* entJog = static_cast<Entidades::Entidades*>(jogador);
+        Entidades::Entidade* entJog = static_cast<Entidades::Entidade*>(jogador);
         listaJogadores->adicionar(entJog);
-        pEventos->setJogador(jogador);
     }
 }
 
@@ -133,8 +142,8 @@ void Fases::Fase::criarAtirador(sf::Vector2f pos)
     Projetil* projetil = new Projetil(sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(0.0f, 0.0f));
     atirador->setProjetil(projetil);
 
-    Entidades::Entidades* entAtirador = static_cast<Entidades::Entidades*>(atirador);
-    Entidades::Entidades* entProjetil = static_cast<Entidades::Entidades*>(projetil);
+    Entidades::Entidade* entAtirador = static_cast<Entidades::Entidade*>(atirador);
+    Entidades::Entidade* entProjetil = static_cast<Entidades::Entidade*>(projetil);
 
     listaInimigos->adicionar(entAtirador);
     listaProjeteis->adicionar(entProjetil);
@@ -143,34 +152,34 @@ void Fases::Fase::criarAtirador(sf::Vector2f pos)
 void Fases::Fase::criarVoador(sf::Vector2f pos)
 {
     Voador* voador = new Voador(pos);
-    Entidades::Entidades* entVoador = static_cast<Entidades::Entidades*>(voador);
+    Entidades::Entidade* entVoador = static_cast<Entidades::Entidade*>(voador);
     listaInimigos->adicionar(entVoador);
 }
 
 void Fases::Fase::criarChefao(sf::Vector2f pos)
 {
     Chefao* chefao = new Chefao(pos);
-    Entidades::Entidades* entChefao = static_cast<Entidades::Entidades*>(chefao);
+    Entidades::Entidade* entChefao = static_cast<Entidades::Entidade*>(chefao);
     listaInimigos->adicionar(entChefao);
 }
 
 void Fases::Fase::criarPlataforma(sf::Vector2f pos)
 {
     Obstaculos::Plataforma* plataforma = new Obstaculos::Plataforma(pos);
-    Entidades::Entidades* entPlataforma = static_cast<Entidades::Entidades*>(plataforma);
+    Entidades::Entidade* entPlataforma = static_cast<Entidades::Entidade*>(plataforma);
     listaObstaculos->adicionar(entPlataforma);
 }
 
 void Fases::Fase::criarTeia(sf::Vector2f pos)
 {
     Obstaculos::Teia* teia = new Obstaculos::Teia(pos);
-    Entidades::Entidades* entTeia = static_cast<Entidades::Entidades*>(teia);
+    Entidades::Entidade* entTeia = static_cast<Entidades::Entidade*>(teia);
     listaObstaculos->adicionar(entTeia);
 }
 
 void Fases::Fase::criarEspinho(sf::Vector2f pos)
 {
     Obstaculos::Espinho* espinho = new Obstaculos::Espinho(pos);
-    Entidades::Entidades* entEspinho = static_cast<Entidades::Entidades*>(espinho);
+    Entidades::Entidade* entEspinho = static_cast<Entidades::Entidade*>(espinho);
     listaObstaculos->adicionar(entEspinho);
 }

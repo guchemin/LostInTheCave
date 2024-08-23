@@ -9,7 +9,7 @@
 
 #define DANO_ATIRADOR 15.0f // projetil
 #define DANO_CHEFAO 20.0f
-#define DANO_VOADOR 10.0f
+#define DANO_VOADOR 8.0f
 
 class Inimigo: public Personagem
 {
@@ -27,7 +27,5 @@ public:
     sf::Vector2f getPosJogador();
     virtual void atacar() = 0;
     virtual void agir() = 0;
-    virtual void atualizar(float dt) = 0;
-    virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
+    virtual void colide(Entidade* ent, const sf::Vector2f intersec);
 };
-

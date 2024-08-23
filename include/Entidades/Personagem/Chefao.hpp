@@ -26,6 +26,5 @@ public:
     bool conseguePerseguir();
     void atacar();
     void agir();
-    void atualizar(float dt);
-    void colide(Entidades* ent, sf::Vector2f intersec);
+    void atualizar(const float dt);
 };

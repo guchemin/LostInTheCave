@@ -20,7 +20,6 @@ public:
     bool consegueAtacar();
     void atacar();
     void agir();
-    void atualizar(float dt);
+    void atualizar(const float dt);
     sf::Vector2f calcVel();
-    void colide(Entidades* ent, sf::Vector2f intersec);
 };

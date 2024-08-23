@@ -1,7 +1,7 @@
 #include "../../include/Entidades/Projetil.hpp"
 
 Projetil::Projetil(sf::Vector2f pos, sf::Vector2f velocidade):
-Entidades(pos, sf::Vector2f(10.0f, 10.0f), TIPO::PROJETIL)
+Entidade(pos, sf::Vector2f(10.0f, 10.0f), TIPO::PROJETIL)
 {
     vel = velocidade;
     corpo.setFillColor(sf::Color::Cyan);
@@ -22,30 +22,30 @@ void Projetil::setVelocidade(sf::Vector2f v)
 
 void Projetil::setPosicao(sf::Vector2f p)
 {
-    Entidades::setPosicao(p);
+    Entidade::setPosicao(p);
 }
 
 bool Projetil::saiuDaTela()
 {
-    if(fabs(getPosicao().x - pGraf->getCentro().x) > pGraf->getTamanho().x / 2.0f || fabs(getPosicao().y - pGraf->getCentro().y) > pGraf->getTamanho().y / 2.0f)
+    if(fabs(getPosicao().y - pGraf->getCentro().y) > pGraf->getTamanho().y / 2.0f)
     {
         return true;
     }
     return false;
 }
 
-void Projetil::atualizar(float dt)
+void Projetil::atualizar(const float dt)
 {
     sf::Vector2f ds = vel * dt;
 
     //acao da gravidade
-    vel.y += 98 * dt;
+    vel.y += 60 * dt;
     ds.y = vel.y * dt;
     
     corpo.move(ds);
 }
 
-void Projetil::colide(Entidades* ent, sf::Vector2f intersec)
+void Projetil::colide(Entidade* ent, const sf::Vector2f intersec)
 {
     switch(ent->getTipo())
     {

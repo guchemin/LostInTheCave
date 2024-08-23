@@ -24,7 +24,7 @@ namespace Observadores
         ObsJogadores();
         ~ObsJogadores();
 
-        void notificarPressionada(sf::Keyboard::Key tecla);
-        void notificarSolta(sf::Keyboard::Key tecla);
+        void notificarPressionada(const sf::Keyboard::Key tecla);
+        void notificarSolta(const sf::Keyboard::Key tecla);
     };
 }

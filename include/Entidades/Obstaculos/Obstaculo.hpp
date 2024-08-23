@@ -1,21 +1,22 @@
 #pragma once
 
-#include "../Entidades.hpp"
+#include "../Entidade.hpp"
 
 using namespace Entidades;
 
 namespace Obstaculos
 {
-    class Obstaculo: public Entidades
+    class Obstaculo: public Entidade
     {
     private:
-
+        bool danoso;
+        
     public:
         Obstaculo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
         Obstaculo();
         ~Obstaculo();
-
-        virtual void atualizar(float dt) = 0;
+        
+        bool getDanoso();
     };
 }
 

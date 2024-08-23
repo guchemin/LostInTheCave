@@ -1,17 +1,25 @@
 #include "../../../include/Entidades/Personagem/Voador.hpp"
 
 Voador::Voador(sf::Vector2f pos):
-Inimigo(pos, sf::Vector2f(35.0f, 60.0f))
+Inimigo(pos, sf::Vector2f(35.0f, 60.0f)),
+endiabrado(bool(rand() % 2))
 {
     vel = sf::Vector2f(VEL_VOADOR, VEL_VOADOR);
+    dano = DANO_VOADOR;
+    if(endiabrado)
+    {
+        vel.x *= 2.5f;
+        dano *= 1.5f;
+    }
+
     corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
     raioAtaque = 0.0f;
     vida = 40.0f;
-    dano = DANO_VOADOR;
 }
 
-Voador::Voador()
+Voador::Voador():
+endiabrado(bool())
 {
 }
 
@@ -50,7 +58,7 @@ void Voador::agir()
     }
 }
 
-void Voador::atualizar(float dt)
+void Voador::atualizar(const float dt)
 {
     sf::Vector2f ds;
 
@@ -86,7 +94,7 @@ void Voador::atualizar(float dt)
     }
 }
 
-void Voador::colide(Entidades *ent, sf::Vector2f intersec)
+void Voador::colide(Entidade *ent, const sf::Vector2f intersec)
 {
     switch (ent->getTipo())
     {
@@ -103,7 +111,7 @@ void Voador::colide(Entidades *ent, sf::Vector2f intersec)
             {
                 setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
-                vel.y = -VEL_VOADOR;
+                vel.y = -VEL_VOADOR;    
             }
         }
         else
@@ -186,3 +194,7 @@ void Voador::colide(Entidades *ent, sf::Vector2f intersec)
     }
 }
 
+const bool Voador::getEndiabrado() const
+{
+    return endiabrado;
+}

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../Entidades.hpp"
+#include "../Entidade.hpp"
 using namespace Entidades;
 
-class Personagem: public Entidades
+class Personagem: public Entidade
 {
 protected:
     sf::Vector2f vel;
@@ -23,6 +23,5 @@ public:
     float getRaioAtaque();
     float getDano();
     virtual void atacar() = 0;
-    virtual void colide(Entidades* ent, sf::Vector2f intersec) = 0;
-    virtual void atualizar(float dt) = 0;
+    virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;
 };

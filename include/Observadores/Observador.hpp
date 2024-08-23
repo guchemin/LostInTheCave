@@ -16,7 +16,7 @@ namespace Observadores
         Observador();
         virtual ~Observador();
 
-        virtual void notificarPressionada(sf::Keyboard::Key tecla) = 0;
-        virtual void notificarSolta(sf::Keyboard::Key tecla) = 0;
+        virtual void notificarPressionada(const sf::Keyboard::Key tecla) = 0;
+        virtual void notificarSolta(const sf::Keyboard::Key tecla) = 0;
     };
 }; 

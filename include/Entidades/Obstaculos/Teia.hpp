@@ -7,14 +7,13 @@ namespace Obstaculos
     class Teia : public Obstaculo
     {
     private:
-        float densidade;
+        const float densidade;
         
     public:
         Teia(sf::Vector2f pos);
         Teia();
         ~Teia();
 
-        void atualizar(float dt);
-        float getDensidade();
+        const float getDensidade() const;
     };
 };

@@ -11,8 +11,6 @@ namespace Gerenciadores
     private:
         GerenciadorGrafico* pGraf;
         GerenciadorInputs* pInp;
-        Jogador* pJog1;
-        Jogador* pJog2;
         sf::Event evento;
 
         // padrao de projeto Singleton
@@ -23,8 +21,6 @@ namespace Gerenciadores
         ~GerenciadorEventos();
     
         static GerenciadorEventos* getInstancia();
-        void setJogador(Jogador* pJog);
-        void verificaSeParou();
         void verificarEventos();
     };
 };

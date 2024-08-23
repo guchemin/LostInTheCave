@@ -22,7 +22,7 @@ enum ID
 class Jogador: public Personagem
 {
 private:
-    ID id;
+    const ID id;
     sf::Vector2f ds;
     bool pulou;
     bool estaNaTeia;
@@ -32,21 +32,21 @@ private:
     Observadores::ObsJogadores obs;
 
 public:
-    Jogador(sf::Vector2f pos, ID i);
+    Jogador(sf::Vector2f pos, const ID i);
     Jogador();
     ~Jogador();
 
-    void autorizarPulo(bool autoriza);
+    void autorizarPulo(const bool autoriza);
     bool podePular();
     bool podeAtacar();
-    void setAtacando(bool atk);
-    ID getId() const { return id; };
+    void setAtacando(const bool atk);
+    const ID getId() const { return id; };
     void atacar();
-    void atualizar(float dt);
+    void atualizar(const float dt);
     void pular();
-    void andar(bool direita);
+    void andar(const bool direita);
     void parar();
     void ajustarVelocidade();
     void desacelerarTeia();
-    void colide(Entidades* ent, sf::Vector2f intersec);
+    void colide(Entidade* ent, const sf::Vector2f intersec);
 };

@@ -2,7 +2,7 @@
 
 #include "Personagem/Inimigo.hpp"
 
-class Projetil: public Entidades::Entidades
+class Projetil: public Entidades::Entidade
 {
 private:
     sf::Vector2f vel;
@@ -15,6 +15,6 @@ public:
     void setVelocidade(sf::Vector2f v);
     void setPosicao(sf::Vector2f p);
     bool saiuDaTela();
-    void atualizar(float dt);
-    void colide(Entidades* ent, sf::Vector2f intersec);
+    void atualizar(const float dt);
+    void colide(Entidade* ent, const sf::Vector2f intersec);
 };

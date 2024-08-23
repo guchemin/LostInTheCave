@@ -6,11 +6,13 @@ Ente::Ente():
 pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
 id(contId++)
 {
-    time_t t;
-    srand((unsigned) time(&t));
+    srand(Ente::id * (unsigned)time(0));
 }
 
 Ente::~Ente()
 {
+}
 
+void Ente::atualizar(const float dt)
+{
 }

@@ -14,12 +14,12 @@ ListaEntidades::~ListaEntidades()
     limpar();
 }
 
-void ListaEntidades::adicionar(Entidades::Entidades *entidade)
+void ListaEntidades::adicionar(Entidades::Entidade *entidade)
 {
     lista.adicionar(entidade);
 }
 
-void ListaEntidades::remover(Entidades::Entidades *entidade)
+void ListaEntidades::remover(Entidades::Entidade *entidade)
 {
     lista.remover(entidade);
 }
@@ -34,10 +34,10 @@ void Listas::ListaEntidades::limpar()
     lista.limparLista();
 }
 
-void Listas::ListaEntidades::atualizar(float dt)
+void Listas::ListaEntidades::atualizar(const float dt)
 {
     int tam = lista.getTam();
-    Entidades::Entidades* ent = NULL;
+    Entidades::Entidade* ent = NULL;
     for(int i = 0; i < tam; i++)
     {
         ent = lista[i];
@@ -65,7 +65,7 @@ void Listas::ListaEntidades::atualizar(float dt)
 void ListaEntidades::desenhar()
 {
     int tam = lista.getTam();
-    Entidades::Entidades* ent = NULL;
+    Entidades::Entidade* ent = NULL;
     for(int i = 0; i < tam; i++)
     {
         ent = lista[i];
@@ -77,7 +77,7 @@ void ListaEntidades::desenhar()
     }
 }
 
-Entidades::Entidades* Listas::ListaEntidades::operator[](int pos)
+Entidades::Entidade* Listas::ListaEntidades::operator[](int pos)
 {
     return lista[pos];
 }

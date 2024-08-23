@@ -9,18 +9,18 @@ namespace Listas
     class ListaEntidades
     {
     private:
-        Lista<Entidades::Entidades> lista;
+        Lista<Entidades::Entidade> lista;
 
     public:
         ListaEntidades();
         ~ListaEntidades();
         
-        void adicionar(Entidades::Entidades* entidade);
-        void remover(Entidades::Entidades* entidade);
+        void adicionar(Entidades::Entidade* entidade);
+        void remover(Entidades::Entidade* entidade);
         int getTam();
         void limpar();
-        Entidades::Entidades* operator[](int pos);  
-        void atualizar(float dt);
+        Entidades::Entidade* operator[](int pos);  
+        void atualizar(const float dt);
         void desenhar();
     };
 };

@@ -10,10 +10,11 @@
 #include "../Entidades/Obstaculos/Espinho.hpp"
 #include "../Entidades/Obstaculos/Plataforma.hpp"
 #include "../Ente.hpp"
+#include "../Gerenciadores/GerenciadorEstados.hpp"
 
 namespace Fases
 {
-    class Fase : public Ente
+    class Fase : public Ente, public Estados::Estado 
     {
     protected:
         sf::Clock relogio;
@@ -27,6 +28,7 @@ namespace Fases
         Listas::ListaEntidades* listaProjeteis;
 
     public:
+        Fase(Estados::EstadoID id);
         Fase();
         virtual ~Fase();
 
@@ -43,8 +45,10 @@ namespace Fases
         void criarEspinho(sf::Vector2f pos);
 
         void centralizarCamera();
-        virtual void atualizar(float dt) = 0;
+        virtual void atualizar(const float dt) = 0;
         virtual void desenhar() = 0;
         virtual void executar() = 0;
+
+        Listas::ListaEntidades* getListaJogadores();
     };
 };
