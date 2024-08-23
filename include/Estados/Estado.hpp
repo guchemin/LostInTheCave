@@ -11,12 +11,14 @@ namespace Estados
 {
     enum EstadoID
     {
-        FaseUm
+        FaseUm,
+        MenuPrincipal,
+        MenuJogar
     };
 
     class Estado
     {
-    private:
+    protected:
         EstadoID estadoID;
         Gerenciadores::GerenciadorEstados* pEstados;
 
@@ -28,6 +30,7 @@ namespace Estados
         EstadoID getEstadoID();
 
         void adicionar(EstadoID estadoID);
+        virtual void setDoisJogadores(const bool doisJog){}; // usada apenas para a fase
         virtual void executar() = 0;
         virtual void desenhar();
     };

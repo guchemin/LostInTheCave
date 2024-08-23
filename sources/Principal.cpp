@@ -8,7 +8,7 @@ pEventos(GerenciadorEventos::getInstancia()),
 pEstados(GerenciadorEstados::getInstancia())
 {
     pGraf->getJanela()->setFramerateLimit(60);
-    pEstados->adicionar(Estados::EstadoID::FaseUm);
+    pEstados->adicionar(Estados::EstadoID::MenuPrincipal);
     executar();
 }
 

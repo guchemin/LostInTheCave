@@ -25,6 +25,7 @@ namespace Gerenciadores
         void limpar();
         void desenhar(sf::RectangleShape desenho);
         void desenhar(sf::CircleShape desenho);
+        void desenhar(sf::Text texto);
         void mostrar();
         void fecharJanela();
         void verificaSeFechou();

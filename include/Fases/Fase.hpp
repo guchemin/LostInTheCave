@@ -14,11 +14,12 @@
 
 namespace Fases
 {
-    class Fase : public Ente, public Estados::Estado 
+    class Fase : public Ente, public Estados::Estado
     {
     protected:
         sf::Clock relogio;
         float dt;
+        bool doisJogadores;
         Gerenciadores::GerenciadorColisoes* pColisoes;
         Gerenciadores::GerenciadorEventos* pEventos;
 
@@ -35,6 +36,7 @@ namespace Fases
         void inicializar();
 
         virtual void criarMapa() = 0;
+        void setDoisJogadores(const bool doisJog);
         void criarEntidade(sf::Vector2f pos, char caracter);
         void criarJogador(sf::Vector2f pos);
         void criarAtirador(sf::Vector2f pos);

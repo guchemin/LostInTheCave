@@ -36,6 +36,11 @@ Observadores::ObsJogadores::~ObsJogadores()
 
 void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
 {
+    if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+    {
+        return;
+    }
+
     if(pJog == NULL)
     {
         cout << "ERRO = Jogador nulo" << endl;
@@ -64,6 +69,11 @@ void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key te
 
 void Observadores::ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
 {
+    if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+    {
+        return;
+    }
+    
     if(pJog == NULL)
     {
         cout << "ERRO = JOGADOR NULO" << endl;

@@ -3,7 +3,6 @@
 Fases::FaseUm::FaseUm():
 Fase(Estados::EstadoID::FaseUm)
 {
-    inicializar();
 }
 
 Fases::FaseUm::~FaseUm()
@@ -67,6 +66,7 @@ void Fases::FaseUm::desenhar()
 
 void Fases::FaseUm::executar()
 {
+    setAtivo(true);
     dt = relogio.restart().asSeconds();
     
     atualizar(dt);

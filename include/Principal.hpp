@@ -15,10 +15,10 @@ private:
     Gerenciadores::GerenciadorGrafico* pGraf;
     Gerenciadores::GerenciadorEventos* pEventos;
     Gerenciadores::GerenciadorEstados* pEstados;
-    
+
 public:
     Principal();
     ~Principal();
-    
+
     void executar();
 };

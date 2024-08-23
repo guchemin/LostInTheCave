@@ -26,6 +26,13 @@ void Fases::Fase::inicializar()
     criarMapa();
 }
 
+void Fases::Fase::setDoisJogadores(const bool doisJog)
+{
+    doisJogadores = doisJog;
+    cout << doisJogadores << endl;
+    inicializar();
+}
+
 void Fases::Fase::centralizarCamera()
 {
     int tam = listaJogadores->getTam();
@@ -68,8 +75,7 @@ Listas::ListaEntidades *Fases::Fase::getListaJogadores()
     return listaJogadores;
 }
 
-
-void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter)
+void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter) 
 {
     switch (caracter)
     {
@@ -128,7 +134,7 @@ void Fases::Fase::criarJogador(sf::Vector2f pos)
         Entidades::Entidade* entJog = static_cast<Entidades::Entidade*>(jogador);
         listaJogadores->adicionar(entJog);
     }
-    else if(listaJogadores->getTam())
+    else if(listaJogadores->getTam() && doisJogadores)
     {
         Jogador* jogador = new Jogador(pos, ID::JOGADOR2);
         Entidades::Entidade* entJog = static_cast<Entidades::Entidade*>(jogador);

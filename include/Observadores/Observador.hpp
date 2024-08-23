@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Gerenciadores/GerenciadorInputs.hpp"
+#include "../Gerenciadores/GerenciadorEstados.hpp"
 
 using namespace Gerenciadores;
 
@@ -11,6 +12,9 @@ namespace Observadores
     {
     private:
         GerenciadorInputs* pInp;
+
+    protected:
+        GerenciadorEstados* pEstados;
 
     public:
         Observador();

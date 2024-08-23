@@ -16,7 +16,7 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia()
 GerenciadorGrafico::GerenciadorGrafico() : janela(new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE"))
 {
     camera.setSize(1200, 900);
-    centralizarCamera(sf::Vector2f(800, 600));
+    centralizarCamera(sf::Vector2f(600, 450));
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -45,8 +45,6 @@ sf::Vector2f Gerenciadores::GerenciadorGrafico::getTamanho()
     return camera.getSize();
 }
 
-
-
 void GerenciadorGrafico::limpar()
 {
     janela->clear();
@@ -60,6 +58,11 @@ void GerenciadorGrafico::desenhar(sf::RectangleShape desenho)
 void GerenciadorGrafico::desenhar(sf::CircleShape desenho)
 {
     janela->draw(desenho);
+}
+
+void GerenciadorGrafico::desenhar(sf::Text texto)
+{
+    janela->draw(texto);
 }
 
 void GerenciadorGrafico::mostrar()
