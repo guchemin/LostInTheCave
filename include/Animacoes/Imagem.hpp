@@ -1,0 +1,36 @@
+#pragma once
+
+#include "../../SFML/Graphics.hpp"
+#include "../Gerenciadores/GerenciadorGrafico.hpp"
+
+namespace Animacoes
+{
+    class Imagem
+    {
+    private:
+        Gerenciadores::GerenciadorGrafico* pGraf;
+        sf::Texture textura;
+        sf::IntRect tamanho;
+        const bool horizontal;
+        const sf::Vector2f escala;
+        const int qtdImagem;
+        int imgAtual;
+        const float tempoTroca;
+        float tempoTotal;
+        const sf::Vector2f origem;
+
+    public:
+        Imagem(const char* caminhoTextura, const unsigned int qtd, const float tempo, const sf::Vector2f esc, const sf::Vector2f org, const bool hor);
+        ~Imagem();
+        void atualizar(const bool paraEsquerda, const float dt);
+        void resetar();
+        const int getQuadroAtual() const;
+        void setQuadroAtual(const unsigned int img);
+        const float getTempoTotal() const;
+        void setTempoTotal(const float tempo);
+        const sf::IntRect getTamanho() const;
+        const sf::Texture* getTextura() const;
+        const sf::Vector2f getEscala() const;
+        const sf::Vector2f getOrigin() const;
+    };
+}

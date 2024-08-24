@@ -6,11 +6,12 @@ using namespace Entidades;
 Jogador::Jogador(sf::Vector2f pos, const ID i):
 id(i),
 obs(this),
-Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR)
+Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR),
+animacao(&corpo)
 {
     if(id == JOGADOR1)
     {
-        corpo.setFillColor(sf::Color::Red);
+        //corpo.setFillColor(sf::Color::Red);
         vel = sf::Vector2f(0.0f, 0.0f);
     }
     else if(id == JOGADOR2)
@@ -27,6 +28,7 @@ Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR)
     aceleracaoTeia = 1.0f;
     dano = 10.0f;
     tempoAtaque = 0.0f;
+    inicializarAnimacao();
 }
 
 Jogador::Jogador():
@@ -38,7 +40,14 @@ Jogador::~Jogador()
 {
 }
 
-void Jogador::autorizarPulo(const bool autoriza)
+void Jogador::inicializarAnimacao()
+{
+    sf::Vector2f origem = sf::Vector2f(getTamanho().x / 3.5, getTamanho().y / 3.5);
+    animacao.addAnimacao(CAMINHO_JOG_ANDAR, "andando", 12, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+    animacao.addAnimacao(CAMINHO_JOG_PARADO, "parado", 9, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+}
+
+void Jogador::autorizarPulo(const bool autoriza) 
 {
     pulou = !autoriza;
 }
@@ -92,6 +101,11 @@ void Jogador::atualizar(const float dt)
 
     // acao da gravidade para a proxima iteracao
     vel.y += GRAVIDADE * dt;
+
+    if(vel.x != 0.0f)
+        animacao.atualizar(vel.x < 0.0f, "andando");
+    else
+        animacao.atualizar(vel.x < 0.0f, "parado");
 }
 
 void Jogador::pular()

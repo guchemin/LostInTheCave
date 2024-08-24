@@ -20,6 +20,7 @@ namespace Gerenciadores
         static GerenciadorGrafico* getInstancia();
         sf::RenderWindow* getJanela();
         void centralizarCamera(sf::Vector2f pos);
+        sf::Texture carregarTextura(const char* caminho);
         sf::Vector2f getCentro();
         sf::Vector2f getTamanho();
         void limpar();

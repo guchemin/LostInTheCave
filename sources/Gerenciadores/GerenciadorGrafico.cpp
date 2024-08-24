@@ -38,6 +38,16 @@ void Gerenciadores::GerenciadorGrafico::centralizarCamera(sf::Vector2f pos)
     janela->setView(camera);
 }
 
+sf::Texture Gerenciadores::GerenciadorGrafico::carregarTextura(const char *caminho)
+{
+    sf::Texture textura;
+    if(!textura.loadFromFile(caminho))
+    {
+        std::cout << "Erro ao carregar textura: " << caminho << std::endl;
+    }
+    return textura;
+}
+
 sf::Vector2f Gerenciadores::GerenciadorGrafico::getCentro()
 {
     return camera.getCenter();

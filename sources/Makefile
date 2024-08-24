@@ -15,7 +15,8 @@ SRC = $(wildcard $(SRC_DIR)/*.cpp) \
       $(wildcard $(SRC_DIR)/Gerenciadores/*.cpp) \
       $(wildcard $(SRC_DIR)/Listas/*.cpp) \
       $(wildcard $(SRC_DIR)/Menu/*.cpp) \
-      $(wildcard $(SRC_DIR)/Menu/Botao/*.cpp)
+      $(wildcard $(SRC_DIR)/Menu/Botao/*.cpp) \
+      $(wildcard $(SRC_DIR)/Animacoes/*.cpp)
 
 # Lista de arquivos-objeto
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
@@ -24,7 +25,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(OBJ_DIRS) jogo
 
 # Diretórios de objetos
-OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/Estados $(OBJ_DIR)/Fases $(OBJ_DIR)/Entidades/Personagem $(OBJ_DIR)/Entidades/Obstaculos $(OBJ_DIR)/Observadores $(OBJ_DIR)/Gerenciadores $(OBJ_DIR)/Listas $(OBJ_DIR)/Menu $(OBJ_DIR)/Menu/Botao
+OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/Estados $(OBJ_DIR)/Animacoes $(OBJ_DIR)/Fases $(OBJ_DIR)/Entidades/Personagem $(OBJ_DIR)/Entidades/Obstaculos $(OBJ_DIR)/Observadores $(OBJ_DIR)/Gerenciadores $(OBJ_DIR)/Listas $(OBJ_DIR)/Menu $(OBJ_DIR)/Menu/Botao
 
 # Regra para criar o diretório de objetos
 $(OBJ_DIR):

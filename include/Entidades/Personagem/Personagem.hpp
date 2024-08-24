@@ -12,12 +12,15 @@ protected:
     float raioAtaque;
     float dano;
     float tempoAtaque;
+    Animacoes::Animacao animacao;
     
 public:
     Personagem(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
     Personagem();
     virtual ~Personagem();
 
+    virtual void inicializarAnimacao() = 0;
+    virtual void atualizarAnimacao() = 0;
     float getVida();
     void tiraVida(const float dano);
     float getRaioAtaque();
