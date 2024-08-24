@@ -31,10 +31,8 @@ Observadores::ObsMenu::~ObsMenu()
 
 void Observadores::ObsMenu::notificarPressionada(const sf::Keyboard::Key tecla)
 {
-    if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuJogar || pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuJogar))
-    {
+    if(!pMenu->getAtivo())
         return;
-    }
 
     if(tecla == cima)
     {

@@ -232,7 +232,6 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
     case TIPO::ESPINHO:
     {
         Obstaculos::Espinho* espinho = static_cast<Obstaculos::Espinho*>(ent);
-        tiraVida(espinho->getAfiado());
         foiEspinhado = true;
         vel.y = -1000.0f;
         if(getCentro().x > ent->getCentro().x)
@@ -277,17 +276,39 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
         break;
     }
 
-    case TIPO::JOGADOR:
+    case TIPO::PEDRA:
     {
-        if((intersec.x > intersec.y || vel.x == 0.0f))
+        if(intersec.x > intersec.y || vel.x == 0.0f)
         {
-            if(getPosicao().y <= ent->getPosicao().y)
+            if(getPosicao().y > ent->getPosicao().y)
             {
+                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+            }
+            else
+            {
+                if(getPosicao().y + getTamanho().y >= ent->getPosicao().y + ent->getTamanho().y)
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                    Obstaculos::Pedra* pedra = static_cast<Obstaculos::Pedra*>(ent);
+                    vel.x /= pedra->getPeso();
+                    pedra->arrastar(vel.x / 60.0f);
+                    pedra = NULL;
+                    return;
+                }
+                else
                 setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
                 estaNoChao = true;
+                ajustarVelocidade();
             }
             vel.y = 0.0f;
-
+            
             if(foiEspinhado)
             {
                 vel.x = 0.0f;
@@ -304,6 +325,10 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
             {
                 setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
+            Obstaculos::Pedra* pedra = static_cast<Obstaculos::Pedra*>(ent);
+            vel.x /= pedra->getPeso();
+            pedra->arrastar(vel.x / 60.0f);
+            pedra = NULL;
         }
         break;
     }

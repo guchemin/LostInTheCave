@@ -10,6 +10,7 @@ namespace Obstaculos
     {
     private:
         bool danoso;
+        float velY;
         
     public:
         Obstaculo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
@@ -17,6 +18,9 @@ namespace Obstaculos
         ~Obstaculo();
         
         bool getDanoso();
+
+        virtual void colide(Entidade* ent, const sf::Vector2f intersec);
+        virtual void atualizar(const float dt);
     };
 }
 

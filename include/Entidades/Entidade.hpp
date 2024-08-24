@@ -17,6 +17,7 @@ namespace Entidades
         TEIA,
         ESPINHO,
         PROJETIL,
+        PEDRA
     };
     
     class Entidade : public Ente
@@ -37,6 +38,7 @@ namespace Entidades
         sf::Vector2f getCentro();
         sf::Vector2f getTamanho();
         sf::Vector2f getPosicao();
+        virtual void colide(Entidade* ent, const sf::Vector2f intersec) {};
 
         TIPO getTipo() const { return tipo; };
     };

@@ -23,5 +23,4 @@ public:
     float getRaioAtaque();
     float getDano();
     virtual void atacar() = 0;
-    virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;
 };

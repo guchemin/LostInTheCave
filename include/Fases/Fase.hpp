@@ -8,7 +8,7 @@
 #include "../Gerenciadores/GerenciadorEventos.hpp"
 #include "../Entidades/Obstaculos/Teia.hpp"
 #include "../Entidades/Obstaculos/Espinho.hpp"
-#include "../Entidades/Obstaculos/Plataforma.hpp"
+#include "../Entidades/Plataforma.hpp"
 #include "../Ente.hpp"
 #include "../Gerenciadores/GerenciadorEstados.hpp"
 
@@ -27,6 +27,7 @@ namespace Fases
         Listas::ListaEntidades* listaInimigos;
         Listas::ListaEntidades* listaObstaculos;
         Listas::ListaEntidades* listaProjeteis;
+        Listas::ListaEntidades* listaPlataformas;
 
     public:
         Fase(Estados::EstadoID id);
@@ -45,6 +46,7 @@ namespace Fases
         void criarPlataforma(sf::Vector2f pos);
         void criarTeia(sf::Vector2f pos);
         void criarEspinho(sf::Vector2f pos);
+        void criarPedra(sf::Vector2f pos);
 
         void centralizarCamera();
         virtual void atualizar(const float dt) = 0;

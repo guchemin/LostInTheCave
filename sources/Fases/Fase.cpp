@@ -19,9 +19,10 @@ void Fases::Fase::inicializar()
 {
     listaJogadores = new Listas::ListaEntidades();
     listaInimigos = new Listas::ListaEntidades();
+    listaPlataformas = new Listas::ListaEntidades();
     listaObstaculos = new Listas::ListaEntidades();
     listaProjeteis = new Listas::ListaEntidades();
-    pColisoes = new Gerenciadores::GerenciadorColisoes(listaJogadores, listaInimigos, listaObstaculos, listaProjeteis);  
+    pColisoes = new Gerenciadores::GerenciadorColisoes(listaJogadores, listaInimigos, listaPlataformas, listaObstaculos, listaProjeteis);
     
     criarMapa();
 }
@@ -29,7 +30,6 @@ void Fases::Fase::inicializar()
 void Fases::Fase::setDoisJogadores(const bool doisJog)
 {
     doisJogadores = doisJog;
-    cout << doisJogadores << endl;
     inicializar();
 }
 
@@ -120,6 +120,12 @@ void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter)
         criarEspinho(pos);
         break;
     }
+
+    case 'r':
+    {
+        criarPedra(pos);
+        break;
+    }
     
     default:
         break;
@@ -171,9 +177,9 @@ void Fases::Fase::criarChefao(sf::Vector2f pos)
 
 void Fases::Fase::criarPlataforma(sf::Vector2f pos)
 {
-    Obstaculos::Plataforma* plataforma = new Obstaculos::Plataforma(pos);
+    Plataforma* plataforma = new Plataforma(pos);
     Entidades::Entidade* entPlataforma = static_cast<Entidades::Entidade*>(plataforma);
-    listaObstaculos->adicionar(entPlataforma);
+    listaPlataformas->adicionar(entPlataforma);
 }
 
 void Fases::Fase::criarTeia(sf::Vector2f pos)
@@ -188,4 +194,11 @@ void Fases::Fase::criarEspinho(sf::Vector2f pos)
     Obstaculos::Espinho* espinho = new Obstaculos::Espinho(pos);
     Entidades::Entidade* entEspinho = static_cast<Entidades::Entidade*>(espinho);
     listaObstaculos->adicionar(entEspinho);
+}
+
+void Fases::Fase::criarPedra(sf::Vector2f pos)
+{
+    Obstaculos::Pedra* pedra = new Obstaculos::Pedra(pos);
+    Entidades::Entidade* entPedra = static_cast<Entidades::Entidade*>(pedra);
+    listaObstaculos->adicionar(entPedra);
 }

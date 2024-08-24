@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Menu.hpp"
 #include "../Observadores/ObsMenu.hpp"
 #include "../Fases/FaseUm.hpp"

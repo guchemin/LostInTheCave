@@ -1,13 +1,14 @@
 #pragma once
 
 #include <iostream>
-#include "../Obstaculos/Plataforma.hpp"
+#include "../Plataforma.hpp"
 #include "../Obstaculos/Espinho.hpp"
 #include "../Obstaculos/Teia.hpp"
+#include "../Obstaculos/Pedra.hpp"
 #include "Personagem.hpp"
 #include "../../Observadores/ObsJogadores.hpp"
 
-#define VEL_JOG1 240.0f
+#define VEL_JOG1 300.0f
 #define VEL_JOG2 300.0f
 #define PULO_JOG1 1500.0f
 #define PULO_JOG2 1650.0f

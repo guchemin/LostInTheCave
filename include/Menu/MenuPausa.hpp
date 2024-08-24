@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Menu.hpp"
 
 namespace Menu

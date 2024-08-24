@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Observador.hpp"
-#include "../Gerenciadores/GerenciadorColisoes.hpp"
 
 class Jogador;
 

@@ -52,6 +52,8 @@ void Fases::FaseUm::atualizar(const float dt)
 {
     listaInimigos->atualizar(dt);
     listaJogadores->atualizar(dt);
+    listaObstaculos->atualizar(dt);
+    listaPlataformas->atualizar(dt);
     pColisoes->verificarColisoes();
 
     centralizarCamera();
@@ -60,13 +62,13 @@ void Fases::FaseUm::atualizar(const float dt)
 void Fases::FaseUm::desenhar()
 {
     listaObstaculos->desenhar(); 
+    listaPlataformas->desenhar();
     listaInimigos->desenhar();
     listaJogadores->desenhar();
 }
 
 void Fases::FaseUm::executar()
 {
-    setAtivo(true);
     dt = relogio.restart().asSeconds();
     
     atualizar(dt);

@@ -5,7 +5,6 @@ Estados::Estado::Estado(Estados::EstadoID id):
 estadoID(id),
 pEstados(Gerenciadores::GerenciadorEstados::getInstancia())
 {
-    ativo = false;
 }
 
 Estados::Estado::Estado()

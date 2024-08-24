@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Texto.hpp"
 #include "../../Ente.hpp"
 

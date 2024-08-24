@@ -13,6 +13,7 @@ obs(this)
     titulo.setTamanhoFonte(128);
     titulo.setCor(sf::Color::White);
     titulo.setPos(sf::Vector2f(pGraf->getCentro().x - titulo.getTamanho().x / 2.0f, 50.0f));
+    ativo = false;
 }
 
 Menu::Menu::Menu()
@@ -29,6 +30,16 @@ Menu::Menu::~Menu()
         it++;
     }
     listaBotoes.clear();
+}
+
+const bool Menu::Menu::getAtivo() const
+{
+    return ativo;
+}
+
+void Menu::Menu::setAtivo(bool atv)
+{
+    ativo = atv;
 }
 
 void Menu::Menu::adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp)

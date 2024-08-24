@@ -26,7 +26,8 @@ namespace Menu
         Menu();
         virtual ~Menu();
 
-
+        const bool getAtivo() const;
+        void setAtivo(bool atv);
         void adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp);
         void irParaCima();
         void irParaBaixo();
