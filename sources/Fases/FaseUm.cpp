@@ -63,13 +63,19 @@ void Fases::FaseUm::desenhar()
 {
     listaObstaculos->desenhar(); 
     listaPlataformas->desenhar();
+    listaProjeteis->desenhar();
     listaInimigos->desenhar();
     listaJogadores->desenhar();
 }
 
 void Fases::FaseUm::executar()
 {
+
     dt = relogio.restart().asSeconds();
+    if(dt > 1.0f / 60.0f)
+    {
+        dt = 1.0f / 60.0f;
+    }
     
     atualizar(dt);
     desenhar();

@@ -64,6 +64,7 @@ void Atirador::agir()
 
 void Atirador::atualizar(const float dt)
 {
+    cout << "atualizando atirador" << endl;
     float dy;
     
     //acao da gravidade
@@ -74,7 +75,7 @@ void Atirador::atualizar(const float dt)
     tempoAtaque += dt;
 
     pProjetil->atualizar(dt);
-    pProjetil->desenhar();
+    
     if(pProjetil->saiuDaTela())
     {
         pProjetil->setPosicao(sf::Vector2f(-1000.0f, -1000.0f));

@@ -2,6 +2,7 @@
 #include "../../include/Fases/FaseUm.hpp"
 #include "../../include/Menu/MenuPrincipal.hpp"
 #include "../../include/Menu/MenuJogar.hpp"
+#include "../../include/Menu/MenuPausa.hpp"
 
 using namespace Gerenciadores;
 
@@ -26,7 +27,8 @@ GerenciadorEstados::~GerenciadorEstados()
 {
     while(!estados.empty())
     {
-        delete(estados.top());
+        if(estados.top())
+            delete(estados.top());
         estados.top() = NULL;
         estados.pop();
     }
@@ -65,6 +67,15 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
     {
         Menu::MenuJogar* menuJogar = new Menu::MenuJogar();
         Estados::Estado* est = static_cast<Estados::Estado*>(menuJogar);
+        estados.push(est);
+        break;
+    }
+
+    case Estados::EstadoID::MenuPausa:
+    {
+        Fases::Fase* pFase = static_cast<Fases::Fase*>(estados.top());
+        Menu::MenuPausa* menuPausa = new Menu::MenuPausa(pFase);
+        Estados::Estado* est = static_cast<Estados::Estado*>(menuPausa);
         estados.push(est);
         break;
     }

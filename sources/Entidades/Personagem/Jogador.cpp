@@ -296,16 +296,21 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
                     {
                         setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
                     }
+                    
                     Obstaculos::Pedra* pedra = static_cast<Obstaculos::Pedra*>(ent);
-                    vel.x /= pedra->getPeso();
-                    pedra->arrastar(vel.x / 60.0f);
+                    if(vel.x > 0.0f)
+                        pedra->arrastar(true);
+                    else if(vel.x < 0.0f)
+                        pedra->arrastar(false);
                     pedra = NULL;
                     return;
                 }
                 else
-                setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
-                estaNoChao = true;
-                ajustarVelocidade();
+                {
+                    setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                    estaNoChao = true;
+                    ajustarVelocidade();
+                }
             }
             vel.y = 0.0f;
             
@@ -326,8 +331,10 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
                 setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
             Obstaculos::Pedra* pedra = static_cast<Obstaculos::Pedra*>(ent);
-            vel.x /= pedra->getPeso();
-            pedra->arrastar(vel.x / 60.0f);
+            if(vel.x > 0.0f)
+                pedra->arrastar(true);
+            else if(vel.x < 0.0f)
+                pedra->arrastar(false);
             pedra = NULL;
         }
         break;

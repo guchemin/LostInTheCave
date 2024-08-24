@@ -18,6 +18,7 @@ namespace Observadores
         sf::Keyboard::Key esquerda;
         sf::Keyboard::Key pulo;
         sf::Keyboard::Key ataque;
+        sf::Keyboard::Key pausa;
         
     public:
         ObsJogadores(Jogador* pJ);

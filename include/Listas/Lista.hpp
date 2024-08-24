@@ -96,7 +96,8 @@ namespace Listas
             {
                 aux2->setProx(aux->getProx());
             }
-            delete(aux);
+            if(aux)
+                delete(aux);
             aux = NULL;
             aux2 = NULL;
             tam--;
@@ -136,13 +137,14 @@ namespace Listas
             while(aux != NULL && i < tam)
             {
                 TL* elemento = aux->getElemento();
-                if(elemento != NULL)
+                if(elemento)
                 {
                     delete(elemento);
                     elemento = NULL;
                 }
                 aux2 = aux->getProx();
-                delete(aux);
+                if(aux)
+                    delete(aux);
                 aux = NULL;
                 aux = aux2;
                 i++;

@@ -13,7 +13,8 @@ namespace Estados
     {
         FaseUm,
         MenuPrincipal,
-        MenuJogar
+        MenuJogar,
+        MenuPausa,
     };
 
     class Estado

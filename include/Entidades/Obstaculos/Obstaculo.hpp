@@ -8,7 +8,7 @@ namespace Obstaculos
 {
     class Obstaculo: public Entidade
     {
-    private:
+    protected:
         bool danoso;
         float velY;
         

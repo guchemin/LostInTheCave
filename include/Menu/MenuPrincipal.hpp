@@ -7,7 +7,6 @@ namespace Menu
     class MenuPrincipal : public Menu
     {
     private:
-        sf::Texture* fundo;
 
     public:
         MenuPrincipal();

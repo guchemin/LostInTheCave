@@ -22,12 +22,6 @@ observadores()
 
 GerenciadorInputs::~GerenciadorInputs()
 {
-    list<Observador*>::iterator it;
-    for(it = observadores.begin(); it != observadores.end(); it++)
-    {
-        if(*it)
-            delete (*it);
-    }
     observadores.clear();
 }
 

@@ -22,11 +22,8 @@ void Principal::executar()
     while(pGraf->estaAberta())
     {
         pGraf->limpar();
-
         pEventos->verificarEventos();
-
         pEstados->executar();
-
         pGraf->mostrar();
     }
 }

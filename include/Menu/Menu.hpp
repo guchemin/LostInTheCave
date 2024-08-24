@@ -20,6 +20,7 @@ namespace Menu
         Texto titulo;
         Observadores::ObsMenu obs;
         bool ativo;
+        bool remover;
 
     public:
         Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl);
@@ -35,6 +36,6 @@ namespace Menu
         const TipoBotao getBotaoSelecionado();
         void desenhar();
         virtual void selecionar(TipoBotao tipo) = 0;
-        void executar();
+        virtual void executar();
     };
 }

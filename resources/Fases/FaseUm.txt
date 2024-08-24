@@ -1,12 +1,12 @@
 pppppppppppppppppppppppppppppppppppppppppppppp  
-p t                                          p                                                                  
+p                                           p                                                                  
 p                                            p                                                         
-p                        r                   p                                                                       
+p                        r                  p                                                                       
 p                                            p                                  
 p                                            p                                                                                                                                                   
 p                                            p                                                 
-p  j  j                                      p                                                        
-ppppppppppppppr                              p                                 
+p  j  j r  r                                 p                                                        
+pppppppppppppppppppppppppppppppppppppppppppppp                                 
 p                                            p                                                        
 p                                            p                                                
 p                                            p                                                                  

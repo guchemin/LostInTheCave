@@ -14,6 +14,7 @@ obs(this)
     titulo.setCor(sf::Color::White);
     titulo.setPos(sf::Vector2f(pGraf->getCentro().x - titulo.getTamanho().x / 2.0f, 50.0f));
     ativo = false;
+    remover = false;
 }
 
 Menu::Menu::Menu()
@@ -25,8 +26,11 @@ Menu::Menu::~Menu()
     it = listaBotoes.begin();
     while (it != listaBotoes.end())
     {
-        delete (*it);
-        (*it) = NULL;
+        if(*it)
+        {
+            delete (*it);
+            (*it) = NULL;
+        }
         it++;
     }
     listaBotoes.clear();

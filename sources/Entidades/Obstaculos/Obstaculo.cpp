@@ -1,4 +1,5 @@
 #include "../../../include/Entidades/Obstaculos/Obstaculo.hpp"
+#include "../../../include/Entidades/Obstaculos/Pedra.hpp"
 
 Obstaculos::Obstaculo::Obstaculo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
 Entidade(pos, tam, tp)
@@ -56,12 +57,6 @@ void Obstaculos::Obstaculo::colide(Entidade *ent, const sf::Vector2f intersec)
                 setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
             }
         }
-        break;
-    }
-
-    case TIPO::PEDRA:
-    {
-        // TODO - uma pedra empurra a outra
         break;
     }
     

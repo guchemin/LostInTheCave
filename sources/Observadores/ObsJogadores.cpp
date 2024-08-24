@@ -21,6 +21,7 @@ pJog(pJ)
         pulo = sf::Keyboard::Key::Up;
         ataque = sf::Keyboard::Key::K;
     }
+    pausa = sf::Keyboard::Key::P;
 }
 
 Observadores::ObsJogadores::ObsJogadores():
@@ -39,6 +40,11 @@ void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key te
     if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
     {
         return;
+    }
+
+    if(tecla == pausa)
+    {
+        pEstados->adicionar(Estados::EstadoID::MenuPausa);
     }
 
     if(pJog == NULL)

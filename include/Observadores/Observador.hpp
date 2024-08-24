@@ -10,10 +10,8 @@ namespace Observadores
 {
     class Observador
     {
-    private:
-        GerenciadorInputs* pInp;
-
     protected:
+        GerenciadorInputs* pInp;
         GerenciadorEstados* pEstados;
 
     public:

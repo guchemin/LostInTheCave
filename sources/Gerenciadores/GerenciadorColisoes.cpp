@@ -156,7 +156,7 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
 
         for(int j = i + 1; j < tamObs; j++)
         {
-            pObs2 = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[i]);
+            pObs2 = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[j]);
             if(pObs->getTipo() == TIPO::PEDRA && pObs2->getTipo() == TIPO::PEDRA)
             {
                 distcentro.x = pObs->getCentro().x - pObs2->getCentro().x;
@@ -215,6 +215,27 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         if(menorDist <= pInim->getRaioAtaque())
         {
             pInim->agir();
+        }
+    }
+
+    for(int i = 0; i < tamProj; i++)
+    {
+        pProj = static_cast<Projetil*>((*listaProjeteis)[i]);
+
+        for(int j = 0; j < tamJog; j++)
+        {
+            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
+
+            distcentro.x = pProj->getCentro().x - pJog->getCentro().x;
+            distcentro.y = pProj->getCentro().y - pJog->getCentro().y;
+
+            intersecao.x = pProj->getTamanho().x/2.0f + pJog->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = pProj->getTamanho().y/2.0f + pJog->getTamanho().y/2.0f - fabs(distcentro.y);
+
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
+            {
+                pProj->colide(pJog, intersecao);
+            }
         }
     }
 }

@@ -12,7 +12,8 @@ enum TipoBotao
     FASE_2,
     UM_JOGADOR,
     DOIS_JOGADORES,
-    SAIR
+    SAIR,
+    CONTINUAR
 };
 
 class Botao : public Ente

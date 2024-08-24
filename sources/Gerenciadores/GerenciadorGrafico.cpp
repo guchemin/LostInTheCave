@@ -1,4 +1,5 @@
 #include "../../include/Gerenciadores/GerenciadorGrafico.hpp"
+#include <iostream>
 
 using namespace Gerenciadores;
 
@@ -13,15 +14,17 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia()
     }
     return instancia;
 }
-GerenciadorGrafico::GerenciadorGrafico() : janela(new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE"))
+GerenciadorGrafico::GerenciadorGrafico()
 {
+    janela = new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE");
     camera.setSize(1200, 900);
     centralizarCamera(sf::Vector2f(600, 450));
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
-    delete (janela);
+    if(janela)
+        delete(janela);
 }
 
 sf::RenderWindow* GerenciadorGrafico::getJanela()

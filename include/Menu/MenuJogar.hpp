@@ -9,7 +9,6 @@ namespace Menu
     class MenuJogar : public Menu
     {
     private: 
-        sf::Texture fundo;
         
     public:
         MenuJogar();

@@ -8,6 +8,7 @@ namespace Obstaculos
     {
     private:
         const float peso;
+        float dx;
         
     public:
         Pedra(sf::Vector2f pos);
@@ -15,6 +16,7 @@ namespace Obstaculos
         ~Pedra();
 
         const float getPeso() const;
-        void arrastar(const float dx);
+        void arrastar(const bool direita);
+        void colide(Entidade* ent, const sf::Vector2f intersec);
     };
 };
