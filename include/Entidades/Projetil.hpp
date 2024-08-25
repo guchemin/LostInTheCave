@@ -2,9 +2,11 @@
 
 #include "Personagem/Inimigo.hpp"
 
+#define CAMINHO_TEXTURA_PROJETIL "../assets/sprites/Projetil/Projetil.png"
+
 class Projetil: public Entidades::Entidade
 {
-private:
+private:  
     sf::Vector2f vel;
 
 public:

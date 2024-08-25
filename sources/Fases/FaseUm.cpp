@@ -3,15 +3,25 @@
 Fases::FaseUm::FaseUm():
 Fase(Estados::EstadoID::FaseUm)
 {
+    background.setSize(pGraf->getTamanho());
+    if(!texturaFundo.loadFromFile(BACKGROUNG_FASE1))
+    {
+        throw std::runtime_error("Erro ao carregar a textura de fundo!");
+    }
+    background.setTexture(&texturaFundo);
+    background.setScale(1.1f, 1.1f);
+    background.setOrigin(20, 0);
 }
 
 Fases::FaseUm::~FaseUm()
 {
 }
 
-void Fases::FaseUm::criarMapa() {
+void Fases::FaseUm::criarMapa() 
+{
     try 
     {
+
         std::ifstream arquivo("../resources/Fases/FaseUm.txt");
         if (!arquivo.is_open()) 
         {
@@ -50,6 +60,7 @@ void Fases::FaseUm::criarMapa() {
 
 void Fases::FaseUm::atualizar(const float dt)
 {
+    atualizarBackground();
     listaInimigos->atualizar(dt);
     listaJogadores->atualizar(dt);
     listaObstaculos->atualizar(dt);
@@ -62,11 +73,12 @@ void Fases::FaseUm::atualizar(const float dt)
 
 void Fases::FaseUm::desenhar()
 {
-    listaObstaculos->desenhar(); 
+    pGraf->desenhar(background);
     listaPlataformas->desenhar();
     listaProjeteis->desenhar();
     listaInimigos->desenhar();
     listaJogadores->desenhar();
+    listaObstaculos->desenhar();
 }
 
 void Fases::FaseUm::executar()

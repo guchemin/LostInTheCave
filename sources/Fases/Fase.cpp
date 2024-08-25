@@ -70,6 +70,11 @@ void Fases::Fase::centralizarCamera()
     }
 }
 
+void Fases::Fase::atualizarBackground()
+{
+    background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
+}
+
 Listas::ListaEntidades *Fases::Fase::getListaJogadores()
 {
     return listaJogadores;
@@ -103,9 +108,15 @@ void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter)
         break;
     }
 
-    case 'p':
+    case '#':
     {
-        criarPlataforma(pos);
+        criarPlataforma(pos, sf::Vector2f(50.0f, 50.0f));
+        break;
+    }
+
+    case '-':
+    {
+        criarPlataforma(pos, sf::Vector2f(100.0f, 50.0f));
         break;
     }
 
@@ -175,9 +186,9 @@ void Fases::Fase::criarChefao(sf::Vector2f pos)
     listaInimigos->adicionar(entChefao);
 }
 
-void Fases::Fase::criarPlataforma(sf::Vector2f pos)
+void Fases::Fase::criarPlataforma(sf::Vector2f pos, sf::Vector2f tam)
 {
-    Plataforma* plataforma = new Plataforma(pos);
+    Plataforma* plataforma = new Plataforma(pos, tam);
     Entidades::Entidade* entPlataforma = static_cast<Entidades::Entidade*>(plataforma);
     listaPlataformas->adicionar(entPlataforma);
 }

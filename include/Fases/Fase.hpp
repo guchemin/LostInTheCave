@@ -17,6 +17,8 @@ namespace Fases
     class Fase : public Ente, public Estados::Estado
     {
     protected:
+        sf::RectangleShape background;
+        sf::Texture texturaFundo;
         sf::Clock relogio;
         float dt;
         bool doisJogadores;
@@ -43,12 +45,13 @@ namespace Fases
         void criarAtirador(sf::Vector2f pos);
         void criarVoador(sf::Vector2f pos);
         void criarChefao(sf::Vector2f pos);
-        void criarPlataforma(sf::Vector2f pos);
+        void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
         void criarTeia(sf::Vector2f pos);
         void criarEspinho(sf::Vector2f pos);
         void criarPedra(sf::Vector2f pos);
 
         void centralizarCamera();
+        void atualizarBackground();
         virtual void atualizar(const float dt) = 0;
         virtual void desenhar() = 0;
         virtual void executar() = 0;

@@ -3,10 +3,13 @@
 using namespace Entidades;
 
 Obstaculos::Espinho::Espinho(sf::Vector2f pos):
-Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::ESPINHO),
+Obstaculo(pos, sf::Vector2f(100.0f, 50.0f), TIPO::ESPINHO),
 afiado(float(rand() % 101 + 50) / 10.0f)
 {
-    corpo.setFillColor(sf::Color(123, 15, 165));
+    textura.loadFromFile(CAMINHO_TEXTURA_ESPINHO);
+    corpo.setTexture(&textura);
+    corpo.setScale(1.2f, 1.2f);
+    corpo.setOrigin(10.0f, 8.0f);
 }
 
 Obstaculos::Espinho::Espinho():

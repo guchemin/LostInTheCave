@@ -14,6 +14,7 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia()
     }
     return instancia;
 }
+
 GerenciadorGrafico::GerenciadorGrafico()
 {
     janela = new sf::RenderWindow(sf::VideoMode(800, 600), "LOST IN THE CAVE");
@@ -76,6 +77,11 @@ void GerenciadorGrafico::desenhar(sf::CircleShape desenho)
 void GerenciadorGrafico::desenhar(sf::Text texto)
 {
     janela->draw(texto);
+}
+
+void Gerenciadores::GerenciadorGrafico::desenhar(sf::Sprite sprite)
+{
+    janela->draw(sprite);
 }
 
 void GerenciadorGrafico::mostrar()

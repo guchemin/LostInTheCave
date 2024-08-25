@@ -6,7 +6,6 @@ Atirador::Atirador(sf::Vector2f pos):
 Inimigo(pos, sf::Vector2f(50.0f, 70.0f))
 {
     vel = sf::Vector2f(0.0f, 0.0f);
-    corpo.setOutlineColor(sf::Color::Red);
     pProjetil = NULL;
     raioAtaque = RAIO_ATIRADOR;
     tempoAtaque = 0.0f;
@@ -22,10 +21,6 @@ Atirador::Atirador()
 
 Atirador::~Atirador()
 {
-    if(pProjetil)
-    {
-        delete pProjetil;
-    }
     pProjetil = NULL;
 }
 

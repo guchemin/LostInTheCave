@@ -4,9 +4,8 @@ Projetil::Projetil(sf::Vector2f pos, sf::Vector2f velocidade):
 Entidade(pos, sf::Vector2f(25.0f, 25.0f), TIPO::PROJETIL)
 {
     vel = velocidade;
-    // corpo.setFillColor(sf::Color::Cyan);
 
-    textura.loadFromFile("../assets/sprites/Projetil/Projetil.png");
+    textura.loadFromFile(CAMINHO_TEXTURA_PROJETIL);
     corpo.setTexture(&textura);
 }
 

@@ -1,18 +1,18 @@
-pppppppppppppppppppppppppppppppppppppppppppppp  
-p                                           p                                                                  
-p                                            p                                                         
-p                                           p                                                                       
-p                                            p                                  
-p                                            p                                                                                                                                                   
-p                                            p                                                 
-p  j  j r  r                       p                                                        
-p  ppppppppppppppppppppppppppppppppppppppppppp                                 
-p                                            p                                                        
-p                                            p                                                
-p                                            p                                                                  
-p                                            p                                                              
-p                                            p                                             
-p                                            p                                         
-p                             c               p                                                     
-p                                           p                                                                                   
-pppppppppppppppppppppppppppppppppppppppppppppp
+- - - - - - - - - - - - - - - - - - - - - - - 
+#                                            #                                                                  
+#        v                     v             #                                                         
+#                                            #                                                                       
+#                                            #                                  
+#                                            #                                                                                                                                                   
+#                                            #                                                 
+#    j   j        r   r                         #                                                        
+#   - - - - - - - - - - - - - - - - - - - - -                                  
+#                                            #                                                        
+#                                            #                                                
+#                 a                          #                                                                  
+#           - - - - - - -                    #                                                              
+#       #                          c         #                                             
+#                                            #                                         
+#                      t                     #                                                     
+#                                            #                                                                                   
+- - - - - - - - - - - - - - - - - - - - - - -                                                                                 

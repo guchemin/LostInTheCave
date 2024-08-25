@@ -2,6 +2,8 @@
 
 #include "Obstaculo.hpp"
 
+#define CAMINHO_TEXTURA_PEDRA "../assets/sprites/Pedra/Pedra.png"
+
 namespace Obstaculos
 {
     class Pedra : public Obstaculo

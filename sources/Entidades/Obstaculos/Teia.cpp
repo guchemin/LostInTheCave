@@ -6,7 +6,8 @@ Obstaculos::Teia::Teia(sf::Vector2f pos):
 Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::TEIA),
 densidade(float(rand() % 11 + 25) / 10.0f)
 {
-    corpo.setFillColor(sf::Color(100, 100, 100));
+    textura.loadFromFile(CAMINHO_TEXTURA_TEIA);
+    corpo.setTexture(&textura);
 }
 
 Obstaculos::Teia::Teia():

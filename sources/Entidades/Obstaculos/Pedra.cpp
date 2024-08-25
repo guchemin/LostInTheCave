@@ -5,7 +5,10 @@ Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::PEDRA),
 peso(float(rand() % 6 + 15) / 10.0f)
 {
     dx = 300.0f / peso / 60.0f;
-    corpo.setFillColor(sf::Color(123, 15, 165));
+    textura.loadFromFile(CAMINHO_TEXTURA_PEDRA);
+    corpo.setTexture(&textura);
+    corpo.setScale(1.2f, 1.0f);
+    corpo.setOrigin(5.0f, 0.0f);
 }
 
 Obstaculos::Pedra::Pedra():

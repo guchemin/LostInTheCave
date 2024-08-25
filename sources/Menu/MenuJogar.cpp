@@ -2,7 +2,7 @@
 #include "../../include/Gerenciadores/GerenciadorEstados.hpp"
 
 Menu::MenuJogar::MenuJogar():
-Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuJogar, "SELECIONE O NÚMERO DE JOGADORES")
+Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuJogar, "LOST IN THE CAVE")
 {
     criarBotoes();
 }

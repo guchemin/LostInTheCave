@@ -1,7 +1,7 @@
 #include "../../../include/Entidades/Personagem/Chefao.hpp"
 
 Chefao::Chefao(sf::Vector2f pos):
-Inimigo(pos, sf::Vector2f(65.0f, 120.0f))
+Inimigo(pos, sf::Vector2f(80.0f, 120.0f))
 {
     vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
     tempoAtaque = COOLDOWN_CHEFAO;

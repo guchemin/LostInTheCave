@@ -2,6 +2,8 @@
 
 #include "Fase.hpp"
 
+#define BACKGROUNG_FASE1 "../assets/sprites/Backgrounds/Background1.png"
+
 namespace Fases
 {
     class FaseUm : public Fase

@@ -2,6 +2,8 @@
 
 #include "Obstaculo.hpp"
 
+#define CAMINHO_TEXTURA_ESPINHO "../assets/sprites/Espinho/Espinho.png"
+
 namespace Obstaculos
 {
     class Espinho : public Obstaculo

@@ -2,6 +2,8 @@
 
 #include "Obstaculo.hpp"
 
+#define CAMINHO_TEXTURA_TEIA "../assets/sprites/Teia/Teia.png"
+
 namespace Obstaculos
 {
     class Teia : public Obstaculo
