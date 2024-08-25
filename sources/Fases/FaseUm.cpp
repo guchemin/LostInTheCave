@@ -53,6 +53,7 @@ void Fases::FaseUm::atualizar(const float dt)
     listaInimigos->atualizar(dt);
     listaJogadores->atualizar(dt);
     listaObstaculos->atualizar(dt);
+    listaProjeteis->atualizar(dt);
     listaPlataformas->atualizar(dt);
     pColisoes->verificarColisoes();
 

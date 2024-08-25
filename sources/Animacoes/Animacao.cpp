@@ -40,6 +40,11 @@ void Animacoes::Animacao::setQuadroAtual(const unsigned int imgAtual)
     imagens[imagemAtual]->setQuadroAtual(imgAtual);
 }
 
+const bool Animacoes::Animacao::getTerminouAnimacao()
+{
+    return imagens[imagemAtual]->getTerminouAnimacao();
+}
+
 const float Animacoes::Animacao::getTempoTotal()
 {
     return imagens[imagemAtual]->getTempoTotal();
@@ -55,7 +60,7 @@ void Animacoes::Animacao::setImgAtual(const string imgAtual)
     imagemAtual = imgAtual;
 }
 
-void Animacoes::Animacao::atualizar(const bool paraEsquerda, string imgAtual)
+void Animacoes::Animacao::atualizar(const bool paraDireita, string imgAtual)
 {
     if(imagemAtual != imgAtual)
     {
@@ -73,7 +78,7 @@ void Animacoes::Animacao::atualizar(const bool paraEsquerda, string imgAtual)
     sf::Vector2f tamCorpo = corpo->getSize();
     sf::Vector2f escala = img->getEscala();
     
-    img->atualizar(paraEsquerda, dt);
+    img->atualizar(paraDireita, dt);
     corpo->setTextureRect(img->getTamanho());
     corpo->setTexture(img->getTextura());
     corpo->setOrigin(img->getOrigin());

@@ -1,4 +1,5 @@
 #include "../../include/Animacoes/Imagem.hpp"
+#include <iostream>
 
 Animacoes::Imagem::Imagem(const char *caminhoTextura, const unsigned int qtd, const float tempo, const sf::Vector2f esc, const sf::Vector2f org, const bool hor):
 pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
@@ -22,13 +23,14 @@ horizontal(hor)
         tamanho.width = textura.getSize().x;
         tamanho.height = textura.getSize().y / (float)qtdImagem;
     }
+    terminouAnimacao = false;
 }
 
 Animacoes::Imagem::~Imagem()
 {
 }
 
-void Animacoes::Imagem::atualizar(const bool paraEsquerda, const float dt)
+void Animacoes::Imagem::atualizar(const bool paraDireita, const float dt)
 {
     tempoTotal += dt;
     if(tempoTotal >= tempoTroca)
@@ -37,10 +39,11 @@ void Animacoes::Imagem::atualizar(const bool paraEsquerda, const float dt)
         imgAtual++;
         if (imgAtual >= qtdImagem)
         {
+            setTerminouAnimacao(true);
             imgAtual = 0;
         }
     }
-    if(paraEsquerda)
+    if(!paraDireita)
     {
         tamanho.width = -abs(tamanho.width);
         if(horizontal)
@@ -72,6 +75,21 @@ void Animacoes::Imagem::resetar()
 {
     imgAtual = 0;
     tempoTotal = 0.0f;
+}
+
+const bool Animacoes::Imagem::getTerminouAnimacao()
+{
+    if(terminouAnimacao)
+    {
+        terminouAnimacao = false;
+        return true;
+    }
+    return false;
+}
+
+void Animacoes::Imagem::setTerminouAnimacao(const bool terminou)
+{
+    terminouAnimacao = terminou;
 }
 
 const int Animacoes::Imagem::getQuadroAtual() const

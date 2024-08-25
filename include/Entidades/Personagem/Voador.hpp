@@ -2,7 +2,8 @@
 
 #include "Inimigo.hpp"
 
-#define VEL_VOADOR 250.0f 
+#define VEL_VOADOR 250.0f
+#define CAMINHO_VOADOR "../assets/sprites/Voador/Voando.png"
 
 class Voador: public Inimigo::Inimigo
 {
@@ -14,6 +15,8 @@ public:
     Voador();
     ~Voador();
 
+    void inicializarAnimacao();
+    void atualizarAnimacao();
     bool consegueAtacar();
     bool atingiuJogador();
     void atacar();

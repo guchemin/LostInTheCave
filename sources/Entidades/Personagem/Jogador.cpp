@@ -6,28 +6,24 @@ using namespace Entidades;
 Jogador::Jogador(sf::Vector2f pos, const ID i):
 id(i),
 obs(this),
-Personagem(pos, sf::Vector2f(50.0f, 90.0f), TIPO::JOGADOR),
-animacao(&corpo)
+Personagem(pos, sf::Vector2f(50.0f, 70.0f), TIPO::JOGADOR)
 {
     if(id == JOGADOR1)
     {
-        //corpo.setFillColor(sf::Color::Red);
         vel = sf::Vector2f(0.0f, 0.0f);
     }
     else if(id == JOGADOR2)
     {
-        corpo.setFillColor(sf::Color::Blue);
         vel = sf::Vector2f(0.0f, 0.0f);
     }
-    estaNoChao = false;
+    
     pulou = false;
     estaNaTeia = false;
     foiEspinhado = false;
-    atacando = false;
+    raioAtaque = 100.0f;
     vida = 100.0f;
     aceleracaoTeia = 1.0f;
-    dano = 10.0f;
-    tempoAtaque = 0.0f;
+    dano = DANO_JOGADOR;
     inicializarAnimacao();
 }
 
@@ -43,11 +39,46 @@ Jogador::~Jogador()
 void Jogador::inicializarAnimacao()
 {
     sf::Vector2f origem = sf::Vector2f(getTamanho().x / 3.5, getTamanho().y / 3.5);
-    animacao.addAnimacao(CAMINHO_JOG_ANDAR, "andando", 12, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
-    animacao.addAnimacao(CAMINHO_JOG_PARADO, "parado", 9, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+
+    if(id == JOGADOR1)
+    {
+        animacao.addAnimacao(CAMINHO_JOG1_ANDANDO, "andando", 12, 0.05f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG1_PARADO, "parado", 9, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG1_ATACANDO, "atacando", 12, 0.035f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG1_NO_AR, "no_ar", 6, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+
+    }
+    else if(id == JOGADOR2)
+    {
+        animacao.addAnimacao(CAMINHO_JOG2_ANDANDO, "andando", 12, 0.05f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG2_PARADO, "parado", 9, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG2_ATACANDO, "atacando", 12, 0.035f, sf::Vector2f(2.4f, 1.8f), origem);
+        animacao.addAnimacao(CAMINHO_JOG2_NO_AR, "no_ar", 6, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+    }
+
 }
 
-void Jogador::autorizarPulo(const bool autoriza) 
+void Jogador::atualizarAnimacao()
+{
+    if(vel.x != 0.0f && estaNoChao && !atacando)
+    {
+        animacao.atualizar(vel.x > 0.0f, "andando");
+    }
+    else if(atacando)
+    {
+        animacao.atualizar(direcao, "atacando");
+    }
+    else if(!estaNoChao && pulou)
+    {
+        animacao.atualizar(direcao, "no_ar");
+    }
+    else
+    {
+        animacao.atualizar(direcao, "parado");
+    }
+}
+
+void Jogador::autorizarPulo(const bool autoriza)
 {
     pulou = !autoriza;
 }
@@ -57,33 +88,50 @@ bool Jogador::podePular()
     return estaNoChao && !pulou;
 }
 
-bool Jogador::podeAtacar()
+void Jogador::parouDeAtacar()
+{
+    iniciouAtaque = false;
+}
+
+const bool Jogador::podeAtacar(bool direita)
 {
     if(tempoAtaque >= COOLDOWN_ATAQUE)
     {
-        tempoAtaque = 0.0f;
-        if(atacando)
+        if(iniciouAtaque && (direcao == direita))
         {
-            atacando = false;
+            tempoAtaque = 0.0f;
+            iniciouAtaque = false;
             return true;
         }
     }
     return false;
 }
 
-void Jogador::setAtacando(const bool atk)
-{
-    atacando = atk;
-}
-
-void Jogador::atacar()
-{
-
-}
-
 void Jogador::atualizar(const float dt)
 {
     tempoAtaque += dt;
+
+    if(atacando)
+    {
+        tempoAnimacaoAtaque += dt;
+        if(tempoAnimacaoAtaque >= TEMPO_TOTAL_ATAQUE)
+        {
+            atacando = false;
+            tempoAnimacaoAtaque = 0.0f;
+        }
+    }
+
+    if(tomouDano)
+    {
+        tempoTomouDano += dt;
+        corpo.setFillColor(sf::Color(255, 0, 0, 120));
+        if(tempoTomouDano >= TEMPO_TOMOU_DANO)
+        {
+            corpo.setFillColor(sf::Color(255, 255, 255, 255));
+            tomouDano = false;
+            tempoTomouDano = 0.0f;
+        }
+    }
 
     if(estaNaTeia)
     {
@@ -94,7 +142,7 @@ void Jogador::atualizar(const float dt)
     ds.y = vel.y * dt;
     ds.x = vel.x * dt;
 
-    if(vel.y > GRAVIDADE * dt)
+    if(vel.y > GRAVIDADE * dt * 3)
         estaNoChao = false;
     
     corpo.move(ds);
@@ -102,10 +150,7 @@ void Jogador::atualizar(const float dt)
     // acao da gravidade para a proxima iteracao
     vel.y += GRAVIDADE * dt;
 
-    if(vel.x != 0.0f)
-        animacao.atualizar(vel.x < 0.0f, "andando");
-    else
-        animacao.atualizar(vel.x < 0.0f, "parado");
+    atualizarAnimacao();
 }
 
 void Jogador::pular()
@@ -143,6 +188,8 @@ void Jogador::andar(const bool direita)
 
     if(!direita)
         vel.x *= -1.0f;
+    
+    direcao = direita;
 }
 
 void Jogador::parar()

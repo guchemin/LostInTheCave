@@ -1,7 +1,7 @@
 #include "../../../include/Entidades/Personagem/Voador.hpp"
 
 Voador::Voador(sf::Vector2f pos):
-Inimigo(pos, sf::Vector2f(35.0f, 60.0f)),
+Inimigo(pos, sf::Vector2f(35.0f, 50.0f)),
 endiabrado(bool(rand() % 2))
 {
     vel = sf::Vector2f(VEL_VOADOR, VEL_VOADOR);
@@ -12,10 +12,11 @@ endiabrado(bool(rand() % 2))
         dano *= 1.5f;
     }
 
-    corpo.setFillColor(sf::Color(80, 80, 80));
     tempoAtaque = 0.0f;
-    raioAtaque = 0.0f;
+    raioAtaque = 74.0f;
     vida = 40.0f;
+
+    inicializarAnimacao();
 }
 
 Voador::Voador():
@@ -25,6 +26,18 @@ endiabrado(bool())
 
 Voador::~Voador()
 {
+}
+
+void Voador::inicializarAnimacao()
+{
+    sf::Vector2f origem = sf::Vector2f(getTamanho().x / 3.5, getTamanho().y / 3.5);
+
+    animacao.addAnimacao(CAMINHO_VOADOR, "voando", 18, 0.1f, sf::Vector2f(2.4f, 1.8f), origem);
+}
+
+void Voador::atualizarAnimacao()
+{
+    animacao.atualizar(vel.x >= 0, "voando");
 }
 
 bool Voador::consegueAtacar()
@@ -64,6 +77,18 @@ void Voador::atualizar(const float dt)
 
     tempoAtaque += dt;
 
+    if(tomouDano)
+    {
+        tempoTomouDano += dt;
+        corpo.setFillColor(sf::Color(255, 0, 0, 120));
+        if(tempoTomouDano >= TEMPO_TOMOU_DANO)
+        {
+            corpo.setFillColor(sf::Color(255, 255, 255, 255));
+            tomouDano = false;
+            tempoTomouDano = 0.0f;
+        }
+    }
+
     if(getPosicao().y < posInicial.y - 70.0f)
     {
         vel.y = 0.0f;
@@ -88,10 +113,8 @@ void Voador::atualizar(const float dt)
     
     ds = vel * dt;
     corpo.move(ds);
-    if(pJogador != NULL && consegueAtacar())
-    {
-        atacar();
-    }
+
+    atualizarAnimacao();
 }
 
 void Voador::colide(Entidade *ent, const sf::Vector2f intersec)

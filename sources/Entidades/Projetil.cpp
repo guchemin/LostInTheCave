@@ -1,10 +1,13 @@
 #include "../../include/Entidades/Projetil.hpp"
 
 Projetil::Projetil(sf::Vector2f pos, sf::Vector2f velocidade):
-Entidade(pos, sf::Vector2f(10.0f, 10.0f), TIPO::PROJETIL)
+Entidade(pos, sf::Vector2f(25.0f, 25.0f), TIPO::PROJETIL)
 {
     vel = velocidade;
-    corpo.setFillColor(sf::Color::Cyan);
+    // corpo.setFillColor(sf::Color::Cyan);
+
+    textura.loadFromFile("../assets/sprites/Projetil/Projetil.png");
+    corpo.setTexture(&textura);
 }
 
 Projetil::Projetil()
@@ -37,11 +40,18 @@ bool Projetil::saiuDaTela()
 void Projetil::atualizar(const float dt)
 {
     sf::Vector2f ds = vel * dt;
-
     //acao da gravidade
-    vel.y += 60 * dt;
-    ds.y = vel.y * dt;
-    
+    if(getPosicao().y < 1000.0f)
+    {
+        vel.y += 60 * dt;
+        ds.y = vel.y * dt;
+    }
+    else
+    {
+        vel.y = 0.0f;
+        ds.y = 0.0f;
+    }
+
     corpo.move(ds);
 }
 

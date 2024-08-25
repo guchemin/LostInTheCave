@@ -43,6 +43,7 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
     Obstaculos::Obstaculo* pObs2 = NULL;
     Plataforma* pPlat = NULL;
     Inimigo* pInim = NULL;
+    Inimigo* pInimAux = NULL;
     Jogador* pJog = NULL;
     Projetil* pProj = NULL;
 
@@ -190,7 +191,7 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
             intersecao.x = pInim->getTamanho().x/2.0f + pJog->getTamanho().x/2.0f - fabs(distcentro.x);
             intersecao.y = pInim->getTamanho().y/2.0f + pJog->getTamanho().y/2.0f - fabs(distcentro.y);
 
-            dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
+            dist = sqrt(pow(pJog->getCentro().x - pInim->getCentro().x, 2) + pow(pJog->getCentro().y - pInim->getCentro().y, 2));
 
             if(dist < menorDist)
             {
@@ -198,23 +199,47 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
                 pInim->setJogador(pJog);
             }
 
-            if(intersecao.x > -pJog->getRaioAtaque() && intersecao.y > 0.0f)
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
             {
-                if(pJog->podeAtacar())
-                {
-                    pInim->tiraVida(pJog->getDano());
-                }
-
-                if(intersecao.x > 0.0f)
-                {
-                    pJog->colide(pInim, intersecao);
-                    pInim->colide(pJog, intersecao);
-                }
+                pJog->colide(pInim, intersecao);
+                pInim->colide(pJog, intersecao);
             }
         }
         if(menorDist <= pInim->getRaioAtaque())
         {
             pInim->agir();
+        }
+    }
+    
+    for(int i = 0; i < tamJog; i++)
+    {
+        pJog = static_cast<Jogador*>((*listaJogadores)[i]);
+        float menorDist = 999999.0f;
+        float dist;
+        for(int j = 0; j < tamIni; j++)
+        {
+            pInim = static_cast<Inimigo*>((*listaInimigos)[j]);
+            dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
+            if(dist < menorDist)
+            {
+                menorDist = dist;
+                pInimAux = pInim;
+            }
+        }
+
+        if(pInimAux)
+        {
+            if(pJog->podeAtacar(pInimAux->getCentro().x > pJog->getCentro().x))
+            {
+                distcentro.x = pJog->getCentro().x - pInimAux->getCentro().x;
+                distcentro.y = pJog->getCentro().y - pInimAux->getCentro().y;
+                intersecao.y = pJog->getTamanho().y/2.0f + pInimAux->getTamanho().y/2.0f - fabs(distcentro.y);
+
+                if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
+                {
+                    pInimAux->tiraVida(pJog->getDano());
+                }
+            }
         }
     }
 

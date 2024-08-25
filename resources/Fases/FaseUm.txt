@@ -1,18 +1,18 @@
 pppppppppppppppppppppppppppppppppppppppppppppp  
 p                                           p                                                                  
 p                                            p                                                         
-p                        r                  p                                                                       
+p                                           p                                                                       
 p                                            p                                  
 p                                            p                                                                                                                                                   
 p                                            p                                                 
-p  j  j r  r                                 p                                                        
-pppppppppppppppppppppppppppppppppppppppppppppp                                 
+p  j  j r  r                       p                                                        
+p  ppppppppppppppppppppppppppppppppppppppppppp                                 
 p                                            p                                                        
 p                                            p                                                
 p                                            p                                                                  
 p                                            p                                                              
 p                                            p                                             
 p                                            p                                         
-p                                            p                                                     
-p        r    r                              p                                                                                   
+p                             c               p                                                     
+p                                           p                                                                                   
 pppppppppppppppppppppppppppppppppppppppppppppp

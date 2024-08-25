@@ -18,12 +18,16 @@ namespace Animacoes
         const float tempoTroca;
         float tempoTotal;
         const sf::Vector2f origem;
+        bool terminouAnimacao;
 
     public:
         Imagem(const char* caminhoTextura, const unsigned int qtd, const float tempo, const sf::Vector2f esc, const sf::Vector2f org, const bool hor);
         ~Imagem();
-        void atualizar(const bool paraEsquerda, const float dt);
+
+        void atualizar(const bool paraDireita, const float dt);
         void resetar();
+        const bool getTerminouAnimacao();
+        void setTerminouAnimacao(const bool terminou);
         const int getQuadroAtual() const;
         void setQuadroAtual(const unsigned int img);
         const float getTempoTotal() const;

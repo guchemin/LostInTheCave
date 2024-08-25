@@ -7,9 +7,9 @@
 #define COOLDOWN_CHEFAO 1.5f
 #define COOLDOWN_VOADOR 1.0f
 
-#define DANO_ATIRADOR 15.0f // projetil
+#define DANO_ATIRADOR 10.0f // projetil
 #define DANO_CHEFAO 20.0f
-#define DANO_VOADOR 8.0f
+#define DANO_VOADOR 5.0f
 
 class Inimigo: public Personagem
 {

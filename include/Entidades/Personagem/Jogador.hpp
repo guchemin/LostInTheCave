@@ -7,15 +7,24 @@
 #include "../Obstaculos/Pedra.hpp"
 #include "Personagem.hpp"
 #include "../../Observadores/ObsJogadores.hpp"
-#include "../../Animacoes/Animacao.hpp"
 
 #define VEL_JOG1 300.0f
 #define VEL_JOG2 300.0f
-#define PULO_JOG1 1500.0f
+#define PULO_JOG1 1650.0f
 #define PULO_JOG2 1650.0f
+
 #define COOLDOWN_ATAQUE 1.0f
-#define CAMINHO_JOG_ANDAR "../assets/spritesheet(1).png"
-#define CAMINHO_JOG_PARADO "../assets/spritesheet(2).png"
+#define DANO_JOGADOR 15.0f
+
+#define CAMINHO_JOG1_ANDANDO "../assets/sprites/Jogador1/Andando.png"
+#define CAMINHO_JOG1_PARADO "../assets/sprites/Jogador1/Parado.png"
+#define CAMINHO_JOG1_ATACANDO "../assets/sprites/Jogador1/Atacando.png"
+#define CAMINHO_JOG1_NO_AR "../assets/sprites/Jogador1/NoAr.png"
+
+#define CAMINHO_JOG2_ANDANDO "../assets/sprites/Jogador2/Andando.png"
+#define CAMINHO_JOG2_PARADO "../assets/sprites/Jogador2/Parado.png"
+#define CAMINHO_JOG2_ATACANDO "../assets/sprites/Jogador2/Atacando.png"
+#define CAMINHO_JOG2_NO_AR "../assets/sprites/Jogador2/NoAr.png"
 
 enum ID
 {
@@ -32,7 +41,6 @@ private:
     bool estaNaTeia;
     float aceleracaoTeia;
     bool foiEspinhado;
-    bool atacando;
     Observadores::ObsJogadores obs;
 
 public:
@@ -41,12 +49,12 @@ public:
     ~Jogador();
 
     void inicializarAnimacao();
+    void atualizarAnimacao();
     void autorizarPulo(const bool autoriza);
     bool podePular();
-    bool podeAtacar();
-    void setAtacando(const bool atk);
+    void parouDeAtacar();
     const ID getId() const { return id; };
-    void atacar();
+    const bool podeAtacar(bool direita);
     void atualizar(const float dt);
     void pular();
     void andar(const bool direita);

@@ -25,6 +25,7 @@ namespace Entidades
     protected:
         sf::RectangleShape corpo;
         TIPO tipo;
+        sf::Texture textura;
     
     public:
         Entidade(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);

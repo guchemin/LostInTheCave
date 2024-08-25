@@ -66,8 +66,7 @@ void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key te
     {
         pJog->andar(ESQUERDA);
     }
-    
-    if(tecla == ataque)
+    else if(tecla == ataque)
     {
         pJog->setAtacando(true);
     }
@@ -90,8 +89,11 @@ void Observadores::ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
     {
         pJog->autorizarPulo(true);
     }
-
-    else if(!(sf::Keyboard::isKeyPressed(direita) || sf::Keyboard::isKeyPressed(esquerda)))
+    if(tecla == ataque)
+    {
+        pJog->parouDeAtacar();
+    }
+    if(!(sf::Keyboard::isKeyPressed(direita) || sf::Keyboard::isKeyPressed(esquerda)))
     {
         pJog->parar();
     }
