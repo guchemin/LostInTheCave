@@ -75,11 +75,6 @@ void Fases::Fase::atualizarBackground()
     background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
 }
 
-Listas::ListaEntidades *Fases::Fase::getListaJogadores()
-{
-    return listaJogadores;
-}
-
 void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter) 
 {
     switch (caracter)

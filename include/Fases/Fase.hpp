@@ -55,7 +55,5 @@ namespace Fases
         virtual void atualizar(const float dt) = 0;
         virtual void desenhar() = 0;
         virtual void executar() = 0;
-
-        Listas::ListaEntidades* getListaJogadores();
     };
 };

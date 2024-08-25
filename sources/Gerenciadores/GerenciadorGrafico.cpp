@@ -79,11 +79,6 @@ void GerenciadorGrafico::desenhar(sf::Text texto)
     janela->draw(texto);
 }
 
-void Gerenciadores::GerenciadorGrafico::desenhar(sf::Sprite sprite)
-{
-    janela->draw(sprite);
-}
-
 void GerenciadorGrafico::mostrar()
 {
     janela->display();

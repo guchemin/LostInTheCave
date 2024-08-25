@@ -37,5 +37,4 @@ public:
     void tiraVida(const float dano);
     float getRaioAtaque();
     float getDano();
-    virtual void atacar(){};
 };

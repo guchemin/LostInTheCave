@@ -28,8 +28,8 @@ public:
 
     void inicializarAnimacao();
     void atualizarAnimacao();
-    void perseguir(float dt);
-    void moverAleatorio(float dt);
+    void perseguir(const float dt);
+    void moverAleatorio(const float dt);
     void ajustaVelocidade();
     bool consegueAtacar();
     bool conseguePerseguir();

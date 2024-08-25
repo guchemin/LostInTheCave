@@ -48,7 +48,7 @@ void Chefao::atualizarAnimacao()
     }
 }
 
-void Chefao::perseguir(float dt)
+void Chefao::perseguir(const float dt)
 {
     float dx;
 
@@ -71,7 +71,7 @@ void Chefao::perseguir(float dt)
     corpo.move(dx, 0.0f);
 }
 
-void Chefao::moverAleatorio(float dt)
+void Chefao::moverAleatorio(const float dt)
 {
     float dx;
     ajustaVelocidade();
