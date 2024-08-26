@@ -10,6 +10,8 @@ class Plataforma: public Entidades::Entidade
 {
 private:
     const bool ehFalsa;
+    const float empuxo;
+    sf::Vector2f vel;
     
 public:
     Plataforma(sf::Vector2f pos, sf::Vector2f tam);
@@ -17,4 +19,5 @@ public:
     ~Plataforma();
 
     const bool getFalsa() const;
+    void atualizar(const float dt);
 };

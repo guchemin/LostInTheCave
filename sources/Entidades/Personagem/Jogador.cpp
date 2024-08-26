@@ -109,6 +109,7 @@ const bool Jogador::podeAtacar(bool direita)
 
 void Jogador::atualizar(const float dt)
 {
+    cout << getPosicao().x << endl;
     tempoAtaque += dt;
 
     if(atacando)

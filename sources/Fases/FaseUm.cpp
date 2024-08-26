@@ -21,7 +21,6 @@ void Fases::FaseUm::criarMapa()
 {
     try 
     {
-
         std::ifstream arquivo("../resources/Fases/FaseUm.txt");
         if (!arquivo.is_open()) 
         {
@@ -58,7 +57,53 @@ void Fases::FaseUm::criarMapa()
     }
 }
 
-void Fases::FaseUm::atualizar(const float dt)
+void Fases::FaseUm::centralizarCamera()
+{
+    int tam = listaJogadores->getTam();
+    float media;
+    float diferenca;
+    float soma = 0.0f;
+
+    if(tam == 0)
+    {
+        // implementar GAME OVER
+    }
+    else if(tam == 1)
+    {
+        pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
+    }
+    else if(tam == 2)
+    {
+        diferenca = (*listaJogadores)[0]->getCentro().x - (*listaJogadores)[1]->getCentro().x;
+        soma = (*listaJogadores)[0]->getCentro().x + (*listaJogadores)[1]->getCentro().x;
+
+        media = soma/tam;
+
+        if(diferenca > 750.0f)
+        {
+            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
+        }
+        else if(diferenca < -750.0f)
+        {
+            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
+        }
+        else
+        {
+            pGraf->centralizarCamera(sf::Vector2f(media, 450.0f));
+        }
+    }
+
+    if(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f <= 0.0f)
+    {
+        pGraf->centralizarCamera(sf::Vector2f(pGraf->getTamanho().x / 2.0f, 450.0f));
+    }
+    else if(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f >= TAMANHO_MAPA_X)
+    {
+        pGraf->centralizarCamera(sf::Vector2f(TAMANHO_MAPA_X - pGraf->getTamanho().x / 2.0f, 450.0f));
+    }
+}
+
+void Fases::FaseUm::atualizar(const float dt) 
 {
     atualizarBackground();
     listaInimigos->atualizar(dt);

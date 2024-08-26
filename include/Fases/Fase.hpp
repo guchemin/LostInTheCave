@@ -43,14 +43,14 @@ namespace Fases
         void criarEntidade(sf::Vector2f pos, char caracter);
         void criarJogador(sf::Vector2f pos);
         void criarAtirador(sf::Vector2f pos);
-        void criarVoador(sf::Vector2f pos);
-        void criarChefao(sf::Vector2f pos);
+        void criarVoador(sf::Vector2f pos); //criado apenas na faseum
+        void criarChefao(sf::Vector2f pos); //criado apenas na fase dois
         void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
         void criarTeia(sf::Vector2f pos);
-        void criarEspinho(sf::Vector2f pos);
-        void criarPedra(sf::Vector2f pos);
+        void criarEspinho(sf::Vector2f pos); //criado apenas na faseum
+        void criarPedra(sf::Vector2f pos); //criado apenas na fase dois
 
-        void centralizarCamera();
+        virtual void centralizarCamera() = 0;
         void atualizarBackground();
         virtual void atualizar(const float dt) = 0;
         virtual void desenhar() = 0;

@@ -4,7 +4,8 @@ using namespace Entidades;
 
 Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam):
 Entidade(pos, tam, TIPO::PLATAFORMA),
-ehFalsa(!(bool)(rand() % 20 || tam.x == 50.0f))
+ehFalsa(!(bool)(rand() % 20 || tam.x == 50.0f)),
+empuxo(GRAVIDADE)
 {
     if(tam.x == 50.0f)
     {
@@ -29,12 +30,13 @@ ehFalsa(!(bool)(rand() % 20 || tam.x == 50.0f))
             corpo.setScale(1.1f, 1.5f);
             corpo.setOrigin(8.0f, 11.0f);
         }
-        
     }
+    vel = sf::Vector2f(0.0f, 0.0f);
 }
 
 Plataforma::Plataforma():
-ehFalsa(false)
+ehFalsa(false),
+empuxo(GRAVIDADE)
 {
 }
 
@@ -45,4 +47,10 @@ Plataforma::~Plataforma()
 const bool Plataforma::getFalsa() const
 {
     return ehFalsa;
+}
+
+void Plataforma::atualizar(const float dt)
+{
+    vel.y += GRAVIDADE * dt - empuxo * dt;
+    corpo.move(vel * dt);
 }

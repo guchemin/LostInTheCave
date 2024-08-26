@@ -47,19 +47,19 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
     Jogador* pJog = NULL;
     Projetil* pProj = NULL;
 
-    int tamObs = listaObstaculos->getTam();
-    int tamIni = listaInimigos->getTam();
-    int tamJog = listaJogadores->getTam();  
-    int tamProj = listaProjeteis->getTam();
-    int tamPlat = listaPlataformas->getTam();
+    Listas::Lista<Entidades::Entidade>::Iterador itProj = listaProjeteis->inicio();
+    Listas::Lista<Entidades::Entidade>::Iterador itInim = listaInimigos->inicio();
+    Listas::Lista<Entidades::Entidade>::Iterador itJog = listaJogadores->inicio();
+    Listas::Lista<Entidades::Entidade>::Iterador itPlat = listaPlataformas->inicio();
+    Listas::Lista<Entidades::Entidade>::Iterador itObs = listaObstaculos->inicio();
+    Listas::Lista<Entidades::Entidade>::Iterador itObs2 = listaObstaculos->inicio();
 
-    for(int i = 0; i < tamPlat; i++)
+    for(itPlat = listaPlataformas->inicio(); itPlat != listaPlataformas->fim(); ++itPlat)
     {
-        pPlat = static_cast<Plataforma*>((*listaPlataformas)[i]);
-
-        for(int j = 0; j < tamIni; j++)
+        pPlat = static_cast<Plataforma*>(*itPlat);
+        for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
         {
-            pInim = static_cast<Inimigo*>((*listaInimigos)[j]);
+            pInim = static_cast<Inimigo*>(*itInim);
 
             distcentro.x = pPlat->getCentro().x - pInim->getCentro().x;
             distcentro.y = pPlat->getCentro().y - pInim->getCentro().y;
@@ -72,35 +72,10 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
                 pInim->colide(pPlat, intersecao);
             }
         }
-        
-        for(int j = 0; j < tamJog; j++)
+
+        for(itObs = listaObstaculos->inicio(); itObs != listaObstaculos->fim(); ++itObs)
         {
-            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
-
-            distcentro.x = pPlat->getCentro().x - pJog->getCentro().x;
-            distcentro.y = pPlat->getCentro().y - pJog->getCentro().y;
-
-            intersecao.x = pPlat->getTamanho().x/2.0f + pJog->getTamanho().x/2.0f - fabs(distcentro.x);
-            intersecao.y = pPlat->getTamanho().y/2.0f + pJog->getTamanho().y/2.0f - fabs(distcentro.y);
-
-            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
-            {
-                if(pPlat->getFalsa())
-                {
-                    listaPlataformas->remover(pPlat);
-                    if(tamPlat > 0)
-                    {
-                        tamPlat--;
-                        i--;
-                    }
-                }
-                pJog->colide(pPlat, intersecao);
-            }
-        }
-
-        for(int j = 0; j < tamObs; j++)
-        {
-            pObs = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[j]);
+            pObs = static_cast<Obstaculos::Obstaculo*>(*itObs);
 
             distcentro.x = pPlat->getCentro().x - pObs->getCentro().x;
             distcentro.y = pPlat->getCentro().y - pObs->getCentro().y;
@@ -114,9 +89,9 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
             }
         }
 
-        for(int j = 0; j < tamProj; j++)
+        for(itProj = listaProjeteis->inicio(); itProj != listaProjeteis->fim(); ++itProj)
         {
-            pProj = static_cast<Projetil*>((*listaProjeteis)[j]);
+            pProj = static_cast<Projetil*>(*itProj);
 
             distcentro.x = pPlat->getCentro().x - pProj->getCentro().x;
             distcentro.y = pPlat->getCentro().y - pProj->getCentro().y;
@@ -129,14 +104,50 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
                 pProj->colide(pPlat, intersecao);
             }
         }
-    }
+    } 
+    
+    
 
-    for(int i = 0; i < tamObs; i++)
+    for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
     {
-        pObs = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[i]);
-        for(int j = 0; j < tamJog; j++)
+        pJog = static_cast<Jogador*>(*itJog);
+
+        itPlat = listaPlataformas->inicio();
+        while(itPlat != listaPlataformas->fim())  
         {
-            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
+            pPlat = static_cast<Plataforma*>(*itPlat);
+
+            distcentro.x = pPlat->getCentro().x - pJog->getCentro().x;
+            distcentro.y = pPlat->getCentro().y - pJog->getCentro().y;
+
+            intersecao.x = pPlat->getTamanho().x / 2.0f + pJog->getTamanho().x / 2.0f - fabs(distcentro.x);
+            intersecao.y = pPlat->getTamanho().y / 2.0f + pJog->getTamanho().y / 2.0f - fabs(distcentro.y);
+            
+            if (intersecao.x > 0.0f && intersecao.y > 0.0f)
+            {
+                if (pPlat->getFalsa())
+                {
+                    itPlat = listaPlataformas->remover(itPlat);
+                }
+                else
+                {
+                    pJog->colide(pPlat, intersecao);
+                    ++itPlat;
+                }
+            }
+            else
+            {
+                ++itPlat;
+            }
+        }
+    } 
+
+    for(itObs = listaObstaculos->inicio(); itObs != listaObstaculos->fim(); ++itObs)
+    {
+        pObs = static_cast<Obstaculos::Obstaculo*>(*itObs);
+        for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
+        {
+            pJog = static_cast<Jogador*>(*itJog);
 
             distcentro.x = pObs->getCentro().x - pJog->getCentro().x;
             distcentro.y = pObs->getCentro().y - pJog->getCentro().y;
@@ -155,9 +166,9 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
             }
         }
 
-        for(int j = i + 1; j < tamObs; j++)
+        for(itObs2 = itObs.getProx(); itObs2 != listaObstaculos->fim(); ++itObs2)
         {
-            pObs2 = static_cast<Obstaculos::Obstaculo*>((*listaObstaculos)[j]);
+            pObs2 = static_cast<Obstaculos::Obstaculo*>(*itObs2);
             if(pObs->getTipo() == TIPO::PEDRA && pObs2->getTipo() == TIPO::PEDRA)
             {
                 distcentro.x = pObs->getCentro().x - pObs2->getCentro().x;
@@ -175,15 +186,15 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         }
     }
 
-    for(int i = 0; i < tamIni; i++)
+    for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
     {
-        pInim = static_cast<Inimigo*>((*listaInimigos)[i]);
+        pInim = static_cast<Inimigo*>(*itInim);
         float menorDist = 999999.0f;
         float dist;
 
-        for(int j = 0; j < tamJog; j++)
+        for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
         {
-            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
+            pJog = static_cast<Jogador*>(*itJog);
 
             distcentro.x = pInim->getCentro().x - pJog->getCentro().x;
             distcentro.y = pInim->getCentro().y - pJog->getCentro().y;
@@ -211,14 +222,14 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         }
     }
     
-    for(int i = 0; i < tamJog; i++)
+    for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
     {
-        pJog = static_cast<Jogador*>((*listaJogadores)[i]);
+        pJog = static_cast<Jogador*>(*itJog);
         float menorDist = 999999.0f;
         float dist;
-        for(int j = 0; j < tamIni; j++)
+        for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
         {
-            pInim = static_cast<Inimigo*>((*listaInimigos)[j]);
+            pInim = static_cast<Inimigo*>(*itInim);
             dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
             if(dist < menorDist)
             {
@@ -243,13 +254,13 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         }
     }
 
-    for(int i = 0; i < tamProj; i++)
+    for(itProj = listaProjeteis->inicio(); itProj != listaProjeteis->fim(); ++itProj)
     {
-        pProj = static_cast<Projetil*>((*listaProjeteis)[i]);
+        pProj = static_cast<Projetil*>(*itProj);
 
-        for(int j = 0; j < tamJog; j++)
+        for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
         {
-            pJog = static_cast<Jogador*>((*listaJogadores)[j]);
+            pJog = static_cast<Jogador*>(*itJog);
 
             distcentro.x = pProj->getCentro().x - pJog->getCentro().x;
             distcentro.y = pProj->getCentro().y - pJog->getCentro().y;

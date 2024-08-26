@@ -16,11 +16,14 @@ namespace Listas
         ~ListaEntidades();
         
         void adicionar(Entidades::Entidade* entidade);
-        void remover(Entidades::Entidade* entidade);
+        Lista<Entidades::Entidade>::Iterador remover(Lista<Entidades::Entidade>::Iterador it);
         int getTam();
         void limpar();
         Entidades::Entidade* operator[](int pos);  
         void atualizar(const float dt);
         void desenhar();
+
+        Lista<Entidades::Entidade>::Iterador inicio() { return lista.inicio(); }
+        Lista<Entidades::Entidade>::Iterador fim() { return lista.fim(); }
     };
 };

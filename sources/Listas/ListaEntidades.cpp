@@ -19,9 +19,9 @@ void ListaEntidades::adicionar(Entidades::Entidade *entidade)
     lista.adicionar(entidade);
 }
 
-void ListaEntidades::remover(Entidades::Entidade *entidade)
+Listas::Lista<Entidades::Entidade>::Iterador ListaEntidades::remover(Listas::Lista<Entidades::Entidade>::Iterador it)
 {
-    lista.remover(entidade);
+    return lista.remover(it);
 }
 
 int Listas::ListaEntidades::getTam()
@@ -38,27 +38,34 @@ void Listas::ListaEntidades::atualizar(const float dt)
 {
     int tam = lista.getTam();
     Entidades::Entidade* ent = NULL;
-    for(int i = 0; i < tam; i++)
+    Lista<Entidades::Entidade>::Iterador it = lista.inicio();
+    while(it != lista.fim())
     {
-        ent = lista[i];
-        if(ent)
+        Entidades::Entidade* ent = *it;
+        if (ent)
         {
             ent->atualizar(dt);
-            if(ent->getTipo() == TIPO::JOGADOR || ent->getTipo() == TIPO::INIMIGO)
+            if (ent->getTipo() == TIPO::JOGADOR || ent->getTipo() == TIPO::INIMIGO)
             {
                 Personagem* pPer = static_cast<Personagem*>(ent);
-                if(pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
+                if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
                 {
-                    lista.remover(ent);
-                    if(tam > 0)
-                    {
-                        tam--;
-                        i--;
-                    }
+                    it = lista.remover(it);  // Use o iterador retornado para continuar a iteração corretamente
+                }
+                else
+                {
+                    ++it;
                 }
             }
+            else
+            {
+                ++it;
+            }
         }
-        ent = NULL;
+        else
+        {
+            ++it;
+        }
     }
 }
 

@@ -33,43 +33,6 @@ void Fases::Fase::setDoisJogadores(const bool doisJog)
     inicializar();
 }
 
-void Fases::Fase::centralizarCamera()
-{
-    int tam = listaJogadores->getTam();
-    float media;
-    float diferenca;
-    float soma = 0.0f;
-
-    if(tam == 0)
-    {
-        // implementar GAME OVER
-    }
-    else if(tam == 1)
-    {
-        pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
-    }
-    else if(tam == 2)
-    {
-        diferenca = (*listaJogadores)[0]->getCentro().x - (*listaJogadores)[1]->getCentro().x;
-        soma = (*listaJogadores)[0]->getCentro().x + (*listaJogadores)[1]->getCentro().x;
-
-        media = soma/tam;
-
-        if(diferenca > 750.0f)
-        {
-            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
-        }
-        else if(diferenca < -750.0f)
-        {
-            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
-        }
-        else
-        {
-            pGraf->centralizarCamera(sf::Vector2f(media, 450.0f));
-        }
-    }
-}
-
 void Fases::Fase::atualizarBackground()
 {
     background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
