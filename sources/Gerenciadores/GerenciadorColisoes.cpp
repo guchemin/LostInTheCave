@@ -169,19 +169,16 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
         for(itObs2 = itObs.getProx(); itObs2 != listaObstaculos->fim(); ++itObs2)
         {
             pObs2 = static_cast<Obstaculos::Obstaculo*>(*itObs2);
-            if(pObs->getTipo() == TIPO::PEDRA && pObs2->getTipo() == TIPO::PEDRA)
+            distcentro.x = pObs->getCentro().x - pObs2->getCentro().x;
+            distcentro.y = pObs->getCentro().y - pObs2->getCentro().y;
+
+            intersecao.x = pObs->getTamanho().x/2.0f + pObs2->getTamanho().x/2.0f - fabs(distcentro.x);
+            intersecao.y = pObs->getTamanho().y/2.0f + pObs2->getTamanho().y/2.0f - fabs(distcentro.y);
+
+            if(intersecao.x > 0.0f && intersecao.y > 0.0f)
             {
-                distcentro.x = pObs->getCentro().x - pObs2->getCentro().x;
-                distcentro.y = pObs->getCentro().y - pObs2->getCentro().y;
-
-                intersecao.x = pObs->getTamanho().x/2.0f + pObs2->getTamanho().x/2.0f - fabs(distcentro.x);
-                intersecao.y = pObs->getTamanho().y/2.0f + pObs2->getTamanho().y/2.0f - fabs(distcentro.y);
-
-                if(intersecao.x > 0.0f && intersecao.y > 0.0f)
-                {
-                    pObs->colide(pObs2, intersecao);
-                    pObs2->colide(pObs, intersecao);
-                }
+                pObs->colide(pObs2, intersecao);
+                pObs2->colide(pObs, intersecao);
             }
         }
     }

@@ -10,10 +10,17 @@ enum TipoBotao
 {
     FASE_1,
     FASE_2,
+    CARREGAR,
+    LEADERBOARD,
     UM_JOGADOR,
     DOIS_JOGADORES,
+    JOGAR_FASE2,
     SAIR,
-    CONTINUAR
+    CONTINUAR,
+    VOLTAR,
+    VOLTAR_MENU,
+    SALVAR,
+    SALVAR_PONTUACAO
 };
 
 class Botao : public Ente

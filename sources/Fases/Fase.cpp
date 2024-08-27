@@ -1,13 +1,17 @@
 #include "../../include/Fases/Fase.hpp"
 
-Fases::Fase::Fase(Estados::EstadoID id):
+Fases::Fase::Fase(Estados::EstadoID id, const int nAtira, const int nTeia):
+numTeia(nTeia),
+numAtirador(nAtira),
 Ente(),
 Estado(id),
 pEventos(GerenciadorEventos::getInstancia())
 {
 }
 
-Fases::Fase::Fase()
+Fases::Fase::Fase():
+numTeia(0),
+numAtirador(0)
 {
 }
 
@@ -36,69 +40,6 @@ void Fases::Fase::setDoisJogadores(const bool doisJog)
 void Fases::Fase::atualizarBackground()
 {
     background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
-}
-
-void Fases::Fase::criarEntidade(sf::Vector2f pos, char caracter) 
-{
-    switch (caracter)
-    {
-    case 'j':
-    {
-        criarJogador(pos);
-        break;
-    }
-    
-    case 'a':
-    {
-        criarAtirador(pos);
-        break;
-    }
-
-    case 'v':
-    {
-        criarVoador(pos);
-        break;
-    }
-
-    case 'c':
-    {
-        criarChefao(pos);
-        break;
-    }
-
-    case '#':
-    {
-        criarPlataforma(pos, sf::Vector2f(50.0f, 50.0f));
-        break;
-    }
-
-    case '-':
-    {
-        criarPlataforma(pos, sf::Vector2f(100.0f, 50.0f));
-        break;
-    }
-
-    case 't':
-    {
-        criarTeia(pos);
-        break;
-    }
-
-    case 'e':
-    {
-        criarEspinho(pos);
-        break;
-    }
-
-    case 'r':
-    {
-        criarPedra(pos);
-        break;
-    }
-    
-    default:
-        break;
-    }
 }
 
 void Fases::Fase::criarJogador(sf::Vector2f pos)
@@ -130,13 +71,6 @@ void Fases::Fase::criarAtirador(sf::Vector2f pos)
     listaProjeteis->adicionar(entProjetil);
 }
 
-void Fases::Fase::criarVoador(sf::Vector2f pos)
-{
-    Voador* voador = new Voador(pos);
-    Entidades::Entidade* entVoador = static_cast<Entidades::Entidade*>(voador);
-    listaInimigos->adicionar(entVoador);
-}
-
 void Fases::Fase::criarChefao(sf::Vector2f pos)
 {
     Chefao* chefao = new Chefao(pos);
@@ -158,16 +92,24 @@ void Fases::Fase::criarTeia(sf::Vector2f pos)
     listaObstaculos->adicionar(entTeia);
 }
 
-void Fases::Fase::criarEspinho(sf::Vector2f pos)
-{
-    Obstaculos::Espinho* espinho = new Obstaculos::Espinho(pos);
-    Entidades::Entidade* entEspinho = static_cast<Entidades::Entidade*>(espinho);
-    listaObstaculos->adicionar(entEspinho);
-}
-
 void Fases::Fase::criarPedra(sf::Vector2f pos)
 {
     Obstaculos::Pedra* pedra = new Obstaculos::Pedra(pos);
     Entidades::Entidade* entPedra = static_cast<Entidades::Entidade*>(pedra);
     listaObstaculos->adicionar(entPedra);
+}
+
+// metodo Box-Muller para transformar numeros aleatorios em uma distribuição normal
+float Fases::Fase::dist_normal(float media, float desvio) // feito com ajuda do ChatGPT para a parte de gerar números aleatórios
+{
+    static random_device rd;
+    static mt19937 gen(rd());
+    uniform_real_distribution<> dist(0.0, 1.0);
+
+    float u1 = dist(gen);
+    float u2 = dist(gen);
+    float z0 = sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
+    float z1 = sqrt(-2.0 * log(u1)) * sin(2.0 * M_PI * u2);
+    
+    return z0 * desvio + media;
 }

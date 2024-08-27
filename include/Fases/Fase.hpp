@@ -11,6 +11,8 @@
 #include "../Entidades/Plataforma.hpp"
 #include "../Ente.hpp"
 #include "../Gerenciadores/GerenciadorEstados.hpp"
+#include <cmath>
+#include <random>
 
 namespace Fases
 {
@@ -25,6 +27,9 @@ namespace Fases
         Gerenciadores::GerenciadorColisoes* pColisoes;
         Gerenciadores::GerenciadorEventos* pEventos;
 
+        const int numAtirador;
+        const int numTeia;
+
         Listas::ListaEntidades* listaJogadores;
         Listas::ListaEntidades* listaInimigos;
         Listas::ListaEntidades* listaObstaculos;
@@ -32,28 +37,30 @@ namespace Fases
         Listas::ListaEntidades* listaPlataformas;
 
     public:
-        Fase(Estados::EstadoID id);
+        Fase(Estados::EstadoID id, const int nAtira, const int nTeia);
         Fase();
         virtual ~Fase();
 
         void inicializar();
 
         virtual void criarMapa() = 0;
+        virtual void criarAleatorios() = 0;
         void setDoisJogadores(const bool doisJog);
-        void criarEntidade(sf::Vector2f pos, char caracter);
+        virtual void criarEntidade(sf::Vector2f pos, char caracter) = 0;
         void criarJogador(sf::Vector2f pos);
         void criarAtirador(sf::Vector2f pos);
-        void criarVoador(sf::Vector2f pos); //criado apenas na faseum
         void criarChefao(sf::Vector2f pos); //criado apenas na fase dois
         void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
         void criarTeia(sf::Vector2f pos);
-        void criarEspinho(sf::Vector2f pos); //criado apenas na faseum
         void criarPedra(sf::Vector2f pos); //criado apenas na fase dois
 
+        virtual void verificarFimDeJogo() = 0;
         virtual void centralizarCamera() = 0;
         void atualizarBackground();
         virtual void atualizar(const float dt) = 0;
         virtual void desenhar() = 0;
         virtual void executar() = 0;
+
+        float dist_normal(float media, float desvio);
     };
 };

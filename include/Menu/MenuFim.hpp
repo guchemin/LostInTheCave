@@ -3,18 +3,18 @@
 #include "Menu.hpp"
 #include "../Fases/Fase.hpp"
 
-namespace Menu
+namespace Menu 
 {
-    class MenuPausa : public Menu
+    class MenuFim : public Menu 
     {
     private:
         Fases::Fase* fase;
         sf::RectangleShape painel;
 
     public:
-        MenuPausa(Fases::Fase* f);
-        MenuPausa();
-        ~MenuPausa();
+        MenuFim(Fases::Fase* f);
+        MenuFim();
+        ~MenuFim();
 
         void criarBotoes();
         void setFase(Fases::Fase* f);

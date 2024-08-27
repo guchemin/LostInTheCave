@@ -9,7 +9,7 @@
 #include "Gerenciadores/GerenciadorEstados.hpp"
 #include "Fases/FaseUm.hpp"
 
-class Principal
+class Jogo
 {
 private:
     Gerenciadores::GerenciadorGrafico* pGraf;
@@ -17,8 +17,8 @@ private:
     Gerenciadores::GerenciadorEstados* pEstados;
 
 public:
-    Principal();
-    ~Principal();
+    Jogo();
+    ~Jogo();
 
     void executar();
 };

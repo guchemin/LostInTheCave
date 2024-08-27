@@ -59,6 +59,48 @@ void Obstaculos::Obstaculo::colide(Entidade *ent, const sf::Vector2f intersec)
         }
         break;
     }
+
+    case TIPO::ESPINHO:
+    {
+        if(getPosicao().x > ent->getPosicao().x)
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+        }
+        else
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+        }
+    
+        break;
+    }
+    
+    case TIPO::TEIA:
+    {
+        if(getPosicao().x > ent->getPosicao().x)
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+        }
+        else
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+        }
+    
+        break;
+    }
+    
+    case TIPO::PEDRA:
+    {
+        if(getPosicao().x > ent->getPosicao().x)
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+        }
+        else
+        {
+            setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+        }
+    
+        break;
+    }
     
     default:
         break;

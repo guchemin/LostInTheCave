@@ -3,6 +3,8 @@
 #include "../../include/Menu/MenuPrincipal.hpp"
 #include "../../include/Menu/MenuJogar.hpp"
 #include "../../include/Menu/MenuPausa.hpp"
+#include "../../include/Menu/MenuColocacao.hpp"
+#include "../../include/Menu/MenuFim.hpp"
 
 using namespace Gerenciadores;
 
@@ -55,6 +57,14 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
         break;
     }
 
+    case Estados::EstadoID::FaseDois:
+    {
+        Fases::FaseUm* fase = new Fases::FaseUm();
+        Estados::Estado* est = static_cast<Estados::Estado*>(fase);
+        estados.push(est);
+        break;
+    }
+
     case Estados::EstadoID::MenuPrincipal:
     {
         Menu::MenuPrincipal* menu = new Menu::MenuPrincipal();
@@ -63,9 +73,17 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
         break;
     }
 
-    case Estados::EstadoID::MenuJogar:
+    case Estados::EstadoID::MenuJogarUm:
     {
-        Menu::MenuJogar* menuJogar = new Menu::MenuJogar();
+        Menu::MenuJogar* menuJogar = new Menu::MenuJogar(Estados::EstadoID::MenuJogarUm);
+        Estados::Estado* est = static_cast<Estados::Estado*>(menuJogar);
+        estados.push(est);
+        break;
+    }
+
+    case Estados::EstadoID::MenuJogarDois:
+    {
+        Menu::MenuJogar* menuJogar = new Menu::MenuJogar(Estados::EstadoID::MenuJogarDois);
         Estados::Estado* est = static_cast<Estados::Estado*>(menuJogar);
         estados.push(est);
         break;
@@ -76,6 +94,23 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
         Fases::Fase* pFase = static_cast<Fases::Fase*>(estados.top());
         Menu::MenuPausa* menuPausa = new Menu::MenuPausa(pFase);
         Estados::Estado* est = static_cast<Estados::Estado*>(menuPausa);
+        estados.push(est);
+        break;
+    }
+
+    case Estados::EstadoID::MenuFim:
+    {
+        Fases::Fase* pFase = static_cast<Fases::Fase*>(estados.top());
+        Menu::MenuFim* menuFim = new Menu::MenuFim(pFase);
+        Estados::Estado* est = static_cast<Estados::Estado*>(menuFim);
+        estados.push(est);
+        break;
+    }
+
+    case Estados::EstadoID::MenuColocacao:
+    {
+        Menu::MenuColocacao* menuColocacao = new Menu::MenuColocacao();
+        Estados::Estado* est = static_cast<Estados::Estado*>(menuColocacao);
         estados.push(est);
         break;
     }

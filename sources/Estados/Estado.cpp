@@ -27,6 +27,11 @@ void Estados::Estado::adicionar(EstadoID estadoID)
     pEstados->adicionar(estadoID);
 }
 
+void Estados::Estado::setRemover(const bool rmv)
+{
+    remover = rmv;
+}
+
 void Estados::Estado::desenhar()
 {
 }

@@ -9,7 +9,9 @@ pMenu(pM)
     baixo = sf::Keyboard::Key::Down;
     enter = sf::Keyboard::Key::Enter;
 
-    if(pMenu->getEstadoID() == Estados::EstadoID::MenuJogar)
+    if(pMenu->getEstadoID() == Estados::EstadoID::MenuJogarUm || 
+       pMenu->getEstadoID() == Estados::EstadoID::MenuJogarDois ||
+       pMenu->getEstadoID() == Estados::EstadoID::MenuColocacao)
     {
         podeSelecionar = false;
     }

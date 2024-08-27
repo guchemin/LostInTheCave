@@ -1,10 +1,13 @@
 #include "../../include/Fases/FaseUm.hpp"
 
 Fases::FaseUm::FaseUm():
-Fase(Estados::EstadoID::FaseUm)
+Fase(Estados::EstadoID::FaseUm, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
+numEspinho((int)(rand() % (MAX_ESPINHO + 1))),
+numVoador((int)(rand() % (MAX_VOADOR + 1)))
 {
+    remover = false;
     background.setSize(pGraf->getTamanho());
-    if(!texturaFundo.loadFromFile(BACKGROUNG_FASE1))
+    if(!texturaFundo.loadFromFile(BACKGROUND_FASE1))
     {
         throw std::runtime_error("Erro ao carregar a textura de fundo!");
     }
@@ -55,9 +58,189 @@ void Fases::FaseUm::criarMapa()
     {
         std::cerr << "Erro inesperado: " << e.what() << std::endl;
     }
+    criarAleatorios();
 }
 
-void Fases::FaseUm::centralizarCamera()
+void Fases::FaseUm::criarAleatorios()
+{
+    float mediaX = TAMANHO_MAPA_X / 2.0f;
+    float desvioX = 3000.0f;
+    float posX = -1.0f;
+
+    float mediaY = pGraf->getTamanho().y / 2.0f;
+    float desvioY = 20.0f;
+    float posY = -1.0f;
+
+    for(int i = 0; i < numEspinho; i++)
+    {
+        while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+        {
+            posX = dist_normal(mediaX, desvioX);
+        }
+        while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+        {
+            posY = dist_normal(mediaY, desvioY);
+        }
+        criarEspinho(sf::Vector2f(posX, posY));
+        
+        posX = -1.0f;
+        posY = -1.0f;
+    }
+
+    for(int i = 0; i < numTeia; i++)
+    {
+        while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+        {
+            posX = dist_normal(mediaX, desvioX);
+        }
+        while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+        {
+            posY = dist_normal(mediaY, desvioY);
+        }
+        criarTeia(sf::Vector2f(posX, posY));
+        
+        posX = -1.0f;
+        posY = -1.0f;
+    }
+
+    for(int i = 0; i < numAtirador; i++)
+    {
+        while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+        {
+            posX = dist_normal(mediaX, desvioX);
+        }
+        while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+        {
+            posY = dist_normal(mediaY, desvioY);
+        }
+        criarAtirador(sf::Vector2f(posX, posY));
+        
+        posX = -1.0f;
+        posY = -1.0f;
+    }
+
+    for(int i = 0; i < numVoador; i++)
+    {
+        while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+        {
+            posX = dist_normal(mediaX, desvioX);
+        }
+        while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+        {
+            posY = dist_normal(mediaY, desvioY);
+        }
+        criarVoador(sf::Vector2f(posX, posY));
+        
+        posX = -1.0f;
+        posY = -1.0f;
+    }
+}
+
+void Fases::FaseUm::criarEntidade(sf::Vector2f pos, char caracter)
+{
+    switch (caracter)
+    {
+    case 'j':
+    {
+        criarJogador(pos);
+        break;
+    }
+    
+    case 'a':
+    {
+        criarAtirador(pos);
+        break;
+    }
+
+    case 'v':
+    {
+        criarVoador(pos);
+        break;
+    }
+
+    case 'c':
+    {
+        criarChefao(pos);
+        break;
+    }
+
+    case '#':
+    {
+        criarPlataforma(pos, sf::Vector2f(50.0f, 50.0f));
+        break;
+    }
+
+    case '-':
+    {
+        criarPlataforma(pos, sf::Vector2f(100.0f, 50.0f));
+        break;
+    }
+
+    case 't':
+    {
+        criarTeia(pos);
+        break;
+    }
+
+    case 'e':
+    {
+        criarEspinho(pos);
+        break;
+    }
+
+    case 'r':
+    {
+        criarPedra(pos);
+        break;
+    }
+    
+    default:
+        break;
+    }
+}
+
+void Fases::FaseUm::criarVoador(sf::Vector2f pos)
+{
+    Voador* voador = new Voador(pos);
+    Entidades::Entidade* entVoador = static_cast<Entidades::Entidade*>(voador);
+    listaInimigos->adicionar(entVoador);
+}
+
+void Fases::FaseUm::criarEspinho(sf::Vector2f pos)
+{
+    Obstaculos::Espinho* espinho = new Obstaculos::Espinho(pos);
+    Entidades::Entidade* entEspinho = static_cast<Entidades::Entidade*>(espinho);
+    listaObstaculos->adicionar(entEspinho);
+}
+
+void Fases::FaseUm::verificarFimDeJogo()
+{
+    if(listaJogadores->getTam() == 0)
+    {
+        // salvar pontuacao
+    }
+    else
+    {
+        if(listaJogadores->getTam() == 1)
+        {
+            if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X)
+            {
+                pEstados->adicionar(Estados::EstadoID::MenuFim);
+                remover = true;
+            }
+        }
+        else if(listaJogadores->getTam() == 2)
+        {
+            if((*listaJogadores)[0]->getCentro().x >= TAMANHO_MAPA_X && (*listaJogadores)[1]->getCentro().x >= TAMANHO_MAPA_X)
+            {
+                pEstados->adicionar(Estados::EstadoID::MenuFim);
+                remover = true;
+            }
+        }
+    }
+}
+
+void Fases::FaseUm::centralizarCamera() 
 {
     int tam = listaJogadores->getTam();
     float media;
@@ -81,11 +264,17 @@ void Fases::FaseUm::centralizarCamera()
 
         if(diferenca > 750.0f)
         {
-            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
+            if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X)
+                pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
+            else
+                pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
         }
         else if(diferenca < -750.0f)
         {
-            pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
+            if((*listaJogadores)[1]->getPosicao().x >= TAMANHO_MAPA_X)
+                pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
+            else
+                pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
         }
         else
         {
@@ -128,13 +317,20 @@ void Fases::FaseUm::desenhar()
 
 void Fases::FaseUm::executar()
 {
-
-    dt = relogio.restart().asSeconds();
-    if(dt > 1.0f / 60.0f)
+    if(remover)
     {
-        dt = 1.0f / 60.0f;
+        pEstados->remover();
     }
-    
-    atualizar(dt);
-    desenhar();
+    else
+    {
+        verificarFimDeJogo();
+        dt = relogio.restart().asSeconds();
+        if(dt > 1.0f / 60.0f)
+        {
+            dt = 1.0f / 60.0f;
+        }
+        
+        atualizar(dt);
+        desenhar();
+    }
 }

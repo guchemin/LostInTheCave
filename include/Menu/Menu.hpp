@@ -14,13 +14,13 @@ namespace Menu
     class Menu : public Ente, public Estados::Estado
     {
     protected:
+        sf::RectangleShape background;
         vector<Botao*> listaBotoes;
         vector<Botao*>::iterator it;
         sf::Vector2f tamBotoes;
         Texto titulo;
         Observadores::ObsMenu obs;
         bool ativo;
-        bool remover;
 
     public:
         Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl);
@@ -29,6 +29,7 @@ namespace Menu
 
         const bool getAtivo() const;
         void setAtivo(bool atv);
+        virtual void criarBotoes() = 0;
         void adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp);
         void irParaCima();
         void irParaBaixo();
@@ -36,6 +37,6 @@ namespace Menu
         const TipoBotao getBotaoSelecionado();
         void desenhar();
         virtual void selecionar(TipoBotao tipo) = 0;
-        virtual void executar();
+        virtual void executar() = 0;
     };
 }

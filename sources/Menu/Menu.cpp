@@ -9,6 +9,8 @@ titulo(),
 tamBotoes(tamB),
 obs(this)
 {
+    background.setSize(pGraf->getTamanho());
+    background.setPosition(0.0f, 0.0f);
     titulo.setInfo(ttl);
     titulo.setTamanhoFonte(128);
     titulo.setCor(sf::Color::White);
@@ -103,6 +105,7 @@ const TipoBotao Menu::Menu::getBotaoSelecionado()
 
 void Menu::Menu::desenhar()
 {
+    pGraf->desenhar(background);
     vector<Botao*>::iterator iterador = listaBotoes.begin();
     while(iterador != listaBotoes.end())
     {
@@ -110,11 +113,4 @@ void Menu::Menu::desenhar()
         iterador++;
     }
     titulo.desenhar();
-}
-
-void Menu::Menu::executar()
-{
-    setAtivo(true);
-    pGraf->limpar();
-    desenhar();
 }

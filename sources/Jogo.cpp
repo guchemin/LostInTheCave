@@ -1,8 +1,8 @@
-#include "../include/Principal.hpp"
+#include "../include/Jogo.hpp"
 
 using namespace Gerenciadores;
 
-Principal::Principal():
+Jogo::Jogo():
 pGraf(GerenciadorGrafico::getInstancia()),
 pEventos(GerenciadorEventos::getInstancia()),
 pEstados(GerenciadorEstados::getInstancia())
@@ -12,12 +12,12 @@ pEstados(GerenciadorEstados::getInstancia())
     executar();
 }
 
-Principal::~Principal()
+Jogo::~Jogo()
 {
     pGraf = NULL;
 }
 
-void Principal::executar()
+void Jogo::executar()
 {
     while(pGraf->estaAberta())
     {

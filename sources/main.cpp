@@ -1,8 +1,8 @@
-#include "../include/Principal.hpp"
+#include "../include/Jogo.hpp"
 
 int main() 
 {
-    Principal principal;
+    Jogo jogo;
 
     return 0;
 }
