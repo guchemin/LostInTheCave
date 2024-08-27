@@ -221,3 +221,12 @@ const bool Voador::getEndiabrado() const
 {
     return endiabrado;
 }
+
+float Voador::getPontuacao()
+{
+    if(endiabrado)
+    {
+        return 2 * PONTUACAO_VOADOR;
+    }
+    return PONTUACAO_VOADOR;
+}

@@ -3,6 +3,8 @@
 
 using namespace Entidades;
 
+float Jogador::pontuacao = 0.0f;
+
 Jogador::Jogador(sf::Vector2f pos, const ID i):
 id(i),
 obs(this),
@@ -404,4 +406,14 @@ void Jogador::colide(Entidade *ent, const sf::Vector2f intersec)
     default:
         break;
     }
+}
+
+float Jogador::getPontuacao()
+{
+    return pontuacao;
+}
+
+void Jogador::somaPontos(const float p)
+{
+    pontuacao += p;
 }

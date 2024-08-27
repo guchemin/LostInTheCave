@@ -20,7 +20,8 @@ enum TipoBotao
     VOLTAR,
     VOLTAR_MENU,
     SALVAR,
-    SALVAR_PONTUACAO
+    SALVAR_PONTUACAO,
+    CONFIRMAR,
 };
 
 class Botao : public Ente

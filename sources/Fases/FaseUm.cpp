@@ -223,7 +223,7 @@ void Fases::FaseUm::verificarFimDeJogo()
     {
         if(listaJogadores->getTam() == 1)
         {
-            if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X)
+            if((*listaJogadores)[0]->getPosicao().x >= 500) // substituir por TAMANHO_MAPA_X
             {
                 pEstados->adicionar(Estados::EstadoID::MenuFim);
                 remover = true;

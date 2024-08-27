@@ -182,3 +182,8 @@ sf::Vector2f Atirador::calcVel()
 
     return velProj;
 }
+
+float Atirador::getPontuacao()
+{
+    return PONTUACAO_ATIRADOR;
+}

@@ -50,7 +50,12 @@ void Listas::ListaEntidades::atualizar(const float dt)
                 Personagem* pPer = static_cast<Personagem*>(ent);
                 if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
                 {
-                    it = lista.remover(it);  // Use o iterador retornado para continuar a iteração corretamente
+                    it = lista.remover(it); 
+                    if(pPer->getTipo() == TIPO::INIMIGO)
+                    {
+                        Inimigo* inimigo = static_cast<Inimigo*>(pPer);
+                        Jogador::somaPontos(inimigo->getPontuacao());
+                    }
                 }
                 else
                 {

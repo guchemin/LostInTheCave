@@ -37,4 +37,5 @@ public:
     void agir();
     void atualizar(const float dt);
     void colide(Entidade *ent, const sf::Vector2f intersec);
+    float getPontuacao();
 };

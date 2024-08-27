@@ -42,6 +42,7 @@ private:
     float aceleracaoTeia;
     bool foiEspinhado;
     Observadores::ObsJogadores obs;
+    static float pontuacao;
 
 public:
     Jogador(sf::Vector2f pos, const ID i);
@@ -62,4 +63,6 @@ public:
     void ajustarVelocidade();
     void desacelerarTeia();
     void colide(Entidade* ent, const sf::Vector2f intersec);
+    static float getPontuacao();
+    static void somaPontos(const float p);
 };

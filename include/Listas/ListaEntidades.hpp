@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../Entidades/Personagem/Personagem.hpp"
+#include "../Entidades/Personagem/Inimigo.hpp"
 #include "Lista.hpp"
 
 namespace Listas

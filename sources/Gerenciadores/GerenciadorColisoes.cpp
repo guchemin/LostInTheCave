@@ -246,6 +246,7 @@ void Gerenciadores::GerenciadorColisoes::verificarColisoes()
                 if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
                 {
                     pInimAux->tiraVida(pJog->getDano());
+                    Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
                 }
             }
         }

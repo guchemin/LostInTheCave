@@ -5,6 +5,7 @@ pGraf(Gerenciadores::GerenciadorGrafico::getInstancia())
 {
     fonte.loadFromFile(caminhoFonte);
     texto.setFont(fonte);
+    setInfo("");
 }
 
 Texto::~Texto()
@@ -13,6 +14,7 @@ Texto::~Texto()
 
 void Texto::setInfo(string informacao)
 {
+    info = informacao;
     texto.setString(informacao);
 }
 

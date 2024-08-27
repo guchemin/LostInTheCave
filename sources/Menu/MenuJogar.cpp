@@ -15,6 +15,7 @@ Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), faseID, "LOST IN THE CAVE")
         background.setFillColor(sf::Color(230, 140, 255));
     }
     background.setTexture(&cenario);
+    ativo = true;
     // texturaFundoUmJog = pGraf->carregarTextura(BACKGROUND_UM_JOGADOR);
     // texturaFundoDoisJog = pGraf->carregarTextura(BACKGROUND_DOIS_JOGADORES);
 }

@@ -5,6 +5,7 @@
 #include "../../include/Menu/MenuPausa.hpp"
 #include "../../include/Menu/MenuColocacao.hpp"
 #include "../../include/Menu/MenuFim.hpp"
+#include "../../include/Menu/MenuSalvarPontuacao.hpp"
 
 using namespace Gerenciadores;
 
@@ -111,6 +112,15 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
     {
         Menu::MenuColocacao* menuColocacao = new Menu::MenuColocacao();
         Estados::Estado* est = static_cast<Estados::Estado*>(menuColocacao);
+        estados.push(est);
+        break;
+    }
+
+    case Estados::EstadoID::MenuSalvarPontuacao:
+    {
+        Fases::Fase* pFase = static_cast<Fases::Fase*>(estados.top());
+        Menu::MenuSalvarPontuacao* menuSalvarPontuacao = new Menu::MenuSalvarPontuacao(pFase);
+        Estados::Estado* est = static_cast<Estados::Estado*>(menuSalvarPontuacao);
         estados.push(est);
         break;
     }

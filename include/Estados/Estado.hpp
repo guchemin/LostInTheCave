@@ -18,7 +18,8 @@ namespace Estados
         MenuJogarDois,
         MenuPausa,
         MenuColocacao,
-        MenuFim
+        MenuFim,
+        MenuSalvarPontuacao,
     };
 
     class Estado

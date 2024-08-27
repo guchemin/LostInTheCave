@@ -11,6 +11,10 @@
 #define DANO_CHEFAO 20.0f
 #define DANO_VOADOR 5.0f
 
+#define PONTUACAO_ATIRADOR 75.0f
+#define PONTUACAO_CHEFAO 250.0f
+#define PONTUACAO_VOADOR 150.0f
+
 class Inimigo: public Personagem
 {
 protected:
@@ -28,4 +32,5 @@ public:
     virtual void atacar() = 0;
     virtual void agir() = 0;
     virtual void colide(Entidade* ent, const sf::Vector2f intersec);
+    virtual float getPontuacao() = 0;
 };

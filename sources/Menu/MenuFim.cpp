@@ -55,18 +55,20 @@ void Menu::MenuFim::selecionar(TipoBotao tipo)
                 Estado* est = pEstados->getEstadoAtual();
                 est->setDoisJogadores(true);
                 est = NULL;
-                remover = true;
                 break;
             }
 
-            // case TipoBotao::SALVAR_PONTUACAO:
-            // {    
-            // }
+            case TipoBotao::SALVAR_PONTUACAO:
+            {   
+                pEstados->adicionar(Estados::EstadoID::MenuSalvarPontuacao);
+                setAtivo(false);
+                break;
+            }
 
             case TipoBotao::VOLTAR_MENU:
             {
                 remover = true;
-                ativo = false;
+                setAtivo(false);
                 break;
             }
             default:

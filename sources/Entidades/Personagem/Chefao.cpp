@@ -227,4 +227,9 @@ void Chefao::colide(Entidade *ent, const sf::Vector2f intersec)
     default:
         break;
     }
+
+}
+float Chefao::getPontuacao()
+{
+    return PONTUACAO_CHEFAO;
 }

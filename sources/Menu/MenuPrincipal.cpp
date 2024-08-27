@@ -103,6 +103,5 @@ void Menu::MenuPrincipal::executar()
         mudarBackground(getBotaoSelecionado());
         setAtivo(true);
         desenhar();
-        cout << "desenhou" << endl;
     }
 }

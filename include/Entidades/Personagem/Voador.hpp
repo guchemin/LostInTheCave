@@ -24,4 +24,5 @@ public:
     void atualizar(const float dt);
     void colide(Entidade* ent, const sf::Vector2f intersec);
     const bool getEndiabrado() const;
+    float getPontuacao();
 };

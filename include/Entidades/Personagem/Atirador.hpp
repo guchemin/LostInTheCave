@@ -28,4 +28,5 @@ public:
     void agir();
     void atualizar(const float dt);
     sf::Vector2f calcVel();
+    float getPontuacao();
 };
