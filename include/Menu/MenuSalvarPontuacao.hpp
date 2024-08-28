@@ -12,8 +12,9 @@ namespace Menu
         Gerenciadores::GerenciadorArquivos gArquivo;
         Fases::Fase* fase;
         Texto nomeTexto;
+        Texto pontuacaoTexto;
         std::string nomeString;
-        sf::Font fonte;
+        sf::RectangleShape painel;
 
     public:
         MenuSalvarPontuacao(Fases::Fase* f);

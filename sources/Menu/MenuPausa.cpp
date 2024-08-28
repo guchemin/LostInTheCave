@@ -81,7 +81,6 @@ void Menu::MenuPausa::executar()
         fase->desenhar();
         pGraf->desenhar(background);
         pGraf->desenhar(painel);
-        titulo.desenhar();
         desenhar();
     }
 }

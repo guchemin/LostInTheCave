@@ -7,21 +7,38 @@
 using namespace Menu;
 
 MenuSalvarPontuacao::MenuSalvarPontuacao(Fases::Fase* f):
+Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuSalvarPontuacao, "Salvar Pontuacao"),
 fase(f),
 gArquivo(),
 nomeTexto(),
 nomeString(),
-Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "Salvar Pontuacao")
+pontuacaoTexto()
 {
+    background.setSize(pGraf->getTamanho());
+    background.setFillColor(sf::Color(0, 0, 0, 80));
+    painel.setSize(sf::Vector2f(pGraf->getTamanho().x / 1.4f, pGraf->getTamanho().y));
+    painel.setPosition(pGraf->getCentro().x - painel.getSize().x / 2.0f, 0.0f);
+    painel.setFillColor(sf::Color(0, 0, 0, 200));
+
     nomeString = "";
-    cout << "string vazia: " << nomeString.empty() << endl;
+
+    pontuacaoTexto.setInfo("PONTUACAO: " + std::to_string(Jogador::getPontuacao()));
+    pontuacaoTexto.setTamanhoFonte(64);
+    pontuacaoTexto.setCor(sf::Color::White);
+    pontuacaoTexto.setPos(sf::Vector2f(pGraf->getCentro().x - pontuacaoTexto.getTamanho().x / 2.0f, 250));
+    
+    nomeTexto.setInfo("DIGITE SEU NOME: ");
+    nomeTexto.setTamanhoFonte(48);
+    nomeTexto.setCor(sf::Color::White);
+    nomeTexto.setPos(sf::Vector2f(pGraf->getCentro().x - nomeTexto.getTamanho().x / 2.0f, pGraf->getCentro().y - nomeTexto.getTamanho().y));
+
     alinharTexto();
     criarBotoes();
-    fonte.loadFromFile("../assets/fonts/fonteJogo.ttf");
+    ativo = true;
 }
 
 MenuSalvarPontuacao::MenuSalvarPontuacao():
-fase(nullptr), gArquivo(), Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "Salvar Pontuacao")
+fase(nullptr), gArquivo(), Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "oiiiii")
 {
     alinharTexto();
     criarBotoes();
@@ -33,44 +50,56 @@ MenuSalvarPontuacao::~MenuSalvarPontuacao()
 
 void MenuSalvarPontuacao::alinharTexto() 
 {
-    // Configura o texto para o nome do jogador
-    nomeTexto.setTamanhoFonte(30);
-    nomeTexto.setPos(sf::Vector2f(400.0f, 200.0f)); // Posição para entrada do nome
-    nomeTexto.setCor(sf::Color::White);
+    nomeTexto.setPos(sf::Vector2f(pGraf->getCentro().x - nomeTexto.getTamanho().x / 2.0f, pGraf->getCentro().y - nomeTexto.getTamanho().y)); 
 }
 
 void MenuSalvarPontuacao::criarBotoes()
 {
-    adicionarBotao("SALVAR", sf::Vector2f(400, 500), TipoBotao::CONFIRMAR);
-    adicionarBotao("SAIR", sf::Vector2f(400, 550), TipoBotao::SAIR);
+    float posX = pGraf->getCentro().x - tamBotoes.x / 2.0f;
+    float posY = pGraf->getCentro().y + tamBotoes.y / 2.0f;
+
+    adicionarBotao("SALVAR", sf::Vector2f(posX, posY), TipoBotao::CONFIRMAR);
+    adicionarBotao("SAIR", sf::Vector2f(posX, posY + tamBotoes.y * 1.2f), TipoBotao::SAIR);
+    
+    inicializarBotoes();
 }
 
 void MenuSalvarPontuacao::adicionarCaracter(std::string c)
 {
-    if (!this) {
+    if(nomeString.size() >= 10)
+    {
+        return;
+    }
+
+    if (!this) 
+    {
         std::cerr << "Erro: o ponteiro 'this' é inválido!" << std::endl;
         return;
     }
 
     nomeString.append(c);
-    cout << "Nome: " << nomeString << endl;
+
+    string aux = nomeTexto.getInfo();
+    nomeTexto.setInfo(aux + c);
+    alinharTexto();
 }
 
 void MenuSalvarPontuacao::removerCaracter()
 {
-    // if (!textoNome.empty())
-    // {
-    //     textoNome.pop_back();
-    //     nomeJogador.setString(textoNome); // Atualiza o texto exibido na tela
-    // }
+    if (!nomeString.empty())
+    {
+        nomeString.pop_back();
+    }
 }
 
 void MenuSalvarPontuacao::salvarColocacao()
 {
-    std::ofstream arquivo("leaderboard.txt", std::ios::app);
+    std::ofstream arquivo("../resources/leaderboard.txt", std::ios::app);
     if (arquivo.is_open())
     {
-        arquivo << nomeString << " - " << Jogador::getPontuacao() << std::endl;
+        cout << "Nome: " << nomeString << endl;
+        arquivo << nomeString << std::endl;
+        arquivo << Jogador::getPontuacao() << std::endl;
         arquivo.close();
     }
 }
@@ -80,12 +109,16 @@ void MenuSalvarPontuacao::selecionar(TipoBotao tipo)
     switch (tipo)
     {
     case TipoBotao::CONFIRMAR:
+    {    
         salvarColocacao();
-        // Aqui você pode adicionar lógica para mudar o estado ou voltar ao menu principal
+        remover = true;
         break;
+    }
     case TipoBotao::SAIR:
-        // Lógica para cancelar a operação e retornar ao menu anterior
+    {
+        remover = true;
         break;
+    }
     default:
         break;
     }
@@ -99,11 +132,13 @@ void MenuSalvarPontuacao::executar()
     }
     else
     {
+        setAtivo(true);
         fase->desenhar();
         pGraf->desenhar(background);
-        // pGraf->desenhar(painel);
-        titulo.desenhar();
+        pGraf->desenhar(painel);
         desenhar();
+        nomeTexto.desenhar();
+        pontuacaoTexto.desenhar();
     }
 }
 

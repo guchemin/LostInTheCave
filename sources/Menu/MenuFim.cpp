@@ -75,6 +75,7 @@ void Menu::MenuFim::selecionar(TipoBotao tipo)
             {   
                 pEstados->adicionar(Estados::EstadoID::MenuSalvarPontuacao);
                 setAtivo(false);
+                remover = true;
                 break;
             }
 

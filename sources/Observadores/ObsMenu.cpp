@@ -59,7 +59,8 @@ void Observadores::ObsMenu::notificarSolta(const sf::Keyboard::Key tecla)
         podeSelecionar = true;
     }
 
-    if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
+    if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao && 
+       pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
     {
         if(tecladoEspecial[tecla] == "Backspace")
         {
