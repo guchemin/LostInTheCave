@@ -41,6 +41,19 @@ void Menu::MenuFim::setFase(Fases::Fase *f)
     }
 }
 
+Fases::Fase *Menu::MenuFim::getFase()
+{
+    if(fase)
+    {
+        return fase;
+    }
+    else
+    {
+        cout << "Fase nao encontrada" << endl;
+        return NULL;
+    }
+}
+
 void Menu::MenuFim::selecionar(TipoBotao tipo)
 {
     if(ativo)

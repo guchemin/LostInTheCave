@@ -1,11 +1,12 @@
 #include "../../../include/Menu/Botao/Texto.hpp"
 
 Texto::Texto(const char *caminhoFonte):
-pGraf(Gerenciadores::GerenciadorGrafico::getInstancia())
+pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
+texto()
 {
     fonte.loadFromFile(caminhoFonte);
     texto.setFont(fonte);
-    setInfo("");
+    texto.setString("palavra");
 }
 
 Texto::~Texto()
@@ -14,8 +15,14 @@ Texto::~Texto()
 
 void Texto::setInfo(string informacao)
 {
-    info = informacao;
-    texto.setString(informacao);
+    // info = informacao;
+    if(informacao.empty())
+    {
+        texto.setString("");
+        cout << "Texto vazio" << endl;
+    }
+    else
+        texto.setString(informacao);
 }
 
 void Texto::setPos(sf::Vector2f pos)
@@ -33,9 +40,13 @@ void Texto::setTamanhoFonte(int tam)
     texto.setCharacterSize(tam);
 }
 
-const string Texto::getInfo()
+string Texto::getInfo()
 {
-    return info;
+    if(texto.getString().isEmpty())
+    {
+        return "";
+    }
+    return texto.getString();
 }
 
 const sf::Vector2f Texto::getTamanho()

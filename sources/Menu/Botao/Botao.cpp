@@ -1,6 +1,6 @@
 #include "../../../include/Menu/Botao/Botao.hpp"
 
-Botao::Botao(string txt, sf::Vector2f pos, TipoBotao tp):
+Botao::Botao(sf::Vector2f pos, TipoBotao tp, string txt):
 tipo(tp),
 texto()
 {

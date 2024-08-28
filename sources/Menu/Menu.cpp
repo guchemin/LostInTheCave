@@ -50,7 +50,7 @@ void Menu::Menu::setAtivo(bool atv)
 
 void Menu::Menu::adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp)
 {
-    Botao* pBotao = new Botao(texto, pos, tp);
+    Botao* pBotao = new Botao(pos, tp, texto);
     if(pBotao)
     {
         listaBotoes.push_back(pBotao);

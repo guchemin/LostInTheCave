@@ -118,7 +118,8 @@ void GerenciadorEstados::adicionar(Estados::EstadoID estadoID)
 
     case Estados::EstadoID::MenuSalvarPontuacao:
     {
-        Fases::Fase* pFase = static_cast<Fases::Fase*>(estados.top());
+        Menu::MenuFim* pMenuFim = static_cast<Menu::MenuFim*>(estados.top());
+        Fases::Fase* pFase = pMenuFim->getFase();
         Menu::MenuSalvarPontuacao* menuSalvarPontuacao = new Menu::MenuSalvarPontuacao(pFase);
         Estados::Estado* est = static_cast<Estados::Estado*>(menuSalvarPontuacao);
         estados.push(est);

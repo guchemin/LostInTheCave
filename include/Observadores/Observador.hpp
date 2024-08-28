@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "../Gerenciadores/GerenciadorInputs.hpp"
 #include "../Gerenciadores/GerenciadorEstados.hpp"
+#include <map>
+#include <string>
 
 using namespace Gerenciadores;
 
@@ -13,8 +15,8 @@ namespace Observadores
     protected:
         GerenciadorInputs* pInp;
         GerenciadorEstados* pEstados;
-        map<sf::Keyboard::Key, char> teclado;
-        map<sf::Keyboard::Key, string> tecladoEspecial;
+        map<sf::Keyboard::Key, std::string> keys;
+        map<sf::Keyboard::Key, std::string> tecladoEspecial;
 
     public:
         Observador();

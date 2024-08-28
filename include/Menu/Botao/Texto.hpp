@@ -15,18 +15,18 @@ class Texto
 private:
     sf::Text texto;
     sf::Font fonte;
-    string info;
+    // string info;
     Gerenciadores::GerenciadorGrafico* pGraf;
 
 public: 
     Texto(const char* caminhoFonte = CAMINHO_FONTE);
     ~Texto();
 
-    void setInfo(string informacao);
+    void setInfo(string informacao = "alo");
     void setPos(sf::Vector2f pos);
     void setCor(sf::Color cor);
     void setTamanhoFonte(int tam);
-    const string getInfo();
+    string getInfo();
     const sf::Vector2f getTamanho();
     void desenhar();
 };

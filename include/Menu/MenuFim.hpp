@@ -18,6 +18,7 @@ namespace Menu
 
         void criarBotoes();
         void setFase(Fases::Fase* f);
+        Fases::Fase* getFase();
         void selecionar(TipoBotao tipo);
         void executar();
     };

@@ -58,7 +58,8 @@ void Observadores::ObsMenu::notificarSolta(const sf::Keyboard::Key tecla)
     {
         podeSelecionar = true;
     }
-    if(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
+
+    if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
     {
         if(tecladoEspecial[tecla] == "Backspace")
         {
@@ -67,25 +68,30 @@ void Observadores::ObsMenu::notificarSolta(const sf::Keyboard::Key tecla)
         }
         else 
         {
-            for(int i = 97; i < 123; i++)
-            {
-                if(teclado[tecla] == i)
-                {
-                    Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
-                    m->adicionarCaracter(teclado[tecla]);
-                    break;
-                }
-            }
-            for(int i = 48; i < 58; i++)
-            {
-                if(teclado[tecla] == i)
-                {
-                    cout << i << endl;
-                    Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
-                    m->adicionarCaracter(teclado[tecla]);
-                    break;
-                }
-            }
+            std::map <sf::Keyboard::Key,std::string> :: iterator it = keys.find(tecla);
+            if (it == keys.end())
+                return;
+            Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
+            m->adicionarCaracter(it->second);
+            // for(int i = 97; i < 123; i++)
+            // {
+            //     if(keys == i)
+            //     {
+            //         Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
+            //         m->adicionarCaracter(teclado[tecla]);
+            //         break;
+            //     }
+            // }
+            // for(int i = 48; i < 58; i++)
+            // {
+            //     if(teclado[tecla] == i)
+            //     {
+            //         cout << i << endl;
+            //         Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
+            //         m->adicionarCaracter(teclado[tecla]);
+            //         break;
+            //     }
+            // }
         }
     }
 }
