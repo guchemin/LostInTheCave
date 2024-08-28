@@ -30,6 +30,7 @@ namespace Entidades
             Chefao();
             ~Chefao();
 
+            virtual nlohmann::json salvarJogo();
             void inicializarAnimacao();
             void atualizarAnimacao();
             void perseguir(const float dt);

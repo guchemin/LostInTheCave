@@ -11,13 +11,15 @@ namespace Entidades
         class Espinho : public Obstaculo
         {
         private:
-            const float afiado;
+            float afiado;
             
         public:
             Espinho(sf::Vector2f pos);
             Espinho();
             ~Espinho();
 
+            virtual nlohmann::json salvarJogo();
+            void setAfiado(float afd);
             const float getAfiado() const;
         };
     }

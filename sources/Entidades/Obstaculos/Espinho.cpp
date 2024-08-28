@@ -23,6 +23,18 @@ namespace Entidades
         {
         }
 
+        nlohmann::json Espinho::salvarJogo()
+        {
+            nlohmann::json j = Obstaculo::salvarJogo();
+            j["afiado"] = afiado;
+            return j;
+        }
+
+        void Espinho::setAfiado(float afd)
+        {
+            afiado = afd;
+        }
+
         const float Espinho::getAfiado() const
         {
             return afiado;

@@ -25,7 +25,7 @@ namespace Estados
             bool ativo;
 
         public:
-            Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl = "alo");
+            Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl);
             Menu();
             virtual ~Menu();
 

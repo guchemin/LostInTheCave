@@ -35,6 +35,51 @@ namespace Estados
             criarMapa();
         }
 
+        void Fase::salvarJogo()
+        {
+            nlohmann::json j;
+            j["tipo"] = Estados::Estado::getEstadoID();
+            Listas::Lista<Entidades::Entidade>::Iterador itInim = listaInimigos->inicio();
+            Listas::Lista<Entidades::Entidade>::Iterador itJog = listaJogadores->inicio();
+            Listas::Lista<Entidades::Entidade>::Iterador itPlat = listaPlataformas->inicio();
+            Listas::Lista<Entidades::Entidade>::Iterador itObst = listaObstaculos->inicio();
+            Listas::Lista<Entidades::Entidade>::Iterador itProj = listaProjeteis->inicio();
+
+            for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
+            {
+                if(*itInim)
+                    j["inimigos"].push_back((*itInim)->salvarJogo());
+            }
+
+            for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
+            {
+                if(*itJog)
+                    j["jogadores"].push_back((*itJog)->salvarJogo());
+            }
+
+            for(itPlat = listaPlataformas->inicio(); itPlat != listaPlataformas->fim(); ++itPlat)
+            {
+                if(*itPlat)
+                    j["plataformas"].push_back((*itPlat)->salvarJogo());
+            }
+
+            for(itObst = listaObstaculos->inicio(); itObst != listaObstaculos->fim(); ++itObst)
+            {
+                if(*itObst)
+                    j["obstaculos"].push_back((*itObst)->salvarJogo());
+            }
+
+            for(itProj = listaProjeteis->inicio(); itProj != listaProjeteis->fim(); ++itProj)
+            {
+                if(*itProj)
+                    j["projeteis"].push_back((*itProj)->salvarJogo());
+            }
+
+            std::ofstream file("../resources/save.json");
+            file << j.dump(4);
+            file.close();
+        }
+
         void Fase::setDoisJogadores(const bool doisJog)
         {
             doisJogadores = doisJog;

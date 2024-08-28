@@ -27,6 +27,14 @@ namespace Entidades
         {
         }
 
+        nlohmann::json Obstaculo::salvarJogo()
+        {
+            nlohmann::json j = Entidade::salvarJogo();
+            j["danoso"] = danoso;
+            j["velY"] = velY;
+            return j;
+        }
+
         bool Obstaculo::getDanoso()
         {
             return danoso;

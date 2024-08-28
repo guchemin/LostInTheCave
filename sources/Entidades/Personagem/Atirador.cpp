@@ -5,7 +5,7 @@ namespace Entidades
     namespace Personagem
     {
         Atirador::Atirador(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(50.0f, 70.0f))
+        Inimigo(pos, sf::Vector2f(50.0f, 70.0f), TIPO::ATIRADOR)
         {
             vel = sf::Vector2f(0.0f, 0.0f);
             pProjetil = NULL;
@@ -24,6 +24,12 @@ namespace Entidades
         Atirador::~Atirador()
         {
             pProjetil = NULL;
+        }
+
+        nlohmann::json Atirador::salvarJogo()
+        {
+            nlohmann::json j = Inimigo::salvarJogo();
+            return j;
         }
 
         void Atirador::inicializarAnimacao()

@@ -45,6 +45,7 @@ namespace Estados
 
             void inicializar();
 
+            void salvarJogo();
             virtual void criarMapa() = 0;
             virtual void criarAleatorios() = 0;
             void setDoisJogadores(const bool doisJog);

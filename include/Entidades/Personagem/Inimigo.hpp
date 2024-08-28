@@ -26,10 +26,11 @@ namespace Entidades
             sf::Vector2f posInicial;
 
         public:
-            Inimigo(sf::Vector2f pos, sf::Vector2f tam);
+            Inimigo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
             Inimigo();
             virtual ~Inimigo();
 
+            virtual nlohmann::json salvarJogo();
             virtual bool consegueAtacar() = 0;
             void setJogador(Jogador* jog);
             sf::Vector2f getPosJogador();

@@ -58,6 +58,7 @@ namespace Gerenciadores
             break;
         }
 
+        // ------------------- MUDAR PARA FASE DOIS
         case Estados::EstadoID::FaseDois:
         {
             Estados::Fases::FaseUm* fase = new Estados::Fases::FaseUm();
@@ -118,11 +119,21 @@ namespace Gerenciadores
 
         case Estados::EstadoID::MenuSalvarPontuacao:
         {
-            Estados::Menu::MenuFim* pMenuFim = static_cast<Estados::Menu::MenuFim*>(estados.top());
-            Estados::Fases::Fase* pFase = pMenuFim->getFase();
-            Estados::Menu::MenuSalvarPontuacao* menuSalvarPontuacao = new Estados::Menu::MenuSalvarPontuacao(pFase);
-            Estados::Estado* est = static_cast<Estados::Estado*>(menuSalvarPontuacao);
-            estados.push(est);
+            if(estados.top()->getEstadoID() == Estados::EstadoID::MenuFim)
+            {
+                Estados::Menu::MenuFim* pMenuFim = static_cast<Estados::Menu::MenuFim*>(estados.top());
+                Estados::Fases::Fase* pFase = pMenuFim->getFase();
+                Estados::Menu::MenuSalvarPontuacao* menuSalvarPontuacao = new Estados::Menu::MenuSalvarPontuacao(pFase);
+                Estados::Estado* est = static_cast<Estados::Estado*>(menuSalvarPontuacao);
+                estados.push(est);
+            }
+            else if(estados.top()->getEstadoID() == Estados::EstadoID::FaseUm || estados.top()->getEstadoID() == Estados::EstadoID::FaseDois)
+            {
+                Estados::Fases::Fase* pFase = static_cast<Estados::Fases::Fase*>(estados.top());
+                Estados::Menu::MenuSalvarPontuacao* menuSalvarPontuacao = new Estados::Menu::MenuSalvarPontuacao(pFase);
+                Estados::Estado* est = static_cast<Estados::Estado*>(menuSalvarPontuacao);
+                estados.push(est);
+            }
             break;
         }
         

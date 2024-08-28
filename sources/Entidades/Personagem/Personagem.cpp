@@ -29,7 +29,16 @@ namespace Entidades
         {
         }
 
-        void Personagem::setDirecao(const bool dir) 
+        nlohmann::json Personagem::salvarJogo()
+        {
+            nlohmann::json j = Entidade::salvarJogo();
+            j["vel"] = {vel.x, vel.y};
+            j["direcao"] = direcao;
+            j["vida"] = vida;
+            return j;
+        }
+
+        void Personagem::setDirecao(const bool dir)
         {
             direcao = dir;
         }

@@ -12,13 +12,14 @@ namespace Entidades
         class Voador: public Inimigo::Inimigo
         {
         private:
-            const bool endiabrado; //se for endiabrado ele voa mais rapido
+            bool endiabrado;
 
         public:
             Voador(sf::Vector2f pos);
             Voador();
             ~Voador();
 
+            virtual nlohmann::json salvarJogo();
             void inicializarAnimacao();
             void atualizarAnimacao();
             bool consegueAtacar();
@@ -27,6 +28,7 @@ namespace Entidades
             void agir();
             void executar(const float dt);
             void colide(Entidade* ent, const sf::Vector2f intersec);
+            void setEndiabrado(const bool endb);
             const bool getEndiabrado() const;
             float getPontuacao();
         };

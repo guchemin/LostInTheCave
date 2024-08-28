@@ -5,7 +5,7 @@ namespace Entidades
     namespace Personagem
     {
         Chefao::Chefao(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(80.0f, 120.0f))
+        Inimigo(pos, sf::Vector2f(80.0f, 120.0f), TIPO::CHEFAO)
         {
             vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
             tempoAtaque = COOLDOWN_CHEFAO;
@@ -25,6 +25,13 @@ namespace Entidades
 
         Chefao::~Chefao()
         {
+        }
+
+        nlohmann::json Chefao::salvarJogo()
+        {
+            nlohmann::json j = Inimigo::salvarJogo();
+            j["estaPerseguindo"] = estaPerseguindo;
+            return j;
         }
 
         void Chefao::inicializarAnimacao()
@@ -227,7 +234,31 @@ namespace Entidades
                 }
                 break;
             }
-            case TIPO::INIMIGO:
+            case TIPO::ATIRADOR:
+            {
+                if(getPosicao().x > ent->getPosicao().x)
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+                }
+                else
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                }
+                break;
+            }
+            case TIPO::VOADOR:
+            {
+                if(getPosicao().x > ent->getPosicao().x)
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+                }
+                else
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                }
+                break;
+            }
+            case TIPO::CHEFAO:
             {
                 if(getPosicao().x > ent->getPosicao().x)
                 {

@@ -17,8 +17,8 @@ namespace Entidades
             Obstaculo();
             ~Obstaculo();
             
+            virtual nlohmann::json salvarJogo();
             bool getDanoso();
-
             virtual void colide(Entidade* ent, const sf::Vector2f intersec);
             virtual void executar(const float dt);
         };

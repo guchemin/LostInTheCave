@@ -53,6 +53,7 @@ namespace Entidades
             Jogador();
             ~Jogador();
 
+            virtual nlohmann::json salvarJogo();
             void inicializarAnimacao();
             void atualizarAnimacao();
             void autorizarPulo(const bool autoriza);

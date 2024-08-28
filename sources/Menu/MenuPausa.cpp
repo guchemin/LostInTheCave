@@ -59,7 +59,8 @@ namespace Estados
 
                 case TipoBotao::SALVAR:
                 {
-                    //fase->salvarJogada();
+                    fase->salvarJogo();
+                    fase->setRemover(true);
                     remover = true;
                     break;
                 }

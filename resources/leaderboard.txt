@@ -1,2 +1,4 @@
 lenglet 105
 alecrim 0
+alecrimdor 0
+alerquinad 0

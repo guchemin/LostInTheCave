@@ -5,7 +5,7 @@ namespace Entidades
     namespace Personagem
     {
         Voador::Voador(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(35.0f, 50.0f)),
+        Inimigo(pos, sf::Vector2f(35.0f, 50.0f), TIPO::VOADOR),
         endiabrado(bool(rand() % 2))
         {
             vel = sf::Vector2f(VEL_VOADOR, VEL_VOADOR);
@@ -30,6 +30,13 @@ namespace Entidades
 
         Voador::~Voador()
         {
+        }
+
+        nlohmann::json Voador::salvarJogo()
+        {
+            nlohmann::json j = Inimigo::salvarJogo();
+            j["endiabrado"] = endiabrado;
+            return j;
         }
 
         void Voador::inicializarAnimacao()
@@ -186,7 +193,65 @@ namespace Entidades
                 break;
             }
             
-            case TIPO::INIMIGO:
+            case TIPO::ATIRADOR:
+            {
+                if(intersec.x > intersec.y)
+                {
+                    if(getPosicao().y > ent->getPosicao().y)
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                        estaNoChao = true;
+                    }
+                    vel.y = -vel.y;
+                }
+                else
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                    vel.x = -vel.x;
+                }
+                break;
+            }
+            case TIPO::VOADOR:
+            {
+                if(intersec.x > intersec.y)
+                {
+                    if(getPosicao().y > ent->getPosicao().y)
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                        estaNoChao = true;
+                    }
+                    vel.y = -vel.y;
+                }
+                else
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                    vel.x = -vel.x;
+                }
+                break;
+            }
+            case TIPO::CHEFAO:
             {
                 if(intersec.x > intersec.y)
                 {
@@ -219,6 +284,11 @@ namespace Entidades
             default:
                 break;
             }
+        }
+
+        void Voador::setEndiabrado(const bool endb)
+        {
+            endiabrado = endb;
         }
 
         const bool Voador::getEndiabrado() const

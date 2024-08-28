@@ -18,6 +18,13 @@ namespace Entidades
     Projetil::~Projetil()
     {
     }
+    
+    nlohmann::json Projetil::salvarJogo()
+    {
+        nlohmann::json j = Entidade::salvarJogo();
+        j["vel"] = {vel.x, vel.y};
+        return j;
+    }
 
     void Projetil::setVelocidade(sf::Vector2f v)
     {

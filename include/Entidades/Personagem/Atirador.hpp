@@ -24,6 +24,7 @@ namespace Entidades
             Atirador();
             ~Atirador();
 
+            virtual nlohmann::json salvarJogo();
             void inicializarAnimacao();
             void atualizarAnimacao();
             void setProjetil(Projetil* proj);

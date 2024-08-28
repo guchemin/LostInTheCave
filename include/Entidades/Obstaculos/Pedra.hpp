@@ -19,6 +19,7 @@ namespace Entidades
             Pedra();
             ~Pedra();
 
+            virtual nlohmann::json salvarJogo();
             const float getPeso() const;
             void arrastar(const bool direita);
             void colide(Entidade* ent, const sf::Vector2f intersec);

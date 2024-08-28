@@ -21,7 +21,19 @@ namespace Entidades
         {
         }
 
-        const float Teia::getDensidade() const 
+        nlohmann::json Teia::salvarJogo()
+        {
+            nlohmann::json j = Obstaculo::salvarJogo();
+            j["densidade"] = densidade;
+            return j;
+        }
+
+        void Teia::setDensidade(float den)
+        {
+            densidade = den;
+        }
+
+        const float Teia::getDensidade() const
         {
             return densidade;
         }

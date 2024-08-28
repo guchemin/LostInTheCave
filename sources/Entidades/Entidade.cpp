@@ -28,6 +28,13 @@ namespace Entidades
         pGraf->desenhar(corpo);
     }
 
+    nlohmann::json Entidade::salvarJogo()
+    {
+        nlohmann::json j;
+        j["pos"] = {getPosicao().x, getPosicao().y};
+        j["tipo"] = tipo;
+        return j;
+    }
 
     sf::RectangleShape Entidade::getCorpo()
     {

@@ -45,13 +45,14 @@ namespace Listas
             if (ent)
             {
                 ent->executar(dt);
-                if (ent->getTipo() == Entidades::TIPO::JOGADOR || ent->getTipo() == Entidades::TIPO::INIMIGO)
+                if (ent->getTipo() == Entidades::TIPO::JOGADOR || ent->getTipo() == Entidades::TIPO::ATIRADOR ||
+                    ent->getTipo() == Entidades::TIPO::CHEFAO || ent->getTipo() == Entidades::TIPO::VOADOR)
                 {
                     Entidades::Personagem::Personagem* pPer = static_cast<Entidades::Personagem::Personagem*>(ent);
                     if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
                     {
                         it = lista.remover(it); 
-                        if(pPer->getTipo() == TIPO::INIMIGO)
+                        if(pPer->getTipo() != TIPO::JOGADOR)
                         {
                             Entidades::Personagem::Inimigo* inimigo = static_cast<Entidades::Personagem::Inimigo*>(pPer);
                             Entidades::Personagem::Jogador::somaPontos(inimigo->getPontuacao());

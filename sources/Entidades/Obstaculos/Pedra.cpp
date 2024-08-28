@@ -25,6 +25,14 @@ namespace Entidades
         {
         }
 
+        nlohmann::json Pedra::salvarJogo()
+        {
+            nlohmann::json j = Obstaculo::salvarJogo();
+            j["peso"] = peso;
+            j["dx"] = dx;
+            return j;
+        }
+
         const float Pedra::getPeso() const
         {
             return peso;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+#include "json/json.hpp"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>

@@ -34,7 +34,7 @@ private:
     sf::RectangleShape corpo;
 
 public:
-    Botao(sf::Vector2f pos, TipoBotao tp, string txt = "alo");
+    Botao(sf::Vector2f pos, TipoBotao tp, string txt);
     Botao();
     ~Botao();
 

@@ -6,7 +6,6 @@
 #define CAMINHO_TEXTURA_CHAO "../assets/sprites/Plataforma/Chao.png"
 #define CAMINHO_TEXTURA_FALSO "../assets/sprites/Plataforma/Falso.png"
 
-
 namespace Entidades
 {
     namespace Obstaculos
@@ -14,15 +13,16 @@ namespace Entidades
         class Plataforma: public Obstaculo
         {
         private:
-            const bool ehFalsa;
+            bool ehFalsa;
             const float empuxo;
-            sf::Vector2f vel;
             
         public:
             Plataforma(sf::Vector2f pos, sf::Vector2f tam);
             Plataforma();
             ~Plataforma();
 
+            virtual nlohmann::json salvarJogo();
+            void setFalsa(const bool falsa);
             const bool getFalsa() const;
             void executar(const float dt);
         };

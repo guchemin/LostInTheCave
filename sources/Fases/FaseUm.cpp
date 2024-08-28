@@ -222,7 +222,8 @@ namespace Estados
         {
             if(listaJogadores->getTam() == 0)
             {
-                // salvar pontuacao
+                pEstados->adicionar(Estados::EstadoID::MenuSalvarPontuacao);
+                remover = true;
             }
             else
             {

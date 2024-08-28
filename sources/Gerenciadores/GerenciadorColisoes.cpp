@@ -267,7 +267,7 @@ namespace Gerenciadores
                     if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
                     {
                         pInimAux->tiraVida(pJog->getDano());
-                        Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
+                        // Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
                     }
                 }
             }

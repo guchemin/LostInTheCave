@@ -16,6 +16,7 @@ namespace Entidades
         Projetil();
         ~Projetil();
 
+        virtual nlohmann::json salvarJogo();
         void setVelocidade(sf::Vector2f v);
         void setPosicao(sf::Vector2f p);
         bool saiuDaTela();

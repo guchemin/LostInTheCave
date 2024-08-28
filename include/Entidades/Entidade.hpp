@@ -12,7 +12,9 @@ namespace Entidades
     enum TIPO
     {
         JOGADOR,
-        INIMIGO,
+        ATIRADOR,
+        CHEFAO,
+        VOADOR,
         PLATAFORMA,
         TEIA,
         ESPINHO,
@@ -35,6 +37,7 @@ namespace Entidades
         void setPosicao(sf::Vector2f pos);
         void desenhar();
 
+        virtual nlohmann::json salvarJogo();
         sf::RectangleShape getCorpo();
         sf::Vector2f getCentro();
         sf::Vector2f getTamanho();

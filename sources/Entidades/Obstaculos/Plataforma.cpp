@@ -33,7 +33,6 @@ namespace Entidades
                     corpo.setOrigin(8.0f, 11.0f);
                 }
             }
-            vel = sf::Vector2f(0.0f, 0.0f);
         }
 
         Plataforma::Plataforma():
@@ -46,6 +45,18 @@ namespace Entidades
         {
         }
 
+        nlohmann::json Plataforma::salvarJogo()
+        {
+            nlohmann::json j = Obstaculo::salvarJogo();
+            j["ehFalsa"] = ehFalsa;
+            return j;
+        }
+
+        void Plataforma::setFalsa(const bool falsa)
+        {
+            ehFalsa = falsa;
+        }
+
         const bool Plataforma::getFalsa() const
         {
             return ehFalsa;
@@ -53,8 +64,8 @@ namespace Entidades
 
         void Plataforma::executar(const float dt)
         {
-            vel.y += GRAVIDADE * dt - empuxo * dt;
-            corpo.move(vel * dt);
+            velY += GRAVIDADE * dt - empuxo * dt;
+            corpo.move(sf::Vector2f(0.0f, velY * dt));
         }
     }
 }

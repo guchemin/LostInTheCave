@@ -34,6 +34,7 @@ namespace Entidades
             Personagem();
             virtual ~Personagem();
 
+            virtual nlohmann::json salvarJogo();
             virtual void inicializarAnimacao() = 0;
             virtual void atualizarAnimacao() = 0;
             void setAtacando(const bool atk);

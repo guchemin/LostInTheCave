@@ -11,13 +11,15 @@ namespace Entidades
         class Teia : public Obstaculo
         {
         private:
-            const float densidade;
+            float densidade;
             
         public:
             Teia(sf::Vector2f pos);
             Teia();
             ~Teia();
 
+            virtual nlohmann::json salvarJogo();
+            void setDensidade(float den);
             const float getDensidade() const;
         };
     }

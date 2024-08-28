@@ -40,6 +40,17 @@ namespace Entidades
         {
         }
 
+        nlohmann::json Jogador::salvarJogo()
+        {
+            nlohmann::json j = Personagem::salvarJogo();
+            j["id"] = id;
+            j["pulou"] = pulou;
+            j["estaNaTeia"] = estaNaTeia;
+            j["foiEspinhado"] = foiEspinhado;
+            j["pontuacao"] = pontuacao;
+            return j;
+        }
+
         void Jogador::inicializarAnimacao()
         {
             sf::Vector2f origem = sf::Vector2f(getTamanho().x / 3.5, getTamanho().y / 3.5);
@@ -310,7 +321,69 @@ namespace Entidades
                 break;
             }
 
-            case TIPO::INIMIGO:
+            case TIPO::CHEFAO:
+            {
+                if((intersec.x > intersec.y || vel.x == 0.0f))
+                {
+                    if(getPosicao().y <= ent->getPosicao().y)
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                        estaNoChao = true;
+                    }
+                    vel.y = 0.0f;
+
+                    if(foiEspinhado)
+                    {
+                        vel.x = 0.0f;
+                        foiEspinhado = false;
+                    }
+                }
+                else
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                }
+                break;
+            }
+
+            case TIPO::VOADOR:
+            {
+                if((intersec.x > intersec.y || vel.x == 0.0f))
+                {
+                    if(getPosicao().y <= ent->getPosicao().y)
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                        estaNoChao = true;
+                    }
+                    vel.y = 0.0f;
+
+                    if(foiEspinhado)
+                    {
+                        vel.x = 0.0f;
+                        foiEspinhado = false;
+                    }
+                }
+                else
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y)); 
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                }
+                break;
+            }
+
+            case TIPO::ATIRADOR:
             {
                 if((intersec.x > intersec.y || vel.x == 0.0f))
                 {
