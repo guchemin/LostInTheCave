@@ -4,18 +4,21 @@
 
 #define CAMINHO_TEXTURA_ESPINHO "../assets/sprites/Espinho/Espinho.png"
 
-namespace Obstaculos
+namespace Entidades
 {
-    class Espinho : public Obstaculo
+    namespace Obstaculos
     {
-    private:
-        const float afiado;
-        
-    public:
-        Espinho(sf::Vector2f pos);
-        Espinho();
-        ~Espinho();
+        class Espinho : public Obstaculo
+        {
+        private:
+            const float afiado;
+            
+        public:
+            Espinho(sf::Vector2f pos);
+            Espinho();
+            ~Espinho();
 
-        const float getAfiado() const;
-    };
-};
+            const float getAfiado() const;
+        };
+    }
+}

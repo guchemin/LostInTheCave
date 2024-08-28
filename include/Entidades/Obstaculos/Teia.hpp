@@ -4,18 +4,21 @@
 
 #define CAMINHO_TEXTURA_TEIA "../assets/sprites/Teia/Teia.png"
 
-namespace Obstaculos
+namespace Entidades
 {
-    class Teia : public Obstaculo
+    namespace Obstaculos
     {
-    private:
-        const float densidade;
-        
-    public:
-        Teia(sf::Vector2f pos);
-        Teia();
-        ~Teia();
+        class Teia : public Obstaculo
+        {
+        private:
+            const float densidade;
+            
+        public:
+            Teia(sf::Vector2f pos);
+            Teia();
+            ~Teia();
 
-        const float getDensidade() const;
-    };
-};
+            const float getDensidade() const;
+        };
+    }
+}

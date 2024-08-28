@@ -13,6 +13,6 @@ Ente::~Ente()
 {
 }
 
-void Ente::atualizar(const float dt)
+void Ente::executar(const float dt)
 {
 }

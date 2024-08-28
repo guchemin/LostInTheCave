@@ -5,7 +5,6 @@
 
 #include "Elemento.hpp"
 
-
 namespace Listas 
 {
     template<class TL>

@@ -1,37 +1,40 @@
 #include "../../include/Estados/Estado.hpp"
 #include "../../include/Gerenciadores/GerenciadorEstados.hpp"
 
-Estados::Estado::Estado(Estados::EstadoID id):
-estadoID(id),
-pEstados(Gerenciadores::GerenciadorEstados::getInstancia())
+namespace Estados
 {
-}
+    Estado::Estado(EstadoID id):
+    estadoID(id),
+    pEstados(Gerenciadores::GerenciadorEstados::getInstancia())
+    {
+    }
 
-Estados::Estado::Estado()
-{
+    Estado::Estado()
+    {
 
-}
+    }
 
-Estados::Estado::~Estado()
-{
+    Estado::~Estado()
+    {
 
-}
+    }
 
-Estados::EstadoID Estados::Estado::getEstadoID()
-{
-    return estadoID;
-}
+    EstadoID Estado::getEstadoID()
+    {
+        return estadoID;
+    }
 
-void Estados::Estado::adicionar(EstadoID estadoID)
-{
-    pEstados->adicionar(estadoID);
-}
+    void Estado::adicionar(EstadoID estadoID)
+    {
+        pEstados->adicionar(estadoID);
+    }
 
-void Estados::Estado::setRemover(const bool rmv)
-{
-    remover = rmv;
-}
+    void Estado::setRemover(const bool rmv)
+    {
+        remover = rmv;
+    }
 
-void Estados::Estado::desenhar()
-{
+    void Estado::desenhar()
+    {
+    }
 }

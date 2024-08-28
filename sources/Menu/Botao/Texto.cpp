@@ -55,6 +55,11 @@ const sf::Vector2f Texto::getTamanho()
     return sf::Vector2f(textoRect.width, textoRect.height);
 }
 
+const sf::Vector2f Texto::getPos()
+{
+    return texto.getPosition();
+}
+
 void Texto::desenhar()
 {
     pGraf->desenhar(texto);

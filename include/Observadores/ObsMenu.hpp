@@ -2,17 +2,14 @@
 
 #include "Observador.hpp"
 
-namespace Menu
-{
-    class Menu;
-}
+namespace Estados { namespace Menu { class Menu; } }
 
 namespace Observadores
 {
     class ObsMenu : public Observador
     {
     private:
-        Menu::Menu* pMenu;
+        Estados::Menu::Menu* pMenu;
 
         sf::Keyboard::Key cima;
         sf::Keyboard::Key baixo;
@@ -21,7 +18,7 @@ namespace Observadores
         bool podeSelecionar;
 
     public:
-        ObsMenu(Menu::Menu* pM);
+        ObsMenu(Estados::Menu::Menu* pM);
         ObsMenu();
         ~ObsMenu();
 

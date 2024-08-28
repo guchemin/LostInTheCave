@@ -4,29 +4,32 @@
 #include "../Fases/Fase.hpp"
 #include "../Gerenciadores/GerenciadorArquivos.hpp"
 
-namespace Menu
+namespace Estados
 {
-    class MenuSalvarPontuacao : public Menu
+    namespace Menu
     {
-    private:
-        Gerenciadores::GerenciadorArquivos gArquivo;
-        Fases::Fase* fase;
-        Texto nomeTexto;
-        Texto pontuacaoTexto;
-        std::string nomeString;
-        sf::RectangleShape painel;
+        class MenuSalvarPontuacao : public Menu
+        {
+        private:
+            Gerenciadores::GerenciadorArquivos gArquivo;
+            Fases::Fase* fase;
+            Texto nomeTexto;
+            Texto pontuacaoTexto;
+            std::string nomeString;
+            sf::RectangleShape painel;
 
-    public:
-        MenuSalvarPontuacao(Fases::Fase* f);
-        MenuSalvarPontuacao();
-        ~MenuSalvarPontuacao();
+        public:
+            MenuSalvarPontuacao(Fases::Fase* f);
+            MenuSalvarPontuacao();
+            ~MenuSalvarPontuacao();
 
-        void alinharTexto();
-        void criarBotoes();
-        void adicionarCaracter(std::string c);
-        void removerCaracter();
-        void salvarColocacao();
-        void selecionar(TipoBotao tipo);
-        void executar();
-    };
+            void alinharTexto();
+            void criarBotoes();
+            void adicionarCaracter(std::string c);
+            void removerCaracter();
+            void salvarColocacao();
+            void selecionar(TipoBotao tipo);
+            void executar();
+        };
+    }
 }

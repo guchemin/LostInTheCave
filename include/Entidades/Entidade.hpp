@@ -43,5 +43,5 @@ namespace Entidades
 
         TIPO getTipo() const { return tipo; };
     };
-};
+}
 

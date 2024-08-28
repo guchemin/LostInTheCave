@@ -6,16 +6,14 @@
 #include <map>
 #include <string>
 
-using namespace Gerenciadores;
-
 namespace Observadores
 {
     class Observador
     {
     protected:
-        GerenciadorInputs* pInp;
-        GerenciadorEstados* pEstados;
-        map<sf::Keyboard::Key, std::string> keys;
+        Gerenciadores::GerenciadorInputs* pInp;
+        Gerenciadores::GerenciadorEstados* pEstados;
+        map<sf::Keyboard::Key, std::string> teclado;
         map<sf::Keyboard::Key, std::string> tecladoEspecial;
 
     public:

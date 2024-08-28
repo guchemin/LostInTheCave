@@ -4,21 +4,24 @@
 
 #define CAMINHO_TEXTURA_PEDRA "../assets/sprites/Pedra/Pedra.png"
 
-namespace Obstaculos
+namespace Entidades
 {
-    class Pedra : public Obstaculo
+    namespace Obstaculos
     {
-    private:
-        const float peso;
-        float dx;
-        
-    public:
-        Pedra(sf::Vector2f pos);
-        Pedra();
-        ~Pedra();
+        class Pedra : public Obstaculo
+        {
+        private:
+            const float peso;
+            float dx;
+            
+        public:
+            Pedra(sf::Vector2f pos);
+            Pedra();
+            ~Pedra();
 
-        const float getPeso() const;
-        void arrastar(const bool direita);
-        void colide(Entidade* ent, const sf::Vector2f intersec);
-    };
-};
+            const float getPeso() const;
+            void arrastar(const bool direita);
+            void colide(Entidade* ent, const sf::Vector2f intersec);
+        };
+    }
+}

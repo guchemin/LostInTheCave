@@ -5,21 +5,24 @@
 #define BACKGROUND_FASE1 "../assets/sprites/Backgrounds/Background1.png"
 #define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background2.png"
 
-namespace Menu
+namespace Estados
 {
-    class MenuPrincipal : public Menu
+    namespace Menu
     {
-    private:
-        sf::Texture texturaFundoFaseUm;
-        sf::Texture texturaFundoFaseDois;
+        class MenuPrincipal : public Menu
+        {
+        private:
+            sf::Texture texturaFundoFaseUm;
+            sf::Texture texturaFundoFaseDois;
 
-    public:
-        MenuPrincipal();
-        ~MenuPrincipal();
+        public:
+            MenuPrincipal();
+            ~MenuPrincipal();
 
-        void mudarBackground(TipoBotao tipo);
-        void criarBotoes();
-        void selecionar(TipoBotao tipo);
-        void executar();
-    };
+            void mudarBackground(TipoBotao tipo);
+            void criarBotoes();
+            void selecionar(TipoBotao tipo);
+            void executar();
+        };
+    }
 }

@@ -30,6 +30,20 @@ TipoBotao Botao::getTipo()
     return tipo;
 }
 
+void Botao::setPosicao(const sf::Vector2f pos)
+{
+    corpo.setPosition(pos);
+    sf::Vector2f posTexto;
+    posTexto.x = pos.x + TAMANHO_BOTAO_X / 2.0f - texto.getTamanho().x / 2.0f;
+    posTexto.y = pos.y + TAMANHO_BOTAO_Y / 2.0f - texto.getTamanho().y / 1.2f;
+    texto.setPos(posTexto);
+}
+
+sf::Vector2f Botao::getPosicao()
+{
+    return corpo.getPosition();
+}
+
 void Botao::setSelecionado(const bool selecionado)
 {
     if(selecionado)

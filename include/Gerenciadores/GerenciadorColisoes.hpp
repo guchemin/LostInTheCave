@@ -3,10 +3,9 @@
 #include "../Listas/ListaEntidades.hpp"
 #include "../Entidades/Personagem/Inimigo.hpp"
 #include "../Entidades/Personagem/Jogador.hpp"
-#include "../Entidades/Plataforma.hpp"
+#include "../Entidades/Obstaculos/Plataforma.hpp"
 #include "../Entidades/Projetil.hpp"
 
-using namespace Listas;
 
 namespace Gerenciadores
 {

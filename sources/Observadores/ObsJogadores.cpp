@@ -1,100 +1,101 @@
 #include "../../include/Observadores/ObsJogadores.hpp"
 #include "../../include/Entidades/Personagem/Jogador.hpp"
 
-using namespace Observadores;
-
-Observadores::ObsJogadores::ObsJogadores(Jogador* pJ):
-Observador(),
-pJog(pJ)
+namespace Observadores
 {
-    if(pJog->getId() == ID::JOGADOR1)
+    ObsJogadores::ObsJogadores(Entidades::Personagem::Jogador* pJ):
+    Observador(),
+    pJog(pJ)
     {
-        direita = sf::Keyboard::Key::D;
-        esquerda = sf::Keyboard::Key::A;
-        pulo = sf::Keyboard::Key::W;
-        ataque = sf::Keyboard::Key::Space;
-    }
-    else
-    {
-        direita =  sf::Keyboard::Key::Right;
-        esquerda = sf::Keyboard::Key::Left;
-        pulo = sf::Keyboard::Key::Up;
-        ataque = sf::Keyboard::Key::K;
-    }
-    pausa = sf::Keyboard::Key::P;
-}
-
-Observadores::ObsJogadores::ObsJogadores():
-Observador()
-{
-}
-
-Observadores::ObsJogadores::~ObsJogadores()
-{
-    pJog = NULL;
-}
-
-
-void Observadores::ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
-{
-    if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
-    {
-        return;
+        if(pJog->getId() == Entidades::Personagem::ID::JOGADOR1)
+        {
+            direita = sf::Keyboard::Key::D;
+            esquerda = sf::Keyboard::Key::A;
+            pulo = sf::Keyboard::Key::W;
+            ataque = sf::Keyboard::Key::Space;
+        }
+        else
+        {
+            direita =  sf::Keyboard::Key::Right;
+            esquerda = sf::Keyboard::Key::Left;
+            pulo = sf::Keyboard::Key::Up;
+            ataque = sf::Keyboard::Key::K;
+        }
+        pausa = sf::Keyboard::Key::P;
     }
 
-    if(tecla == pausa)
+    ObsJogadores::ObsJogadores():
+    Observador()
     {
-        pEstados->adicionar(Estados::EstadoID::MenuPausa);
     }
 
-    if(pJog == NULL)
+    ObsJogadores::~ObsJogadores()
     {
-        cout << "ERRO = Jogador nulo" << endl;
-        return;
+        pJog = NULL;
     }
 
-    if(tecla == pulo && pJog->podePular())
-    {
-        pJog->autorizarPulo(false);
-        pJog->pular();
-    }
-    if(tecla == direita)
-    {
-        pJog->andar(DIREITA);
-    }
-    else if(tecla == esquerda)
-    {
-        pJog->andar(ESQUERDA);
-    }
-    else if(tecla == ataque)
-    {
-        pJog->setAtacando(true);
-    }
-}
 
-void Observadores::ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
-{
-    if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+    void ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
     {
-        return;
-    }
-    
-    if(pJog == NULL)
-    {
-        cout << "ERRO = JOGADOR NULO" << endl;
-        return;
+        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+        {
+            return;
+        }
+
+        if(tecla == pausa)
+        {
+            pEstados->adicionar(Estados::EstadoID::MenuPausa);
+        }
+
+        if(pJog == NULL)
+        {
+            cout << "ERRO = Jogador nulo" << endl;
+            return;
+        }
+
+        if(tecla == pulo && pJog->podePular())
+        {
+            pJog->autorizarPulo(false);
+            pJog->pular();
+        }
+        if(tecla == direita)
+        {
+            pJog->andar(DIREITA);
+        }
+        else if(tecla == esquerda)
+        {
+            pJog->andar(ESQUERDA);
+        }
+        else if(tecla == ataque)
+        {
+            pJog->setAtacando(true);
+        }
     }
 
-    if(tecla == pulo)
+    void ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
     {
-        pJog->autorizarPulo(true);
-    }
-    if(tecla == ataque)
-    {
-        pJog->parouDeAtacar();
-    }
-    if(!(sf::Keyboard::isKeyPressed(direita) || sf::Keyboard::isKeyPressed(esquerda)))
-    {
-        pJog->parar();
+        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+        {
+            return;
+        }
+        
+        if(pJog == NULL)
+        {
+            cout << "ERRO = JOGADOR NULO" << endl;
+            return;
+        }
+
+        if(tecla == pulo)
+        {
+            pJog->autorizarPulo(true);
+        }
+        if(tecla == ataque)
+        {
+            pJog->parouDeAtacar();
+        }
+        if(!(sf::Keyboard::isKeyPressed(direita) || sf::Keyboard::isKeyPressed(esquerda)))
+        {
+            pJog->parar();
+        }
     }
 }

@@ -10,30 +10,31 @@
 #define MAX_ATIRADOR 3
 #define MAX_TEIA 3
 
-namespace Fases
+namespace Estados
 {
-    class FaseUm : public Fase
+    namespace Fases
     {
-    private:
-        const int numVoador;
-        const int numEspinho;
+        class FaseUm : public Fase
+        {
+        private:
+            const int numVoador;
+            const int numEspinho;
 
-    public:
-        FaseUm();
-        ~FaseUm();
+        public:
+            FaseUm();
+            ~FaseUm();
 
-        void criarMapa();
-        void criarAleatorios();
-        void criarEntidade(sf::Vector2f pos, char caracter);
-        void criarVoador(sf::Vector2f pos);
-        void criarEspinho(sf::Vector2f pos);
+            void criarMapa();
+            void criarAleatorios();
+            void criarEntidade(sf::Vector2f pos, char caracter);
+            void criarVoador(sf::Vector2f pos);
+            void criarEspinho(sf::Vector2f pos);
 
-        void verificarFimDeJogo();
-        void centralizarCamera();
-        void atualizar(const float dt);
-        void desenhar();
-        void executar();
-    };
-    
-    
-};
+            void verificarFimDeJogo();
+            void centralizarCamera();
+            void executar(const float dt);
+            void desenhar();
+            void executar();
+        };    
+    }
+}

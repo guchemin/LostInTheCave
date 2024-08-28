@@ -1,44 +1,45 @@
 #include "../../include/Gerenciadores/GerenciadorEventos.hpp"
 
-using namespace Gerenciadores;
-
-//padrao Singleton
-GerenciadorEventos* GerenciadorEventos::instancia = NULL;
-
-GerenciadorEventos* GerenciadorEventos::getInstancia()
+namespace Gerenciadores
 {
-    if(instancia == NULL)
+    //padrao Singleton
+    GerenciadorEventos* GerenciadorEventos::instancia = NULL;
+
+    GerenciadorEventos* GerenciadorEventos::getInstancia()
     {
-        instancia = new GerenciadorEventos();
+        if(instancia == NULL)
+        {
+            instancia = new GerenciadorEventos();
+        }
+        return instancia;
     }
-    return instancia;
-}
 
-GerenciadorEventos::GerenciadorEventos(): 
-pGraf(GerenciadorGrafico::getInstancia()),
-pInp(GerenciadorInputs::getInstancia())
-{
-}
-
-GerenciadorEventos::~GerenciadorEventos()
-{
-}
-
-void GerenciadorEventos::verificarEventos()
-{
-    while(pGraf->getJanela()->pollEvent(evento))
+    GerenciadorEventos::GerenciadorEventos(): 
+    pGraf(GerenciadorGrafico::getInstancia()),
+    pInp(GerenciadorInputs::getInstancia())
     {
-        if (evento.type == sf::Event::Closed || (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape))
+    }
+
+    GerenciadorEventos::~GerenciadorEventos()
+    {
+    }
+
+    void GerenciadorEventos::verificarEventos()
+    {
+        while(pGraf->getJanela()->pollEvent(evento))
         {
-            pGraf->fecharJanela();
-        }
-        else if(evento.type == sf::Event::KeyPressed)
-        {
-            pInp->teclaPressionada(evento.key.code);
-        }
-        else if(evento.type == sf::Event::KeyReleased)
-        {
-            pInp->teclaSolta(evento.key.code);
+            if (evento.type == sf::Event::Closed || (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape))
+            {
+                pGraf->fecharJanela();
+            }
+            else if(evento.type == sf::Event::KeyPressed)
+            {
+                pInp->teclaPressionada(evento.key.code);
+            }
+            else if(evento.type == sf::Event::KeyReleased)
+            {
+                pInp->teclaSolta(evento.key.code);
+            }
         }
     }
 }

@@ -10,23 +10,29 @@
 #define CAMINHO_ATIRADOR_ATACANDO "../assets/sprites/Atirador/Atacando.png"
 #define TEMPO_TOTAL_ATAQUE_ATIRADOR 0.45f
 
-class Atirador: public Inimigo::Inimigo
+namespace Entidades
 {
-private:
-    Projetil* pProjetil;
+    namespace Personagem
+    {
+        class Atirador: public Inimigo::Inimigo
+        {
+        private:
+            Projetil* pProjetil;
 
-public:
-    Atirador(sf::Vector2f pos);
-    Atirador();
-    ~Atirador();
+        public:
+            Atirador(sf::Vector2f pos);
+            Atirador();
+            ~Atirador();
 
-    void inicializarAnimacao();
-    void atualizarAnimacao();
-    void setProjetil(Projetil* proj);
-    bool consegueAtacar();
-    void atacar();
-    void agir();
-    void atualizar(const float dt);
-    sf::Vector2f calcVel();
-    float getPontuacao();
-};
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void setProjetil(Projetil* proj);
+            bool consegueAtacar();
+            void atacar();
+            void agir();
+            void executar(const float dt);
+            sf::Vector2f calcVel();
+            float getPontuacao();
+        };
+    }
+}

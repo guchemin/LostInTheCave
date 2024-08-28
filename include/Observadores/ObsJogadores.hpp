@@ -2,7 +2,7 @@
 
 #include "Observador.hpp"
 
-class Jogador;
+namespace Entidades { namespace Personagem { class Jogador; } }
 
 #define DIREITA 1
 #define ESQUERDA 0
@@ -12,7 +12,7 @@ namespace Observadores
     class ObsJogadores : public Observador 
     {
     private:
-        Jogador* pJog;
+        Entidades::Personagem::Jogador* pJog;
         
         sf::Keyboard::Key direita;
         sf::Keyboard::Key esquerda;
@@ -21,7 +21,7 @@ namespace Observadores
         sf::Keyboard::Key pausa;
         
     public:
-        ObsJogadores(Jogador* pJ);
+        ObsJogadores(Entidades::Personagem::Jogador* pJ);
         ObsJogadores();
         ~ObsJogadores();
 

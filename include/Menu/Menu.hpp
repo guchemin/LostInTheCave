@@ -9,34 +9,38 @@
 
 using namespace std;
 
-namespace Menu
+namespace Estados
 {
-    class Menu : public Ente, public Estados::Estado
+    namespace Menu
     {
-    protected:
-        sf::RectangleShape background;
-        vector<Botao*> listaBotoes;
-        vector<Botao*>::iterator it;
-        sf::Vector2f tamBotoes;
-        Texto titulo;
-        Observadores::ObsMenu obs;
-        bool ativo;
+        class Menu : public Ente, public Estados::Estado
+        {
+        protected:
+            sf::RectangleShape background;
+            vector<Botao*> listaBotoes;
+            vector<Botao*>::iterator it;
+            sf::Vector2f tamBotoes;
+            Texto titulo;
+            Observadores::ObsMenu obs;
+            bool ativo;
 
-    public:
-        Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl = "alo");
-        Menu();
-        virtual ~Menu();
+        public:
+            Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl = "alo");
+            Menu();
+            virtual ~Menu();
 
-        const bool getAtivo() const;
-        void setAtivo(bool atv);
-        virtual void criarBotoes() = 0;
-        void adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp);
-        void irParaCima();
-        void irParaBaixo();
-        void inicializarBotoes();
-        const TipoBotao getBotaoSelecionado();
-        void desenhar();
-        virtual void selecionar(TipoBotao tipo) = 0;
-        virtual void executar() = 0;
-    };
+            const bool getAtivo() const;
+            void centralizar();
+            void setAtivo(bool atv);
+            virtual void criarBotoes() = 0;
+            void adicionarBotao(string texto, sf::Vector2f pos, TipoBotao tp);
+            void irParaCima();
+            void irParaBaixo();
+            void inicializarBotoes();
+            const TipoBotao getBotaoSelecionado();
+            void desenhar();
+            virtual void selecionar(TipoBotao tipo) = 0;
+            virtual void executar() = 0;
+        };
+    }
 }

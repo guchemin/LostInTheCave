@@ -1,54 +1,64 @@
 #include "../../include/Observadores/Observador.hpp"
 
-Observadores::Observador::Observador():
-pInp(GerenciadorInputs::getInstancia()),
-pEstados(GerenciadorEstados::getInstancia()),
-keys(),
-tecladoEspecial()
+namespace Observadores
 {
-    pInp->adicionarObservador(this);
-    inicializaTeclado();
-}
+    Observador::Observador():
+    pInp(Gerenciadores::GerenciadorInputs::getInstancia()),
+    pEstados(Gerenciadores::GerenciadorEstados::getInstancia()),
+    teclado(),
+    tecladoEspecial()
+    {
+        pInp->adicionarObservador(this);
+        inicializaTeclado();
+    }
 
-Observadores::Observador::~Observador()
-{
-    pInp->removerObservador(this);
-}
+    Observador::~Observador()
+    {
+        pInp->removerObservador(this);
+    }
 
-void Observadores::Observador::inicializaTeclado()
-{
-        keys [sf::Keyboard::A] = "a";
-        keys [sf::Keyboard::B] = "b";
-        keys [sf::Keyboard::C] = "c"; 
-        keys [sf::Keyboard::D] = "d";
-        keys [sf::Keyboard::E] = "e";
-        keys [sf::Keyboard::F] = "f";
-        keys [sf::Keyboard::G] = 'g';
-        keys [sf::Keyboard::H] = "h";
-        keys [sf::Keyboard::I] = "i";
-        keys [sf::Keyboard::J] = "j";
-        keys [sf::Keyboard::K] = "k";
-        keys [sf::Keyboard::L] = "l";
-        keys [sf::Keyboard::M] = "m";
-        keys [sf::Keyboard::N] = "n";
-        keys [sf::Keyboard::O] = "o";
-        keys [sf::Keyboard::P] = "p";
-        keys [sf::Keyboard::Q] = "q";
-        keys [sf::Keyboard::R] = "r";
-        keys [sf::Keyboard::S] = "s";
-        keys [sf::Keyboard::T] = "t";
-        keys [sf::Keyboard::U] = "u";
-        keys [sf::Keyboard::V] = "v";
-        keys [sf::Keyboard::W] = "w";
-        keys [sf::Keyboard::X] = "x";
-        keys [sf::Keyboard::Y] = "y";
-        keys [sf::Keyboard::Z] = "z";
+    void Observador::inicializaTeclado()
+    {
+        teclado[sf::Keyboard::A] = "a";
+        teclado[sf::Keyboard::B] = "b";
+        teclado[sf::Keyboard::C] = "c"; 
+        teclado[sf::Keyboard::D] = "d";
+        teclado[sf::Keyboard::E] = "e";
+        teclado[sf::Keyboard::F] = "f";
+        teclado[sf::Keyboard::G] = 'g';
+        teclado[sf::Keyboard::H] = "h";
+        teclado[sf::Keyboard::I] = "i";
+        teclado[sf::Keyboard::J] = "j";
+        teclado[sf::Keyboard::K] = "k";
+        teclado[sf::Keyboard::L] = "l";
+        teclado[sf::Keyboard::M] = "m";
+        teclado[sf::Keyboard::N] = "n";
+        teclado[sf::Keyboard::O] = "o";
+        teclado[sf::Keyboard::P] = "p";
+        teclado[sf::Keyboard::Q] = "q";
+        teclado[sf::Keyboard::R] = "r";
+        teclado[sf::Keyboard::S] = "s";
+        teclado[sf::Keyboard::T] = "t";
+        teclado[sf::Keyboard::U] = "u";
+        teclado[sf::Keyboard::V] = "v";
+        teclado[sf::Keyboard::W] = "w";
+        teclado[sf::Keyboard::X] = "x";
+        teclado[sf::Keyboard::Y] = "y";
+        teclado[sf::Keyboard::Z] = "z";
 
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::BackSpace, "BackSpace"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Space, "Space"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Return, "Enter"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Up, "Cima"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Down, "Baixo"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Left, "Esquerda"));
-    tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Right, "Direita"));
+        // tecladoEspecial[sf::Keyboard::BackSpace] = "BackSpace";
+        // tecladoEspecial[sf::Keyboard::Space] = "Space";
+        // tecladoEspecial[sf::Keyboard::Return] = "Enter";
+        // tecladoEspecial[sf::Keyboard::Up] = "Cima";
+        // tecladoEspecial[sf::Keyboard::Down] = "Baixo";
+        // tecladoEspecial[sf::Keyboard::Left] = "Esquerda";
+        // tecladoEspecial[sf::Keyboard::Right] = "Direita";
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::BackSpace, "BackSpace"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Space, "Space"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Return, "Enter"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Up, "Cima"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Down, "Baixo"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Left, "Esquerda"));
+        tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Right, "Direita"));
+    }
 }

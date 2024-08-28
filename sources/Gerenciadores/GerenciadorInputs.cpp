@@ -1,66 +1,68 @@
 #include "../../include/Observadores/Observador.hpp"
 
-using namespace Gerenciadores;
 using namespace Observadores;
 
-GerenciadorInputs* GerenciadorInputs::instancia = NULL;
-
-GerenciadorInputs *GerenciadorInputs::getInstancia()
+namespace Gerenciadores
 {
-    if(instancia == NULL)
+    GerenciadorInputs* GerenciadorInputs::instancia = NULL;
+
+    GerenciadorInputs *GerenciadorInputs::getInstancia()
     {
-        instancia = new GerenciadorInputs();
-    }
-    return instancia;
-}
-
-GerenciadorInputs::GerenciadorInputs():
-observadores()
-{
-    observadores.clear();
-}
-
-GerenciadorInputs::~GerenciadorInputs()
-{
-    observadores.clear();
-}
-
-void GerenciadorInputs::adicionarObservador(Observador* pObs)
-{
-    if(pObs)
-    {    
-        observadores.push_back(pObs);
-    }
-}
-
-void GerenciadorInputs::removerObservador(Observador* pObs)
-{
-    if(pObs)
-    {
-        observadores.remove(pObs);
-    }
-}
-
-void GerenciadorInputs::teclaPressionada(sf::Keyboard::Key tecla)
-{
-    list<Observador*>::iterator it;
-    for(it = observadores.begin(); it != observadores.end(); it++)
-    {
-        if(*it)
+        if(instancia == NULL)
         {
-            (*it)->notificarPressionada(tecla);
+            instancia = new GerenciadorInputs();
+        }
+        return instancia;
+    }
+
+    GerenciadorInputs::GerenciadorInputs():
+    observadores()
+    {
+        observadores.clear();
+    }
+
+    GerenciadorInputs::~GerenciadorInputs()
+    {
+        observadores.clear();
+    }
+
+    void GerenciadorInputs::adicionarObservador(Observador* pObs)
+    {
+        if(pObs)
+        {    
+            observadores.push_back(pObs);
         }
     }
-}
 
-void Gerenciadores::GerenciadorInputs::teclaSolta(sf::Keyboard::Key tecla)
-{
-    list<Observador*>::iterator it;
-    for(it = observadores.begin(); it != observadores.end(); it++)
+    void GerenciadorInputs::removerObservador(Observador* pObs)
     {
-        if(*it)
+        if(pObs)
         {
-            (*it)->notificarSolta(tecla);
+            observadores.remove(pObs);
+        }
+    }
+
+    void GerenciadorInputs::teclaPressionada(sf::Keyboard::Key tecla)
+    {
+        list<Observador*>::iterator it;
+        for(it = observadores.begin(); it != observadores.end(); it++)
+        {
+            if(*it)
+            {
+                (*it)->notificarPressionada(tecla);
+            }
+        }
+    }
+
+    void Gerenciadores::GerenciadorInputs::teclaSolta(sf::Keyboard::Key tecla)
+    {
+        list<Observador*>::iterator it;
+        for(it = observadores.begin(); it != observadores.end(); it++)
+        {
+            if(*it)
+            {
+                (*it)->notificarSolta(tecla);
+            }
         }
     }
 }

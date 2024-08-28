@@ -1,60 +1,65 @@
 #include "../../include/Listas/ListaEntidades.hpp"
+#include "../../include/Entidades/Personagem/Inimigo.hpp"
 
-using namespace Gerenciadores;
-using namespace Listas;
-
-ListaEntidades::ListaEntidades():
-lista()
+namespace Listas
 {
-    limpar();
-}
-
-ListaEntidades::~ListaEntidades()
-{
-    limpar();
-}
-
-void ListaEntidades::adicionar(Entidades::Entidade *entidade)
-{
-    lista.adicionar(entidade);
-}
-
-Listas::Lista<Entidades::Entidade>::Iterador ListaEntidades::remover(Listas::Lista<Entidades::Entidade>::Iterador it)
-{
-    return lista.remover(it);
-}
-
-int Listas::ListaEntidades::getTam()
-{
-    return lista.getTam();
-}
-
-void Listas::ListaEntidades::limpar()
-{
-    lista.limparLista();
-}
-
-void Listas::ListaEntidades::atualizar(const float dt)
-{
-    int tam = lista.getTam();
-    Entidades::Entidade* ent = NULL;
-    Lista<Entidades::Entidade>::Iterador it = lista.inicio();
-    while(it != lista.fim())
+    ListaEntidades::ListaEntidades():
+    lista()
     {
-        Entidades::Entidade* ent = *it;
-        if (ent)
+        limpar();
+    }
+
+    ListaEntidades::~ListaEntidades()
+    {
+        limpar();
+    }
+
+    void ListaEntidades::adicionar(Entidades::Entidade *entidade)
+    {
+        lista.adicionar(entidade);
+    }
+
+    Listas::Lista<Entidades::Entidade>::Iterador ListaEntidades::remover(Listas::Lista<Entidades::Entidade>::Iterador it)
+    {
+        return lista.remover(it);
+    }
+
+    int Listas::ListaEntidades::getTam()
+    {
+        return lista.getTam();
+    }
+
+    void Listas::ListaEntidades::limpar()
+    {
+        lista.limparLista();
+    }
+
+    void Listas::ListaEntidades::executar(const float dt)
+    {
+        int tam = lista.getTam();
+        Entidades::Entidade* ent = NULL;
+        Lista<Entidades::Entidade>::Iterador it = lista.inicio();
+        while(it != lista.fim())
         {
-            ent->atualizar(dt);
-            if (ent->getTipo() == TIPO::JOGADOR || ent->getTipo() == TIPO::INIMIGO)
+            Entidades::Entidade* ent = *it;
+            if (ent)
             {
-                Personagem* pPer = static_cast<Personagem*>(ent);
-                if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
+                ent->executar(dt);
+                if (ent->getTipo() == Entidades::TIPO::JOGADOR || ent->getTipo() == Entidades::TIPO::INIMIGO)
                 {
-                    it = lista.remover(it); 
-                    if(pPer->getTipo() == TIPO::INIMIGO)
+                    Entidades::Personagem::Personagem* pPer = static_cast<Entidades::Personagem::Personagem*>(ent);
+                    if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
                     {
-                        Inimigo* inimigo = static_cast<Inimigo*>(pPer);
-                        Jogador::somaPontos(inimigo->getPontuacao());
+                        it = lista.remover(it); 
+                        if(pPer->getTipo() == TIPO::INIMIGO)
+                        {
+                            Entidades::Personagem::Inimigo* inimigo = static_cast<Entidades::Personagem::Inimigo*>(pPer);
+                            Entidades::Personagem::Jogador::somaPontos(inimigo->getPontuacao());
+                        }
+                    }
+                    else
+                    {
+                        ++it;
                     }
                 }
                 else
@@ -67,29 +72,25 @@ void Listas::ListaEntidades::atualizar(const float dt)
                 ++it;
             }
         }
-        else
-        {
-            ++it;
-        }
     }
-}
 
-void ListaEntidades::desenhar()
-{
-    int tam = lista.getTam();
-    Entidades::Entidade* ent = NULL;
-    for(int i = 0; i < tam; i++)
+    void ListaEntidades::desenhar()
     {
-        ent = lista[i];
-        if(ent)
+        int tam = lista.getTam();
+        Entidades::Entidade* ent = NULL;
+        for(int i = 0; i < tam; i++)
         {
-            ent->desenhar();
+            ent = lista[i];
+            if(ent)
+            {
+                ent->desenhar();
+            }
+            ent = NULL;
         }
-        ent = NULL;
     }
-}
 
-Entidades::Entidade* Listas::ListaEntidades::operator[](int pos)
-{
-    return lista[pos];
+    Entidades::Entidade* Listas::ListaEntidades::operator[](int pos)
+    {
+        return lista[pos];
+    }
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../Plataforma.hpp"
+#include "../Obstaculos/Plataforma.hpp"
 #include "../Obstaculos/Espinho.hpp"
 #include "../Obstaculos/Teia.hpp"
 #include "../Obstaculos/Pedra.hpp"
@@ -26,43 +26,49 @@
 #define CAMINHO_JOG2_ATACANDO "../assets/sprites/Jogador2/Atacando.png"
 #define CAMINHO_JOG2_NO_AR "../assets/sprites/Jogador2/NoAr.png"
 
-enum ID
+namespace Entidades
 {
-    JOGADOR1,
-    JOGADOR2
-};
+    namespace Personagem
+    {
+        enum ID
+        {
+            JOGADOR1,
+            JOGADOR2
+        };
 
-class Jogador: public Personagem
-{
-private:
-    const ID id;
-    sf::Vector2f ds;
-    bool pulou;
-    bool estaNaTeia;
-    float aceleracaoTeia;
-    bool foiEspinhado;
-    Observadores::ObsJogadores obs;
-    static float pontuacao;
+        class Jogador: public Personagem
+        {
+        private:
+            const ID id;
+            sf::Vector2f ds;
+            bool pulou;
+            bool estaNaTeia;
+            float aceleracaoTeia;
+            bool foiEspinhado;
+            Observadores::ObsJogadores obs;
+            static float pontuacao;
 
-public:
-    Jogador(sf::Vector2f pos, const ID i);
-    Jogador();
-    ~Jogador();
+        public:
+            Jogador(sf::Vector2f pos, const ID i);
+            Jogador();
+            ~Jogador();
 
-    void inicializarAnimacao();
-    void atualizarAnimacao();
-    void autorizarPulo(const bool autoriza);
-    bool podePular();
-    void parouDeAtacar();
-    const ID getId() const { return id; };
-    const bool podeAtacar(bool direita);
-    void atualizar(const float dt);
-    void pular();
-    void andar(const bool direita);
-    void parar();
-    void ajustarVelocidade();
-    void desacelerarTeia();
-    void colide(Entidade* ent, const sf::Vector2f intersec);
-    static float getPontuacao();
-    static void somaPontos(const float p);
-};
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void autorizarPulo(const bool autoriza);
+            bool podePular();
+            void parouDeAtacar();
+            const ID getId() const { return id; };
+            const bool podeAtacar(bool direita);
+            void executar(const float dt);
+            void pular();
+            void andar(const bool direita);
+            void parar();
+            void ajustarVelocidade();
+            void desacelerarTeia();
+            void colide(Entidade* ent, const sf::Vector2f intersec);
+            static float getPontuacao();
+            static void somaPontos(const float p);
+        };
+    }
+}

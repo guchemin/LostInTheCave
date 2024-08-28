@@ -39,6 +39,8 @@ public:
     ~Botao();
 
     TipoBotao getTipo();
+    void setPosicao(const sf::Vector2f pos);
+    sf::Vector2f getPosicao();
     void setSelecionado(const bool selecionado);
     void desenhar();
 };

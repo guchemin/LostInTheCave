@@ -14,28 +14,34 @@
 #define TEMPO_MUDANCA_DIRECAO 6.0f
 #define TEMPO_BATIDA 0.175f
 
-class Chefao: public Inimigo::Inimigo
+namespace Entidades
 {
-private:
-    bool estaPerseguindo;
-    float tempoMudancaDirecao;
-    //ideia: criar um bool furioso, se ele for furioso (quando a vida < 50%) ele vai andar mais rapido
+    namespace Personagem
+    {
+        class Chefao: public Inimigo::Inimigo
+        {
+        private:
+            bool estaPerseguindo;
+            float tempoMudancaDirecao;
+            //ideia: criar um bool furioso, se ele for furioso (quando a vida < 50%) ele vai andar mais rapido
 
-public:
-    Chefao(sf::Vector2f pos);
-    Chefao();
-    ~Chefao();
+        public:
+            Chefao(sf::Vector2f pos);
+            Chefao();
+            ~Chefao();
 
-    void inicializarAnimacao();
-    void atualizarAnimacao();
-    void perseguir(const float dt);
-    void moverAleatorio(const float dt);
-    void ajustaVelocidade();
-    bool consegueAtacar();
-    bool conseguePerseguir();
-    void atacar();
-    void agir();
-    void atualizar(const float dt);
-    void colide(Entidade *ent, const sf::Vector2f intersec);
-    float getPontuacao();
-};
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void perseguir(const float dt);
+            void moverAleatorio(const float dt);
+            void ajustaVelocidade();
+            bool consegueAtacar();
+            bool conseguePerseguir();
+            void atacar();
+            void agir();
+            void executar(const float dt);
+            void colide(Entidade *ent, const sf::Vector2f intersec);
+            float getPontuacao();
+        };
+    }
+}

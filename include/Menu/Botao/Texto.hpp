@@ -28,5 +28,6 @@ public:
     void setTamanhoFonte(int tam);
     string getInfo();
     const sf::Vector2f getTamanho();
+    const sf::Vector2f getPos();
     void desenhar();
 };

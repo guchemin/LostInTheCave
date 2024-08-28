@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "../Entidades/Personagem/Inimigo.hpp"
 #include "Lista.hpp"
+#include "../Entidades/Entidade.hpp"
 
 namespace Listas
 {
@@ -20,7 +20,7 @@ namespace Listas
         int getTam();
         void limpar();
         Entidades::Entidade* operator[](int pos);  
-        void atualizar(const float dt);
+        void executar(const float dt);
         void desenhar();
 
         Lista<Entidades::Entidade>::Iterador inicio() { return lista.inicio(); }
