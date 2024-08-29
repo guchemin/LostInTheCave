@@ -6,7 +6,11 @@ namespace Estados
     namespace Menu
     {
         MenuJogar::MenuJogar(Estados::EstadoID faseID):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), faseID, "LOST IN THE CAVE")
+        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), faseID, "LOST IN THE CAVE"),
+        jog1(sf::Vector2f(100.0f, 140.0f)),
+        jog2(sf::Vector2f(100.0f, 140.0f)),
+        textJog1(pGraf->carregarTextura(CAMINHO_TEXT_JOG1)),
+        textJog2(pGraf->carregarTextura(CAMINHO_TEXT_JOG2))
         {
             criarBotoes();
             if(faseID == Estados::EstadoID::MenuJogarUm)
@@ -20,29 +24,43 @@ namespace Estados
             }
             background.setTexture(&cenario);
             ativo = true;
-            // texturaFundoUmJog = pGraf->carregarTextura(BACKGROUND_UM_JOGADOR);
-            // texturaFundoDoisJog = pGraf->carregarTextura(BACKGROUND_DOIS_JOGADORES);
+            jog1.setTexture(&textJog1);
+            jog2.setTexture(&textJog2);
+            jog1.setScale(1.2f, 1.0f);
+            jog2.setScale(1.2f, 1.0f);
         }
 
         MenuJogar::~MenuJogar()
         {
         }
 
-        void MenuJogar::mudarBackground(TipoBotao tipo)
+        void MenuJogar::desenharJogadores()
+        {
+            if(getBotaoSelecionado() == TipoBotao::UM_JOGADOR)
+            {
+                jog1.setPosition(sf::Vector2f(pGraf->getCentro().x - jog1.getSize().x / 2.0f, 200.0f));
+                pGraf->desenhar(jog1);
+            }
+            else if(getBotaoSelecionado() == TipoBotao::DOIS_JOGADORES)
+            {
+                jog1.setPosition(sf::Vector2f(pGraf->getCentro().x - jog1.getSize().x , 200.0f));
+                jog2.setPosition(sf::Vector2f(pGraf->getCentro().x, 200.0f));
+                pGraf->desenhar(jog1);
+                pGraf->desenhar(jog2);
+            }
+        }
+
+        void MenuJogar::mudarBackground(TipoBotao tipo) 
         {
             switch (tipo)
             {
             case TipoBotao::UM_JOGADOR:
             {
-                // background.setTexture(&texturaFundoUmJog);
-                background.setFillColor(sf::Color::Red);
                 break;
             }
 
             case TipoBotao::DOIS_JOGADORES:
             {
-                // background.setTexture(&texturaFundoDoisJog);
-                background.setFillColor(sf::Color::Blue);
                 break;
             }
             
@@ -127,6 +145,7 @@ namespace Estados
                 centralizar();
                 setAtivo(true);
                 desenhar();
+                desenharJogadores();
             }
         }
     }

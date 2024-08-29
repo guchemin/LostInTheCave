@@ -3,8 +3,10 @@
 #include "Texto.hpp"
 #include "../../Ente.hpp"
 
-#define TAMANHO_BOTAO_X 300
+#define TAMANHO_BOTAO_X 350
 #define TAMANHO_BOTAO_Y 100
+#define CAMINHO_BOTAO "../assets/sprites/Botoes/normal.png"
+#define CAMINHO_BOTAO_SELECIONADO "../assets/sprites/Botoes/selecionado.png"
 
 enum TipoBotao
 {

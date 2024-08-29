@@ -56,10 +56,7 @@ namespace Observadores
 
     void ObsMenu::notificarSolta(const sf::Keyboard::Key tecla)
     {
-        if(tecla == enter)
-        {
-            podeSelecionar = true;
-        }
+        podeSelecionar = true;
 
         if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao && 
         pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)

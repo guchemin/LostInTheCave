@@ -5,7 +5,7 @@ namespace Estados
     namespace Menu
     {
         MenuFim::MenuFim(Fases::Fase *f):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuFim, "FIM DE JOGO :)"),
+        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuFim, "FIM DA FASE"),
         fase(f)
         {
             background.setSize(pGraf->getTamanho());

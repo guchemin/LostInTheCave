@@ -99,7 +99,7 @@ namespace Estados
             std::ofstream arquivo("../resources/leaderboard.txt", std::ios::app);
             if (arquivo.is_open())
             {
-                arquivo << nomeString << " " << Entidades::Personagem::Jogador::getPontuacao() << std::endl;
+                arquivo << nomeString << " " << (int)Entidades::Personagem::Jogador::getPontuacao() << std::endl;
                 arquivo.close();
             }
         }

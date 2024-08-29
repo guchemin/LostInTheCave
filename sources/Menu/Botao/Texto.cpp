@@ -19,7 +19,6 @@ void Texto::setInfo(string informacao)
     if(informacao.empty())
     {
         texto.setString("");
-        cout << "Texto vazio" << endl;
     }
     else
         texto.setString(informacao);

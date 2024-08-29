@@ -9,7 +9,10 @@ namespace Estados
         numAtirador(nAtira),
         Ente(),
         Estado(id),
-        pEventos(Gerenciadores::GerenciadorEventos::getInstancia())
+        pEventos(Gerenciadores::GerenciadorEventos::getInstancia()),
+        pontos(),
+        vidaJog1(),
+        vidaJog2()
         {
         }
 

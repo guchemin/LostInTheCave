@@ -29,7 +29,7 @@ namespace Estados
             void criarEntidade(sf::Vector2f pos, char caracter);
             void criarVoador(sf::Vector2f pos);
             void criarEspinho(sf::Vector2f pos);
-
+            void atualizarTextos();
             void verificarFimDeJogo();
             void centralizarCamera();
             void executar(const float dt);

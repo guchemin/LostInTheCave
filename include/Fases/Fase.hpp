@@ -10,6 +10,7 @@
 #include "../Entidades/Obstaculos/Espinho.hpp"
 #include "../Entidades/Obstaculos/Plataforma.hpp"
 #include "../Ente.hpp"
+#include "../Menu/Botao/Texto.hpp"
 #include "../Gerenciadores/GerenciadorEstados.hpp"
 #include <cmath>
 #include <random>
@@ -29,6 +30,10 @@ namespace Estados
             Gerenciadores::GerenciadorColisoes* pColisoes;
             Gerenciadores::GerenciadorEventos* pEventos;
 
+            Texto pontos;
+            Texto vidaJog1;
+            Texto vidaJog2;
+
             const int numAtirador;
             const int numTeia;
 
@@ -45,6 +50,7 @@ namespace Estados
 
             void inicializar();
 
+            virtual void atualizarTextos() = 0;
             void salvarJogo();
             virtual void criarMapa() = 0;
             virtual void criarAleatorios() = 0;

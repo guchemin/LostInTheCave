@@ -2,15 +2,18 @@
 
 Botao::Botao(sf::Vector2f pos, TipoBotao tp, string txt):
 tipo(tp),
-texto()
+texto(),
+texturaPadrao(pGraf->carregarTextura(CAMINHO_BOTAO)),
+texturaSelecionado(pGraf->carregarTextura(CAMINHO_BOTAO_SELECIONADO))
 {
     corpo.setPosition(pos);
     corpo.setSize(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y));
-    corpo.setFillColor(sf::Color::White);
+    corpo.setTexture(&texturaPadrao);
+    corpo.setFillColor(sf::Color(120, 120, 120));
 
     texto.setInfo(txt);
     texto.setTamanhoFonte(48);
-    texto.setCor(sf::Color::Black);
+    texto.setCor(sf::Color(0, 0, 50));
     sf::Vector2f posTexto;
     posTexto.x = pos.x + TAMANHO_BOTAO_X / 2.0f - texto.getTamanho().x / 2.0f;
     posTexto.y = pos.y + TAMANHO_BOTAO_Y / 2.0f - texto.getTamanho().y / 1.2f;
@@ -48,13 +51,11 @@ void Botao::setSelecionado(const bool selecionado)
 {
     if(selecionado)
     {
-        corpo.setFillColor(sf::Color::Green);
-        //corpo.setTexture(&texturaSelecionado);
+        corpo.setTexture(&texturaSelecionado);
     }
     else
     {
-        corpo.setFillColor(sf::Color::White);
-        //corpo.setTexture(&texturaPadrao);
+        corpo.setTexture(&texturaPadrao);
     }
 }
 

@@ -1,5 +1,4 @@
 #include "../../include/Fases/FaseUm.hpp"
-
 namespace Estados
 {
     namespace Fases
@@ -18,6 +17,11 @@ namespace Estados
             background.setTexture(&texturaFundo);
             background.setScale(1.1f, 1.1f);
             background.setOrigin(20, 0);
+
+            pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+            pontos.setTamanhoFonte(32);
+            pontos.setCor(sf::Color::White);
+            pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));   
         }
 
         FaseUm::~FaseUm()
@@ -218,6 +222,39 @@ namespace Estados
             listaObstaculos->adicionar(entEspinho);
         }
 
+        void FaseUm::atualizarTextos()
+        {
+            if(listaJogadores->getTam() == 1)
+            {
+                Entidades::Personagem::Jogador* jogador = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[0]);
+                if(jogador->getId() == Entidades::Personagem::ID::JOGADOR1)
+                {
+                    vidaJog1.setInfo("VIDA JOGADOR 1: " + to_string((int)jogador->getVida()) + "/100");
+                    vidaJog1.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 50.0f));
+                    vidaJog2.setInfo("");
+                }
+                else
+                {
+                    vidaJog2.setInfo("VIDA JOGADOR 2: " + to_string((int)jogador->getVida()) + "/100");
+                    vidaJog2.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 90.0f));
+                    vidaJog1.setInfo("");
+                }
+                pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+                pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));
+            }
+            else if(listaJogadores->getTam() == 2)
+            {
+                Entidades::Personagem::Jogador* jogador1 = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[0]);
+                Entidades::Personagem::Jogador* jogador2 = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[1]);
+                vidaJog1.setInfo("VIDA JOGADOR 1: " + to_string((int)jogador1->getVida()) + "/100");
+                vidaJog1.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 50.0f));
+                vidaJog2.setInfo("VIDA JOGADOR 2: " + to_string((int)jogador2->getVida()) + "/100");
+                vidaJog2.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 90.0f));
+                pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+                pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));
+            }
+        }
+
         void FaseUm::verificarFimDeJogo()
         {
             if(listaJogadores->getTam() == 0)
@@ -301,6 +338,7 @@ namespace Estados
         void FaseUm::executar(const float dt) 
         {
             atualizarBackground();
+            atualizarTextos();
             listaInimigos->executar(dt);
             listaJogadores->executar(dt);
             listaObstaculos->executar(dt);
@@ -337,6 +375,9 @@ namespace Estados
                 }
                 executar(dt);
                 desenhar();
+                pontos.desenhar();
+                vidaJog1.desenhar();
+                vidaJog2.desenhar();
             }
         }
     }

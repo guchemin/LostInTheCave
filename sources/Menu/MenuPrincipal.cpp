@@ -45,8 +45,8 @@ namespace Estados
             float posX = pGraf->getCentro().x - tamBotoes.x / 2.0f;
             float posY = pGraf->getCentro().y - 2 * tamBotoes.y;
 
-            adicionarBotao("FASE 1", sf::Vector2f(posX, posY), TipoBotao::FASE_1);
-            adicionarBotao("FASE 2", sf::Vector2f(posX, posY + tamBotoes.y * 1.2f), TipoBotao::FASE_2);
+            adicionarBotao("JOGAR FASE 1", sf::Vector2f(posX, posY), TipoBotao::FASE_1);
+            adicionarBotao("JOGAR FASE 2", sf::Vector2f(posX, posY + tamBotoes.y * 1.2f), TipoBotao::FASE_2);
             adicionarBotao("CARREGAR", sf::Vector2f(posX, posY + tamBotoes.y * 2.4f), TipoBotao::CARREGAR);
             adicionarBotao("LEADERBOARD", sf::Vector2f(posX, posY + tamBotoes.y * 3.6f), TipoBotao::LEADERBOARD);
             adicionarBotao("SAIR", sf::Vector2f(posX, posY + tamBotoes.y * 4.8f), TipoBotao::SAIR);
