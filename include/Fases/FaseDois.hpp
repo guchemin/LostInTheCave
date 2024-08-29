@@ -1,4 +1,13 @@
 #pragma once
+#include "Fase.hpp"
+
+#define MAX_PEDRA 3
+#define MAX_CHEFAO 3
+#define MAX_ATIRADOR 3
+#define MAX_TEIA 3
+#define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
+#define TAMANHO_MAPA_X 8400.0f
+
 
 namespace Estados
 {
@@ -9,14 +18,26 @@ namespace Estados
             private:
                 const int numPedra;
                 const int numChefao;
+                Entidades::Personagem::Jogador* pJog1;
+                Entidades::Personagem::Jogador* pJog2;
+                bool sequencial; //usado apenas se a fase for sequencial
             
             public:
+                FaseDois(const bool seq, Entidades::Personagem::Jogador* jogador1, Entidades::Personagem::Jogador* jogador2);
                 FaseDois();
                 ~FaseDois();
 
                 void criarMapa();
                 void criarAleatorios();
-                void criarEntidades(sf::);
-        } 
+                void criarEntidade(sf::Vector2f pos, char caracter);
+                void criarPedra(sf::Vector2f pos);
+                void criarChefao(sf::Vector2f pos);
+                void atualizarTextos();
+                void verificarFimDeJogo();
+                void centralizarCamera();
+                void executar(const float dt);
+                void desenhar();
+                void executar();
+        }; 
     }
 }

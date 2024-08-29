@@ -37,7 +37,8 @@ namespace Observadores
 
     void ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
     {
-        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm || 
+             pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseDois))
         {
             return;
         }
@@ -74,7 +75,8 @@ namespace Observadores
 
     void ObsJogadores::notificarSolta(const sf::Keyboard::Key tecla)
     {
-        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm))
+        if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm || 
+             pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseDois))
         {
             return;
         }

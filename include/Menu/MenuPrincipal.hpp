@@ -3,7 +3,7 @@
 #include "Menu.hpp"
 
 #define BACKGROUND_FASE1 "../assets/sprites/Backgrounds/Background1.png"
-#define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background2.png"
+#define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
 
 namespace Estados
 {

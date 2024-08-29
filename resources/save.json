@@ -1,4 +1,5 @@
 {
+    "fase": 1,
     "inimigos": [
         {
             "direcao": true,
@@ -36,39 +37,39 @@
         },
         {
             "direcao": true,
-            "endiabrado": false,
+            "estaPerseguindo": false,
             "pos": [
-                6370.06396484375,
-                393.3153076171875
+                6629.21875,
+                430.0
             ],
             "posInicial": [
                 6500.0,
                 350.0
             ],
-            "tipo": 3,
+            "tipo": 2,
             "vel": [
-                -250.0,
-                -249.99998474121094
+                75.0,
+                0.0
             ],
-            "vida": 40.0
+            "vida": 150.0
         },
         {
             "direcao": true,
-            "endiabrado": true,
+            "estaPerseguindo": false,
             "pos": [
-                1012.409423828125,
-                455.69561767578125
+                6077.96875,
+                430.0
             ],
             "posInicial": [
-                1150.0,
+                5900.0,
                 500.0
             ],
-            "tipo": 3,
+            "tipo": 2,
             "vel": [
-                -625.0,
-                -249.99998474121094
+                75.0,
+                0.0
             ],
-            "vida": 40.0
+            "vida": 150.0
         },
         {
             "direcao": true,
@@ -89,39 +90,56 @@
         },
         {
             "direcao": true,
-            "endiabrado": false,
+            "estaPerseguindo": false,
             "pos": [
-                3333.19970703125,
-                593.3050537109375
+                3179.21875,
+                730.0
             ],
             "posInicial": [
                 3050.0,
                 550.0
             ],
-            "tipo": 3,
+            "tipo": 2,
             "vel": [
-                -250.0,
-                -249.99998474121094
+                75.0,
+                0.0
             ],
-            "vida": 40.0
+            "vida": 150.0
+        },
+        {
+            "direcao": false,
+            "pos": [
+                1150.0,
+                580.0
+            ],
+            "posInicial": [
+                1150.0,
+                600.0
+            ],
+            "tipo": 1,
+            "vel": [
+                0.0,
+                0.0
+            ],
+            "vida": 60.0
         },
         {
             "direcao": true,
-            "endiabrado": false,
+            "estaPerseguindo": false,
             "pos": [
-                7470.06396484375,
-                743.3014526367188
+                7729.21875,
+                730.0
             ],
             "posInicial": [
                 7600.0,
                 700.0
             ],
-            "tipo": 3,
+            "tipo": 2,
             "vel": [
-                -250.0,
-                -249.99998474121094
+                75.0,
+                0.0
             ],
-            "vida": 40.0
+            "vida": 150.0
         },
         {
             "direcao": true,
@@ -142,149 +160,53 @@
         },
         {
             "direcao": true,
+            "estaPerseguindo": false,
             "pos": [
-                1079.3515625,
-                580.0
+                7596.24169921875,
+                430.0
             ],
             "posInicial": [
-                1111.5048828125,
-                500.117919921875
+                7472.953125,
+                510.66259765625
             ],
-            "tipo": 1,
+            "tipo": 2,
             "vel": [
-                0.0,
+                75.0,
                 0.0
             ],
-            "vida": 60.0
-        },
-        {
-            "direcao": true,
-            "pos": [
-                3600.0,
-                780.0
-            ],
-            "posInicial": [
-                3594.40087890625,
-                507.8042297363281
-            ],
-            "tipo": 1,
-            "vel": [
-                -0.0,
-                0.0
-            ],
-            "vida": 60.0
-        },
-        {
-            "direcao": true,
-            "pos": [
-                4366.203125,
-                580.0
-            ],
-            "posInicial": [
-                4366.203125,
-                501.0078430175781
-            ],
-            "tipo": 1,
-            "vel": [
-                0.0,
-                0.0
-            ],
-            "vida": 60.0
-        },
-        {
-            "direcao": true,
-            "endiabrado": true,
-            "pos": [
-                5069.1650390625,
-                548.6603393554688
-            ],
-            "posInicial": [
-                5116.6298828125,
-                501.19488525390625
-            ],
-            "tipo": 3,
-            "vel": [
-                625.0,
-                -249.99998474121094
-            ],
-            "vida": 40.0
-        },
-        {
-            "direcao": true,
-            "endiabrado": true,
-            "pos": [
-                2114.998046875,
-                554.1798095703125
-            ],
-            "posInicial": [
-                2273.852294921875,
-                506.81005859375
-            ],
-            "tipo": 3,
-            "vel": [
-                -625.0,
-                -249.99998474121094
-            ],
-            "vida": 40.0
+            "vida": 150.0
         }
     ],
     "jogadores": [
         {
-            "direcao": false,
+            "direcao": true,
             "estaNaTeia": false,
             "foiEspinhado": false,
             "id": 0,
             "pontuacao": 0.0,
             "pos": [
-                1129.3515625,
-                580.0
+                734.3749389648438,
+                316.5
             ],
-            "pulou": false,
+            "pulou": true,
             "tipo": 0,
             "vel": [
-                0.0,
-                0.0
+                450.0,
+                -119.99999237060547
             ],
-            "vida": 45.0
-        },
-        {
-            "direcao": false,
-            "estaNaTeia": true,
-            "foiEspinhado": false,
-            "id": 1,
-            "pontuacao": 0.0,
-            "pos": [
-                628.0548095703125,
-                580.0
-            ],
-            "pulou": false,
-            "tipo": 0,
-            "vel": [
-                0.0,
-                0.0
-            ],
-            "vida": 92.5
+            "vida": 100.0
         }
     ],
     "obstaculos": [
         {
-            "afiado": 8.0,
-            "danoso": true,
+            "danoso": false,
+            "dx": 2.6315791606903076,
+            "peso": 1.899999976158142,
             "pos": [
-                4500.0,
-                250.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
-            "afiado": 13.899999618530273,
-            "danoso": true,
-            "pos": [
-                2700.0,
+                2550.0,
                 450.0
             ],
-            "tipo": 6,
+            "tipo": 8,
             "velY": 0.0
         },
         {
@@ -298,18 +220,8 @@
             "velY": 0.0
         },
         {
-            "afiado": 12.0,
-            "danoso": true,
-            "pos": [
-                7250.0,
-                500.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
             "danoso": false,
-            "densidade": 3.4000000953674316,
+            "densidade": 2.5,
             "pos": [
                 1400.0,
                 600.0
@@ -318,18 +230,8 @@
             "velY": 0.0
         },
         {
-            "afiado": 9.600000381469727,
-            "danoso": true,
-            "pos": [
-                3750.0,
-                600.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
             "danoso": false,
-            "densidade": 3.299999952316284,
+            "densidade": 2.5999999046325684,
             "pos": [
                 6900.0,
                 700.0
@@ -339,7 +241,7 @@
         },
         {
             "danoso": false,
-            "densidade": 2.700000047683716,
+            "densidade": 2.5999999046325684,
             "pos": [
                 3800.0,
                 800.0
@@ -348,53 +250,36 @@
             "velY": 0.0
         },
         {
-            "afiado": 7.099999904632568,
-            "danoso": true,
+            "danoso": false,
+            "dx": 3.3333332538604736,
+            "peso": 1.5,
             "pos": [
-                6350.0,
-                500.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
-            "afiado": 8.899999618530273,
-            "danoso": true,
-            "pos": [
-                7008.619140625,
-                500.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
-            "afiado": 15.0,
-            "danoso": true,
-            "pos": [
-                2700.0,
+                5095.82373046875,
                 800.0
             ],
-            "tipo": 6,
+            "tipo": 8,
             "velY": 0.0
         },
         {
             "danoso": false,
-            "densidade": 2.9000000953674316,
+            "dx": 2.6315791606903076,
+            "peso": 1.899999976158142,
             "pos": [
-                6094.1240234375,
-                500.0
-            ],
-            "tipo": 5,
-            "velY": 0.0
-        },
-        {
-            "danoso": false,
-            "densidade": 3.5,
-            "pos": [
-                627.763916015625,
+                4262.61474609375,
                 600.0
             ],
-            "tipo": 5,
+            "tipo": 8,
+            "velY": 0.0
+        },
+        {
+            "danoso": false,
+            "dx": 2.6315791606903076,
+            "peso": 1.899999976158142,
+            "pos": [
+                5998.6240234375,
+                500.0
+            ],
+            "tipo": 8,
             "velY": 0.0
         }
     ],
@@ -531,7 +416,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 1250.0,
                 0.0
@@ -711,7 +596,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 3050.0,
                 0.0
@@ -731,7 +616,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 3250.0,
                 0.0
@@ -751,7 +636,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 3450.0,
                 0.0
@@ -791,7 +676,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 3850.0,
                 0.0
@@ -841,7 +726,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 4350.0,
                 0.0
@@ -891,7 +776,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 4850.0,
                 0.0
@@ -1081,7 +966,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 6750.0,
                 0.0
@@ -1131,7 +1016,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 7250.0,
                 0.0
@@ -1181,7 +1066,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 7750.0,
                 0.0
@@ -1851,7 +1736,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 2150.0,
                 300.0
@@ -1891,7 +1776,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 4500.0,
                 300.0
@@ -2111,7 +1996,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 4150.0,
                 400.0
@@ -2131,7 +2016,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 4350.0,
                 400.0
@@ -2501,7 +2386,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5950.0,
                 550.0
@@ -2601,7 +2486,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 6950.0,
                 550.0
@@ -2891,7 +2776,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 1400.0,
                 650.0
@@ -3011,7 +2896,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 3950.0,
                 650.0
@@ -3021,7 +2906,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 4050.0,
                 650.0
@@ -3611,7 +3496,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 2350.0,
                 850.0
@@ -3661,7 +3546,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 2850.0,
                 850.0
@@ -3671,7 +3556,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 2950.0,
                 850.0
@@ -4061,7 +3946,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 5950.0,
                 850.0
@@ -4081,7 +3966,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 6150.0,
                 850.0
@@ -4151,7 +4036,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 6850.0,
                 850.0
@@ -4211,7 +4096,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 7450.0,
                 850.0
@@ -4346,35 +4231,13 @@
         },
         {
             "pos": [
-                -1000.0,
-                -999.9833374023438
+                1169.4700927734375,
+                600.7247314453125
             ],
             "tipo": 7,
             "vel": [
-                0.0,
-                1.0
-            ]
-        },
-        {
-            "pos": [
-                -1000.0,
-                -999.9833374023438
-            ],
-            "tipo": 7,
-            "vel": [
-                0.0,
-                1.0
-            ]
-        },
-        {
-            "pos": [
-                -1000.0,
-                -999.9833374023438
-            ],
-            "tipo": 7,
-            "vel": [
-                0.0,
-                1.0
+                -331.7914123535156,
+                -256.51593017578125
             ]
         },
         {
@@ -4388,6 +4251,5 @@
                 1.0
             ]
         }
-    ],
-    "tipo": 0
+    ]
 }

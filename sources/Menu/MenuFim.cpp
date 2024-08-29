@@ -69,9 +69,9 @@ namespace Estados
                         pEstados->adicionar(Estados::EstadoID::FaseDois);
                         remover = true;
                         setAtivo(false);
-                        Estado* est = pEstados->getEstadoAtual();
-                        est->setDoisJogadores(true);
-                        est = NULL;
+                        Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(pEstados->getEstadoAtual());
+                        if(f)
+                            f->setDoisJogadores(fase->getDoisJogadores());
                         break;
                     }
 

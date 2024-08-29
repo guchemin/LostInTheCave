@@ -50,25 +50,6 @@ namespace Estados
             }
         }
 
-        void MenuJogar::mudarBackground(TipoBotao tipo) 
-        {
-            switch (tipo)
-            {
-            case TipoBotao::UM_JOGADOR:
-            {
-                break;
-            }
-
-            case TipoBotao::DOIS_JOGADORES:
-            {
-                break;
-            }
-            
-            default:
-                break;
-            }
-        }
-
         void MenuJogar::criarBotoes() 
         {
             float posX = pGraf->getCentro().x - tamBotoes.x / 2.0f;
@@ -97,9 +78,11 @@ namespace Estados
                         pEstados->adicionar(Estados::EstadoID::FaseDois);
                     }
                     setAtivo(false);
-                    Estado* est = pEstados->getEstadoAtual();
-                    est->setDoisJogadores(false);
-                    est = NULL;
+                    Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(pEstados->getEstadoAtual());
+                    if(f)
+                    {
+                        f->setDoisJogadores(false);
+                    }
                     remover = true;
                     break;
                 }
@@ -116,7 +99,11 @@ namespace Estados
                     }
                     setAtivo(false);
                     Estado* est = pEstados->getEstadoAtual();
-                    est->setDoisJogadores(true);
+                    Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(est);
+                    if(f)
+                    {
+                        f->setDoisJogadores(true);
+                    }
                     est = NULL;
                     remover = true;
                     break;

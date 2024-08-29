@@ -167,12 +167,6 @@ namespace Estados
                 break;
             }
 
-            case 'c':
-            {
-                criarChefao(pos);
-                break;
-            }
-
             case '#':
             {
                 criarPlataforma(pos, sf::Vector2f(50.0f, 50.0f));
@@ -194,12 +188,6 @@ namespace Estados
             case 'e':
             {
                 criarEspinho(pos);
-                break;
-            }
-
-            case 'r':
-            {
-                criarPedra(pos);
                 break;
             }
             

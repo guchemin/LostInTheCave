@@ -1,5 +1,6 @@
 #include "../../include/Gerenciadores/GerenciadorEstados.hpp"
 #include "../../include/Fases/FaseUm.hpp"
+#include "../../include/Fases/FaseDois.hpp"
 #include "../../include/Menu/MenuPrincipal.hpp"
 #include "../../include/Menu/MenuJogar.hpp"
 #include "../../include/Menu/MenuPausa.hpp"
@@ -61,7 +62,7 @@ namespace Gerenciadores
         // ------------------- MUDAR PARA FASE DOIS
         case Estados::EstadoID::FaseDois:
         {
-            Estados::Fases::FaseUm* fase = new Estados::Fases::FaseUm();
+            Estados::Fases::FaseDois* fase = new Estados::Fases::FaseDois();
             Estados::Estado* est = static_cast<Estados::Estado*>(fase);
             estados.push(est);
             break;

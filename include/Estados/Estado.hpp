@@ -38,7 +38,6 @@ namespace Estados
 
         void adicionar(EstadoID estadoID);
         void setRemover(const bool rmv);
-        virtual void setDoisJogadores(const bool doisJog){}; // usada apenas para a fase
         virtual void executar() = 0;
         virtual void desenhar();
     };

@@ -41,7 +41,7 @@ namespace Estados
         void Fase::salvarJogo()
         {
             nlohmann::json j;
-            j["tipo"] = Estados::Estado::getEstadoID();
+            j["fase"] = Estados::Estado::getEstadoID();
             Listas::Lista<Entidades::Entidade>::Iterador itInim = listaInimigos->inicio();
             Listas::Lista<Entidades::Entidade>::Iterador itJog = listaJogadores->inicio();
             Listas::Lista<Entidades::Entidade>::Iterador itPlat = listaPlataformas->inicio();
@@ -89,6 +89,11 @@ namespace Estados
             inicializar();
         }
 
+        const bool Fase::getDoisJogadores() const 
+        {
+            return doisJogadores;
+        }
+
         void Fase::atualizarBackground()
         {
             background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
@@ -123,12 +128,6 @@ namespace Estados
             listaProjeteis->adicionar(entProjetil);
         }
 
-        void Fase::criarChefao(sf::Vector2f pos)
-        {
-            Entidades::Personagem::Chefao* chefao = new Entidades::Personagem::Chefao(pos);
-            Entidades::Entidade* entChefao = static_cast<Entidades::Entidade*>(chefao);
-            listaInimigos->adicionar(entChefao);
-        }
 
         void Fase::criarPlataforma(sf::Vector2f pos, sf::Vector2f tam)
         {
@@ -142,13 +141,6 @@ namespace Estados
             Entidades::Obstaculos::Teia* teia = new Entidades::Obstaculos::Teia(pos);
             Entidades::Entidade* entTeia = static_cast<Entidades::Entidade*>(teia);
             listaObstaculos->adicionar(entTeia);
-        }
-
-        void Fase::criarPedra(sf::Vector2f pos)
-        {
-            Entidades::Obstaculos::Pedra* pedra = new Entidades::Obstaculos::Pedra(pos);
-            Entidades::Entidade* entPedra = static_cast<Entidades::Entidade*>(pedra);
-            listaObstaculos->adicionar(entPedra);
         }
 
         // metodo Box-Muller para transformar numeros aleatorios em uma distribuição normal

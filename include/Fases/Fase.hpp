@@ -55,13 +55,12 @@ namespace Estados
             virtual void criarMapa() = 0;
             virtual void criarAleatorios() = 0;
             void setDoisJogadores(const bool doisJog);
+            const bool getDoisJogadores() const;
             virtual void criarEntidade(sf::Vector2f pos, char caracter) = 0;
             void criarJogador(sf::Vector2f pos);
             void criarAtirador(sf::Vector2f pos);
-            void criarChefao(sf::Vector2f pos); //criado apenas na fase dois
             void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
             void criarTeia(sf::Vector2f pos);
-            void criarPedra(sf::Vector2f pos); //criado apenas na fase dois
 
             virtual void verificarFimDeJogo() = 0;
             virtual void centralizarCamera() = 0;
