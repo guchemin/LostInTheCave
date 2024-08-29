@@ -4,13 +4,10 @@ namespace Estados
 {
     namespace Fases
     {
-        FaseDois::FaseDois(const bool seq, Entidades::Personagem::Jogador *jogador1, Entidades::Personagem::Jogador *jogador2):
-        Fase(Estados::EstadoID::FaseDois, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
-        numPedra((int)(rand() % (MAX_PEDRA + 1))),
-        numChefao((int)(rand() % (MAX_CHEFAO + 1))),
-        pJog1(jogador1),
-        pJog2(jogador2),
-        sequencial(seq)
+        FaseDois::FaseDois(bool carregar):
+        Fase(Estados::EstadoID::FaseDois, carregar),
+        numPedra(0),
+        numChefao(0)
         {
             remover = false;
             background.setSize(pGraf->getTamanho());
@@ -26,14 +23,14 @@ namespace Estados
             pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
             pontos.setTamanhoFonte(32);
             pontos.setCor(sf::Color::White);
-            pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f)); 
+            pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));  
         }
 
         FaseDois::FaseDois():
         Fase(Estados::EstadoID::FaseDois, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
         numPedra((int)(rand() % (MAX_PEDRA + 1))),
         numChefao((int)(rand() % (MAX_CHEFAO + 1)))
-        {            
+        {
             remover = false;
             background.setSize(pGraf->getTamanho());
             if(!texturaFundo.loadFromFile(BACKGROUND_FASE2))

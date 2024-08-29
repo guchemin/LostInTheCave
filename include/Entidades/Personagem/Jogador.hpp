@@ -61,15 +61,20 @@ namespace Entidades
             void parouDeAtacar();
             const ID getId() const { return id; };
             const bool podeAtacar(bool direita);
-            void executar(const float dt);
             void pular();
+            void setPulou(const bool p);
             void andar(const bool direita);
             void parar();
             void ajustarVelocidade();
+            void setEspinhado(const bool esp);
+            void setNaTeia(const bool teia);
             void desacelerarTeia();
-            void colide(Entidade* ent, const sf::Vector2f intersec);
             static float getPontuacao();
-            static void somaPontos(const float p);
+            static void somaPontos(const float p); //fazer com operator+=
+            static void setPontuacao(const float p);
+
+            void executar(const float dt);
+            void colide(Entidade* ent, const sf::Vector2f intersec);
         };
     }
 }

@@ -120,7 +120,12 @@ namespace Estados
             return (*it)->getTipo();
         }
 
-        void Menu::desenhar()
+        void Menu::executar(const float dt)
+        {
+
+        }
+
+        void Menu::desenhar() 
         {
             pGraf->desenhar(background);
             vector<Botao*>::iterator iterador = listaBotoes.begin();

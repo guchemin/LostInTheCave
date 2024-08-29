@@ -45,5 +45,6 @@ public:
     sf::Vector2f getPosicao();
     void setSelecionado(const bool selecionado);
     void desenhar();
+    void executar(const float dt);
 };
 

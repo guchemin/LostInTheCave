@@ -34,6 +34,11 @@ namespace Entidades
             return j;
         }
 
+        void Chefao::setPerseguindo(bool perseg)
+        {
+            estaPerseguindo = perseg;
+        }
+
         void Chefao::inicializarAnimacao()
         {
             sf::Vector2f origem = sf::Vector2f(getTamanho().x / 3.5, getTamanho().y / 3.5);
@@ -276,6 +281,7 @@ namespace Entidades
             }
 
         }
+        
         float Chefao::getPontuacao()
         {
             return PONTUACAO_CHEFAO;

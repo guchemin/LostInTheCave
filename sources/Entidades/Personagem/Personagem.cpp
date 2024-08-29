@@ -43,6 +43,16 @@ namespace Entidades
             direcao = dir;
         }
 
+        void Personagem::setVida(const float vd)
+        {
+            vida = vd;
+        }
+
+        void Personagem::setVelocidade(const sf::Vector2f v)
+        {
+            vel = v;
+        }
+
         void Personagem::setAtacando(const bool atk)
         {
             if(atk)

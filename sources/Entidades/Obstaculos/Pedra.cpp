@@ -33,6 +33,16 @@ namespace Entidades
             return j;
         }
 
+        void Pedra::setDx(const float x)
+        {
+            dx = x;
+        }
+
+        void Pedra::setPeso(const float p)
+        {
+            peso = p;
+        }
+
         const float Pedra::getPeso() const
         {
             return peso;

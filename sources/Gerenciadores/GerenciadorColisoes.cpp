@@ -49,13 +49,13 @@ namespace Gerenciadores
         Entidades::Personagem::Jogador* pJog = NULL;
         Entidades::Projetil* pProj = NULL;
 
-        Listas::Lista<Entidades::Entidade>::Iterador itProj = listaProjeteis->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itInim = listaInimigos->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itInim2 = listaInimigos->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itJog = listaJogadores->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itPlat = listaPlataformas->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itObs = listaObstaculos->inicio();
-        Listas::Lista<Entidades::Entidade>::Iterador itObs2 = listaObstaculos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itProj = listaProjeteis->inicio();
+        Listas::ListaEntidades::IteradorEntidades itInim = listaInimigos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itInim2 = listaInimigos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
+        Listas::ListaEntidades::IteradorEntidades itPlat = listaPlataformas->inicio();
+        Listas::ListaEntidades::IteradorEntidades itObs = listaObstaculos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itObs2 = listaObstaculos->inicio();
 
         for(itPlat = listaPlataformas->inicio(); itPlat != listaPlataformas->fim(); ++itPlat)
         {

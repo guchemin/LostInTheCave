@@ -26,11 +26,12 @@ namespace Entidades
             bool atingiuJogador();
             void atacar();
             void agir();
-            void executar(const float dt);
-            void colide(Entidade* ent, const sf::Vector2f intersec);
             void setEndiabrado(const bool endb);
             const bool getEndiabrado() const;
             float getPontuacao();
+
+            void executar(const float dt);
+            void colide(Entidade* ent, const sf::Vector2f intersec);
         };
     }
 }

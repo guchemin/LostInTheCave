@@ -6,7 +6,7 @@
 #define MAX_ATIRADOR 3
 #define MAX_TEIA 3
 #define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
-#define TAMANHO_MAPA_X 8400.0f
+#define TAMANHO_MAPA_X 10000.0f // a definir
 
 
 namespace Estados
@@ -23,7 +23,7 @@ namespace Estados
                 bool sequencial; //usado apenas se a fase for sequencial
             
             public:
-                FaseDois(const bool seq, Entidades::Personagem::Jogador* jogador1, Entidades::Personagem::Jogador* jogador2);
+                FaseDois(bool carregar);
                 FaseDois();
                 ~FaseDois();
 

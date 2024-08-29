@@ -21,6 +21,7 @@ namespace Estados
             const int numEspinho;
 
         public:
+            FaseUm(bool carregar);
             FaseUm();
             ~FaseUm();
 

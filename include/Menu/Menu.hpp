@@ -38,9 +38,10 @@ namespace Estados
             void irParaBaixo();
             void inicializarBotoes();
             const TipoBotao getBotaoSelecionado();
-            void desenhar();
             virtual void selecionar(TipoBotao tipo) = 0;
             virtual void executar() = 0;
+            void executar(const float dt);
+            void desenhar();
         };
     }
 }

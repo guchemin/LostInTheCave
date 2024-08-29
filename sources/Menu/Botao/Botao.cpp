@@ -64,3 +64,7 @@ void Botao::desenhar()
     pGraf->desenhar(corpo);
     texto.desenhar();
 }
+
+void Botao::executar(const float dt)
+{
+}

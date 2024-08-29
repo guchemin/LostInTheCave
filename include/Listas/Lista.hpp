@@ -32,7 +32,7 @@ namespace Listas
         public:
             Iterador(Elemento<TL>* inicio): atual(inicio) {}
 
-            Iterador& operator++() 
+            virtual Iterador& operator++() 
             {
                 if (atual != NULL)
                     atual = atual->getProx();

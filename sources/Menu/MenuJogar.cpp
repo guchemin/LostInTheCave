@@ -81,7 +81,7 @@ namespace Estados
                     Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(pEstados->getEstadoAtual());
                     if(f)
                     {
-                        f->setDoisJogadores(false);
+                        f->setDoisJogadores(false, false);
                     }
                     remover = true;
                     break;
@@ -102,7 +102,7 @@ namespace Estados
                     Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(est);
                     if(f)
                     {
-                        f->setDoisJogadores(true);
+                        f->setDoisJogadores(true, false);
                     }
                     est = NULL;
                     remover = true;

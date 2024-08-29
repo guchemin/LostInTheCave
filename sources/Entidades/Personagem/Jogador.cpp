@@ -183,6 +183,11 @@ namespace Entidades
             estaNoChao = false;
         }
 
+        void Jogador::setPulou(const bool p)
+        {
+            pulou = p;
+        }
+
         void Jogador::andar(const bool direita)
         {
             if(foiEspinhado)
@@ -236,6 +241,16 @@ namespace Entidades
                     vel.x = VEL_JOG2;
                 }
             }
+        }
+
+        void Jogador::setEspinhado(const bool esp)
+        {
+            foiEspinhado = esp;
+        }
+
+        void Jogador::setNaTeia(const bool teia)
+        {
+            estaNaTeia = teia;
         }
 
         void Jogador::desacelerarTeia()
@@ -491,6 +506,11 @@ namespace Entidades
         void Jogador::somaPontos(const float p)
         {
             pontuacao += p;
+        }
+
+        void Jogador::setPontuacao(const float p)
+        {
+            pontuacao = p;
         }
     }
 }

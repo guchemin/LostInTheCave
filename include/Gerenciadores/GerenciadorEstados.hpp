@@ -22,6 +22,7 @@ namespace Gerenciadores
         static GerenciadorEstados* getInstancia();
         void executar();
         void adicionar(Estados::EstadoID estadoID);
+        void adicionar(Estados::Estado* estado);
         void remover();
         Estados::Estado* getEstadoAtual();
     };

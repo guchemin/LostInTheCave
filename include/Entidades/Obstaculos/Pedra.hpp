@@ -11,7 +11,7 @@ namespace Entidades
         class Pedra : public Obstaculo
         {
         private:
-            const float peso;
+            float peso;
             float dx;
             
         public:
@@ -20,6 +20,8 @@ namespace Entidades
             ~Pedra();
 
             virtual nlohmann::json salvarJogo();
+            void setDx(const float x);
+            void setPeso(const float p);    
             const float getPeso() const;
             void arrastar(const bool direita);
             void colide(Entidade* ent, const sf::Vector2f intersec);

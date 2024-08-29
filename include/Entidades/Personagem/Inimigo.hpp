@@ -33,11 +33,14 @@ namespace Entidades
             virtual nlohmann::json salvarJogo();
             virtual bool consegueAtacar() = 0;
             void setJogador(Jogador* jog);
+            void setPosInicial(const sf::Vector2f pos);
             sf::Vector2f getPosJogador();
             virtual void atacar() = 0;
             virtual void agir() = 0;
-            virtual void colide(Entidade* ent, const sf::Vector2f intersec);
             virtual float getPontuacao() = 0;
+
+            virtual void executar(const float dt) = 0;
+            virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;
         };
     }
 }

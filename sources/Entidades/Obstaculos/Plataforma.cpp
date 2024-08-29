@@ -48,6 +48,7 @@ namespace Entidades
         nlohmann::json Plataforma::salvarJogo()
         {
             nlohmann::json j = Obstaculo::salvarJogo();
+            j["tamanho"] = {corpo.getSize().x, corpo.getSize().y};
             j["ehFalsa"] = ehFalsa;
             return j;
         }
@@ -55,6 +56,30 @@ namespace Entidades
         void Plataforma::setFalsa(const bool falsa)
         {
             ehFalsa = falsa;
+            if(getTamanho().x == 50.0f)
+            {
+                textura.loadFromFile(CAMINHO_TEXTURA_PAREDE);
+                corpo.setTexture(&textura);
+                corpo.setScale(1.8f, 1.8f);
+                corpo.setOrigin(8.0f, 12.0f);
+            }
+            else if(getTamanho().x == 100.0f)
+            {
+                if(!ehFalsa)
+                {
+                    textura.loadFromFile(CAMINHO_TEXTURA_CHAO);
+                    corpo.setTexture(&textura);
+                    corpo.setScale(1.1f, 1.5f);
+                    corpo.setOrigin(8.0f, 8.0f);
+                }
+                else
+                {
+                    textura.loadFromFile(CAMINHO_TEXTURA_FALSO);
+                    corpo.setTexture(&textura);
+                    corpo.setScale(1.1f, 1.5f);
+                    corpo.setOrigin(8.0f, 11.0f);
+                }
+            }
         }
 
         const bool Plataforma::getFalsa() const

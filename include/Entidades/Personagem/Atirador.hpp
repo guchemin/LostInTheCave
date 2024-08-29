@@ -31,9 +31,11 @@ namespace Entidades
             bool consegueAtacar();
             void atacar();
             void agir();
-            void executar(const float dt);
             sf::Vector2f calcVel();
             float getPontuacao();
+
+            void executar(const float dt);
+            void colide(Entidade* ent, const sf::Vector2f intersec);
         };
     }
 }

@@ -19,6 +19,6 @@ public:
     Ente();
     virtual ~Ente();
 
-    virtual void executar(const float dt);
+    virtual void executar(const float dt) = 0;
     virtual void desenhar() = 0;
 };

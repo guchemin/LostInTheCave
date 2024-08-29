@@ -35,9 +35,19 @@ namespace Entidades
             return j;
         }
 
+        void Obstaculo::setDanoso(const bool dan)
+        {
+            danoso = dan;
+        }
+
         bool Obstaculo::getDanoso()
         {
             return danoso;
+        }
+
+        void Obstaculo::setVelY(const float vy)
+        {
+            velY = vy;
         }
 
         void Obstaculo::colide(Entidade *ent, const sf::Vector2f intersec)

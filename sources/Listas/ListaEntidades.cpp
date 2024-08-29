@@ -19,27 +19,25 @@ namespace Listas
         lista.adicionar(entidade);
     }
 
-    Listas::Lista<Entidades::Entidade>::Iterador ListaEntidades::remover(Listas::Lista<Entidades::Entidade>::Iterador it)
+    ListaEntidades::IteradorEntidades ListaEntidades::remover(IteradorEntidades it)
     {
-        return lista.remover(it);
+        return IteradorEntidades(lista.remover(it.iterador));
     }
 
-    int Listas::ListaEntidades::getTam()
+    int ListaEntidades::getTam()
     {
         return lista.getTam();
     }
 
-    void Listas::ListaEntidades::limpar()
+    void ListaEntidades::limpar()
     {
         lista.limparLista();
     }
 
-    void Listas::ListaEntidades::executar(const float dt)
+    void ListaEntidades::executar(const float dt)
     {
-        int tam = lista.getTam();
-        Entidades::Entidade* ent = NULL;
-        Lista<Entidades::Entidade>::Iterador it = lista.inicio();
-        while(it != lista.fim())
+        IteradorEntidades it = inicio();
+        while(it != fim())
         {
             Entidades::Entidade* ent = *it;
             if (ent)
@@ -49,9 +47,9 @@ namespace Listas
                     ent->getTipo() == Entidades::TIPO::CHEFAO || ent->getTipo() == Entidades::TIPO::VOADOR)
                 {
                     Entidades::Personagem::Personagem* pPer = static_cast<Entidades::Personagem::Personagem*>(ent);
-                    if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
+                    if(pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
                     {
-                        it = lista.remover(it); 
+                        it = remover(it); 
                         if(pPer->getTipo() != TIPO::JOGADOR)
                         {
                             Entidades::Personagem::Inimigo* inimigo = static_cast<Entidades::Personagem::Inimigo*>(pPer);
@@ -77,21 +75,121 @@ namespace Listas
 
     void ListaEntidades::desenhar()
     {
-        int tam = lista.getTam();
-        Entidades::Entidade* ent = NULL;
-        for(int i = 0; i < tam; i++)
+        IteradorEntidades it = inicio();
+        while(it != fim())
         {
-            ent = lista[i];
+            Entidades::Entidade* ent = *it;
             if(ent)
             {
                 ent->desenhar();
             }
-            ent = NULL;
+            ++it;
         }
     }
 
-    Entidades::Entidade* Listas::ListaEntidades::operator[](int pos)
+    Entidades::Entidade* ListaEntidades::operator[](int pos)
     {
         return lista[pos];
     }
 }
+
+
+
+
+// #include "../../include/Listas/ListaEntidades.hpp"
+// #include "../../include/Entidades/Personagem/Inimigo.hpp"
+
+// namespace Listas
+// {
+//     ListaEntidades::ListaEntidades():
+//     lista()
+//     {
+//         limpar();
+//     }
+
+//     ListaEntidades::~ListaEntidades()
+//     {
+//         limpar();
+//     }
+
+//     void ListaEntidades::adicionar(Entidades::Entidade *entidade)
+//     {
+//         lista.adicionar(entidade);
+//     }
+
+//     Listas::Lista<Entidades::Entidade>::Iterador ListaEntidades::remover(Listas::Lista<Entidades::Entidade>::Iterador it)
+//     {
+//         return lista.remover(it);
+//     }
+
+//     int Listas::ListaEntidades::getTam()
+//     {
+//         return lista.getTam();
+//     }
+
+//     void Listas::ListaEntidades::limpar()
+//     {
+//         lista.limparLista();
+//     }
+
+//     void Listas::ListaEntidades::executar(const float dt)
+//     {
+//         int tam = lista.getTam();
+//         Entidades::Entidade* ent = NULL;
+//         Lista<Entidades::Entidade>::Iterador it = lista.inicio();
+//         while(it != lista.fim())
+//         {
+//             Entidades::Entidade* ent = *it;
+//             if (ent)
+//             {
+//                 ent->executar(dt);
+//                 if (ent->getTipo() == Entidades::TIPO::JOGADOR || ent->getTipo() == Entidades::TIPO::ATIRADOR ||
+//                     ent->getTipo() == Entidades::TIPO::CHEFAO || ent->getTipo() == Entidades::TIPO::VOADOR)
+//                 {
+//                     Entidades::Personagem::Personagem* pPer = static_cast<Entidades::Personagem::Personagem*>(ent);
+//                     if (pPer->getVida() <= 0 || pPer->getPosicao().y > 900.0f)
+//                     {
+//                         it = lista.remover(it); 
+//                         if(pPer->getTipo() != TIPO::JOGADOR)
+//                         {
+//                             Entidades::Personagem::Inimigo* inimigo = static_cast<Entidades::Personagem::Inimigo*>(pPer);
+//                             Entidades::Personagem::Jogador::somaPontos(inimigo->getPontuacao());
+//                         }
+//                     }
+//                     else
+//                     {
+//                         ++it;
+//                     }
+//                 }
+//                 else
+//                 {
+//                     ++it;
+//                 }
+//             }
+//             else
+//             {
+//                 ++it;
+//             }
+//         }
+//     }
+
+//     void ListaEntidades::desenhar()
+//     {
+//         int tam = lista.getTam();
+//         Entidades::Entidade* ent = NULL;
+//         for(int i = 0; i < tam; i++)
+//         {
+//             ent = lista[i];
+//             if(ent)
+//             {
+//                 ent->desenhar();
+//             }
+//             ent = NULL;
+//         }
+//     }
+
+//     Entidades::Entidade* Listas::ListaEntidades::operator[](int pos)
+//     {
+//         return lista[pos];
+//     }
+// }

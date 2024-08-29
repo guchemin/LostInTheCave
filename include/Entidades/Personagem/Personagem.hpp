@@ -39,10 +39,15 @@ namespace Entidades
             virtual void atualizarAnimacao() = 0;
             void setAtacando(const bool atk);
             void setDirecao(const bool dir);
+            void setVida(const float vd);
+            void setVelocidade(const sf::Vector2f v);
             float getVida();
             void tiraVida(const float dano);
             float getRaioAtaque();
             float getDano();
+
+            virtual void executar(const float dt) = 0;
+            virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;
         };
     }
 }

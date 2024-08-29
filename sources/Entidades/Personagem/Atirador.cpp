@@ -193,5 +193,82 @@ namespace Entidades
         {
             return PONTUACAO_ATIRADOR;
         }
+        
+        void Atirador::colide(Entidade *ent, const sf::Vector2f intersec)
+        {
+            switch (ent->getTipo())
+            {
+            case TIPO::PLATAFORMA:
+            {
+                if(intersec.x > intersec.y)
+                {
+                    if(getPosicao().y > ent->getPosicao().y)
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y + ent->getTamanho().y));
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(getPosicao().x, ent->getPosicao().y - getTamanho().y));
+                        estaNoChao = true;
+                    }
+                    vel.y = 0.0f;
+                }
+                else
+                {
+                    if(getPosicao().x > ent->getPosicao().x)
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));    
+                    }
+                    else
+                    {
+                        setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                    }
+                }
+                break;
+            }
+            case TIPO::ATIRADOR:
+            {
+                if(getPosicao().x > ent->getPosicao().x)
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+                }
+                else
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                }
+                break;
+            }
+
+            case TIPO::CHEFAO:
+            {
+                if(getPosicao().x > ent->getPosicao().x)
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+                }
+                else
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                }
+                break;
+            }
+
+            case TIPO::VOADOR:
+            {
+                if(getPosicao().x > ent->getPosicao().x)
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x + ent->getTamanho().x, getPosicao().y));
+                }
+                else
+                {
+                    setPosicao(sf::Vector2f(ent->getPosicao().x - getTamanho().x, getPosicao().y));
+                }
+                break;
+            }
+            
+            default:
+                break;
+            }
+            
+        }       
     }
 }

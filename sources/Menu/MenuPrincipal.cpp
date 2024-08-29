@@ -40,7 +40,32 @@ namespace Estados
             }
         }
 
-        void MenuPrincipal::criarBotoes() 
+        Fases::Fase* MenuPrincipal::carregarFase()
+        {
+            std::ifstream arquivo("../resources/save.json");
+            nlohmann::json save;
+            arquivo >> save;
+
+            EstadoID id = save["fase"];
+            if(id == EstadoID::FaseUm)
+            {
+                Fases::FaseUm* fase = new Fases::FaseUm(true);
+                fase->setDoisJogadores(save["doisJog"], true);
+                return fase;
+            }
+            else if(id == Estados::EstadoID::FaseDois)
+            {
+                Fases::FaseDois* fase= new Fases::FaseDois(true);
+                fase->setDoisJogadores(save["doisJog"], true);
+                return fase;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+
+        void MenuPrincipal::criarBotoes()
         {
             float posX = pGraf->getCentro().x - tamBotoes.x / 2.0f;
             float posY = pGraf->getCentro().y - 2 * tamBotoes.y;
@@ -71,12 +96,13 @@ namespace Estados
                 break;
             }
 
-            // case TipoBotao::CARREGAR:
-            // {
-            //     pEstados->adicionar(Estados::EstadoID::MenuColocacao);
-            //     setAtivo(false);
-            //     break;
-            // }
+            case TipoBotao::CARREGAR:
+            {
+                Estados::Estado* estado = static_cast<Estados::Estado*>(carregarFase());
+                pEstados->adicionar(estado);
+                setAtivo(false);
+                break;
+            }
 
             case TipoBotao::LEADERBOARD:
             {

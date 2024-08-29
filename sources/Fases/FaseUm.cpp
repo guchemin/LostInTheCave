@@ -1,8 +1,30 @@
 #include "../../include/Fases/FaseUm.hpp"
+
 namespace Estados
 {
     namespace Fases
     {
+        FaseUm::FaseUm(bool carregar):
+        Fase(Estados::EstadoID::FaseUm, carregar),
+        numEspinho(0),
+        numVoador(0)
+        {
+            remover = false;
+            background.setSize(pGraf->getTamanho());
+            if(!texturaFundo.loadFromFile(BACKGROUND_FASE1))
+            {
+                throw std::runtime_error("Erro ao carregar a textura de fundo!");
+            }
+            background.setTexture(&texturaFundo);
+            background.setScale(1.1f, 1.1f);
+            background.setOrigin(20, 0);
+
+            pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+            pontos.setTamanhoFonte(32);
+            pontos.setCor(sf::Color::White);
+            pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));  
+        }
+
         FaseUm::FaseUm():
         Fase(Estados::EstadoID::FaseUm, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
         numEspinho((int)(rand() % (MAX_ESPINHO + 1))),
@@ -271,18 +293,14 @@ namespace Estados
             }
         }
 
-        void FaseUm::centralizarCamera() 
+        void FaseUm::centralizarCamera()
         {
             int tam = listaJogadores->getTam();
             float media;
             float diferenca;
             float soma = 0.0f;
 
-            if(tam == 0)
-            {
-                // implementar GAME OVER
-            }
-            else if(tam == 1)
+            if(tam == 1)
             {
                 pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
             }
@@ -293,14 +311,14 @@ namespace Estados
 
                 media = soma/tam;
 
-                if(diferenca > 750.0f)
+                if(diferenca > 1000.0f)
                 {
                     if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X)
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
                     else
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
                 }
-                else if(diferenca < -750.0f)
+                else if(diferenca < -1000.0f)
                 {
                     if((*listaJogadores)[1]->getPosicao().x >= TAMANHO_MAPA_X)
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));

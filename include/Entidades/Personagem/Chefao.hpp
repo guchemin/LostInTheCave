@@ -23,7 +23,6 @@ namespace Entidades
         private:
             bool estaPerseguindo;
             float tempoMudancaDirecao;
-            //ideia: criar um bool furioso, se ele for furioso (quando a vida < 50%) ele vai andar mais rapido
 
         public:
             Chefao(sf::Vector2f pos);
@@ -31,6 +30,7 @@ namespace Entidades
             ~Chefao();
 
             virtual nlohmann::json salvarJogo();
+            void setPerseguindo(bool perseg);
             void inicializarAnimacao();
             void atualizarAnimacao();
             void perseguir(const float dt);
@@ -40,9 +40,9 @@ namespace Entidades
             bool conseguePerseguir();
             void atacar();
             void agir();
-            void executar(const float dt);
-            void colide(Entidade *ent, const sf::Vector2f intersec);
             float getPontuacao();
+            void executar(const float dt);
+            void colide(Entidade *ent, const sf::Vector2f intersec);            
         };
     }
 }

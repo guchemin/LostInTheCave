@@ -12,7 +12,3 @@ id(contId++)
 Ente::~Ente()
 {
 }
-
-void Ente::executar(const float dt)
-{
-}

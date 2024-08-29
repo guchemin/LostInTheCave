@@ -143,6 +143,14 @@ namespace Gerenciadores
         }
     }
 
+    void GerenciadorEstados::adicionar(Estados::Estado *estado)
+    {
+        if(estado)
+        {
+            estados.push(estado);
+        }
+    }
+    
     void GerenciadorEstados::remover()
     {
         if(estados.top())
