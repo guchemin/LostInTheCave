@@ -1,3 +1,9 @@
+/*
+FaseUm.hpp - Filha de Fase
+----------------------------------------------------
+ * Padrão de projeto Builder.
+*/
+
 #pragma once
 
 #include "Fase.hpp"

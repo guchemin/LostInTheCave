@@ -1,3 +1,7 @@
+/*
+Personagem.hpp - Filha de Entidade - Classe Abstrata
+*/
+
 #pragma once
 
 #include "../Entidade.hpp"

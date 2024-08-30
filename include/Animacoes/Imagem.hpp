@@ -1,3 +1,9 @@
+/*
+Imagem.hpp
+----------------------------------------------------
+ * Classe responsável pelas imagens de uma animação de um personagem
+*/
+
 #pragma once
 
 #include "../../SFML/Graphics.hpp"

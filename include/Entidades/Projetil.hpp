@@ -1,3 +1,7 @@
+/*
+Projetil.hpp - Definição da classe Projetil - Filha de Entidade
+*/
+
 #pragma once
 
 #include "Personagem/Inimigo.hpp"

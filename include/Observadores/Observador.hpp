@@ -1,3 +1,9 @@
+/*
+Observador.hpp - Classe Abstrata
+----------------------------------------------------
+ * Padrão de projeto Observer.
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>

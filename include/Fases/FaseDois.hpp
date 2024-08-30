@@ -1,13 +1,19 @@
+/*
+FaseDois.hpp - Filha de Fase
+----------------------------------------------------
+ * Padrão de projeto Builder.
+*/
+
 #pragma once
+
 #include "Fase.hpp"
 
 #define MAX_PEDRA 3
-#define MAX_CHEFAO 3
+#define MAX_CHEFAO 2
 #define MAX_ATIRADOR 3
 #define MAX_TEIA 3
 #define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
-#define TAMANHO_MAPA_X 10000.0f // a definir
-
+#define TAMANHO_MAPA_X 8150.0f
 
 namespace Estados
 {

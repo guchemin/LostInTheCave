@@ -1,3 +1,10 @@
+/*
+GerenciadorEventos.hpp
+----------------------------------------------------
+ * Captura os eventos do jogo
+ * Padrão de projeto Singleton.
+*/
+
 #pragma once
 
 #include "GerenciadorGrafico.hpp"

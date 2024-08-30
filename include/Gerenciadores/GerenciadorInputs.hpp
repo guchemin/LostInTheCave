@@ -1,3 +1,11 @@
+/*
+GerenciadorInputs.hpp
+----------------------------------------------------
+ * Gerencia os inputs do jogo.
+ * Padrão de projeto Observer (faz o papel do subject).
+ * Padrão de projeto Singleton.
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>

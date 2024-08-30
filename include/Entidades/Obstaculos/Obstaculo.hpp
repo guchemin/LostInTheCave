@@ -1,3 +1,7 @@
+/*
+Obstaculo.hpp - Filha de Entidade
+*/
+
 #pragma once
 
 #include "../Entidade.hpp"

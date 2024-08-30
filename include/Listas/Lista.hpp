@@ -1,6 +1,9 @@
-//Class Lista e Elemento baseada no material disponibilizado pelo professor Jean Marcelo Simão e
-//pelo monitor da disciplina de Técnicas de Programação, Giovane Nero.
-// INCLUIR LINKS
+/*
+Lista.hpp - Classe template de Lista
+----------------------------------------------------
+ * Inspirado em: https://github.com/Giovanenero/JogoPlataforma2D-Jungle e https://moodle.dainf.ct.utfpr.edu.br/course/view.php?id=953
+*/
+
 #pragma once
 
 #include "Elemento.hpp"

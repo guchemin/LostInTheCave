@@ -1,3 +1,10 @@
+/*
+Fase.hpp - Filha de Ente e Estado - Classe Abstrata
+----------------------------------------------------
+ * Classe criada para facilitar a manipulação de fases do jogo
+ * Padrão de projeto Builder.
+*/
+
 #pragma once
 
 #include "../Entidades/Personagem/Jogador.hpp"
@@ -57,6 +64,7 @@ namespace Estados
             virtual void criarAleatorios() = 0;
             void setDoisJogadores(const bool doisJog, const bool carregando);
             const bool getDoisJogadores() const;
+
             virtual void criarEntidade(sf::Vector2f pos, char caracter) = 0;
             void criarJogador(sf::Vector2f pos);
             void criarAtirador(sf::Vector2f pos);

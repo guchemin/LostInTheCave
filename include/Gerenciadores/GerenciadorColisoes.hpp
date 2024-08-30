@@ -1,3 +1,10 @@
+/*
+GerenciadorColisoes.hpp
+----------------------------------------------------
+ * Classe que gerencia as colisões entre as entidades do jogo.
+ * Padrão de projeto Mediator.
+*/
+
 #pragma once
 
 #include "../Listas/ListaEntidades.hpp"

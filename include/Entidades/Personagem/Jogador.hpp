@@ -1,3 +1,7 @@
+/*
+Jogador.hpp - Filha de Personagem
+*/
+
 #pragma once
 
 #include <iostream>

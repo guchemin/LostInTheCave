@@ -139,11 +139,11 @@ namespace Estados
 
             for(int i = 0; i < numAtirador; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 10.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
-                while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+                while(posY < 500.0f || posY > pGraf->getTamanho().y - 100.0f)
                 {
                     posY = dist_normal(mediaY, desvioY);
                 }
@@ -155,11 +155,11 @@ namespace Estados
 
             for(int i = 0; i < numChefao; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 100.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
-                while(posY < 500.0f || posY > pGraf->getTamanho().y - 50.0f)
+                while(posY < 500.0f || posY > pGraf->getTamanho().y - 150.0f)
                 {
                     posY = dist_normal(mediaY, desvioY);
                 }

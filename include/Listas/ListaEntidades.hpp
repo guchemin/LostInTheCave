@@ -1,3 +1,10 @@
+/*
+ListaEntidades.hpp
+----------------------------------------------------
+ * Lista de entidades do jogo
+ * Padrão de projeto Iterator.
+*/
+
 #pragma once
 
 #include <vector>

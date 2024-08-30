@@ -1,3 +1,10 @@
+/*
+Estado.hpp
+----------------------------------------------------
+ * Classe responsável por gerenciar os estados do jogo.
+ * Padrao de projeto State.
+*/
+
 #pragma once
 
 #include "../Ente.hpp"

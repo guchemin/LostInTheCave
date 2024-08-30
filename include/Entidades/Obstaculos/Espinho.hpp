@@ -1,3 +1,7 @@
+/*
+Espinho.hpp - Filha de Obstaculo
+*/
+
 #pragma once
 
 #include "Obstaculo.hpp"

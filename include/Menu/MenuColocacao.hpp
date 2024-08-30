@@ -1,3 +1,7 @@
+/*
+MenuColocacao.hpp - Filha da classe Menu
+*/
+
 #pragma once
 
 #include "Menu.hpp"
@@ -19,7 +23,7 @@ namespace Estados
             std::vector<Texto*> colocacoes;
             Gerenciadores::GerenciadorArquivos gArquivo;
             std::vector<std::pair<std::string, int>> leaderboard;
-            // TODO
+            
         public:
             MenuColocacao();
             ~MenuColocacao();

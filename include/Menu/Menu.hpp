@@ -1,3 +1,7 @@
+/*
+Menu.hpp - Filha de Ente e Estado - Classe Abstrata
+*/
+
 #pragma once
 
 #include "../Ente.hpp"

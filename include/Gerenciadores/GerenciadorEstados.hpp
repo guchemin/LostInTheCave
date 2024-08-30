@@ -1,3 +1,11 @@
+/*
+GerenciadorEstados.hpp
+----------------------------------------------------
+ * Executa os estados do jogo
+ * Padrão de projeto State.
+ * Padrão de projeto Singleton.
+*/
+
 #pragma once
 
 #include <stack>

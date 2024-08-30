@@ -1,3 +1,7 @@
+/*
+Inimigo.hpp - Filha de Personagem - Classe Abstrata
+*/
+
 #pragma once
 
 #include "Jogador.hpp"

@@ -1,3 +1,7 @@
+/*
+ObsMenu.hpp - Filha de Observador
+*/
+
 #pragma once
 
 #include "Observador.hpp"

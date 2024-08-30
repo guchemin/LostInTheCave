@@ -1,3 +1,7 @@
+/*
+Entidade.hpp - Filha de Ente - Classe Abstrata
+*/
+
 #pragma once
 
 #include <cmath>

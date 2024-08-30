@@ -1,3 +1,9 @@
+/*
+Ente.hpp - Classe Abstrata
+----------------------------------------------------
+ * Classe base do jogo.
+*/
+
 #pragma once
 
 #include <SFML/Graphics.hpp>

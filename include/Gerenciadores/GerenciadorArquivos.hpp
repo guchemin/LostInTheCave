@@ -1,3 +1,10 @@
+/*
+GerenciadorArquivos.hpp
+----------------------------------------------------
+ * Classe usada para manipular arquivos ao longo do código
+ * Inspirado em: https://github.com/Giovanenero/JogoPlataforma2D-Jungle
+*/
+
 #pragma once 
 
 #include <SFML/Graphics.hpp>

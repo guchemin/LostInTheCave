@@ -1,3 +1,10 @@
+/*
+Jogo.hpp
+----------------------------------------------------
+ * Classe principal do jogo.
+ * Responsável por iniciar o jogo e mandar o Gerenciador de Estados executar.
+*/
+
 #pragma once
 
 #include "Entidades/Personagem/Jogador.hpp"

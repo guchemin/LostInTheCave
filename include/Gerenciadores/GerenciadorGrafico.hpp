@@ -1,3 +1,10 @@
+/*
+GerenciadorGrafico.hpp
+----------------------------------------------------
+ * Classe que gerencia a janela e a renderização de objetos gráficos.
+ * Padrão de projeto Singleton.
+*/
+
 #pragma once
 
 #include "../../SFML/Graphics.hpp"

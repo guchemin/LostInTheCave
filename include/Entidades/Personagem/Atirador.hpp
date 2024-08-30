@@ -1,3 +1,7 @@
+/*
+Atirador.hpp - Filha de Inimigo
+*/
+
 #pragma once
 
 #include "../Projetil.hpp"

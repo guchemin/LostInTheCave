@@ -2,3 +2,5 @@ bernardo 0
 dario 0 
 oralivio 75 
 daumdescon 75 
+bela 75 
+alipio 0 

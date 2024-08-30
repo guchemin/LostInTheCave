@@ -1,3 +1,7 @@
+/*
+Botao.hpp - Filha de Ente
+*/
+
 #pragma once
 
 #include "Texto.hpp"

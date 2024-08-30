@@ -1,3 +1,7 @@
+/*
+Chefao.hpp - Filha de Inimigo
+*/
+
 #pragma once
 
 #include "Inimigo.hpp"

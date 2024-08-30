@@ -1,3 +1,7 @@
+/*
+MenuSalvarPontuacao.hpp - Filha da classe Menu
+*/
+
 #pragma once
 
 #include "Menu.hpp"

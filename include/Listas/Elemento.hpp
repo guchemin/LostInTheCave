@@ -1,3 +1,7 @@
+/*
+Elemento.hpp - Classe template de Elemento
+*/
+
 #pragma once
 
 #include <iostream>
