@@ -61,37 +61,18 @@ namespace Observadores
         if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao && 
         pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
         {
-            if(tecladoEspecial[tecla] == "Backspace")
+            if(tecla == sf::Keyboard::Key::BackSpace)
             {
                 Estados::Menu::MenuSalvarPontuacao* m = dynamic_cast<Estados::Menu::MenuSalvarPontuacao*>(pMenu);
                 m->removerCaracter();
             }
             else 
             {
-                std::map <sf::Keyboard::Key,std::string> :: iterator it = teclado.find(tecla);
+                std::map<sf::Keyboard::Key,std::string>::iterator it = teclado.find(tecla);
                 if (it == teclado.end())
                     return;
                 Estados::Menu::MenuSalvarPontuacao* m = dynamic_cast<Estados::Menu::MenuSalvarPontuacao*>(pMenu);
                 m->adicionarCaracter(it->second);
-                // for(int i = 97; i < 123; i++)
-                // {
-                //     if(keys == i)
-                //     {
-                //         Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
-                //         m->adicionarCaracter(teclado[tecla]);
-                //         break;
-                //     }
-                // }
-                // for(int i = 48; i < 58; i++)
-                // {
-                //     if(teclado[tecla] == i)
-                //     {
-                //         cout << i << endl;
-                //         Menu::MenuSalvarPontuacao* m = dynamic_cast<Menu::MenuSalvarPontuacao*>(pMenu);
-                //         m->adicionarCaracter(teclado[tecla]);
-                //         break;
-                //     }
-                // }
             }
         }
     }

@@ -81,7 +81,7 @@ namespace Estados
 
             nomeString.append(c);
 
-            string aux = nomeTexto.getInfo();
+            std::string aux = nomeTexto.getInfo();
             nomeTexto.setInfo(aux + c);
             alinharTexto();
         }
@@ -91,17 +91,18 @@ namespace Estados
             if (!nomeString.empty())
             {
                 nomeString.pop_back();
+
+                std::string aux = nomeTexto.getInfo();
+                aux.pop_back();
+                nomeTexto.setInfo(aux);
+                alinharTexto();
             }
         }
 
         void MenuSalvarPontuacao::salvarColocacao()
         {
-            std::ofstream arquivo("../resources/leaderboard.txt", std::ios::app);
-            if (arquivo.is_open())
-            {
-                arquivo << nomeString << " " << (int)Entidades::Personagem::Jogador::getPontuacao() << std::endl;
-                arquivo.close();
-            }
+            std::string conteudo = nomeString + " " + std::to_string((int)Entidades::Personagem::Jogador::getPontuacao());
+            gArquivo.gravarCont("../resources/leaderboard.txt", conteudo);
         }
 
         void MenuSalvarPontuacao::selecionar(TipoBotao tipo)

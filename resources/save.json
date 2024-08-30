@@ -1,9 +1,9 @@
 {
-    "doisJog": true,
+    "doisJog": false,
     "fase": 0,
     "inimigos": [
         {
-            "direcao": false,
+            "direcao": true,
             "pos": [
                 3150.0,
                 330.0
@@ -23,8 +23,8 @@
             "direcao": true,
             "endiabrado": false,
             "pos": [
-                6439.875,
-                288.0129699707031
+                6614.58251953125,
+                293.22747802734375
             ],
             "posInicial": [
                 6500.0,
@@ -32,17 +32,17 @@
             ],
             "tipo": 3,
             "vel": [
-                250.0,
+                -250.0,
                 -249.99998474121094
             ],
             "vida": 40.0
         },
         {
             "direcao": true,
-            "endiabrado": true,
+            "endiabrado": false,
             "pos": [
-                888.353271484375,
-                429.050048828125
+                1277.6448974609375,
+                429.3373107910156
             ],
             "posInicial": [
                 1150.0,
@@ -50,7 +50,7 @@
             ],
             "tipo": 3,
             "vel": [
-                625.0,
+                250.0,
                 16.666667938232422
             ],
             "vida": 40.0
@@ -74,10 +74,10 @@
         },
         {
             "direcao": true,
-            "endiabrado": true,
+            "endiabrado": false,
             "pos": [
-                3130.139404296875,
-                479.4569091796875
+                2982.828857421875,
+                493.2084655761719
             ],
             "posInicial": [
                 3050.0,
@@ -85,8 +85,8 @@
             ],
             "tipo": 3,
             "vel": [
-                -625.0,
-                16.666667938232422
+                -250.0,
+                -249.99998474121094
             ],
             "vida": 40.0
         },
@@ -94,8 +94,8 @@
             "direcao": true,
             "endiabrado": true,
             "pos": [
-                7318.39892578125,
-                637.9093627929688
+                7620.9775390625,
+                643.2020874023438
             ],
             "posInicial": [
                 7600.0,
@@ -103,7 +103,7 @@
             ],
             "tipo": 3,
             "vel": [
-                -625.0,
+                625.0,
                 -249.99998474121094
             ],
             "vida": 40.0
@@ -126,21 +126,92 @@
             "vida": 60.0
         },
         {
-            "direcao": false,
+            "direcao": true,
             "pos": [
-                2450.0,
-                780.0
+                4516.70068359375,
+                480.0
             ],
             "posInicial": [
-                2449.571044921875,
-                513.8869018554688
+                4516.70068359375,
+                501.4880676269531
             ],
             "tipo": 1,
             "vel": [
-                -0.0,
+                0.0,
                 0.0
             ],
             "vida": 60.0
+        },
+        {
+            "direcao": true,
+            "pos": [
+                3221.8466796875,
+                780.0
+            ],
+            "posInicial": [
+                3221.8466796875,
+                506.711181640625
+            ],
+            "tipo": 1,
+            "vel": [
+                0.0,
+                0.0
+            ],
+            "vida": 60.0
+        },
+        {
+            "direcao": true,
+            "endiabrado": true,
+            "pos": [
+                2656.43408203125,
+                437.7232360839844
+            ],
+            "posInicial": [
+                2477.36865234375,
+                500.2620849609375
+            ],
+            "tipo": 3,
+            "vel": [
+                625.0,
+                116.25634765625
+            ],
+            "vida": 40.0
+        },
+        {
+            "direcao": true,
+            "endiabrado": false,
+            "pos": [
+                5962.1611328125,
+                485.4249267578125
+            ],
+            "posInicial": [
+                5680.1787109375,
+                502.83990478515625
+            ],
+            "tipo": 3,
+            "vel": [
+                -250.0,
+                316.2563781738281
+            ],
+            "vida": 40.0
+        },
+        {
+            "direcao": true,
+            "endiabrado": true,
+            "pos": [
+                917.0477294921875,
+                542.6953125
+            ],
+            "posInicial": [
+                901.931884765625,
+                508.0155334472656
+            ],
+            "tipo": 3,
+            "vel": [
+                625.0,
+                449.5896301269531
+            ],
+            "vida": 40.0
         }
     ],
     "jogadores": [
@@ -149,41 +220,23 @@
             "estaNaTeia": false,
             "foiEspinhado": false,
             "id": 0,
-            "pontuacao": 150.0,
+            "pontuacao": 75.0,
             "pos": [
-                2443.79052734375,
-                430.0
+                2260.0,
+                328.59381103515625
             ],
             "pulou": false,
             "tipo": 0,
             "vel": [
                 0.0,
-                90.00000762939453
+                1077.7843017578125
             ],
-            "vida": 30.0
-        },
-        {
-            "direcao": false,
-            "estaNaTeia": false,
-            "foiEspinhado": false,
-            "id": 1,
-            "pontuacao": 150.0,
-            "pos": [
-                2530.058349609375,
-                430.0
-            ],
-            "pulou": false,
-            "tipo": 0,
-            "vel": [
-                0.0,
-                0.0
-            ],
-            "vida": 46.0
+            "vida": 22.5
         }
     ],
     "obstaculos": [
         {
-            "afiado": 12.5,
+            "afiado": 9.5,
             "danoso": true,
             "pos": [
                 4500.0,
@@ -193,7 +246,7 @@
             "velY": 0.0
         },
         {
-            "afiado": 6.5,
+            "afiado": 9.800000190734863,
             "danoso": true,
             "pos": [
                 2700.0,
@@ -213,7 +266,7 @@
             "velY": 0.0
         },
         {
-            "afiado": 15.0,
+            "afiado": 8.300000190734863,
             "danoso": true,
             "pos": [
                 7250.0,
@@ -224,7 +277,7 @@
         },
         {
             "danoso": false,
-            "densidade": 3.0999999046325684,
+            "densidade": 2.9000000953674316,
             "pos": [
                 1400.0,
                 600.0
@@ -233,7 +286,7 @@
             "velY": 0.0
         },
         {
-            "afiado": 10.0,
+            "afiado": 14.5,
             "danoso": true,
             "pos": [
                 3750.0,
@@ -244,7 +297,7 @@
         },
         {
             "danoso": false,
-            "densidade": 3.0,
+            "densidade": 2.700000047683716,
             "pos": [
                 6900.0,
                 700.0
@@ -254,7 +307,7 @@
         },
         {
             "danoso": false,
-            "densidade": 3.0,
+            "densidade": 3.5,
             "pos": [
                 3800.0,
                 800.0
@@ -263,63 +316,23 @@
             "velY": 0.0
         },
         {
-            "afiado": 14.100000381469727,
+            "afiado": 9.899999618530273,
             "danoso": true,
             "pos": [
-                3121.276123046875,
-                800.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
-            "afiado": 6.0,
-            "danoso": true,
-            "pos": [
-                7607.73291015625,
+                7859.6640625,
                 500.0
             ],
             "tipo": 6,
             "velY": 0.0
         },
         {
-            "afiado": 9.800000190734863,
+            "afiado": 10.800000190734863,
             "danoso": true,
             "pos": [
-                3450.0,
-                800.0
-            ],
-            "tipo": 6,
-            "velY": 0.0
-        },
-        {
-            "danoso": false,
-            "densidade": 3.0,
-            "pos": [
-                7491.3525390625,
-                500.0
-            ],
-            "tipo": 5,
-            "velY": 0.0
-        },
-        {
-            "danoso": false,
-            "densidade": 2.5,
-            "pos": [
-                5315.3125,
-                800.0
-            ],
-            "tipo": 5,
-            "velY": 0.0
-        },
-        {
-            "danoso": false,
-            "densidade": 2.799999952316284,
-            "pos": [
-                4392.67041015625,
+                2129.140869140625,
                 600.0
             ],
-            "tipo": 5,
+            "tipo": 6,
             "velY": 0.0
         }
     ],
@@ -368,7 +381,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 250.0,
                 0.0
@@ -396,7 +409,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 450.0,
                 0.0
@@ -900,7 +913,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 4050.0,
                 0.0
@@ -1012,7 +1025,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 4850.0,
                 0.0
@@ -1054,7 +1067,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5150.0,
                 0.0
@@ -1082,7 +1095,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5350.0,
                 0.0
@@ -1166,7 +1179,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5950.0,
                 0.0
@@ -1810,7 +1823,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5000.0,
                 200.0
@@ -2818,7 +2831,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 8250.0,
                 400.0
@@ -2888,7 +2901,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 5000.0,
                 450.0
@@ -3392,7 +3405,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 6850.0,
                 550.0
@@ -3728,7 +3741,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 800.0,
                 650.0
@@ -3798,7 +3811,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 1300.0,
                 650.0
@@ -3840,7 +3853,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 1600.0,
                 650.0
@@ -4302,7 +4315,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 6900.0,
                 750.0
@@ -4568,7 +4581,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 550.0,
                 850.0
@@ -4764,7 +4777,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 1950.0,
                 850.0
@@ -4890,7 +4903,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": true,
+            "ehFalsa": false,
             "pos": [
                 2850.0,
                 850.0
@@ -5310,7 +5323,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 4950.0,
                 850.0
@@ -5534,7 +5547,7 @@
         },
         {
             "danoso": false,
-            "ehFalsa": false,
+            "ehFalsa": true,
             "pos": [
                 6550.0,
                 850.0
@@ -5803,12 +5816,12 @@
         {
             "pos": [
                 -1000.0,
-                -912.8701782226563
+                -177.0905303955078
             ],
             "tipo": 7,
             "vel": [
                 0.0,
-                101.75494384765625
+                313.7445068359375
             ]
         },
         {
@@ -5858,12 +5871,12 @@
         {
             "pos": [
                 -1000.0,
-                1007.0214233398438
+                -999.9833374023438
             ],
             "tipo": 7,
             "vel": [
                 0.0,
-                0.0
+                1.0
             ]
         }
     ]

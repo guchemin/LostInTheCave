@@ -73,7 +73,7 @@ namespace Gerenciadores
 
     void GerenciadorArquivos::abrirGravar(const char *caminho)
     {
-        gravar.open(caminho);
+        gravar.open(caminho, std::ios::app);  // Abrir em modo de append
         if(!gravar.is_open())
         {
             cout << "Erro ao abrir o arquivo " << caminho << endl;
