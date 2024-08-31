@@ -26,12 +26,7 @@ namespace Estados
             const int numVoador;
             const int numEspinho;
 
-        public:
-            FaseUm(bool carregar);
-            FaseUm();
-            ~FaseUm();
-
-            void criarMapa();
+        private:
             void criarAleatorios();
             void criarEntidade(sf::Vector2f pos, char caracter);
             void criarVoador(sf::Vector2f pos);
@@ -39,6 +34,13 @@ namespace Estados
             void atualizarTextos();
             void verificarFimDeJogo();
             void centralizarCamera();
+
+        public:
+            FaseUm(bool carregar);
+            FaseUm();
+            ~FaseUm();
+
+            void criarMapa();
             void executar(const float dt);
             void desenhar();
             void executar();

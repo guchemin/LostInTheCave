@@ -32,6 +32,10 @@ namespace Entidades
             bool tomouDano;
             float tempoTomouDano;
             Animacoes::Animacao animacao;
+
+        protected:
+            virtual void inicializarAnimacao() = 0;
+            virtual void atualizarAnimacao() = 0;
             
         public:
             Personagem(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
@@ -39,14 +43,12 @@ namespace Entidades
             virtual ~Personagem();
 
             virtual nlohmann::json salvarJogo();
-            virtual void inicializarAnimacao() = 0;
-            virtual void atualizarAnimacao() = 0;
             void setAtacando(const bool atk);
             void setDirecao(const bool dir);
             void setVida(const float vd);
             void setVelocidade(const sf::Vector2f v);
-            float getVida();
             void operator-=(const float dano);
+            float getVida();
             float getRaioAtaque();
             float getDano();
 

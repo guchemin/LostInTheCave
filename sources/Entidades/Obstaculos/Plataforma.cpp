@@ -5,9 +5,9 @@ namespace Entidades
     namespace Obstaculos
     {
         Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam):
-        Obstaculo(pos, tam, Entidades::TIPO::PLATAFORMA),
-        ehFalsa(!(bool)(rand() % 20 || tam.x == 50.0f)),
-        empuxo(GRAVIDADE)
+            Obstaculo(pos, tam, Entidades::TIPO::PLATAFORMA),
+            ehFalsa(!(bool)(rand() % 20 || tam.x == 50.0f)),
+            empuxo(GRAVIDADE)
         {
             if(tam.x == 50.0f)
             {
@@ -45,7 +45,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Plataforma::salvarJogo()
+        nlohmann::json Plataforma::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Obstaculo::salvarJogo();
             j["tamanho"] = {corpo.getSize().x, corpo.getSize().y};

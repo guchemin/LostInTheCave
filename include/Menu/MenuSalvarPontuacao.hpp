@@ -22,16 +22,18 @@ namespace Estados
             std::string nomeString;
             sf::RectangleShape painel;
 
+        private:
+            void alinharTexto();
+            void criarBotoes();
+            void salvarColocacao();
+
         public:
             MenuSalvarPontuacao(Fases::Fase* f);
             MenuSalvarPontuacao();
             ~MenuSalvarPontuacao();
 
-            void alinharTexto();
-            void criarBotoes();
             void adicionarCaracter(std::string c);
             void removerCaracter();
-            void salvarColocacao();
             void selecionar(TipoBotao tipo);
             void executar();
         };

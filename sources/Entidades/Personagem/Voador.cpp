@@ -5,8 +5,8 @@ namespace Entidades
     namespace Personagem
     {
         Voador::Voador(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(35.0f, 50.0f), TIPO::VOADOR),
-        endiabrado(bool(rand() % 2))
+            Inimigo(pos, sf::Vector2f(35.0f, 50.0f), TIPO::VOADOR),
+            endiabrado(bool(rand() % 2))
         {
             vel = sf::Vector2f(VEL_VOADOR, VEL_VOADOR);
             dano = DANO_VOADOR;
@@ -16,15 +16,14 @@ namespace Entidades
                 dano *= 1.5f;
             }
 
-            tempoAtaque = 0.0f;
             raioAtaque = 74.0f;
-            vida = 40.0f;
+            vida = 25.0f;
 
             inicializarAnimacao();
         }
 
         Voador::Voador():
-        endiabrado(bool())
+            endiabrado(false)
         {
         }
 
@@ -32,7 +31,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Voador::salvarJogo()
+        nlohmann::json Voador::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Inimigo::salvarJogo();
             j["endiabrado"] = endiabrado;

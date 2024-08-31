@@ -13,7 +13,7 @@ FaseDois.hpp - Filha de Fase
 #define MAX_ATIRADOR 3
 #define MAX_TEIA 3
 #define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
-#define TAMANHO_MAPA_2 8150.0f
+#define TAMANHO_MAPA_2 7950.0f
 
 namespace Estados
 {
@@ -27,13 +27,8 @@ namespace Estados
                 Entidades::Personagem::Jogador* pJog1;
                 Entidades::Personagem::Jogador* pJog2;
                 bool sequencial; //usado apenas se a fase for sequencial
-            
-            public:
-                FaseDois(bool carregar);
-                FaseDois();
-                ~FaseDois();
 
-                void criarMapa();
+            private:
                 void criarAleatorios();
                 void criarEntidade(sf::Vector2f pos, char caracter);
                 void criarPedra(sf::Vector2f pos);
@@ -41,6 +36,14 @@ namespace Estados
                 void atualizarTextos();
                 void verificarFimDeJogo();
                 void centralizarCamera();
+            
+            public:
+                FaseDois(bool carregar);
+                FaseDois();
+                ~FaseDois();
+
+                void criarMapa();
+                
                 void executar(const float dt);
                 void desenhar();
                 void executar();

@@ -1,10 +1,12 @@
 #include "../../include/Gerenciadores/GerenciadorArquivos.hpp"
 
+// feito com base no código do monitor Giovane: https://github.com/Giovanenero/JogoPlataforma2D-Jungle
+
 namespace Gerenciadores
 {
     GerenciadorArquivos::GerenciadorArquivos():
-    leitura(),
-    gravar()
+        leitura(),
+        gravar()
     {
     }
 

@@ -18,17 +18,19 @@ namespace Entidades
         private:
             bool endiabrado;
 
+        private:
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            bool consegueAtacar();
+            bool atingiuJogador();
+            void atacar();
+
         public:
             Voador(sf::Vector2f pos);
             Voador();
             ~Voador();
 
             virtual nlohmann::json salvarJogo();
-            void inicializarAnimacao();
-            void atualizarAnimacao();
-            bool consegueAtacar();
-            bool atingiuJogador();
-            void atacar();
             void agir();
             void setEndiabrado(const bool endb);
             const bool getEndiabrado() const;

@@ -16,7 +16,7 @@ namespace Gerenciadores
     }
 
     GerenciadorInputs::GerenciadorInputs():
-    observadores()
+        observadores()
     {
         observadores.clear();
     }

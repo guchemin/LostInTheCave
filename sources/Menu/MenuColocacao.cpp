@@ -5,12 +5,12 @@ namespace Estados
     namespace Menu
     {
         MenuColocacao::MenuColocacao():
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuColocacao, "LEADERBOARD"),
-        colocacoes(),
-        gArquivo(),
-        leaderboard()
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuColocacao, "LEADERBOARD"),
+            colocacoes(),
+            gArquivo(),
+            leaderboard()
         {
-            texturaFundo = pGraf->carregarTextura("../assets/sprites/Backgrounds/Background1.png");
+            texturaFundo = pGraf->carregarTextura(BACKGROUNG_MENU_COLOCACAO);
             background.setTexture(&texturaFundo);
             ativo = true;
             criarBotoes();
@@ -98,7 +98,6 @@ namespace Estados
                 criarTexto(leaderboard[i].first, leaderboard[i].second);
             }
         }
-
 
         void MenuColocacao::desenharColocacao()
         {

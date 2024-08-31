@@ -22,11 +22,13 @@ namespace Observadores
         map<sf::Keyboard::Key, std::string> teclado;
         map<sf::Keyboard::Key, std::string> tecladoEspecial;
 
+    private:
+        void inicializaTeclado();
+
     public:
         Observador();
         virtual ~Observador();
 
-        void inicializaTeclado();
         virtual void notificarPressionada(const sf::Keyboard::Key tecla) = 0;
         virtual void notificarSolta(const sf::Keyboard::Key tecla) = 0;
     };

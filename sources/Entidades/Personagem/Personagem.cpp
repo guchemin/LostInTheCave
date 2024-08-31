@@ -7,18 +7,18 @@ namespace Entidades
     namespace Personagem
     {
         Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
-        Entidade(pos, tam, tp),
-        animacao(&corpo)
+            Entidade(pos, tam, tp),
+            animacao(&corpo),
+            atacando(false),
+            iniciouAtaque(false),
+            estaNoChao(false),
+            direcao(true),
+            tomouDano(false),
+            tempoAnimacaoAtaque(0.0f),
+            tempoTomouDano(0.0f),
+            tempoAtaque(0.0f),
+            vel(0.0f, 0.0f)
         {
-            
-            atacando = false;
-            iniciouAtaque = false;
-            estaNoChao = false;
-            direcao = true;
-            tomouDano = false;
-            tempoAnimacaoAtaque = 0.0f;
-            tempoTomouDano = 0.0f;
-            tempoAtaque = 0.0f;
         }
 
         Personagem::Personagem()
@@ -29,7 +29,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Personagem::salvarJogo()
+        nlohmann::json Personagem::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Entidade::salvarJogo();
             j["vel"] = {vel.x, vel.y};
@@ -38,7 +38,7 @@ namespace Entidades
             return j;
         }
 
-        void Personagem::setDirecao(const bool dir)
+        void Personagem::setDirecao(const bool dir) // true = direita, false = esquerda
         {
             direcao = dir;
         }

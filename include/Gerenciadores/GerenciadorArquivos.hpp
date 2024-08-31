@@ -23,7 +23,6 @@ namespace Gerenciadores
             ofstream gravar;
 
         public:
-        
             GerenciadorArquivos();
             ~GerenciadorArquivos();
             

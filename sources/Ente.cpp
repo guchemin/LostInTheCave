@@ -3,8 +3,8 @@
 int Ente::contId = 0;
 
 Ente::Ente():
-pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
-id(contId++)
+    pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
+    id(contId++)
 {
     srand(Ente::id * (unsigned)time(0)); // usando id apenas para melhorar a semente
 }

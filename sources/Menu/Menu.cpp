@@ -5,13 +5,13 @@ namespace Estados
     namespace Menu
     {
         Menu::Menu(sf::Vector2f tamB, Estados::EstadoID id, string ttl):
-        Ente(),
-        Estado(id),
-        listaBotoes(),
-        it(),
-        titulo(),
-        tamBotoes(tamB),
-        obs(this)
+            Ente(),
+            Estado(id),
+            listaBotoes(),
+            it(),
+            titulo(),
+            tamBotoes(tamB),
+            obs(this)
         {
             background.setSize(pGraf->getTamanho());
             background.setPosition(0.0f, 0.0f);
@@ -47,7 +47,7 @@ namespace Estados
             return ativo;
         }
 
-        void Menu::centralizar()
+        void Menu::centralizar() // arruma a posição dos botões
         {
             background.setPosition(pGraf->getCentro() - pGraf->getTamanho() / 2.0f);
             titulo.setPos(sf::Vector2f(pGraf->getCentro().x - titulo.getTamanho().x / 2.0f, 50.0f));
@@ -122,7 +122,6 @@ namespace Estados
 
         void Menu::executar(const float dt)
         {
-
         }
 
         void Menu::desenhar() 

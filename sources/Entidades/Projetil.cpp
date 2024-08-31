@@ -19,7 +19,7 @@ namespace Entidades
     {
     }
     
-    nlohmann::json Projetil::salvarJogo()
+    nlohmann::json Projetil::salvarJogo() // salva apenas o que é exclusivamente da classe
     {
         nlohmann::json j = Entidade::salvarJogo();
         j["vel"] = {vel.x, vel.y};
@@ -48,6 +48,7 @@ namespace Entidades
     void Projetil::executar(const float dt)
     {
         sf::Vector2f ds = vel * dt;
+
         //acao da gravidade
         if(getPosicao().y < 1000.0f)
         {
@@ -64,7 +65,7 @@ namespace Entidades
         corpo.move(ds);
     }
 
-    void Projetil::colide(Entidade* ent, const sf::Vector2f intersec)
+    void Projetil::colide(Entidade* ent, const sf::Vector2f intersec) // colide com jogador, tirando vida, e com plataforma, sumindo
     {
         switch(ent->getTipo())
         {

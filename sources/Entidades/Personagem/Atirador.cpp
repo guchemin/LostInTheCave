@@ -5,19 +5,18 @@ namespace Entidades
     namespace Personagem
     {
         Atirador::Atirador(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(50.0f, 70.0f), TIPO::ATIRADOR)
+            Inimigo(pos, sf::Vector2f(50.0f, 70.0f), TIPO::ATIRADOR),
+            pProjetil(NULL)
         {
-            vel = sf::Vector2f(0.0f, 0.0f);
-            pProjetil = NULL;
             raioAtaque = RAIO_ATIRADOR;
-            tempoAtaque = 0.0f;
             vida = 60.0f;
             dano = DANO_ATIRADOR;
 
             inicializarAnimacao();
         }
 
-        Atirador::Atirador()
+        Atirador::Atirador():
+            pProjetil(NULL)
         {
         }
 
@@ -26,7 +25,7 @@ namespace Entidades
             pProjetil = NULL;
         }
 
-        nlohmann::json Atirador::salvarJogo()
+        nlohmann::json Atirador::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Inimigo::salvarJogo();
             return j;
@@ -76,7 +75,7 @@ namespace Entidades
             return false;
         }
 
-        void Atirador::atacar()
+        void Atirador::atacar() // puxa o projetil "de fora da tela" e o atira
         {
             setAtacando(true);
             sf::Vector2f velProj = calcVel();
@@ -143,7 +142,7 @@ namespace Entidades
             atualizarAnimacao();
         }
 
-        sf::Vector2f Atirador::calcVel()
+        sf::Vector2f Atirador::calcVel() // calcula velocidade em x e y do projetil com base na posição do jogador
         {
             if(pJogador == NULL)
             {

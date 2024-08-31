@@ -1,10 +1,10 @@
 #include "../../../include/Menu/Botao/Botao.hpp"
 
 Botao::Botao(sf::Vector2f pos, TipoBotao tp, string txt):
-tipo(tp),
-texto(),
-texturaPadrao(pGraf->carregarTextura(CAMINHO_BOTAO)),
-texturaSelecionado(pGraf->carregarTextura(CAMINHO_BOTAO_SELECIONADO))
+    tipo(tp),
+    texto(),
+    texturaPadrao(pGraf->carregarTextura(CAMINHO_BOTAO)),
+    texturaSelecionado(pGraf->carregarTextura(CAMINHO_BOTAO_SELECIONADO))
 {
     corpo.setPosition(pos);
     corpo.setSize(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y));
@@ -65,6 +65,6 @@ void Botao::desenhar()
     texto.desenhar();
 }
 
-void Botao::executar(const float dt)
+void Botao::executar(const float dt) // nao usado para essa classe
 {
 }

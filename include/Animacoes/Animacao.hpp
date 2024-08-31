@@ -21,6 +21,9 @@ namespace Animacoes
         map<string, Imagem*> imagens;
         sf::Clock relogio;
         string imagemAtual;
+    
+    private:
+        void setImgAtual(const string imgAtual);
 
     public:
         Animacao(sf::RectangleShape* crp);
@@ -33,7 +36,6 @@ namespace Animacoes
         const bool getTerminouAnimacao();
         const float getTempoTotal();
         void setTempoTotal(const float tempoTotal);
-        void setImgAtual(const string imgAtual);
         void atualizar(const bool paraDireita, string imgAtual);
         void addAnimacao(const char* caminhoTextura, string nomeAnimacao, const int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin = sf::Vector2f(0.0f, 0.0f), const bool horizontal = true);
     };

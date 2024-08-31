@@ -5,8 +5,8 @@
 namespace Observadores
 {
     ObsMenu::ObsMenu(Estados::Menu::Menu *pM):
-    Observador(),
-    pMenu(pM)
+        Observador(),
+        pMenu(pM)
     {
         cima = sf::Keyboard::Key::Up;
         baixo = sf::Keyboard::Key::Down;
@@ -26,7 +26,7 @@ namespace Observadores
     }
 
     ObsMenu::ObsMenu():
-    Observador()
+        Observador()
     {
     }
 

@@ -4,17 +4,18 @@
 namespace Animacoes
 {
     Imagem::Imagem(const char *caminhoTextura, const unsigned int qtd, const float tempo, const sf::Vector2f esc, const sf::Vector2f org, const bool hor):
-    pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
-    qtdImagem(qtd),
-    tempoTroca(tempo),
-    escala(esc),
-    origem(org),
-    horizontal(hor)
+        pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
+        qtdImagem(qtd),
+        tempoTroca(tempo),
+        escala(esc),
+        origem(org),
+        horizontal(hor),
+        tempoTotal(0.0f),
+        tamanho(sf::IntRect(0, 0, 0, 0)),
+        imgAtual(0),
+        textura(pGraf->carregarTextura(caminhoTextura)),
+        terminouAnimacao(false)
     {
-        tempoTotal = 0.0f;
-        tamanho = sf::IntRect(0, 0, 0, 0);
-        imgAtual = 0;
-        textura = pGraf->carregarTextura(caminhoTextura);
         if(horizontal)
         {
             tamanho.width = textura.getSize().x / (float)qtdImagem;
@@ -25,7 +26,6 @@ namespace Animacoes
             tamanho.width = textura.getSize().x;
             tamanho.height = textura.getSize().y / (float)qtdImagem;
         }
-        terminouAnimacao = false;
     }
 
     Imagem::~Imagem()

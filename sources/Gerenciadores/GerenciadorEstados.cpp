@@ -23,7 +23,7 @@ namespace Gerenciadores
     }
 
     GerenciadorEstados::GerenciadorEstados():
-    estados()
+        estados()
     {
     }
 

@@ -3,9 +3,9 @@
 using namespace Gerenciadores;
 
 Jogo::Jogo():
-pGraf(GerenciadorGrafico::getInstancia()),
-pEventos(GerenciadorEventos::getInstancia()),
-pEstados(GerenciadorEstados::getInstancia())
+    pGraf(GerenciadorGrafico::getInstancia()),
+    pEventos(GerenciadorEventos::getInstancia()),
+    pEstados(GerenciadorEstados::getInstancia())
 {
     pGraf->getJanela()->setFramerateLimit(60);
     pEstados->adicionar(Estados::EstadoID::MenuPrincipal);

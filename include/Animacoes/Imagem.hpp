@@ -30,7 +30,6 @@ namespace Animacoes
         Imagem(const char* caminhoTextura, const unsigned int qtd, const float tempo, const sf::Vector2f esc, const sf::Vector2f org, const bool hor);
         ~Imagem();
 
-        void atualizar(const bool paraDireita, const float dt);
         void resetar();
         const bool getTerminouAnimacao();
         void setTerminouAnimacao(const bool terminou);
@@ -42,5 +41,6 @@ namespace Animacoes
         const sf::Texture* getTextura() const;
         const sf::Vector2f getEscala() const;
         const sf::Vector2f getOrigin() const;
+        void atualizar(const bool paraDireita, const float dt);
     };
 }

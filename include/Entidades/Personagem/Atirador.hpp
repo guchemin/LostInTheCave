@@ -23,19 +23,21 @@ namespace Entidades
         private:
             Projetil* pProjetil;
 
+        private:
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void atacar();
+            sf::Vector2f calcVel();
+
         public:
             Atirador(sf::Vector2f pos);
             Atirador();
             ~Atirador();
 
             virtual nlohmann::json salvarJogo();
-            void inicializarAnimacao();
-            void atualizarAnimacao();
             void setProjetil(Projetil* proj);
             bool consegueAtacar();
-            void atacar();
             void agir();
-            sf::Vector2f calcVel();
             float getPontuacao();
 
             void executar(const float dt);

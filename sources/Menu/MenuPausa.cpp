@@ -5,8 +5,8 @@ namespace Estados
     namespace Menu
     {
         MenuPausa::MenuPausa(Fases::Fase *f):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuPausa, "PAUSA"),
-        fase(f)
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuPausa, "PAUSA"),
+            fase(f)
         {
             background.setSize(pGraf->getTamanho());
             background.setFillColor(sf::Color(0, 0, 0, 80));

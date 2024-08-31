@@ -3,10 +3,10 @@
 namespace Animacoes
 {
     Animacao::Animacao(sf::RectangleShape *crp):
-    corpo(crp),
-    imagens(),
-    imagemAtual(""),
-    relogio()
+        corpo(crp),
+        imagens(),
+        imagemAtual(""),
+        relogio()
     {
     }
 

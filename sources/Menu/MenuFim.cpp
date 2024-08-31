@@ -5,8 +5,8 @@ namespace Estados
     namespace Menu
     {
         MenuFim::MenuFim(Fases::Fase *f):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuFim, "FIM DA FASE"),
-        fase(f)
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuFim, "FIM DA FASE"),
+            fase(f)
         {
             background.setSize(pGraf->getTamanho());
             background.setFillColor(sf::Color(0, 0, 0, 80));
@@ -66,7 +66,7 @@ namespace Estados
                 {
                     case TipoBotao::JOGAR_FASE2:
                     {    
-                        pEstados->adicionar(Estados::EstadoID::FaseDois);
+                        adicionar(Estados::EstadoID::FaseDois);
                         remover = true;
                         setAtivo(false);
                         Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(pEstados->getEstadoAtual());
@@ -77,7 +77,7 @@ namespace Estados
 
                     case TipoBotao::SALVAR_PONTUACAO:
                     {   
-                        pEstados->adicionar(Estados::EstadoID::MenuSalvarPontuacao);
+                        adicionar(Estados::EstadoID::MenuSalvarPontuacao);
                         setAtivo(false);
                         remover = true;
                         break;

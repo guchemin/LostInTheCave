@@ -19,7 +19,6 @@ class Texto
 private:
     sf::Text texto;
     sf::Font fonte;
-    // string info;
     Gerenciadores::GerenciadorGrafico* pGraf;
 
 public: 

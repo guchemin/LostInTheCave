@@ -5,16 +5,13 @@ namespace Estados
     namespace Fases
     {
         FaseDois::FaseDois(bool carregar):
-        Fase(Estados::EstadoID::FaseDois, carregar),
-        numPedra(0),
-        numChefao(0)
+            Fase(Estados::EstadoID::FaseDois, carregar),
+            numPedra(0),
+            numChefao(0)
         {
             remover = false;
             background.setSize(pGraf->getTamanho());
-            if(!texturaFundo.loadFromFile(BACKGROUND_FASE2))
-            {
-                throw std::runtime_error("Erro ao carregar a textura de fundo!");
-            }
+            texturaFundo = pGraf->carregarTextura(BACKGROUND_FASE2);
             background.setTexture(&texturaFundo);
             background.setFillColor(sf::Color(230, 140, 255));
             background.setScale(1.1f, 1.1f);
@@ -27,16 +24,13 @@ namespace Estados
         }
 
         FaseDois::FaseDois():
-        Fase(Estados::EstadoID::FaseDois, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
-        numPedra((int)(rand() % (MAX_PEDRA + 1))),
-        numChefao((int)(rand() % (MAX_CHEFAO + 1)))
+            Fase(Estados::EstadoID::FaseDois, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
+            numPedra((int)(rand() % (MAX_PEDRA + 1))),
+            numChefao((int)(rand() % (MAX_CHEFAO + 1)))
         {
             remover = false;
             background.setSize(pGraf->getTamanho());
-            if(!texturaFundo.loadFromFile(BACKGROUND_FASE2))
-            {
-                throw std::runtime_error("Erro ao carregar a textura de fundo!");
-            }
+            texturaFundo = pGraf->carregarTextura(BACKGROUND_FASE2);
             background.setTexture(&texturaFundo);
             background.setFillColor(sf::Color(230, 140, 255));
             background.setScale(1.1f, 1.1f);
@@ -48,8 +42,7 @@ namespace Estados
             pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));  
         }
 
-
-        FaseDois::~FaseDois()
+        FaseDois::~FaseDois() // zera a pontuação dos jogadores
         {
             Entidades::Personagem::Jogador::somaPontos(-(Entidades::Personagem::Jogador::getPontuacao()));
         }
@@ -95,7 +88,7 @@ namespace Estados
             criarAleatorios();
         }
 
-        void FaseDois::criarAleatorios()
+        void FaseDois::criarAleatorios() // cria inimigos e obstáculos seguindo uma distribuição normal com centro no meio do mapa
         {
             float mediaX = TAMANHO_MAPA_2 / 2.0f;
             float desvioX = 3000.0f;

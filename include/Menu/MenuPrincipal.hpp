@@ -19,15 +19,16 @@ namespace Estados
         {
         private:
             sf::Texture texturaFundoFaseUm;
-            sf::Texture texturaFundoFaseDois;
+
+        private:
+            void mudarBackground(TipoBotao tipo);
+            Fases::Fase* carregarFase();
+            void criarBotoes();
 
         public:
             MenuPrincipal();
             ~MenuPrincipal();
 
-            void mudarBackground(TipoBotao tipo);
-            Fases::Fase* carregarFase();
-            void criarBotoes();
             void selecionar(TipoBotao tipo);
             void executar();
         };

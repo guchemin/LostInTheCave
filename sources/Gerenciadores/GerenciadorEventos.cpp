@@ -15,8 +15,8 @@ namespace Gerenciadores
     }
 
     GerenciadorEventos::GerenciadorEventos(): 
-    pGraf(GerenciadorGrafico::getInstancia()),
-    pInp(GerenciadorInputs::getInstancia())
+        pGraf(GerenciadorGrafico::getInstancia()),
+        pInp(GerenciadorInputs::getInstancia())
     {
     }
 

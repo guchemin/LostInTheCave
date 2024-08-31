@@ -6,11 +6,11 @@ namespace Estados
     namespace Menu
     {
         MenuJogar::MenuJogar(Estados::EstadoID faseID):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), faseID, "LOST IN THE CAVE"),
-        jog1(sf::Vector2f(100.0f, 140.0f)),
-        jog2(sf::Vector2f(100.0f, 140.0f)),
-        textJog1(pGraf->carregarTextura(CAMINHO_TEXT_JOG1)),
-        textJog2(pGraf->carregarTextura(CAMINHO_TEXT_JOG2))
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), faseID, "LOST IN THE CAVE"),
+            jog1(sf::Vector2f(100.0f, 140.0f)),
+            jog2(sf::Vector2f(100.0f, 140.0f)),
+            textJog1(pGraf->carregarTextura(CAMINHO_TEXT_JOG1)),
+            textJog2(pGraf->carregarTextura(CAMINHO_TEXT_JOG2))
         {
             criarBotoes();
             if(faseID == Estados::EstadoID::MenuJogarUm)
@@ -28,6 +28,10 @@ namespace Estados
             jog2.setTexture(&textJog2);
             jog1.setScale(1.2f, 1.0f);
             jog2.setScale(1.2f, 1.0f);
+        }
+
+        MenuJogar::MenuJogar()
+        {
         }
 
         MenuJogar::~MenuJogar()
@@ -71,11 +75,11 @@ namespace Estados
                 {
                     if(getEstadoID() == Estados::EstadoID::MenuJogarUm)
                     {
-                        pEstados->adicionar(Estados::EstadoID::FaseUm);
+                        adicionar(Estados::EstadoID::FaseUm);
                     }
                     else if(getEstadoID() == Estados::EstadoID::MenuJogarDois)
                     {
-                        pEstados->adicionar(Estados::EstadoID::FaseDois);
+                        adicionar(Estados::EstadoID::FaseDois);
                     }
                     setAtivo(false);
                     Estados::Fases::Fase* f = static_cast<Estados::Fases::Fase*>(pEstados->getEstadoAtual());
@@ -91,11 +95,11 @@ namespace Estados
                 {
                     if(getEstadoID() == Estados::EstadoID::MenuJogarUm)
                     {
-                        pEstados->adicionar(Estados::EstadoID::FaseUm);
+                        adicionar(Estados::EstadoID::FaseUm);
                     }
                     else if (getEstadoID() == Estados::EstadoID::MenuJogarDois)
                     {
-                        pEstados->adicionar(Estados::EstadoID::FaseDois);
+                        adicionar(Estados::EstadoID::FaseDois);
                     }
                     setAtivo(false);
                     Estado* est = pEstados->getEstadoAtual();

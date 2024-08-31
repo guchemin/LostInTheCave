@@ -28,7 +28,7 @@ namespace Entidades
         pGraf->desenhar(corpo);
     }
 
-    nlohmann::json Entidade::salvarJogo()
+    nlohmann::json Entidade::salvarJogo() // salva apenas o que é exclusivamente da classe
     {
         nlohmann::json j;
         j["pos"] = {getPosicao().x, getPosicao().y};

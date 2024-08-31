@@ -19,7 +19,7 @@ namespace Entidades
         public:
             Obstaculo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
             Obstaculo();
-            ~Obstaculo();
+            virtual ~Obstaculo();
             
             virtual nlohmann::json salvarJogo();
             void setDanoso(const bool dan);

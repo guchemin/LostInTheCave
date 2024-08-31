@@ -25,6 +25,12 @@ namespace Gerenciadores
         Listas::ListaEntidades* listaProjeteis;
         Listas::ListaEntidades* listaPlataformas;
 
+        void colidePlataforma();
+        void colideJogador();
+        void colideObstaculo();
+        void colideInimigo();
+        void colideProjetil();
+
     public:
         GerenciadorColisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li, Listas::ListaEntidades* lpl,
                             Listas::ListaEntidades* lo, Listas::ListaEntidades* lp);

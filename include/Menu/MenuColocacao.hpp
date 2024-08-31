@@ -11,6 +11,7 @@ MenuColocacao.hpp - Filha da classe Menu
 #include <sstream>
 
 #define CAMINHO_ARQUIVO_COLOCACAO "../resources/leaderboard.txt"
+#define BACKGROUNG_MENU_COLOCACAO "../assets/sprites/Backgrounds/Background1.png"
 
 namespace Estados
 {
@@ -23,16 +24,18 @@ namespace Estados
             std::vector<Texto*> colocacoes;
             Gerenciadores::GerenciadorArquivos gArquivo;
             std::vector<std::pair<std::string, int>> leaderboard;
-            
-        public:
-            MenuColocacao();
-            ~MenuColocacao();
 
+        private:
             void centralizarTexto();
             void criarBotoes();
             void criarTexto(const std::string& nome, int pontos);
             void criarColocacao();
             void desenharColocacao();
+            
+        public:
+            MenuColocacao();
+            ~MenuColocacao();
+
             void selecionar(TipoBotao tipo);
             void executar();
         };

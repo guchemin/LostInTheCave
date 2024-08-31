@@ -4,8 +4,8 @@
 namespace Observadores
 {
     ObsJogadores::ObsJogadores(Entidades::Personagem::Jogador* pJ):
-    Observador(),
-    pJog(pJ)
+        Observador(),
+        pJog(pJ)
     {
         if(pJog->getId() == Entidades::Personagem::ID::JOGADOR1)
         {
@@ -25,7 +25,7 @@ namespace Observadores
     }
 
     ObsJogadores::ObsJogadores():
-    Observador()
+        Observador()
     {
     }
 

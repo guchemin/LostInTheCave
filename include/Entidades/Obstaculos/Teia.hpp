@@ -25,6 +25,8 @@ namespace Entidades
             virtual nlohmann::json salvarJogo();
             void setDensidade(float den);
             const float getDensidade() const;
+
+            void colide(Entidade *ent, const sf::Vector2f intersec);
         };
     }
 }

@@ -36,6 +36,9 @@ namespace Estados
         Gerenciadores::GerenciadorEstados* pEstados;
         bool remover;
 
+    protected:
+        void adicionar(EstadoID estadoID);
+
     public:
         Estado(EstadoID id);
         Estado();
@@ -43,7 +46,6 @@ namespace Estados
 
         EstadoID getEstadoID();
 
-        void adicionar(EstadoID estadoID);
         void setRemover(const bool rmv);
         virtual void executar() = 0;
         virtual void desenhar();

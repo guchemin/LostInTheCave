@@ -9,12 +9,12 @@ namespace Estados
     namespace Menu
     {
         MenuSalvarPontuacao::MenuSalvarPontuacao(Fases::Fase* f):
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuSalvarPontuacao, "Salvar Pontuacao"),
-        fase(f),
-        gArquivo(),
-        nomeTexto(),
-        nomeString(),
-        pontuacaoTexto()
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuSalvarPontuacao, "Salvar Pontuacao"),
+            fase(f),
+            gArquivo(),
+            nomeTexto(),
+            nomeString(),
+            pontuacaoTexto()
         {
             background.setSize(pGraf->getTamanho());
             background.setFillColor(sf::Color(0, 0, 0, 80));
@@ -39,11 +39,8 @@ namespace Estados
             ativo = true;
         }
 
-        MenuSalvarPontuacao::MenuSalvarPontuacao():
-        fase(nullptr), gArquivo(), Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "")
+        MenuSalvarPontuacao::MenuSalvarPontuacao()
         {
-            alinharTexto();
-            criarBotoes();
         }
 
         MenuSalvarPontuacao::~MenuSalvarPontuacao()

@@ -50,27 +50,10 @@ namespace Estados
             Listas::ListaEntidades* listaProjeteis;
             Listas::ListaEntidades* listaPlataformas;
 
-        public:
-            Fase(Estados::EstadoID id, const int nAtira, const int nTeia);
-            Fase(Estados::EstadoID id, bool carregar);
-            virtual ~Fase();
-
+        private:
             void inicializar();
 
-            virtual void atualizarTextos() = 0;
-            void salvarJogo();
             void carregarMapa();
-            virtual void criarMapa() = 0;
-            virtual void criarAleatorios() = 0;
-            void setDoisJogadores(const bool doisJog, const bool carregando);
-            const bool getDoisJogadores() const;
-
-            virtual void criarEntidade(sf::Vector2f pos, char caracter) = 0;
-            void criarJogador(sf::Vector2f pos);
-            void criarAtirador(sf::Vector2f pos);
-            void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
-            void criarTeia(sf::Vector2f pos);
-
             Entidades::Entidade* carregarInimigo(nlohmann::json& j);
             Entidades::Entidade* carregarJogador(nlohmann::json& j);
             Entidades::Entidade* carregarObstaculo(nlohmann::json& j);
@@ -83,14 +66,33 @@ namespace Estados
             Entidades::Entidade* carregarChefao(nlohmann::json& j);
             Entidades::Entidade* carregarVoador(nlohmann::json& j);
 
+        protected:
+            virtual void atualizarTextos() = 0;
+
+            virtual void criarMapa() = 0;
+            virtual void criarAleatorios() = 0;
+            virtual void criarEntidade(sf::Vector2f pos, char caracter) = 0;
+            void criarJogador(sf::Vector2f pos);
+            void criarAtirador(sf::Vector2f pos);
+            void criarPlataforma(sf::Vector2f pos, sf::Vector2f tam);
+            void criarTeia(sf::Vector2f pos);
+
             virtual void verificarFimDeJogo() = 0;
             virtual void centralizarCamera() = 0;
+            float dist_normal(float media, float desvio);
+
+        public:
+            Fase(Estados::EstadoID id, const int nAtira, const int nTeia);
+            Fase(Estados::EstadoID id, bool carregar);
+            virtual ~Fase();
+
+            void salvarJogo();
+            void setDoisJogadores(const bool doisJog, const bool carregando);
+            const bool getDoisJogadores() const;
             void atualizarBackground();
             virtual void executar(const float dt) = 0;
             virtual void desenhar() = 0;
             virtual void executar() = 0;
-
-            float dist_normal(float media, float desvio);
         };
     }
 }

@@ -8,31 +8,23 @@ namespace Entidades
         float Jogador::pontuacao = 0.0f;
 
         Jogador::Jogador(sf::Vector2f pos, const ID i):
-        id(i),
-        obs(this),
-        Personagem(pos, sf::Vector2f(50.0f, 70.0f), TIPO::JOGADOR)
+            id(i),
+            obs(this),
+            Personagem(pos, sf::Vector2f(50.0f, 70.0f), TIPO::JOGADOR),
+            pulou(false),
+            estaNaTeia(false),
+            foiEspinhado(false),
+            aceleracaoTeia(1.0f)
         {
-            if(id == JOGADOR1)
-            {
-                vel = sf::Vector2f(0.0f, 0.0f);
-            }
-            else if(id == JOGADOR2)
-            {
-                vel = sf::Vector2f(0.0f, 0.0f);
-            }
-            
-            pulou = false;
-            estaNaTeia = false;
-            foiEspinhado = false;
             raioAtaque = 100.0f;
             vida = 100.0f;
-            aceleracaoTeia = 1.0f;
             dano = DANO_JOGADOR;
+
             inicializarAnimacao();
         }
 
         Jogador::Jogador():
-        id(JOGADOR1)
+            id(JOGADOR1)
         {
         }
 
@@ -40,7 +32,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Jogador::salvarJogo()
+        nlohmann::json Jogador::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Personagem::salvarJogo();
             j["id"] = id;
@@ -93,7 +85,7 @@ namespace Entidades
             }
         }
 
-        void Jogador::autorizarPulo(const bool autoriza)
+        void Jogador::autorizarPulo(const bool autoriza) // para que o jogador não pule enquanto está no ar ou enquanto não soltar a tecla
         {
             pulou = !autoriza;
         }
@@ -103,7 +95,7 @@ namespace Entidades
             return estaNoChao && !pulou;
         }
 
-        void Jogador::parouDeAtacar()
+        void Jogador::parouDeAtacar() // função usada para melhorar animação, sem interferência importante na funcionalidade
         {
             iniciouAtaque = false;
         }
@@ -217,7 +209,7 @@ namespace Entidades
             vel.x = 0.0f;
         }
 
-        void Jogador::ajustarVelocidade()
+        void Jogador::ajustarVelocidade() // apos cair de um pulo, ajusta a velocidade para a velocidade normal
         {
             if(vel.x < 0.0f)
             {
@@ -311,7 +303,7 @@ namespace Entidades
                 break;
             }
 
-            case TIPO::TEIA:
+            case TIPO::TEIA: // teia é um obstaculo que diminui a velocidade do jogador
             {
                 estaNaTeia = true;
                 Obstaculos::Teia* teia = static_cast<Obstaculos::Teia*>(ent);
@@ -320,7 +312,7 @@ namespace Entidades
                 break;
             }
 
-            case TIPO::ESPINHO:
+            case TIPO::ESPINHO: // espinho é um obstaculo que danifica o jogador e o joga para cima
             {
                 Obstaculos::Espinho* espinho = static_cast<Obstaculos::Espinho*>(ent);
                 foiEspinhado = true;

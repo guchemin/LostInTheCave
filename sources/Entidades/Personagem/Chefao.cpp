@@ -5,16 +5,14 @@ namespace Entidades
     namespace Personagem
     {
         Chefao::Chefao(sf::Vector2f pos):
-        Inimigo(pos, sf::Vector2f(80.0f, 120.0f), TIPO::CHEFAO)
+            Inimigo(pos, sf::Vector2f(80.0f, 120.0f), TIPO::CHEFAO),
+            estaPerseguindo(false),
+            tempoMudancaDirecao(0.0f)
         {
             vel = sf::Vector2f(VEL_CHEFAO, 0.0f);
-            tempoAtaque = COOLDOWN_CHEFAO;
             raioAtaque = RAIO_ATAQUE_CHEFAO;
-            estaPerseguindo = false;
             vida = 150.0f;
             dano = DANO_CHEFAO;
-            posInicial = pos;
-            tempoMudancaDirecao = 0.0f;
 
             inicializarAnimacao();
         }
@@ -27,7 +25,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Chefao::salvarJogo()
+        nlohmann::json Chefao::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Inimigo::salvarJogo();
             j["estaPerseguindo"] = estaPerseguindo;
@@ -64,7 +62,7 @@ namespace Entidades
             }
         }
 
-        void Chefao::perseguir(const float dt)
+        void Chefao::perseguir(const float dt) // persegue o jogador
         {
             float dx;
 
@@ -87,7 +85,7 @@ namespace Entidades
             corpo.move(dx, 0.0f);
         }
 
-        void Chefao::moverAleatorio(const float dt)
+        void Chefao::moverAleatorio(const float dt) // movimenta o chefão aleatoriamente, mudando de diração a cada 6 segundos
         {
             float dx;
             ajustaVelocidade();
@@ -104,7 +102,7 @@ namespace Entidades
             corpo.move(dx, 0.0f);
         }
 
-        void Chefao::ajustaVelocidade()
+        void Chefao::ajustaVelocidade() // diminui a velocidade do chefão quando ele deixa de perseguir o jogador
         {
             if(!estaPerseguindo)
             {
@@ -127,11 +125,6 @@ namespace Entidades
                 return true;
             }
             return false;
-        }
-
-        bool Chefao::conseguePerseguir()
-        {
-            return false;   
         }
 
         void Chefao::atacar()

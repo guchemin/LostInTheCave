@@ -17,12 +17,14 @@ namespace Estados
             Fases::Fase* fase;
             sf::RectangleShape painel;
 
+        private:
+            void criarBotoes();
+
         public:
             MenuFim(Fases::Fase* f);
             MenuFim();
             ~MenuFim();
 
-            void criarBotoes();
             void setFase(Fases::Fase* f);
             Fases::Fase* getFase();
             void selecionar(TipoBotao tipo);

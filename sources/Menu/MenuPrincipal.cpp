@@ -6,11 +6,10 @@ namespace Estados
     namespace Menu
     {
         MenuPrincipal::MenuPrincipal():
-        Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuPrincipal, "LOST IN THE CAVE")
+            Menu(sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), Estados::EstadoID::MenuPrincipal, "LOST IN THE CAVE")
         {
             criarBotoes();
             texturaFundoFaseUm = pGraf->carregarTextura(BACKGROUND_FASE1);
-            // texturaFundoFaseDois = pGraf->carregarTextura(BACKGROUND_FASE2);
         }
 
         MenuPrincipal::~MenuPrincipal()
@@ -30,7 +29,6 @@ namespace Estados
 
             case TipoBotao::FASE_2:
             {
-                // background.setTexture(&texturaFundoFaseDois);
                 background.setFillColor(sf::Color(230, 140, 255));
                 break;
             }
@@ -40,7 +38,7 @@ namespace Estados
             }
         }
 
-        Fases::Fase* MenuPrincipal::carregarFase()
+        Fases::Fase* MenuPrincipal::carregarFase() // carrega a fase salva
         {
             std::ifstream arquivo("../resources/save.json");
             nlohmann::json save;
@@ -84,14 +82,14 @@ namespace Estados
             {
             case TipoBotao::FASE_1:
             {
-                pEstados->adicionar(Estados::EstadoID::MenuJogarUm);
+                adicionar(Estados::EstadoID::MenuJogarUm);
                 setAtivo(false);
                 break;
             }
 
             case TipoBotao::FASE_2:
             {
-                pEstados->adicionar(Estados::EstadoID::MenuJogarDois);
+                adicionar(Estados::EstadoID::MenuJogarDois);
                 setAtivo(false);
                 break;
             }
@@ -99,14 +97,14 @@ namespace Estados
             case TipoBotao::CARREGAR:
             {
                 Estados::Estado* estado = static_cast<Estados::Estado*>(carregarFase());
-                pEstados->adicionar(estado);
+                pEstados->adicionar(estado); // adicionando diretamente o estado, pois é criado aqui
                 setAtivo(false);
                 break;
             }
 
             case TipoBotao::LEADERBOARD:
             {
-                pEstados->adicionar(Estados::EstadoID::MenuColocacao);
+                adicionar(Estados::EstadoID::MenuColocacao);
                 setAtivo(false);
                 break;
             }

@@ -28,6 +28,14 @@ namespace Entidades
             bool estaPerseguindo;
             float tempoMudancaDirecao;
 
+        private:
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void perseguir(const float dt);
+            void moverAleatorio(const float dt);
+            void ajustaVelocidade();
+            void atacar();
+
         public:
             Chefao(sf::Vector2f pos);
             Chefao();
@@ -35,16 +43,10 @@ namespace Entidades
 
             virtual nlohmann::json salvarJogo();
             void setPerseguindo(bool perseg);
-            void inicializarAnimacao();
-            void atualizarAnimacao();
-            void perseguir(const float dt);
-            void moverAleatorio(const float dt);
-            void ajustaVelocidade();
             bool consegueAtacar();
-            bool conseguePerseguir();
-            void atacar();
             void agir();
             float getPontuacao();
+            
             void executar(const float dt);
             void colide(Entidade *ent, const sf::Vector2f intersec);            
         };

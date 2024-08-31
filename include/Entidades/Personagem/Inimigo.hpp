@@ -29,17 +29,21 @@ namespace Entidades
             Jogador* pJogador;
             sf::Vector2f posInicial;
 
+        protected:
+            virtual void inicializarAnimacao() = 0;
+            virtual void atualizarAnimacao() = 0;
+            virtual bool consegueAtacar() = 0;
+            virtual void atacar() = 0;
+
         public:
             Inimigo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp);
             Inimigo();
             virtual ~Inimigo();
 
             virtual nlohmann::json salvarJogo();
-            virtual bool consegueAtacar() = 0;
             void setJogador(Jogador* jog);
             void setPosInicial(const sf::Vector2f pos);
             sf::Vector2f getPosJogador();
-            virtual void atacar() = 0;
             virtual void agir() = 0;
             virtual float getPontuacao() = 0;
 

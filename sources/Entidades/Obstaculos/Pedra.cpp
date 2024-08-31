@@ -5,10 +5,10 @@ namespace Entidades
     namespace Obstaculos
     {
         Pedra::Pedra(sf::Vector2f pos):
-        Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::PEDRA),
-        peso(float(rand() % 6 + 15) / 10.0f)
+            Obstaculo(pos, sf::Vector2f(50.0f, 50.0f), TIPO::PEDRA),
+            peso(float(rand() % 6 + 15) / 10.0f),
+            dx(300.0f / peso / 60.0f)
         {
-            dx = 300.0f / peso / 60.0f;
             textura.loadFromFile(CAMINHO_TEXTURA_PEDRA);
             corpo.setTexture(&textura);
             corpo.setScale(1.2f, 1.0f);
@@ -16,8 +16,8 @@ namespace Entidades
         }
 
         Pedra::Pedra():
-        Obstaculo(),
-        peso(10.0f)
+            Obstaculo(),
+            peso(10.0f)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Pedra::salvarJogo()
+        nlohmann::json Pedra::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Obstaculo::salvarJogo();
             j["peso"] = peso;

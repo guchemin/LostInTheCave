@@ -5,26 +5,26 @@ namespace Estados
     namespace Fases
     {
         Fase::Fase(Estados::EstadoID id, const int nAtira, const int nTeia):
-        numTeia(nTeia),
-        numAtirador(nAtira),
-        Ente(),
-        Estado(id),
-        pEventos(Gerenciadores::GerenciadorEventos::getInstancia()),
-        pontos(),
-        vidaJog1(),
-        vidaJog2()
+            numTeia(nTeia),
+            numAtirador(nAtira),
+            Ente(),
+            Estado(id),
+            pEventos(Gerenciadores::GerenciadorEventos::getInstancia()),
+            pontos(),
+            vidaJog1(),
+            vidaJog2()
         {
         }
 
         Fase::Fase(Estados::EstadoID id, bool carregar):
-        numTeia(0),
-        numAtirador(0),
-        Ente(),
-        Estado(id),
-        pEventos(Gerenciadores::GerenciadorEventos::getInstancia()),
-        pontos(),
-        vidaJog1(),
-        vidaJog2()
+            numTeia(0),
+            numAtirador(0),
+            Ente(),
+            Estado(id),
+            pEventos(Gerenciadores::GerenciadorEventos::getInstancia()),
+            pontos(),
+            vidaJog1(),
+            vidaJog2()
         {
             listaJogadores = new Listas::ListaEntidades();
             listaInimigos = new Listas::ListaEntidades();
@@ -52,7 +52,7 @@ namespace Estados
             criarMapa();
         }
 
-        void Fase::salvarJogo()
+        void Fase::salvarJogo() // salva as condições da fase e chama a salvarJogo de cada entidade
         {
             nlohmann::json j;
             j["fase"] = Estados::Estado::getEstadoID();
@@ -98,7 +98,7 @@ namespace Estados
             file.close();
         }
 
-        void Fase::carregarMapa()
+        void Fase::carregarMapa() // carrega as entidades do arquivo de save e seta as entidades que precisam de outras
         {
             std::ifstream arquivo("../resources/save.json");
             nlohmann::json save;
@@ -188,7 +188,6 @@ namespace Estados
             listaInimigos->adicionar(entAtirador);
             listaProjeteis->adicionar(entProjetil);
         }
-
 
         void Fase::criarPlataforma(sf::Vector2f pos, sf::Vector2f tam)
         {
@@ -359,7 +358,7 @@ namespace Estados
             background.setPosition(pGraf->getCentro().x - pGraf->getTamanho().x / 2, pGraf->getCentro().y - pGraf->getTamanho().y / 2);
         }
         
-         // metodo Box-Muller para transformar numeros aleatorios em uma distribuição normal
+        // metodo Box-Muller para transformar numeros aleatorios em uma distribuição normal
         float Fase::dist_normal(float media, float desvio) // feito com ajuda do ChatGPT para a parte de gerar números aleatórios
         {
             static random_device rd;

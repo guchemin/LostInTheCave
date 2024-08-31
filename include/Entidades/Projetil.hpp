@@ -25,6 +25,7 @@ namespace Entidades
         void setVelocidade(sf::Vector2f v);
         void setPosicao(sf::Vector2f p);
         bool saiuDaTela();
+        
         void executar(const float dt);
         void colide(Entidade* ent, const sf::Vector2f intersec);
     };

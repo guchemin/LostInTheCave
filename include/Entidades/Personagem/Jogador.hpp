@@ -52,14 +52,18 @@ namespace Entidades
             Observadores::ObsJogadores obs;
             static float pontuacao;
 
+        private:
+            void inicializarAnimacao();
+            void atualizarAnimacao();
+            void ajustarVelocidade();
+            void desacelerarTeia();
+
         public:
             Jogador(sf::Vector2f pos, const ID i);
             Jogador();
             ~Jogador();
 
             virtual nlohmann::json salvarJogo();
-            void inicializarAnimacao();
-            void atualizarAnimacao();
             void autorizarPulo(const bool autoriza);
             bool podePular();
             void parouDeAtacar();
@@ -69,10 +73,8 @@ namespace Entidades
             void setPulou(const bool p);
             void andar(const bool direita);
             void parar();
-            void ajustarVelocidade();
             void setEspinhado(const bool esp);
             void setNaTeia(const bool teia);
-            void desacelerarTeia();
             static float getPontuacao();
             static void somaPontos(const float p);
             static void setPontuacao(const float p);

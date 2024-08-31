@@ -20,7 +20,6 @@ namespace Gerenciadores
         GerenciadorInputs* pInp;
         sf::Event evento;
 
-        // padrao de projeto Singleton
         static GerenciadorEventos* instancia;
         GerenciadorEventos();
 

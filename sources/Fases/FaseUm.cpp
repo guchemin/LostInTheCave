@@ -5,16 +5,13 @@ namespace Estados
     namespace Fases
     {
         FaseUm::FaseUm(bool carregar):
-        Fase(Estados::EstadoID::FaseUm, carregar),
-        numEspinho(0),
-        numVoador(0)
+            Fase(Estados::EstadoID::FaseUm, carregar),
+            numEspinho(0),
+            numVoador(0)
         {
             remover = false;
             background.setSize(pGraf->getTamanho());
-            if(!texturaFundo.loadFromFile(BACKGROUND_FASE1))
-            {
-                throw std::runtime_error("Erro ao carregar a textura de fundo!");
-            }
+            texturaFundo = pGraf->carregarTextura(BACKGROUND_FASE1);
             background.setTexture(&texturaFundo);
             background.setScale(1.1f, 1.1f);
             background.setOrigin(20, 0);
@@ -26,16 +23,13 @@ namespace Estados
         }
 
         FaseUm::FaseUm():
-        Fase(Estados::EstadoID::FaseUm, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
-        numEspinho((int)(rand() % (MAX_ESPINHO + 1))),
-        numVoador((int)(rand() % (MAX_VOADOR + 1)))
+            Fase(Estados::EstadoID::FaseUm, (int)(rand() % (MAX_ATIRADOR + 1)), (int)(rand() % (MAX_TEIA + 1))),
+            numEspinho((int)(rand() % (MAX_ESPINHO + 1))),
+            numVoador((int)(rand() % (MAX_VOADOR + 1)))
         {
             remover = false;
             background.setSize(pGraf->getTamanho());
-            if(!texturaFundo.loadFromFile(BACKGROUND_FASE1))
-            {
-                throw std::runtime_error("Erro ao carregar a textura de fundo!");
-            }
+            texturaFundo = pGraf->carregarTextura(BACKGROUND_FASE1);
             background.setTexture(&texturaFundo);
             background.setScale(1.1f, 1.1f);
             background.setOrigin(20, 0);
@@ -46,7 +40,7 @@ namespace Estados
             pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));   
         }
 
-        FaseUm::~FaseUm()
+        FaseUm::~FaseUm() // zera a pontuação dos jogadores
         {
             Entidades::Personagem::Jogador::somaPontos(-(Entidades::Personagem::Jogador::getPontuacao()));
         }
@@ -92,7 +86,7 @@ namespace Estados
             criarAleatorios();
         }
 
-        void FaseUm::criarAleatorios()
+        void FaseUm::criarAleatorios() // cria inimigos e obstáculos seguindo uma distribuição normal com centro no meio do mapa
         {
             float mediaX = TAMANHO_MAPA_1 / 2.0f;
             float desvioX = 3000.0f;
@@ -269,7 +263,7 @@ namespace Estados
         {
             if(listaJogadores->getTam() == 0)
             {
-                pEstados->adicionar(Estados::EstadoID::MenuSalvarPontuacao);
+                adicionar(Estados::EstadoID::MenuSalvarPontuacao);
                 remover = true;
             }
             else
@@ -278,7 +272,7 @@ namespace Estados
                 {
                     if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_1) // substituir por TAMANHO_MAPA_1
                     {
-                        pEstados->adicionar(Estados::EstadoID::MenuFim);
+                        adicionar(Estados::EstadoID::MenuFim);
                         remover = true;
                     }
                 }
@@ -286,7 +280,7 @@ namespace Estados
                 {
                     if((*listaJogadores)[0]->getCentro().x >= TAMANHO_MAPA_1 && (*listaJogadores)[1]->getCentro().x >= TAMANHO_MAPA_1)
                     {
-                        pEstados->adicionar(Estados::EstadoID::MenuFim);
+                        adicionar(Estados::EstadoID::MenuFim);
                         remover = true;
                     }
                 }

@@ -23,14 +23,16 @@ namespace Estados
             sf::Texture cenario;
             sf::Texture textJog1;
             sf::Texture textJog2;
+
+        private:
+            void desenharJogadores();
+            void criarBotoes();
             
         public:
             MenuJogar(Estados::EstadoID faseID);
+            MenuJogar();
             ~MenuJogar();
 
-            void desenharJogadores();
-            void mudarBackground(TipoBotao tipo);
-            void criarBotoes();
             void selecionar(TipoBotao tipo);
             void executar();
         };

@@ -4,8 +4,8 @@
 namespace Estados
 {
     Estado::Estado(EstadoID id):
-    estadoID(id),
-    pEstados(Gerenciadores::GerenciadorEstados::getInstancia())
+        estadoID(id),
+        pEstados(Gerenciadores::GerenciadorEstados::getInstancia())
     {
     }
 

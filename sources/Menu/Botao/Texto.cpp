@@ -1,8 +1,8 @@
 #include "../../../include/Menu/Botao/Texto.hpp"
 
 Texto::Texto(const char *caminhoFonte):
-pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
-texto()
+    pGraf(Gerenciadores::GerenciadorGrafico::getInstancia()),
+    texto()
 {
     fonte.loadFromFile(caminhoFonte);
     texto.setFont(fonte);
@@ -15,7 +15,6 @@ Texto::~Texto()
 
 void Texto::operator=(string informacao)
 {
-    // info = informacao;
     if(informacao.empty())
     {
         texto.setString("");

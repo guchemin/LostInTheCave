@@ -3,12 +3,12 @@
 namespace Gerenciadores
 {
     GerenciadorColisoes::GerenciadorColisoes(Listas::ListaEntidades* lj, Listas::ListaEntidades* li, Listas::ListaEntidades* lpl,
-                                                            Listas::ListaEntidades* lo, Listas::ListaEntidades* lp):
-    listaJogadores(lj),
-    listaInimigos(li),
-    listaPlataformas(lpl),
-    listaObstaculos(lo),
-    listaProjeteis(lp)
+                                            Listas::ListaEntidades* lo, Listas::ListaEntidades* lp):
+        listaJogadores(lj),
+        listaInimigos(li),
+        listaPlataformas(lpl),
+        listaObstaculos(lo),
+        listaProjeteis(lp)
     {
     }
 
@@ -30,32 +30,20 @@ namespace Gerenciadores
         listaProjeteis->limpar();
     }
 
-    void GerenciadorColisoes::verificarColisoes()
+    void GerenciadorColisoes::colidePlataforma()
     {
-        if (listaInimigos == NULL || listaObstaculos == NULL || listaJogadores == NULL || listaProjeteis == NULL || listaPlataformas == NULL)
-        {
-            std::cerr << "Erro: listaInimigos, listaPlataformas ou listaJogadores é nula." << std::endl;
-            return;
-        }
-
         sf::Vector2f distcentro;
         sf::Vector2f intersecao;
 
-        Entidades::Obstaculos::Obstaculo* pObs = NULL;
-        Entidades::Obstaculos::Obstaculo* pObs2 = NULL;
         Entidades::Obstaculos::Plataforma* pPlat = NULL;
         Entidades::Personagem::Inimigo* pInim = NULL;
-        Entidades::Personagem::Inimigo* pInimAux = NULL;
-        Entidades::Personagem::Jogador* pJog = NULL;
+        Entidades::Obstaculos::Obstaculo* pObs = NULL;
         Entidades::Projetil* pProj = NULL;
 
-        Listas::ListaEntidades::IteradorEntidades itProj = listaProjeteis->inicio();
-        Listas::ListaEntidades::IteradorEntidades itInim = listaInimigos->inicio();
-        Listas::ListaEntidades::IteradorEntidades itInim2 = listaInimigos->inicio();
-        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
         Listas::ListaEntidades::IteradorEntidades itPlat = listaPlataformas->inicio();
+        Listas::ListaEntidades::IteradorEntidades itInim = listaInimigos->inicio();
         Listas::ListaEntidades::IteradorEntidades itObs = listaObstaculos->inicio();
-        Listas::ListaEntidades::IteradorEntidades itObs2 = listaObstaculos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itProj = listaProjeteis->inicio();
 
         for(itPlat = listaPlataformas->inicio(); itPlat != listaPlataformas->fim(); ++itPlat)
         {
@@ -108,8 +96,21 @@ namespace Gerenciadores
                 }
             }
         } 
-        
-        
+    }
+
+    void GerenciadorColisoes::colideJogador()
+    {
+        sf::Vector2f distcentro;
+        sf::Vector2f intersecao;
+
+        Entidades::Personagem::Jogador* pJog = NULL;
+        Entidades::Obstaculos::Plataforma* pPlat = NULL;
+        Entidades::Personagem::Inimigo* pInim = NULL;
+        Entidades::Personagem::Inimigo* pInimAux = NULL;
+
+        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
+        Listas::ListaEntidades::IteradorEntidades itPlat = listaPlataformas->inicio();
+        Listas::ListaEntidades::IteradorEntidades itInim = listaInimigos->inicio();
 
         for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
         {
@@ -143,7 +144,50 @@ namespace Gerenciadores
                     ++itPlat;
                 }
             }
+
+            float menorDist = 999999.0f;
+            float dist;
+            for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
+            {
+                pInim = static_cast<Entidades::Personagem::Inimigo*>(*itInim);
+                dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
+                if(dist < menorDist)
+                {
+                    menorDist = dist;
+                    pInimAux = pInim;
+                }
+            }
+
+            if(pInimAux)
+            {
+                if(pJog->podeAtacar(pInimAux->getCentro().x > pJog->getCentro().x))
+                {
+                    distcentro.x = pJog->getCentro().x - pInimAux->getCentro().x;
+                    distcentro.y = pJog->getCentro().y - pInimAux->getCentro().y;
+                    intersecao.y = pJog->getTamanho().y/2.0f + pInimAux->getTamanho().y/2.0f - fabs(distcentro.y);
+
+                    if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
+                    {
+                        (*pInimAux) -= pJog->getDano();
+                        Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
+                    }
+                }
+            }
         } 
+    }
+
+    void GerenciadorColisoes::colideObstaculo()
+    {
+        sf::Vector2f distcentro;
+        sf::Vector2f intersecao;
+
+        Entidades::Obstaculos::Obstaculo* pObs = NULL;
+        Entidades::Personagem::Jogador* pJog = NULL;
+        Entidades::Obstaculos::Obstaculo* pObs2 = NULL;
+
+        Listas::ListaEntidades::IteradorEntidades itObs = listaObstaculos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
+        Listas::ListaEntidades::IteradorEntidades itObs2 = listaObstaculos->inicio();
 
         for(itObs = listaObstaculos->inicio(); itObs != listaObstaculos->fim(); ++itObs)
         {
@@ -185,6 +229,20 @@ namespace Gerenciadores
                 }
             }
         }
+    }
+
+    void GerenciadorColisoes::colideInimigo()
+    {
+        sf::Vector2f distcentro;
+        sf::Vector2f intersecao;
+
+        Entidades::Personagem::Inimigo* pInim = NULL;
+        Entidades::Personagem::Jogador* pJog = NULL;
+        Entidades::Personagem::Inimigo* pInimAux = NULL;
+
+        Listas::ListaEntidades::IteradorEntidades itInim = listaInimigos->inicio();
+        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
+        Listas::ListaEntidades::IteradorEntidades itInim2 = listaInimigos->inicio();
 
         for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
         {
@@ -237,41 +295,18 @@ namespace Gerenciadores
                 }
             }
         }
-        
-        pInimAux = NULL;
-        
-        for(itJog = listaJogadores->inicio(); itJog != listaJogadores->fim(); ++itJog)
-        {
-            pJog = static_cast<Entidades::Personagem::Jogador*>(*itJog);
-            float menorDist = 999999.0f;
-            float dist;
-            for(itInim = listaInimigos->inicio(); itInim != listaInimigos->fim(); ++itInim)
-            {
-                pInim = static_cast<Entidades::Personagem::Inimigo*>(*itInim);
-                dist = sqrt(pow(pJog->getPosicao().x - pInim->getPosicao().x, 2) + pow(pJog->getPosicao().y - pInim->getPosicao().y, 2));
-                if(dist < menorDist)
-                {
-                    menorDist = dist;
-                    pInimAux = pInim;
-                }
-            }
+    }
 
-            if(pInimAux)
-            {
-                if(pJog->podeAtacar(pInimAux->getCentro().x > pJog->getCentro().x))
-                {
-                    distcentro.x = pJog->getCentro().x - pInimAux->getCentro().x;
-                    distcentro.y = pJog->getCentro().y - pInimAux->getCentro().y;
-                    intersecao.y = pJog->getTamanho().y/2.0f + pInimAux->getTamanho().y/2.0f - fabs(distcentro.y);
+    void GerenciadorColisoes::colideProjetil()
+    {
+        sf::Vector2f distcentro;
+        sf::Vector2f intersecao;
 
-                    if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
-                    {
-                        (*pInimAux) -= pJog->getDano();
-                        Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
-                    }
-                }
-            }
-        }
+        Entidades::Projetil* pProj = NULL;
+        Entidades::Personagem::Jogador* pJog = NULL;
+
+        Listas::ListaEntidades::IteradorEntidades itProj = listaProjeteis->inicio();
+        Listas::ListaEntidades::IteradorEntidades itJog = listaJogadores->inicio();
 
         for(itProj = listaProjeteis->inicio(); itProj != listaProjeteis->fim(); ++itProj)
         {
@@ -293,5 +328,19 @@ namespace Gerenciadores
                 }
             }
         }
+    }
+
+    void GerenciadorColisoes::verificarColisoes()
+    {
+        if (listaInimigos == NULL || listaObstaculos == NULL || listaJogadores == NULL || listaProjeteis == NULL || listaPlataformas == NULL)
+        {
+            std::cerr << "Erro: listaInimigos, listaPlataformas ou listaJogadores é nula." << std::endl;
+            return;
+        }
+        colidePlataforma();
+        colideJogador();
+        colideObstaculo();
+        colideInimigo();
+        colideProjetil();    
     }
 }

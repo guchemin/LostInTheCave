@@ -3,10 +3,10 @@
 namespace Observadores
 {
     Observador::Observador():
-    pInp(Gerenciadores::GerenciadorInputs::getInstancia()),
-    pEstados(Gerenciadores::GerenciadorEstados::getInstancia()),
-    teclado(),
-    tecladoEspecial()
+        pInp(Gerenciadores::GerenciadorInputs::getInstancia()),
+        pEstados(Gerenciadores::GerenciadorEstados::getInstancia()),
+        teclado(),
+        tecladoEspecial()
     {
         pInp->adicionarObservador(this);
         inicializaTeclado();
@@ -45,14 +45,7 @@ namespace Observadores
         teclado[sf::Keyboard::X] = "x";
         teclado[sf::Keyboard::Y] = "y";
         teclado[sf::Keyboard::Z] = "z";
-
-        // tecladoEspecial[sf::Keyboard::BackSpace] = "BackSpace";
-        // tecladoEspecial[sf::Keyboard::Space] = "Space";
-        // tecladoEspecial[sf::Keyboard::Return] = "Enter";
-        // tecladoEspecial[sf::Keyboard::Up] = "Cima";
-        // tecladoEspecial[sf::Keyboard::Down] = "Baixo";
-        // tecladoEspecial[sf::Keyboard::Left] = "Esquerda";
-        // tecladoEspecial[sf::Keyboard::Right] = "Direita";
+        
         tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::BackSpace, "BackSpace"));
         tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Space, "Space"));
         tecladoEspecial.insert(std::pair<sf::Keyboard::Key,string>(sf::Keyboard::Return, "Enter"));

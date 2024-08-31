@@ -6,16 +6,13 @@ namespace Entidades
     namespace Obstaculos
     {
         Obstaculo::Obstaculo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
-        Entidade(pos, tam, tp)
+            Entidade(pos, tam, tp),
+            danoso(false),
+            velY(0.0f)
         {
-            velY = 0.0f;
             if(tp == TIPO::ESPINHO)
             {
                 danoso = true;
-            }
-            else
-            {
-                danoso = false;
             }
         }
 
@@ -27,7 +24,7 @@ namespace Entidades
         {
         }
 
-        nlohmann::json Obstaculo::salvarJogo()
+        nlohmann::json Obstaculo::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Entidade::salvarJogo();
             j["danoso"] = danoso;

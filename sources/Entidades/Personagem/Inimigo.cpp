@@ -6,12 +6,10 @@ namespace Entidades
     {
 
         Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
-        Personagem(pos, tam, tp),
-        posInicial(pos),
-        pJogador(NULL)
+            Personagem(pos, tam, tp),
+            posInicial(pos),
+            pJogador(NULL)
         {
-            estaNoChao = false;
-            tempoAtaque = 0.0f;
         }
 
         Inimigo::Inimigo()
@@ -24,7 +22,7 @@ namespace Entidades
             pJogador = NULL;
         }
 
-        nlohmann::json Inimigo::salvarJogo()
+        nlohmann::json Inimigo::salvarJogo() // salva apenas o que é exclusivamente da classe e chama o salvarJogo da classe mãe
         {
             nlohmann::json j = Personagem::salvarJogo();
             j["posInicial"] = {posInicial.x, posInicial.y};
