@@ -24244,7 +24244,7 @@
 											"top": 3520,
 											"width": 328.75146484375,
 											"height": 13,
-											"text": "+setInfo(informacao: string): void",
+											"text": "+operator=(informacao: string): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -37920,7 +37920,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGRirMtFHD4kDU="
 									},
-									"name": "setInfo",
+									"name": "operator=",
 									"parameters": [
 										{
 											"_type": "UMLParameter",

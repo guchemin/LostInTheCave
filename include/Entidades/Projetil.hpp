@@ -1,11 +1,12 @@
 /*
-Projetil.hpp - Definição da classe Projetil - Filha de Entidade
+Projetil.hpp - Filha de Entidade
 */
 
 #pragma once
 
 #include "Personagem/Inimigo.hpp"
 
+#define EMPUXO 5320.0f
 #define CAMINHO_TEXTURA_PROJETIL "../assets/sprites/Projetil/Projetil.png"
 
 namespace Entidades

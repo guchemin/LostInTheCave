@@ -51,7 +51,8 @@ namespace Entidades
         //acao da gravidade
         if(getPosicao().y < 1000.0f)
         {
-            vel.y += 60 * dt;
+            vel.y += GRAVIDADE * dt;
+            vel.y -= EMPUXO * dt;
             ds.y = vel.y * dt;
         }
         else
@@ -77,7 +78,7 @@ namespace Entidades
         case TIPO::JOGADOR:
         {
             Personagem::Jogador* pJog = static_cast<Personagem::Jogador*>(ent);
-            pJog->tiraVida(DANO_ATIRADOR);
+            (*pJog)-=(DANO_ATIRADOR);
             setPosicao(sf::Vector2f(-1000.0f, -1000.0f));
             setVelocidade(sf::Vector2f(0.0f, 0.0f));
             break;

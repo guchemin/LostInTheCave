@@ -13,7 +13,7 @@ Texto::~Texto()
 {
 }
 
-void Texto::setInfo(string informacao)
+void Texto::operator=(string informacao)
 {
     // info = informacao;
     if(informacao.empty())

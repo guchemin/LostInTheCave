@@ -1,5 +1,5 @@
 /*
-Obstaculo.hpp - Filha de Entidade
+Obstaculo.hpp - Filha de Entidade - Classe Abstrata
 */
 
 #pragma once

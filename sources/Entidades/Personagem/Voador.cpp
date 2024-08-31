@@ -71,7 +71,7 @@ namespace Entidades
 
         void Voador::atacar()
         { 
-            pJogador->tiraVida(dano);
+            (*pJogador)-=dano;
         }
 
         void Voador::agir()

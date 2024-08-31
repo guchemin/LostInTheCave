@@ -21,7 +21,6 @@ namespace Gerenciadores
     private:
         list<Observadores::Observador*> observadores;
 
-        // padrao de projeto Singleton
         static GerenciadorInputs* instancia;
         GerenciadorInputs();
 

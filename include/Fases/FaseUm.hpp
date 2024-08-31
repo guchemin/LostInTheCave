@@ -9,7 +9,7 @@ FaseUm.hpp - Filha de Fase
 #include "Fase.hpp"
 
 #define BACKGROUND_FASE1 "../assets/sprites/Backgrounds/Background1.png"
-#define TAMANHO_MAPA_X 8400.0f
+#define TAMANHO_MAPA_1 8400.0f
 
 #define MAX_VOADOR 3
 #define MAX_ESPINHO 3

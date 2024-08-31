@@ -26,7 +26,7 @@ public:
     Texto(const char* caminhoFonte = CAMINHO_FONTE);
     ~Texto();
 
-    void setInfo(string informacao);
+    void operator=(string informacao);
     void setPos(sf::Vector2f pos);
     void setCor(sf::Color cor);
     void setTamanhoFonte(int tam);

@@ -74,7 +74,7 @@ namespace Entidades
             void setNaTeia(const bool teia);
             void desacelerarTeia();
             static float getPontuacao();
-            static void somaPontos(const float p); //fazer com operator+=
+            static void somaPontos(const float p);
             static void setPontuacao(const float p);
 
             void executar(const float dt);

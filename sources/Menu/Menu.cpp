@@ -15,7 +15,7 @@ namespace Estados
         {
             background.setSize(pGraf->getTamanho());
             background.setPosition(0.0f, 0.0f);
-            titulo.setInfo(ttl);
+            titulo = string(ttl);
             titulo.setTamanhoFonte(128);
             titulo.setCor(sf::Color::White);
             titulo.setPos(sf::Vector2f(pGraf->getCentro().x - titulo.getTamanho().x / 2.0f, 50.0f));

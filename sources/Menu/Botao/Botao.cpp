@@ -11,7 +11,7 @@ texturaSelecionado(pGraf->carregarTextura(CAMINHO_BOTAO_SELECIONADO))
     corpo.setTexture(&texturaPadrao);
     corpo.setFillColor(sf::Color(120, 120, 120));
 
-    texto.setInfo(txt);
+    texto = string(txt);
     texto.setTamanhoFonte(48);
     texto.setCor(sf::Color(0, 0, 50));
     sf::Vector2f posTexto;

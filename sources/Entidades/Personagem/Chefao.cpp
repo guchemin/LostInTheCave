@@ -136,7 +136,7 @@ namespace Entidades
 
         void Chefao::atacar()
         {   
-            pJogador->tiraVida(dano);
+            (*pJogador)-=dano;
             if(pJogador->getVida() <= 0.0f)
             {
                 pJogador = NULL;

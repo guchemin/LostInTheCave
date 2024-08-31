@@ -67,7 +67,7 @@ namespace Entidades
             return vida;
         }
 
-        void Personagem::tiraVida(const float dano)
+        void Personagem::operator-=(const float dano)
         {
             tomouDano = true;
             vida -= dano;

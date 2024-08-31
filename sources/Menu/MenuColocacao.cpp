@@ -68,7 +68,7 @@ namespace Estados
             novaLinha += pontosStr;
             
             Texto* texto = new Texto();
-            texto->setInfo(novaLinha);
+            texto->operator=(novaLinha);
             const int qtdVector = colocacoes.size();
             const float tam = texto->getTamanho().x;
             texto->setPos(sf::Vector2f(pGraf->getTamanho().x / 2.0f - tam / 2.0f, 225.0f + 50.0f * qtdVector));

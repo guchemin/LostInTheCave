@@ -24,12 +24,12 @@ namespace Estados
 
             nomeString = "";
 
-            pontuacaoTexto.setInfo("PONTUACAO: " + std::to_string(Entidades::Personagem::Jogador::getPontuacao()));
+            pontuacaoTexto = string("PONTUACAO: " + std::to_string((int)(Entidades::Personagem::Jogador::getPontuacao())));
             pontuacaoTexto.setTamanhoFonte(64);
             pontuacaoTexto.setCor(sf::Color::White);
             pontuacaoTexto.setPos(sf::Vector2f(pGraf->getCentro().x - pontuacaoTexto.getTamanho().x / 2.0f, 250));
             
-            nomeTexto.setInfo("DIGITE SEU NOME: ");
+            nomeTexto = string("DIGITE SEU NOME: ");
             nomeTexto.setTamanhoFonte(48);
             nomeTexto.setCor(sf::Color::White);
             nomeTexto.setPos(sf::Vector2f(pGraf->getCentro().x - nomeTexto.getTamanho().x / 2.0f, pGraf->getCentro().y - nomeTexto.getTamanho().y));
@@ -40,7 +40,7 @@ namespace Estados
         }
 
         MenuSalvarPontuacao::MenuSalvarPontuacao():
-        fase(nullptr), gArquivo(), Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "oiiiii")
+        fase(nullptr), gArquivo(), Menu(sf::Vector2f(800, 600), Estados::EstadoID::MenuSalvarPontuacao, "")
         {
             alinharTexto();
             criarBotoes();
@@ -82,7 +82,7 @@ namespace Estados
             nomeString.append(c);
 
             std::string aux = nomeTexto.getInfo();
-            nomeTexto.setInfo(aux + c);
+            nomeTexto = string(aux + c);
             alinharTexto();
         }
 
@@ -94,7 +94,7 @@ namespace Estados
 
                 std::string aux = nomeTexto.getInfo();
                 aux.pop_back();
-                nomeTexto.setInfo(aux);
+                nomeTexto = string(aux);
                 alinharTexto();
             }
         }

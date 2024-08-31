@@ -46,7 +46,7 @@ namespace Entidades
             void setVida(const float vd);
             void setVelocidade(const sf::Vector2f v);
             float getVida();
-            void tiraVida(const float dano);
+            void operator-=(const float dano);
             float getRaioAtaque();
             float getDano();
 

@@ -163,7 +163,7 @@ namespace Gerenciadores
                     if(pObs->getDanoso())
                     {
                         Obstaculos::Espinho* espinho = static_cast<Entidades::Obstaculos::Espinho*>(pObs);
-                        pJog->tiraVida(espinho->getAfiado());
+                        (*pJog)-=(espinho->getAfiado());
                     }
                     pJog->colide(pObs, intersecao);
                 }
@@ -266,8 +266,8 @@ namespace Gerenciadores
 
                     if(fabs(distcentro.x) < pJog->getRaioAtaque() && intersecao.y > 0.0f)
                     {
-                        pInimAux->tiraVida(pJog->getDano());
-                        // Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
+                        (*pInimAux) -= pJog->getDano();
+                        Entidades::Personagem::Jogador::somaPontos(pInimAux->getPontuacao() / 10.0f);
                     }
                 }
             }

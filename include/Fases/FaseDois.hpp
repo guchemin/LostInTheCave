@@ -13,7 +13,7 @@ FaseDois.hpp - Filha de Fase
 #define MAX_ATIRADOR 3
 #define MAX_TEIA 3
 #define BACKGROUND_FASE2 "../assets/sprites/Backgrounds/Background1.png"
-#define TAMANHO_MAPA_X 8150.0f
+#define TAMANHO_MAPA_2 8150.0f
 
 namespace Estados
 {

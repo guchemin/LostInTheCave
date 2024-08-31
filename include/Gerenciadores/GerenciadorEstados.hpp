@@ -20,7 +20,6 @@ namespace Gerenciadores
     private:
         stack<Estados::Estado*> estados;
 
-        // padrão de projeto Singleton
         static GerenciadorEstados* instancia;
         GerenciadorEstados();
 

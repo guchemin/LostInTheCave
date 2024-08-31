@@ -19,7 +19,7 @@ namespace Estados
             background.setScale(1.1f, 1.1f);
             background.setOrigin(20, 0);
 
-            pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+            pontos = string("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
             pontos.setTamanhoFonte(32);
             pontos.setCor(sf::Color::White);
             pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));  
@@ -40,7 +40,7 @@ namespace Estados
             background.setScale(1.1f, 1.1f);
             background.setOrigin(20, 0);
 
-            pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+            pontos = string("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
             pontos.setTamanhoFonte(32);
             pontos.setCor(sf::Color::White);
             pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));   
@@ -94,7 +94,7 @@ namespace Estados
 
         void FaseUm::criarAleatorios()
         {
-            float mediaX = TAMANHO_MAPA_X / 2.0f;
+            float mediaX = TAMANHO_MAPA_1 / 2.0f;
             float desvioX = 3000.0f;
             float posX = -1.0f;
 
@@ -104,7 +104,7 @@ namespace Estados
 
             for(int i = 0; i < numEspinho; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_1 - 50.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
@@ -120,7 +120,7 @@ namespace Estados
 
             for(int i = 0; i < numTeia; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_1 - 50.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
@@ -136,7 +136,7 @@ namespace Estados
 
             for(int i = 0; i < numAtirador; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_1 - 50.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
@@ -152,7 +152,7 @@ namespace Estados
 
             for(int i = 0; i < numVoador; i++)
             {
-                while(posX < 500.0f || posX > TAMANHO_MAPA_X - 50.0f)
+                while(posX < 500.0f || posX > TAMANHO_MAPA_1 - 50.0f)
                 {
                     posX = dist_normal(mediaX, desvioX);
                 }
@@ -239,28 +239,28 @@ namespace Estados
                 Entidades::Personagem::Jogador* jogador = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[0]);
                 if(jogador->getId() == Entidades::Personagem::ID::JOGADOR1)
                 {
-                    vidaJog1.setInfo("VIDA JOGADOR 1: " + to_string((int)jogador->getVida()) + "/100");
+                    vidaJog1 = string("VIDA JOGADOR 1: " + to_string((int)jogador->getVida()) + "/100");
                     vidaJog1.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 50.0f));
-                    vidaJog2.setInfo("");
+                    vidaJog2 = string("");
                 }
                 else
                 {
-                    vidaJog2.setInfo("VIDA JOGADOR 2: " + to_string((int)jogador->getVida()) + "/100");
+                    vidaJog2 = string("VIDA JOGADOR 2: " + to_string((int)jogador->getVida()) + "/100");
                     vidaJog2.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 90.0f));
-                    vidaJog1.setInfo("");
+                    vidaJog1 = string("");
                 }
-                pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+                pontos = string("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
                 pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));
             }
             else if(listaJogadores->getTam() == 2)
             {
                 Entidades::Personagem::Jogador* jogador1 = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[0]);
                 Entidades::Personagem::Jogador* jogador2 = static_cast<Entidades::Personagem::Jogador*>((*listaJogadores)[1]);
-                vidaJog1.setInfo("VIDA JOGADOR 1: " + to_string((int)jogador1->getVida()) + "/100");
+                vidaJog1 = string("VIDA JOGADOR 1: " + to_string((int)jogador1->getVida()) + "/100");
                 vidaJog1.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 50.0f));
-                vidaJog2.setInfo("VIDA JOGADOR 2: " + to_string((int)jogador2->getVida()) + "/100");
+                vidaJog2 = string("VIDA JOGADOR 2: " + to_string((int)jogador2->getVida()) + "/100");
                 vidaJog2.setPos(sf::Vector2f(pGraf->getCentro().x - pGraf->getTamanho().x / 2.0f + 20.0f, 90.0f));
-                pontos.setInfo("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
+                pontos = string("PONTOS TOTAIS: " + to_string((int)Entidades::Personagem::Jogador::getPontuacao()));
                 pontos.setPos(sf::Vector2f(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f - (pontos.getTamanho().x + 20.0f), 50.0f));
             }
         }
@@ -276,7 +276,7 @@ namespace Estados
             {
                 if(listaJogadores->getTam() == 1)
                 {
-                    if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X) // substituir por TAMANHO_MAPA_X
+                    if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_1) // substituir por TAMANHO_MAPA_1
                     {
                         pEstados->adicionar(Estados::EstadoID::MenuFim);
                         remover = true;
@@ -284,7 +284,7 @@ namespace Estados
                 }
                 else if(listaJogadores->getTam() == 2)
                 {
-                    if((*listaJogadores)[0]->getCentro().x >= TAMANHO_MAPA_X && (*listaJogadores)[1]->getCentro().x >= TAMANHO_MAPA_X)
+                    if((*listaJogadores)[0]->getCentro().x >= TAMANHO_MAPA_1 && (*listaJogadores)[1]->getCentro().x >= TAMANHO_MAPA_1)
                     {
                         pEstados->adicionar(Estados::EstadoID::MenuFim);
                         remover = true;
@@ -313,14 +313,14 @@ namespace Estados
 
                 if(diferenca > 1000.0f)
                 {
-                    if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_X)
+                    if((*listaJogadores)[0]->getPosicao().x >= TAMANHO_MAPA_1)
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
                     else
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
                 }
                 else if(diferenca < -1000.0f)
                 {
-                    if((*listaJogadores)[1]->getPosicao().x >= TAMANHO_MAPA_X)
+                    if((*listaJogadores)[1]->getPosicao().x >= TAMANHO_MAPA_1)
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[0]->getCentro().x, 450.0f));
                     else
                         pGraf->centralizarCamera(sf::Vector2f((*listaJogadores)[1]->getCentro().x, 450.0f));
@@ -335,9 +335,9 @@ namespace Estados
             {
                 pGraf->centralizarCamera(sf::Vector2f(pGraf->getTamanho().x / 2.0f, 450.0f));
             }
-            else if(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f >= TAMANHO_MAPA_X)
+            else if(pGraf->getCentro().x + pGraf->getTamanho().x / 2.0f >= TAMANHO_MAPA_1)
             {
-                pGraf->centralizarCamera(sf::Vector2f(TAMANHO_MAPA_X - pGraf->getTamanho().x / 2.0f, 450.0f));
+                pGraf->centralizarCamera(sf::Vector2f(TAMANHO_MAPA_1 - pGraf->getTamanho().x / 2.0f, 450.0f));
             }
         }
 
