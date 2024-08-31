@@ -22,7 +22,7 @@ namespace Entidades
             Teia();
             ~Teia();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void setDensidade(float den);
             const float getDensidade() const;
 

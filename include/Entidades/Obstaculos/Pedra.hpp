@@ -23,7 +23,7 @@ namespace Entidades
             Pedra();
             ~Pedra();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void setDx(const float x);
             void setPeso(const float p);    
             const float getPeso() const;

@@ -25,8 +25,8 @@ namespace Estados
             vector<Botao*>::iterator it;
             sf::Vector2f tamBotoes;
             Texto titulo;
-            Observadores::ObsMenu obs;
             bool ativo;
+            Observadores::ObsMenu obs;
 
         protected:
             void centralizar();
@@ -43,7 +43,7 @@ namespace Estados
             void setAtivo(bool atv);
             void irParaCima();
             void irParaBaixo();
-            const TipoBotao getBotaoSelecionado();
+            const TipoBotao getBotaoSelecionado() const;
             virtual void selecionar(TipoBotao tipo) = 0;
             virtual void executar() = 0;
             

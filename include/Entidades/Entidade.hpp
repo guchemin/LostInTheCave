@@ -38,18 +38,19 @@ namespace Entidades
         Entidade();
         virtual ~Entidade();
 
-        void setPosicao(sf::Vector2f pos);
+        void setPosicao(const sf::Vector2f pos);
         void desenhar();
-        virtual void executar(const float dt) = 0;
 
         virtual nlohmann::json salvarJogo();
-        sf::RectangleShape getCorpo();
-        sf::Vector2f getCentro();
-        sf::Vector2f getTamanho();
-        sf::Vector2f getPosicao();
+        const sf::RectangleShape getCorpo() const;
+        const sf::Vector2f getCentro() const;
+        const sf::Vector2f getTamanho() const;
+        const sf::Vector2f getPosicao() const;
+
+        virtual void executar(const float dt) = 0;
         virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;
 
-        TIPO getTipo() const { return tipo; };
+        const TIPO getTipo() const { return tipo; };
     };
 }
 

@@ -36,7 +36,7 @@ namespace Entidades
         Entidade::setPosicao(p);
     }
 
-    bool Projetil::saiuDaTela()
+    const bool Projetil::saiuDaTela()
     {
         if(fabs(getPosicao().y - pGraf->getCentro().y) > pGraf->getTamanho().y / 2.0f)
         {

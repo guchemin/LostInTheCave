@@ -49,8 +49,8 @@ namespace Entidades
             bool estaNaTeia;
             float aceleracaoTeia;
             bool foiEspinhado;
-            Observadores::ObsJogadores obs;
             static float pontuacao;
+            Observadores::ObsJogadores obs;
 
         private:
             void inicializarAnimacao();
@@ -63,9 +63,9 @@ namespace Entidades
             Jogador();
             ~Jogador();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void autorizarPulo(const bool autoriza);
-            bool podePular();
+            const bool podePular();
             void parouDeAtacar();
             const ID getId() const { return id; };
             const bool podeAtacar(bool direita);
@@ -75,7 +75,7 @@ namespace Entidades
             void parar();
             void setEspinhado(const bool esp);
             void setNaTeia(const bool teia);
-            static float getPontuacao();
+            static const float getPontuacao();
             static void somaPontos(const float p);
             static void setPontuacao(const float p);
 

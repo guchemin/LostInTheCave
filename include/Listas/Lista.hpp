@@ -23,7 +23,7 @@ namespace Listas
         ~Lista();
         
         void adicionar(TL* elemento);
-        int getTam();
+        const int getTam() const;
         void limparLista();
         TL* operator[](int pos);
 
@@ -33,7 +33,10 @@ namespace Listas
             Elemento<TL>* atual;
 
         public:
-            Iterador(Elemento<TL>* inicio): atual(inicio) {}
+            Iterador(Elemento<TL>* inicio): 
+                atual(inicio) {}
+
+            ~Iterador() {}
 
             virtual Iterador& operator++() 
             {
@@ -152,45 +155,8 @@ namespace Listas
         return proximo;  // Retorne o próximo iterador válido
     }
 
-    // template<class TL>
-    // void Lista<TL>::remover(TL* elemento)
-    // {
-    //     if(elemento == NULL)
-    //     {
-    //         std::cout << "ERROR::Lista elemento eh NULL" << std::endl;
-    //         exit(1);
-    //     }
-    //     Elemento<TL>* aux = pPrimeiro;
-    //     Elemento<TL>* aux2 = NULL;
-    //     while (aux != NULL && aux->getElemento() != elemento)
-    //     {
-    //         aux2 = aux;
-    //         aux = aux->getProx();
-    //     }
-    //     if(aux->getElemento() == elemento)
-    //     {
-    //         if(aux == pPrimeiro)
-    //         {
-    //             pPrimeiro = aux->getProx();
-    //         }
-    //         else if(aux == pUltimo)
-    //         {
-    //             pUltimo = aux2;
-    //         } 
-    //         else 
-    //         {
-    //             aux2->setProx(aux->getProx());
-    //         }
-    //         if(aux)
-    //             delete(aux);
-    //         aux = NULL;
-    //         aux2 = NULL;
-    //         tam--;
-    //     }
-    // }
-
     template<class TL>
-    int Lista<TL>::getTam()
+    const int Lista<TL>::getTam() const
     {
         return (int)tam;
     }

@@ -62,7 +62,7 @@ namespace Entidades
             atacando = atk;
         }
 
-        float Personagem::getVida() 
+        const float Personagem::getVida() const
         {
             return vida;
         }
@@ -73,12 +73,12 @@ namespace Entidades
             vida -= dano;
         }
 
-        float Personagem::getRaioAtaque()
+        const float Personagem::getRaioAtaque() const
         {
             return raioAtaque;
         }
 
-        float Personagem::getDano()
+        const float Personagem::getDano() const
         {
             return dano;
         }

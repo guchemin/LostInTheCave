@@ -30,7 +30,7 @@ public:
     void setCor(sf::Color cor);
     void setTamanhoFonte(int tam);
     string getInfo();
-    const sf::Vector2f getTamanho();
-    const sf::Vector2f getPos();
+    const sf::Vector2f getTamanho() const;
+    const sf::Vector2f getPos() const;
     void desenhar();
 };

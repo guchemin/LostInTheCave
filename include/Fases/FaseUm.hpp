@@ -41,6 +41,7 @@ namespace Estados
             ~FaseUm();
 
             void criarMapa();
+            
             void executar(const float dt);
             void desenhar();
             void executar();

@@ -30,11 +30,11 @@ namespace Entidades
             Voador();
             ~Voador();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void agir();
             void setEndiabrado(const bool endb);
             const bool getEndiabrado() const;
-            float getPontuacao();
+            const float getPontuacao() const;
 
             void executar(const float dt);
             void colide(Entidade* ent, const sf::Vector2f intersec);

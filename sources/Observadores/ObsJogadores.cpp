@@ -34,7 +34,6 @@ namespace Observadores
         pJog = NULL;
     }
 
-
     void ObsJogadores::notificarPressionada(const sf::Keyboard::Key tecla)
     {
         if(!(pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::FaseUm || 

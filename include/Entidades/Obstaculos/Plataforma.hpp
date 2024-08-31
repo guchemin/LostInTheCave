@@ -25,7 +25,7 @@ namespace Entidades
             Plataforma();
             ~Plataforma();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void setFalsa(const bool falsa);
             const bool getFalsa() const;
             void executar(const float dt);

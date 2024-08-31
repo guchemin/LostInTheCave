@@ -19,7 +19,7 @@ namespace Estados
 
     }
 
-    EstadoID Estado::getEstadoID()
+    const EstadoID Estado::getEstadoID() const
     {
         return estadoID;
     }

@@ -59,7 +59,6 @@ namespace Entidades
             }
         }
 
-
         bool Atirador::consegueAtacar()
         {
             // verifica cooldown
@@ -188,7 +187,7 @@ namespace Entidades
             return velProj;
         }
 
-        float Atirador::getPontuacao()
+        const float Atirador::getPontuacao() const
         {
             return PONTUACAO_ATIRADOR;
         }

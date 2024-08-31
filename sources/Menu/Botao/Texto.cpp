@@ -47,13 +47,13 @@ string Texto::getInfo()
     return texto.getString();
 }
 
-const sf::Vector2f Texto::getTamanho()
+const sf::Vector2f Texto::getTamanho() const
 {
     sf::FloatRect textoRect = texto.getLocalBounds();
     return sf::Vector2f(textoRect.width, textoRect.height);
 }
 
-const sf::Vector2f Texto::getPos()
+const sf::Vector2f Texto::getPos() const
 {
     return texto.getPosition();
 }

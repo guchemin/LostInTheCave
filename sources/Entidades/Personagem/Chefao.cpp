@@ -275,7 +275,7 @@ namespace Entidades
 
         }
         
-        float Chefao::getPontuacao()
+        const float Chefao::getPontuacao() const
         {
             return PONTUACAO_CHEFAO;
         }

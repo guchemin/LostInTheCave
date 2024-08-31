@@ -27,8 +27,8 @@ namespace Gerenciadores
         sf::RenderWindow* getJanela();
         void centralizarCamera(sf::Vector2f pos);
         sf::Texture carregarTextura(const char* caminho);
-        sf::Vector2f getCentro();
-        sf::Vector2f getTamanho();
+        const sf::Vector2f getCentro() const;
+        const sf::Vector2f getTamanho() const;
         void limpar();
         void desenhar(sf::RectangleShape desenho);
         void desenhar(sf::CircleShape desenho);

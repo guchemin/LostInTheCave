@@ -42,7 +42,7 @@ namespace Entidades
             posInicial = pos;
         }
 
-        sf::Vector2f Inimigo::getPosJogador()
+        const sf::Vector2f Inimigo::getPosJogador() const
         {
             return pJogador->getPosicao();
         }

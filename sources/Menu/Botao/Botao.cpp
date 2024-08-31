@@ -28,7 +28,7 @@ Botao::~Botao()
 {
 }
 
-TipoBotao Botao::getTipo()
+const TipoBotao Botao::getTipo() const
 {
     return tipo;
 }
@@ -42,7 +42,7 @@ void Botao::setPosicao(const sf::Vector2f pos)
     texto.setPos(posTexto);
 }
 
-sf::Vector2f Botao::getPosicao()
+const sf::Vector2f Botao::getPosicao() const
 {
     return corpo.getPosition();
 }

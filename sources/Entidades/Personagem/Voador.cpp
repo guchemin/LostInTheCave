@@ -295,7 +295,7 @@ namespace Entidades
             return endiabrado;
         }
 
-        float Voador::getPontuacao()
+        const float Voador::getPontuacao() const
         {
             if(endiabrado)
             {

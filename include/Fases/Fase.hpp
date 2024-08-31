@@ -79,7 +79,7 @@ namespace Estados
 
             virtual void verificarFimDeJogo() = 0;
             virtual void centralizarCamera() = 0;
-            float dist_normal(float media, float desvio);
+            const float dist_normal(float media, float desvio);
 
         public:
             Fase(Estados::EstadoID id, const int nAtira, const int nTeia);

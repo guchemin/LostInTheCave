@@ -90,7 +90,7 @@ namespace Entidades
             pulou = !autoriza;
         }
 
-        bool Jogador::podePular()
+        const bool Jogador::podePular()
         {
             return estaNoChao && !pulou;
         }
@@ -490,7 +490,7 @@ namespace Entidades
             }
         }
 
-        float Jogador::getPontuacao()
+        const float Jogador::getPontuacao()
         {
             return pontuacao;
         }

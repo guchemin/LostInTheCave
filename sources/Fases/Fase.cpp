@@ -359,7 +359,7 @@ namespace Estados
         }
         
         // metodo Box-Muller para transformar numeros aleatorios em uma distribuição normal
-        float Fase::dist_normal(float media, float desvio) // feito com ajuda do ChatGPT para a parte de gerar números aleatórios
+        const float Fase::dist_normal(float media, float desvio) // feito com ajuda do ChatGPT para a parte de gerar números aleatórios
         {
             static random_device rd;
             static mt19937 gen(rd());

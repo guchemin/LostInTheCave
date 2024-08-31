@@ -44,9 +44,10 @@ namespace Estados
         Estado();
         virtual ~Estado();
 
-        EstadoID getEstadoID();
+        const EstadoID getEstadoID() const;
 
         void setRemover(const bool rmv);
+        
         virtual void executar() = 0;
         virtual void desenhar();
     };

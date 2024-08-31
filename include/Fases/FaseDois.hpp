@@ -21,32 +21,29 @@ namespace Estados
     {
         class FaseDois : public Fase
         {
-            private:
-                const int numPedra;
-                const int numChefao;
-                Entidades::Personagem::Jogador* pJog1;
-                Entidades::Personagem::Jogador* pJog2;
-                bool sequencial; //usado apenas se a fase for sequencial
+        private:
+            const int numPedra;
+            const int numChefao;
 
-            private:
-                void criarAleatorios();
-                void criarEntidade(sf::Vector2f pos, char caracter);
-                void criarPedra(sf::Vector2f pos);
-                void criarChefao(sf::Vector2f pos);
-                void atualizarTextos();
-                void verificarFimDeJogo();
-                void centralizarCamera();
+        private:
+            void criarAleatorios();
+            void criarEntidade(sf::Vector2f pos, char caracter);
+            void criarPedra(sf::Vector2f pos);
+            void criarChefao(sf::Vector2f pos);
+            void atualizarTextos();
+            void verificarFimDeJogo();
+            void centralizarCamera();
+        
+        public:
+            FaseDois(bool carregar);
+            FaseDois();
+            ~FaseDois();
+
+            void criarMapa();
             
-            public:
-                FaseDois(bool carregar);
-                FaseDois();
-                ~FaseDois();
-
-                void criarMapa();
-                
-                void executar(const float dt);
-                void desenhar();
-                void executar();
+            void executar(const float dt);
+            void desenhar();
+            void executar();
         }; 
     }
 }

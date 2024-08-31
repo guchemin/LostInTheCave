@@ -49,12 +49,12 @@ namespace Gerenciadores
         return textura;
     }
 
-    sf::Vector2f Gerenciadores::GerenciadorGrafico::getCentro()
+    const sf::Vector2f Gerenciadores::GerenciadorGrafico::getCentro() const
     {
         return camera.getCenter();
     }
 
-    sf::Vector2f Gerenciadores::GerenciadorGrafico::getTamanho()
+    const sf::Vector2f Gerenciadores::GerenciadorGrafico::getTamanho() const
     {
         return camera.getSize();
     }

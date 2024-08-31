@@ -36,22 +36,22 @@ namespace Entidades
         return j;
     }
 
-    sf::RectangleShape Entidade::getCorpo()
+    const sf::RectangleShape Entidade::getCorpo() const
     {
         return corpo;
     }
 
-    sf::Vector2f Entidade::getCentro()
+    const sf::Vector2f Entidade::getCentro() const
     {
         return sf::Vector2f(getPosicao() + getTamanho() / 2.0f);
     }
 
-    sf::Vector2f Entidade::getTamanho()
+    const sf::Vector2f Entidade::getTamanho() const
     {
         return corpo.getSize();
     }
 
-    sf::Vector2f Entidade::getPosicao()
+    const sf::Vector2f Entidade::getPosicao() const
     {
         return corpo.getPosition();
     }

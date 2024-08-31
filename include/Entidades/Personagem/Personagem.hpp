@@ -48,9 +48,9 @@ namespace Entidades
             void setVida(const float vd);
             void setVelocidade(const sf::Vector2f v);
             void operator-=(const float dano);
-            float getVida();
-            float getRaioAtaque();
-            float getDano();
+            const float getVida() const;
+            const float getRaioAtaque() const;
+            const float getDano() const;
 
             virtual void executar(const float dt) = 0;
             virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;

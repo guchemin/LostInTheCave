@@ -43,9 +43,9 @@ namespace Entidades
             virtual nlohmann::json salvarJogo();
             void setJogador(Jogador* jog);
             void setPosInicial(const sf::Vector2f pos);
-            sf::Vector2f getPosJogador();
+            const sf::Vector2f getPosJogador() const;
             virtual void agir() = 0;
-            virtual float getPontuacao() = 0;
+            virtual const float getPontuacao() const = 0;
 
             virtual void executar(const float dt) = 0;
             virtual void colide(Entidade* ent, const sf::Vector2f intersec) = 0;

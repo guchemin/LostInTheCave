@@ -24,7 +24,7 @@ namespace Listas
         return IteradorEntidades(lista.remover(it.iterador));
     }
 
-    int ListaEntidades::getTam()
+    const int ListaEntidades::getTam() const
     {
         return lista.getTam();
     }

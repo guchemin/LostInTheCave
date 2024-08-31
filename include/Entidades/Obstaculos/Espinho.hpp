@@ -22,7 +22,7 @@ namespace Entidades
             Espinho();
             ~Espinho();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void setAfiado(float afd);
             const float getAfiado() const;
         };

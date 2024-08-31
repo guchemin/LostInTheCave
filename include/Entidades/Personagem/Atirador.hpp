@@ -34,11 +34,11 @@ namespace Entidades
             Atirador();
             ~Atirador();
 
-            virtual nlohmann::json salvarJogo();
+            nlohmann::json salvarJogo();
             void setProjetil(Projetil* proj);
             bool consegueAtacar();
             void agir();
-            float getPontuacao();
+            const float getPontuacao() const;
 
             void executar(const float dt);
             void colide(Entidade* ent, const sf::Vector2f intersec);

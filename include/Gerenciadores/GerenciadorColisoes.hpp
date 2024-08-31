@@ -25,6 +25,8 @@ namespace Gerenciadores
         Listas::ListaEntidades* listaProjeteis;
         Listas::ListaEntidades* listaPlataformas;
 
+    private:
+
         void colidePlataforma();
         void colideJogador();
         void colideObstaculo();

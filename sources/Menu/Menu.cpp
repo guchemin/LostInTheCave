@@ -115,7 +115,7 @@ namespace Estados
             }
         }
 
-        const TipoBotao Menu::getBotaoSelecionado()
+        const TipoBotao Menu::getBotaoSelecionado() const
         {
             return (*it)->getTipo();
         }
