@@ -1,5 +1,6 @@
 /*
 Entidade.hpp - Filha de Ente - Classe Abstrata
+Todos os sprites utilizados foram retirados do site: https://craftpix.net
 */
 
 #pragma once

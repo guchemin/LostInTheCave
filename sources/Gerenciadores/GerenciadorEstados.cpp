@@ -10,7 +10,6 @@
 
 namespace Gerenciadores
 {
-    // padrao Singleton
     GerenciadorEstados* GerenciadorEstados::instancia = NULL;
 
     GerenciadorEstados *GerenciadorEstados::getInstancia()
@@ -59,7 +58,6 @@ namespace Gerenciadores
             break;
         }
 
-        // ------------------- MUDAR PARA FASE DOIS
         case Estados::EstadoID::FaseDois:
         {
             Estados::Fases::FaseDois* fase = new Estados::Fases::FaseDois();

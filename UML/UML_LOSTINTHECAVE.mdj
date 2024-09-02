@@ -373,7 +373,7 @@
 											"top": 1798,
 											"width": 226.5224609375,
 											"height": 13,
-											"text": "+atualizar(dt: const float): virtual void",
+											"text": "+executar(dt: const float): virtual void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3259,7 +3259,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 2352,
+									"left": 2344,
 									"top": 1320,
 									"width": 10,
 									"height": 10
@@ -3276,7 +3276,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 2352,
+									"left": 2344,
 									"top": 1320,
 									"width": 10,
 									"height": 10
@@ -6519,7 +6519,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 520,
+									"left": 512,
 									"top": 592,
 									"width": 10,
 									"height": 10
@@ -6536,7 +6536,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 520,
+									"left": 512,
 									"top": 592,
 									"width": 10,
 									"height": 10
@@ -6857,7 +6857,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 1216,
+									"left": 1208,
 									"top": 1720,
 									"width": 10,
 									"height": 10
@@ -6874,7 +6874,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": 1216,
+									"left": 1208,
 									"top": 1720,
 									"width": 10,
 									"height": 10
@@ -7178,7 +7178,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": -1384,
+									"left": -1392,
 									"top": 2280,
 									"width": 10,
 									"height": 10
@@ -7195,7 +7195,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": -1384,
+									"left": -1392,
 									"top": 2280,
 									"width": 10,
 									"height": 10
@@ -26852,7 +26852,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": -160,
+									"left": -168,
 									"top": 3168,
 									"width": 10,
 									"height": 10
@@ -26869,7 +26869,7 @@
 									"visible": false,
 									"fillColor": "#86f786",
 									"font": "Arial;13;0",
-									"left": -160,
+									"left": -168,
 									"top": 3168,
 									"width": 10,
 									"height": 10
@@ -39558,7 +39558,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGRa5l8pOvWvkg="
 							},
-							"name": "atualizar",
+							"name": "executar",
 							"templateParameters": [
 								{
 									"_type": "UMLTemplateParameter",
