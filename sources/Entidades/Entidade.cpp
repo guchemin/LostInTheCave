@@ -3,9 +3,9 @@
 namespace Entidades
 {
     Entidade::Entidade(sf::Vector2f pos, sf::Vector2f tam, TIPO tp):
-    Ente(),
-    tipo(tp),
-    corpo(sf::RectangleShape(tam))
+        Ente(),
+        tipo(tp),
+        corpo(sf::RectangleShape(tam))
     {
         corpo.setPosition(pos);
     }

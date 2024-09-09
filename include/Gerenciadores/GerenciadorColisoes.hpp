@@ -1,6 +1,7 @@
 /*
 GerenciadorColisoes.hpp
 ----------------------------------------------------
+ * Inspirado em: https://github.com/MatheusBurda/Desert
  * Classe que gerencia as colisões entre as entidades do jogo.
  * Padrão de projeto Mediator.
 */

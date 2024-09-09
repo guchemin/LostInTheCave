@@ -1,5 +1,7 @@
 /*
 Menu.hpp - Filha de Ente e Estado - Classe Abstrata
+----------------------------------------------------
+ * Inspirado em: https://github.com/MatheusBurda/Desert
 */
 
 #pragma once

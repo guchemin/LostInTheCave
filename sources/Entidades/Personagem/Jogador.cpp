@@ -1,5 +1,4 @@
 #include "../../../include/Entidades/Personagem/Jogador.hpp"
-#include "../../../include/Entidades/Personagem/Inimigo.hpp"
 
 namespace Entidades
 {

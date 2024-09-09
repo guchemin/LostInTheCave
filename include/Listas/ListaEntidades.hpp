@@ -23,7 +23,7 @@ namespace Listas
     public:
         class IteradorEntidades 
         {
-        public:
+        private:
             Lista<Entidades::Entidade>::Iterador iterador;
 
         public:

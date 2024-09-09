@@ -1,6 +1,7 @@
 /*
 Animacao.hpp
 ----------------------------------------------------
+ * Animações retiradas de: https://craftpix.net
  * Classe criada para facilitar a manipulação de animações de personagens
  * Inspirado em: https://github.com/Giovanenero/JogoPlataforma2D-Jungle
 */

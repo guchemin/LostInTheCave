@@ -1,6 +1,7 @@
 /*
 GerenciadorEventos.hpp
 ----------------------------------------------------
+ * inspirado em: https://github.com/MatheusBurda/Desert juntamente com o GerenciadorInputs e Observador
  * Captura os eventos do jogo
  * Padrão de projeto Singleton.
 */

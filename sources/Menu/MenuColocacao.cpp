@@ -69,9 +69,9 @@ namespace Estados
             
             Texto* texto = new Texto();
             texto->operator=(novaLinha);
-            const int qtdVector = colocacoes.size();
+            const int tamVetor = colocacoes.size();
             const float tam = texto->getTamanho().x;
-            texto->setPos(sf::Vector2f(pGraf->getTamanho().x / 2.0f - tam / 2.0f, 225.0f + 50.0f * qtdVector));
+            texto->setPos(sf::Vector2f(pGraf->getTamanho().x / 2.0f - tam / 2.0f, 225.0f + 50.0f * tamVetor));
             colocacoes.push_back(texto);
         }
 
@@ -116,6 +116,7 @@ namespace Estados
                 case TipoBotao::VOLTAR:
                 {
                     remover = true;
+                    ativo = false;
                     break;
                 }
 

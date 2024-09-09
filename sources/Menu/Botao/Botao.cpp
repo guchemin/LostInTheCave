@@ -65,6 +65,6 @@ void Botao::desenhar()
     texto.desenhar();
 }
 
-void Botao::executar(const float dt) // nao usado para essa classe
+void Botao::executar(const float dt)
 {
 }

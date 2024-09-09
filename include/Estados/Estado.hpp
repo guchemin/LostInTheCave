@@ -49,7 +49,7 @@ namespace Estados
         void setRemover(const bool rmv);
         
         virtual void executar() = 0;
-        virtual void desenhar();
+        virtual void desenhar() = 0;
     };
     
 }

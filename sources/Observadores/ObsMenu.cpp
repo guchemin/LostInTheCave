@@ -59,7 +59,7 @@ namespace Observadores
         podeSelecionar = true;
 
         if(pMenu->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao && 
-        pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
+           pEstados->getEstadoAtual()->getEstadoID() == Estados::EstadoID::MenuSalvarPontuacao)
         {
             if(tecla == sf::Keyboard::Key::BackSpace)
             {

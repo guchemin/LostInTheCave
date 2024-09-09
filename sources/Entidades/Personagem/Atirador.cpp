@@ -66,7 +66,6 @@ namespace Entidades
             {
                 if(pProjetil->getPosicao().x <= -800.0f && pProjetil->getPosicao().y <= -800.0f)
                 {
-                    iniciouAtaque = false;
                     tempoAtaque = 0.0f;
                     return true;
                 }

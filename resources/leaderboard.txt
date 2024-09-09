@@ -1,1 +1,5 @@
  alirio 105 
+adilio 180 
+adauto 310 
+julia 0 
+piche 2340 

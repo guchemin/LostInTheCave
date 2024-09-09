@@ -34,7 +34,4 @@ namespace Estados
         remover = rmv;
     }
 
-    void Estado::desenhar()
-    {
-    }
 }
