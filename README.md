@@ -32,6 +32,9 @@
 - **Obstacles**: There are 3 distinct obstacles that make gameplay more difficult.
 - **Lives and Health**: Players must maintain their health to survive the cave's challenges.
 
+## Gameplay
+- Check out the gameplay of "Lost In The Cave" here: [Gameplay Video](https://www.youtube.com/watch?v=B5nA3dr4eMI)
+
 ## Installation
 
 1. **Clone the repository**:
